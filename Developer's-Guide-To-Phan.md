@@ -46,3 +46,18 @@ we have the following FQSENs.
 You'll note that all class and function FQSENs lowercase the name. We do this because function and class names are case insensitive in PHP. We'll likely make an option for enforcing casing in function and class names in future releases of Phan.
 
 An FQSEN for an element will inherit from the abstract class [\Phan\Language\FQSEN](https://github.com/etsy/phan/blob/master/src/Phan/Language/FQSEN.php). The actual FQSEN for each element (classes, methods, constants, properties, functions) will be defined by classes in the [\Phan\Language\FQSEN](https://github.com/etsy/phan/tree/master/src/Phan/Language/FQSEN) namespace.
+
+
+## Code Base
+
+The [CodeBase](https://github.com/etsy/phan/blob/master/src/Phan/CodeBase.php) in Phan is an object that maps FQSENs to a representation of the object for both scanned code and internal PHP elements.
+
+Classes, for instance are stored and looked up from the [Class Map](https://github.com/etsy/phan/blob/master/src/Phan/CodeBase/ClassMap.php) whereby a class can be fetched via the class `getClassByFQSEN`.
+
+```php
+$class = $code_base->getClassByFQSEN(
+    FullyQualifiedClassName::fromFullyQualifiedString("\NS\a")
+);
+```
+
+The CodeBase maps classes, methods, constants, properties and functions.
