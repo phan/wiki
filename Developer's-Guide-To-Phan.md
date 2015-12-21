@@ -61,3 +61,53 @@ $class = $code_base->getClassByFQSEN(
 ```
 
 The CodeBase maps classes, methods, constants, properties and functions.
+
+## Context
+
+The [Context](https://github.com/etsy/phan/blob/master/src/Phan/Language/Context.php) represents the state of the world at any point during parsing or analysis. It stores
+
+* The file we're looking at (available via `getFile()`)
+* The line number we're on (available via `getLine()`)
+* The namespace we're in (available via `getNamespace()`)
+* Any namespace maps that are available to us (available via `getNamespaceMapFor(...)`)
+* The scope holding any variables available to us (available via `getScope()`)
+
+and when appropriate
+
+* The class we're in (available via `getClassFQSEN()`)
+* The method we're in (available via `getMethodFQSEN()`)
+* The function we're in (also available via `getMethodFQSEN()`)
+* The closure we're in (available via `getClosureFQSEN()`)
+
+The Context is used to map non-fully-qualified names to fully-qualified names (FQSENs) and for knowing which files and lines to associate errors with.
+
+## Scope
+
+The [Scope](https://github.com/etsy/phan/blob/master/src/Phan/Language/Scope.php) maps variable names to [variables](https://github.com/etsy/phan/blob/master/src/Phan/Language/Element/Variable.php) and is housed within the [Context](https://github.com/etsy/phan/blob/master/src/Phan/Language/Context.php). The Scope will be able to map both locally defined variables and globally available variables.
+
+## Structural Elements
+
+The universe of structural element types are defined in the [`\Phan\Language\Element`](https://github.com/etsy/phan/tree/master/src/Phan/Language/Element) namespace and limited to
+
+* [**Clazz**](https://github.com/etsy/phan/tree/master/src/Phan/Language/Element/Clazz.php) is any class, interface or trait. It provides access to constants, properties or methods.
+* [**Method**](https://github.com/etsy/phan/tree/master/src/Phan/Language/Element/Method.php) is a method, function or closure.
+* [**Parameter**](https://github.com/etsy/phan/tree/master/src/Phan/Language/Element/Parameter.php) is a parameter to a function, method or closure.
+* [**Variable**](https://github.com/etsy/phan/tree/master/src/Phan/Language/Element/Variable.php) is any global or local variable.
+* [**Constant**](https://github.com/etsy/phan/tree/master/src/Phan/Language/Element/Constant.php) is either a global or class constant.
+* [**Comment**](https://github.com/etsy/phan/tree/master/src/Phan/Language/Element/Comment.php) is a representation of a comment in code. These are stored only for classes, functions, methods, constants and properties.
+* [**Property**](https://github.com/etsy/phan/tree/master/src/Phan/Language/Element/Property.php) is any property on a class, trait or interface.
+
+## Logging
+
+Issues found during analysis are emitted via the `[Log](https://github.com/etsy/phan/blob/master/src/Phan/Log.php)::err` method. A common usage is
+
+```php
+Log::err(
+    Log::ETYPE,
+    "$expression_type passed to foreach instead of array",
+    $this->context->getFile(),
+    $node->lineno
+);
+```
+
+In this example, we're logging a type error (`Log::ETYPE`) where we're passing something other than an array as the first argument to a `foreach` and we're noting that its in a given file on a given line.
