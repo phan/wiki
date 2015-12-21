@@ -6,7 +6,7 @@ There are a few concepts that are important to understand when looking at the Ph
 
 ### FQSEN
 
-An FQSEN is a Fully Qualified Structural Element Name. Any element in PHP that can be accessed from elsewhere has an FQSEN that we use to look it up. In the following code for example
+An [FQSEN](https://github.com/etsy/phan/blob/master/src/Phan/Language/FQSEN.php) is a Fully Qualified Structural Element Name. Any element in PHP that can be accessed from elsewhere has an FQSEN that we use to look it up. In the following code for example
 
 ```php
 namespace NS;
@@ -44,3 +44,5 @@ we have the following FQSENs.
 * **\g** is the function `g`
 
 You'll note that all class and function FQSENs lowercase the name. We do this because function and class names are case insensitive in PHP. We'll likely make an option for enforcing casing in function and class names in future releases of Phan.
+
+An FQSEN for an element will inherit from the abstract class [\Phan\Language\FQSEN](https://github.com/etsy/phan/blob/master/src/Phan/Language/FQSEN.php). The actual FQSEN for each element (classes, methods, constants, properties, functions) will be defined by classes in the [\Phan\Language\FQSEN](https://github.com/etsy/phan/tree/master/src/Phan/Language/FQSEN) namespace.
