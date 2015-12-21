@@ -102,13 +102,13 @@ The universe of structural element types are defined in the [`\Phan\Language\Ele
 Phan runs in three phases;
 
 1. **Parsing**
-   All code is parsed in order to build maps from FQSENs to elements (such as classes or methods). During this phase the AST is read for each file and any addressable objects are created and stored in a map within the code base.
+   All code is parsed in order to build maps from FQSENs to elements (such as classes or methods). During this phase the AST is read for each file and any addressable objects are created and stored in a map within the code base. A good place to start for understanding parsing is [\Phan\Analyze\ParseVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/ParseVisitor.php).
 
 2. **Class and Type Expansion**
    Before analysis can begin we take a pass over all elements (classes, methods, functions, etc.) and expand them with any information that was needed from the entire code base. Classes, for instance, get all constants, properties and methods from parents, interfaces and traits imported. The types of all classes are expanded to include the types of their parent classes, interfaces and traits.
 
 3. **Analysis**
-   Now that we know about all elements throughout the code base, we can start doing analysis. During analysis we take another pass at reading the AST for all files so that we can start doing proofs on types and stuff.
+   Now that we know about all elements throughout the code base, we can start doing analysis. During analysis we take another pass at reading the AST for all files so that we can start doing proofs on types and stuff. To understand analysis, take a look at [\Phan\Analyze\DepthFirstVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/DepthFirstVisitor.php) and [\Phan\Analyze\BreadthFirstVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/BreadthFirstVisitor.php).
 
 A great place to start to understand how parsing and analysis happens is in [\Phan\Phan](https://github.com/etsy/phan/blob/master/src/Phan/Phan.php) where each step is explained.
 
@@ -129,5 +129,19 @@ Log::err(
 
 In this example, we're logging a type error (`Log::ETYPE`) where we're passing something other than an array as the first argument to a `foreach` and we're noting that its in a given file on a given line.
 
-## Visitors
+## AST Node Visitors
 
+Many parts of Phan are implemented as AST Node Visitors whereby we switch on the type of node and call the appropriate method on the visitor. As an example, consider the following code.
+
+```php
+class A {
+    public function f() {}
+}
+```
+
+During the parsing phase, we'd
+
+* Create an AST in [\Phan\Phan::parseFile](https://github.com/etsy/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Phan.php#L140-L146)
+* Create a [ParseVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/ParseVisitor.php) for the root node in [\Phan\Phan::parseNodeInContext](https://github.com/etsy/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Phan.php#L200-L206)
+* Visit the class node via [ParseVisitor::visitClass](https://github.com/etsy/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Analyze/ParseVisitor.php#L77)
+* Visit the method node via [ParseVisitor::visitMethod](https://github.com/etsy/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Analyze/ParseVisitor.php#L239)
