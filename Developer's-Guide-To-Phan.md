@@ -47,6 +47,21 @@ You'll note that all class and function FQSENs lowercase the name. We do this be
 
 An FQSEN for an element will inherit from the abstract class [\Phan\Language\FQSEN](https://github.com/etsy/phan/blob/master/src/Phan/Language/FQSEN.php). The actual FQSEN for each element (classes, methods, constants, properties, functions) will be defined by classes in the [\Phan\Language\FQSEN](https://github.com/etsy/phan/tree/master/src/Phan/Language/FQSEN) namespace.
 
+## Type and UnionType
+
+A [Type](https://github.com/etsy/phan/blob/master/src/Phan/Language/Type.php) is what you'd expect and can be a native type like `int`, `float`, `string`, `bool`, `array` or a non-native type for a class such as `\Phan\Language\Type`. A type can also be a generic array such as `int[]`, `string[]`, `\Phan\Language\Type[]`, etc. which denote an array of type `int`, `string` and `\Phan\Language\Type` respectively.
+
+A [UnionType](https://github.com/etsy/phan/blob/master/src/Phan/Language/UnionType.php) denotes a set of types for which an element can be any of them. A UnionType could be something like `int|string` to denote that something can be an `int` or a `string`.
+
+```php
+/** @param bool|array $a */
+function f($a) : int {
+    return 42;
+}
+```
+
+In the code above, the parameter `$a` is defined to be either a `bool` or an `array`. Passing the argument `true` or `[1, 2, 3]` would both pass analysis while passing `"string"` or `42` would not.
+
 
 ## Code Base
 
