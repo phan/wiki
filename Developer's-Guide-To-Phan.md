@@ -97,6 +97,19 @@ The universe of structural element types are defined in the [`\Phan\Language\Ele
 * [**Comment**](https://github.com/etsy/phan/tree/master/src/Phan/Language/Element/Comment.php) is a representation of a comment in code. These are stored only for classes, functions, methods, constants and properties.
 * [**Property**](https://github.com/etsy/phan/tree/master/src/Phan/Language/Element/Property.php) is any property on a class, trait or interface.
 
+## Parsing and Analysis
+
+Phan runs in three phases;
+
+1. **Parsing**
+   All code is parsed in order to build maps from FQSENs to elements (such as classes or methods). During this phase the AST is read for each file and any addressable objects are created and stored in a map within the code base.
+
+2. **Class and Type Expansion**
+   Before analysis can begin we take a pass over all elements (classes, methods, functions, etc.) and expand them with any information that was needed from the entire code base. Classes, for instance, get all constants, properties and methods from parents, interfaces and traits imported. The types of all classes are expanded to include the types of their parent classes, interfaces and traits.
+
+3. **Analysis**
+   Now that we know about all elements throughout the code base, we can start doing analysis. During analysis we take another pass at reading the AST for all files so that we can start doing proofs on types and stuff.
+
 ## Logging
 
 Issues found during analysis are emitted via the `[Log](https://github.com/etsy/phan/blob/master/src/Phan/Log.php)::err` method. A common usage is
