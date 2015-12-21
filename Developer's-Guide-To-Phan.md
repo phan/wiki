@@ -110,6 +110,9 @@ Phan runs in three phases;
 3. **Analysis**
    Now that we know about all elements throughout the code base, we can start doing analysis. During analysis we take another pass at reading the AST for all files so that we can start doing proofs on types and stuff.
 
+A great place to start to understand how parsing and analysis happens is in [\Phan\Phan](https://github.com/etsy/phan/blob/master/src/Phan/Phan.php) where each step is explained.
+
+
 ## Logging
 
 Issues found during analysis are emitted via the `[Log](https://github.com/etsy/phan/blob/master/src/Phan/Log.php)::err` method. A common usage is
