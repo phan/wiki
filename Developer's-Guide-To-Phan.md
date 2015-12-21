@@ -112,6 +112,7 @@ Phan runs in three phases;
 
 A great place to start to understand how parsing and analysis happens is in [\Phan\Phan](https://github.com/etsy/phan/blob/master/src/Phan/Phan.php) where each step is explained.
 
+Take a look at the [\Phan\Analyze](https://github.com/etsy/phan/tree/master/src/Phan/Analyze) namespace to see the various bits of analysis being done.
 
 ## Logging
 
@@ -127,3 +128,6 @@ Log::err(
 ```
 
 In this example, we're logging a type error (`Log::ETYPE`) where we're passing something other than an array as the first argument to a `foreach` and we're noting that its in a given file on a given line.
+
+## Visitors
+
