@@ -145,3 +145,9 @@ During the parsing phase, we'd
 * Create a [ParseVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/ParseVisitor.php) for the root node in [\Phan\Phan::parseNodeInContext](https://github.com/etsy/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Phan.php#L200-L206)
 * Visit the class node via [ParseVisitor::visitClass](https://github.com/etsy/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Analyze/ParseVisitor.php#L77)
 * Visit the method node via [ParseVisitor::visitMethod](https://github.com/etsy/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Analyze/ParseVisitor.php#L239)
+
+Other node visitors include
+
+* [\Phan\Analyze\DepthFirstVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/DepthFirstVisitor.php) where we do part of the analysis during the analysis phase.
+* [\Phan\Analyze\BreadthFirstVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/BreadthFirstVisitor.php) where we do another part of the analysis during the analysis phase.
+* [\Phan\AST\UnionTypeVisitor](https://github.com/etsy/phan/blob/master/src/Phan/AST/UnionTypeVisitor.php) where we do much of the work figuring out the types of things throughout analysis.
