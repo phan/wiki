@@ -123,7 +123,7 @@ Phan runs in three phases;
    Before analysis can begin we take a pass over all elements (classes, methods, functions, etc.) and expand them with any information that was needed from the entire code base. Classes, for instance, get all constants, properties and methods from parents, interfaces and traits imported. The types of all classes are expanded to include the types of their parent classes, interfaces and traits.
 
 3. **Analysis**
-   Now that we know about all elements throughout the code base, we can start doing analysis. During analysis we take another pass at reading the AST for all files so that we can start doing proofs on types and stuff. To understand analysis, take a look at [\Phan\Analyze\DepthFirstVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/DepthFirstVisitor.php) and [\Phan\Analyze\BreadthFirstVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/BreadthFirstVisitor.php).
+   Now that we know about all elements throughout the code base, we can start doing analysis. During analysis we take another pass at reading the AST for all files so that we can start doing proofs on types and stuff. To understand analysis, take a look at [\Phan\Analyze\PreOrderAnalysisVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/PreOrderAnalysisVisitor.php) and [\Phan\Analyze\PostOrderAnalysisVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/PostOrderAnalysisVisitor.php).
 
 A great place to start to understand how parsing and analysis happens is in [\Phan\Phan](https://github.com/etsy/phan/blob/master/src/Phan/Phan.php) where each step is explained.
 
@@ -163,6 +163,6 @@ During the parsing phase, we'd
 
 Other node visitors include
 
-* [\Phan\Analyze\DepthFirstVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/DepthFirstVisitor.php) where we do part of the analysis during the analysis phase.
-* [\Phan\Analyze\BreadthFirstVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/BreadthFirstVisitor.php) where we do another part of the analysis during the analysis phase.
+* [\Phan\Analyze\PreOrderAnalysisVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/PreOrderAnalysisVisitor.php) where we do part of the analysis during the analysis phase.
+* [\Phan\Analyze\PostOrderAnalysisVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/PostOrderAnalysisVisitor.php) where we do another part of the analysis during the analysis phase.
 * [\Phan\AST\UnionTypeVisitor](https://github.com/etsy/phan/blob/master/src/Phan/AST/UnionTypeVisitor.php) where we do much of the work figuring out the types of things throughout analysis.
