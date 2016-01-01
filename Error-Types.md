@@ -24,6 +24,19 @@ UndefError reference to undeclared class %s
 ```
 
 # TypeError
+
+```
+TypeError assigning int to property but %s is %s
+TypeError Default value for %s %s can't be %s
+TypeError arg#%d(%s) is string but %s takes %s defined at %s
+TypeError return %s but %s is declared to return %s
+TypeError %s passed to foreach instead of array
+TypeError invalid array operator
+TypeError Suspicious array access to %s
+TypeError %s to array comparison
+TypeError array to %s comparison
+```
+
 # VarError
 # StaticCallError
 # DeprecatedError
