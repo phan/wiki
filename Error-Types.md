@@ -59,19 +59,32 @@ DeprecatedError Call to deprecated function %s defined at %s:%d
 # ParamError
 
 ```
+ParamError call with %d arg(s) to %s which only takes %d arg(s) defined at %s:%d
+ParamError call with %d arg(s) to %s which requires %d arg(s) defined at %s:%d
+ParamError arg#%d(%s) is %s but %s takes %s when arg#%d is %s
+ParamError arg#%d(%s) is string but %s takes %s when passed only one arg
 ```
 
 # NOOPError
 
 ```
+NOOPError no-op property
+NOOPError no-op array
+NOOPError no-op constant
+NOOPError no-op closure
+NOOPError no-op property
 ```
 
 # RedefineError
 
 ```
+RedefineError Class %s defined at %s:%d was previously defined as Class %s at %s:%d
+RedefineError Function %s defined at %s:%d was previously defined at %s:%d
 ```
 
 # AccessError
 
 ```
+AccessError Cannot access protected property %s
+AccessError Cannot access private property %s
 ```
