@@ -38,9 +38,40 @@ TypeError array to %s comparison
 ```
 
 # VarError
+
+```
+VarError Variable %s is not defined
+```
+
 # StaticCallError
+
+```
+StaticCallError static call to non-static method %s defined at %s:%d
+StaticCallError Using self:: when not in object context
+```
+
 # DeprecatedError
+
+```
+DeprecatedError Call to deprecated function %s defined at %s:%d
+```
+
 # ParamError
+
+```
+```
+
 # NOOPError
+
+```
+```
+
 # RedefineError
+
+```
+```
+
 # AccessError
+
+```
+```
