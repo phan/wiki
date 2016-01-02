@@ -351,6 +351,12 @@ class F { function f() { $v = parent::f(); } }
 Reference to parent from trait %s
 ```
 
+This issue will be emitted from the following code
+
+```php
+trait T { function f() { return parent::f(); } }
+```
+
 ## PhanUnanalyzable
 
 ```
@@ -400,6 +406,12 @@ if ($v instanceof Undef) {}
 Call to method %s from undeclared class %s
 ```
 
+This issue will be emitted from the following code
+
+```php
+function g(Undef $v) { $v->f(); }
+```
+
 ## PhanUndeclaredClassReference
 
 ```
@@ -446,6 +458,13 @@ Call to undeclared method %s
 
 ```
 Reference to undeclared property %s
+```
+
+This issue will be emitted from the following code
+
+```php
+class C {}
+$v = (new C)->undef;
 ```
 
 ## PhanUndeclaredStaticMethod
