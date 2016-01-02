@@ -41,6 +41,8 @@ print C1::$p;
 
 This issue will be thrown if there is an expression that may be treated differently in PHP7 than it was in previous major versions of the PHP runtime. Take a look at the [PHP7 Migration Manual](http://php.net/manual/en/migration70.incompatible.php) to understand changes in behavior.
 
+The config `Config::get()->backward_compatibility_checks` must be enabled for this to run such as by passing the command line argument `--backward-compatibility-checks`.
+
 ```
 %s expression may not be PHP 7 compatible
 ```
@@ -48,6 +50,8 @@ This issue will be thrown if there is an expression that may be treated differen
 ## PhanCompatiblePHP7
 
 This issue will be thrown if there is an expression that may be treated differently in PHP7 than it was in previous major versions of the PHP runtime. Take a look at the [PHP7 Migration Manual](http://php.net/manual/en/migration70.incompatible.php) to understand changes in behavior.
+
+The config `Config::get()->backward_compatibility_checks` must be enabled for this to run such as by passing the command line argument `--backward-compatibility-checks`.
 
 ```
 Expression may not be PHP 7 compatible
@@ -157,7 +161,6 @@ class C {
 Unused variable
 ```
 
-
 This will be emitted for the following code.
 
 ```php
@@ -171,12 +174,24 @@ $a;
 Possibly zero references to %s
 ```
 
+This will be emitted for the following code so long as `Config::get()->dead_code_detection` is enabled.
+
+```php
+class C {}
+```
+
 # ParamError
 
 ## PhanParamReqAfterOpt
 
 ```
 Required argument follows optional
+```
+
+This will be emitted for the following code
+
+```php
+function f2($p1 = null, $p2) {}
 ```
 
 ## PhanParamSpecial1
