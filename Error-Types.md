@@ -53,6 +53,12 @@ This issue will be thrown if there is an expression that may be treated differen
 Expression may not be PHP 7 compatible
 ```
 
+This will be emitted for the following code.
+
+```php
+$c->$m[0]();
+```
+
 # Context
 
 ## PhanContextNotObject
@@ -615,4 +621,3 @@ Variable $%s is undeclared
 ```
 Non-variables not allowed within use clause
 ```
-
