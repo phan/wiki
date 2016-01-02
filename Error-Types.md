@@ -1,4 +1,4 @@
-See [\Phan\Issue](https://github.com/etsy/phan/blob/master/src/Phan/Issue.php) for the set of error types that are emitted. Below is a listing of all issue types as of [87ab20](https://github.com/etsy/phan/tree/87ab2044f78c0263018428ee260b1b5be2646ca6/). The test case [0101_one_of_each.php](https://github.com/etsy/phan/blob/master/tests/files/src/0101_one_of_each.php) should cover all examples in this document.
+See [\Phan\Issue](https://github.com/etsy/phan/blob/master/src/Phan/Issue.php) for the set of error types that are emitted. Below is a listing of all issue types as of [8c1435](https://github.com/etsy/phan/tree/8c1435f6044f15fa4fd39c2abf713062214f4087/). The test case [0101_one_of_each.php](https://github.com/etsy/phan/blob/master/tests/files/src/0101_one_of_each.php) should cover all examples in this document.
 
 Please add example code, fix outdated info and add any remedies to the issues below.
 
