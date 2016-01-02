@@ -5,6 +5,8 @@ Please add example code, fix outdated info and add any remedies to the issues be
 
 # AccessError
 
+This category of issue is emitted when you're trying to access things that you can't access.
+
 ## PhanAccessPropertyPrivate
 
 This issue comes up when there is an attempt to access a private property outside of the scope in which its defined.
@@ -37,11 +39,13 @@ print C1::$p;
 
 # CompatError
 
+This category of issue is emitted when there are compatibility issues. They will be thrown if there is an expression that may be treated differently in PHP7 than it was in previous major versions of the PHP runtime. Take a look at the [PHP7 Migration Manual](http://php.net/manual/en/migration70.incompatible.php) to understand changes in behavior.
+
 ## PhanCompatibleExpressionPHP7
 
 This issue will be thrown if there is an expression that may be treated differently in PHP7 than it was in previous major versions of the PHP runtime. Take a look at the [PHP7 Migration Manual](http://php.net/manual/en/migration70.incompatible.php) to understand changes in behavior.
 
-The config `Config::get()->backward_compatibility_checks` must be enabled for this to run such as by passing the command line argument `--backward-compatibility-checks`.
+The config `Config::get()->backward_compatibility_checks` must be enabled for this to run such as by passing the command line argument `--backward-compatibility-checks` or by defining it in a `.phan/config.php` file such as [Phan's own config](https://github.com/etsy/phan/blob/master/.phan/config.php).
 
 ```
 %s expression may not be PHP 7 compatible
@@ -51,7 +55,7 @@ The config `Config::get()->backward_compatibility_checks` must be enabled for th
 
 This issue will be thrown if there is an expression that may be treated differently in PHP7 than it was in previous major versions of the PHP runtime. Take a look at the [PHP7 Migration Manual](http://php.net/manual/en/migration70.incompatible.php) to understand changes in behavior.
 
-The config `Config::get()->backward_compatibility_checks` must be enabled for this to run such as by passing the command line argument `--backward-compatibility-checks`.
+The config `Config::get()->backward_compatibility_checks` must be enabled for this to run such as by passing the command line argument `--backward-compatibility-checks` or by defining it in a `.phan/config.php` file such as [Phan's own config](https://github.com/etsy/phan/blob/master/.phan/config.php).
 
 ```
 Expression may not be PHP 7 compatible
@@ -64,6 +68,8 @@ $c->$m[0]();
 ```
 
 # Context
+
+This category of issue are for when you're doing stuff out of the context in which you're allowed to do it like referencing `self` or `parent` when not in a class, interface or trait.
 
 ## PhanContextNotObject
 
@@ -80,6 +86,10 @@ new parent;
 ```
 
 # DeprecatedError
+
+This category of issue comes up when you're accessing deprecated elements (as marked by the `@deprecated` comment).
+
+**Note!** Only classes, traits, interfaces, methods, functions, properties, and traits may be marked as deprecated. You can't deprecate a variable or any other expression.
 
 ## PhanDeprecatedFunction
 
@@ -98,6 +108,8 @@ f1();
 ```
 
 # NOOPError
+
+This category of issues are emitted when you have reasonable code but it isn't doing anything. They're all low severity.
 
 ## PhanNoopArray
 
@@ -149,7 +161,6 @@ Emitted when you have a refence to a property that is unused.
 ```
 Unused property
 ```
-
 
 This will be emitted for the following code.
 
@@ -205,6 +216,8 @@ new $v2;
 YMMV.
 
 # ParamError
+
+This category of error comes up when you're messing up your method or function parameters in some way.
 
 ## PhanParamReqAfterOpt
 
@@ -310,28 +323,64 @@ Argument %d is %s but %s() takes %s
 
 # RedefineError
 
+This category of issue come up when more than one thing of whatever type have the same name and namespace.
+
 ## PhanRedefineClass
+
+If you attempt to create a class that has the same name and namespace as a class that exists elsewhere you'll see this issue. Note that you'll get the issue on the second class in the order of files passed in to Phan.
 
 ```
 %s defined at %s:%d was previously defined as %s at %s:%d
 ```
 
+This issue will be emitted for code like
+
+```php
+class C15 {}
+class C15 {}
+```
+
 ## PhanRedefineClassInternal
+
+If you attempt to create a class that has the same name and namespace as a class that is internal to PHP, you'll see this issue.
 
 ```
 %s defined at %s:%d was previously defined as %s internally
 ```
 
+This issue will be emitted for code like
+
+```php
+class DateTime {}
+```
+
 ## PhanRedefineFunction
+
+This issue comes up when you have two functions (or methods) with the same name and namespace.
 
 ```
 Function %s defined at %s:%d was previously defined at %s:%d
 ```
 
+It'll come up with code like
+
+```php
+function f9() {}
+function f9() {}
+```
+
 ## PhanRedefineFunctionInternal
+
+This issue comes up if you define a function or method that has the same name and namespace as an internal function or method.
 
 ```
 Function %s defined at %s:%d was previously defined internally
+```
+
+You'll see this issue with code like
+
+```php
+function strlen() {}
 ```
 
 # StaticCallError
