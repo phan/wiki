@@ -89,7 +89,6 @@ If a class, method, function, property or constant is marked in its comment as `
 Call to deprecated function %s() defined at %s:%d
 ```
 
-
 This will be emitted for the following code.
 
 ```php
@@ -101,6 +100,8 @@ f1();
 # NOOPError
 
 ## PhanNoopArray
+
+Emitted when you have an array that is not used in any way.
 
 ```
 Unused array
@@ -114,6 +115,8 @@ This will be emitted for the following code.
 
 ## PhanNoopClosure
 
+Emitted when you have a closure that is unused.
+
 ```
 Unused closure
 ```
@@ -125,6 +128,8 @@ function f() {};
 ```
 
 ## PhanNoopConstant
+
+Emitted when you have a reference to a constant that is unused.
 
 ```
 Unused constant
@@ -138,6 +143,8 @@ C;
 ```
 
 ## PhanNoopProperty
+
+Emitted when you have a refence to a property that is unused.
 
 ```
 Unused property
@@ -157,6 +164,8 @@ class C {
 
 ## PhanNoopVariable
 
+Emitted when you have a reference to a variable that is unused.
+
 ```
 Unused variable
 ```
@@ -170,6 +179,8 @@ $a;
 
 ## PhanNoopZeroReferences
 
+This issue is disabled by default, but can be enabled by setting `Config::get()->dead_code_detection` to enabled. It indicates that the given element is (possibly) unused.
+
 ```
 Possibly zero references to %s
 ```
@@ -180,9 +191,24 @@ This will be emitted for the following code so long as `Config::get()->dead_code
 class C {}
 ```
 
+Keep in mind that for the following code we'd still emit the issue.
+
+```php
+class C2 {}
+$v = 'C2';
+new $v;
+
+$v2 = 'C' . (1 + 1);
+new $v2;
+```
+
+YMMV.
+
 # ParamError
 
 ## PhanParamReqAfterOpt
+
+If you declare a function with required parameters after optional parameters, you'll see this issue.
 
 ```
 Required argument follows optional
