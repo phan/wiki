@@ -69,6 +69,12 @@ This issue comes up when you attempt to use things like `$this` that only exist 
 Cannot access %s when not in object context
 ```
 
+This will be emitted for the following code.
+
+```php
+new parent;
+```
+
 ## PhanNonStaticSelf
 
 This issue is thrown when there is a reference to `self` in a non-static method.
