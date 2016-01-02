@@ -847,8 +847,16 @@ Static property '%s' on %s is undeclared
 
 ## PhanUndeclaredTrait
 
+If you attempt to use a trait that doesn't exist, you'll see this issue.
+
 ```
 Class uses undeclared trait %s
+```
+
+An example would be
+
+```php
+class C20 { use T2; }
 ```
 
 ## PhanUndeclaredVariable
