@@ -1,4 +1,6 @@
-See [\Phan\Issue](https://github.com/etsy/phan/blob/master/src/Phan/Issue.php) for the set of error types that are emitted.
+See [\Phan\Issue](https://github.com/etsy/phan/blob/master/src/Phan/Issue.php) for the set of error types that are emitted. Below is a listing of all issue types as of [87ab20](https://github.com/etsy/phan/tree/87ab2044f78c0263018428ee260b1b5be2646ca6/).
+
+Please add example code, fix outdated info and add any remedies to the issues below.
 
 
 # AccessError
