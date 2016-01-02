@@ -75,10 +75,22 @@ Call to deprecated function %s() defined at %s:%d
 Unused array
 ```
 
+This will be emitted for the following code.
+
+```php
+[1,2,3];
+```
+
 ## PhanNoopClosure
 
 ```
 Unused closure
+```
+
+This will be emitted for the following code.
+
+```php
+function f() {};
 ```
 
 ## PhanNoopConstant
@@ -87,16 +99,43 @@ Unused closure
 Unused constant
 ```
 
+This will be emitted for the following code.
+
+```php
+const C = 42;
+C;
+```
+
 ## PhanNoopProperty
 
 ```
 Unused property
 ```
 
+
+This will be emitted for the following code.
+
+```php
+class C {
+    public $p;
+    function f() {
+        $this->p;
+    }
+}
+```
+
 ## PhanNoopVariable
 
 ```
 Unused variable
+```
+
+
+This will be emitted for the following code.
+
+```php
+$a = 42;
+$a;
 ```
 
 ## PhanNoopZeroReferences
