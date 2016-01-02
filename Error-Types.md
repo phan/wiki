@@ -75,14 +75,6 @@ This will be emitted for the following code.
 new parent;
 ```
 
-## PhanNonStaticSelf
-
-This issue is thrown when there is a reference to `self` in a non-static method.
-
-```
-Reference to self when not in object context
-```
-
 # DeprecatedError
 
 ## PhanDeprecatedFunction
