@@ -307,10 +307,22 @@ Must call parent::__construct() from %s which extends %s
 Parameter of undeclared type %s
 ```
 
+This issue will be emitted from the following code
+
+```php
+function f(Undef $p) {}
+```
+
 ## PhanUndeclaredTypeProperty
 
 ```
 Property of undeclared type %s
+```
+
+This issue will be emitted from the following code
+
+```php
+class D { /** @var Undef */ public $p; }
 ```
 
 # UndefError
@@ -325,6 +337,12 @@ Empty file %s
 
 ```
 Reference to parent of class %s that does not extend anything
+```
+
+This issue will be emitted from the following code
+
+```php
+class F { function f() { $v = parent::f(); } }
 ```
 
 ## PhanTraitParentReference
@@ -351,6 +369,12 @@ Reference to undeclared class %s
 Catching undeclared class %s
 ```
 
+The following code will emit this error.
+
+```php
+try {} catch (Undef $exception) {}
+```
+
 ## PhanUndeclaredClassConstant
 
 ```
@@ -361,6 +385,13 @@ Reference to constant %s from undeclared class %s
 
 ```
 Checking instanceof against undeclared class %s
+```
+
+This issue will be emitted from the following code
+
+```php
+$v = null;
+if ($v instanceof Undef) {}
 ```
 
 ## PhanUndeclaredClassMethod
@@ -385,6 +416,12 @@ Reference to undeclared constant %s
 
 ```
 Class extends undeclared class %s
+```
+
+This issue will be emitted from the following code
+
+```php
+class E extends Undef {}
 ```
 
 ## PhanUndeclaredFunction
@@ -415,6 +452,12 @@ Reference to undeclared property %s
 
 ```
 Static call to undeclared method %s
+```
+
+This issue will be emitted from the following code
+
+```php
+C::staticMethod();
 ```
 
 ## PhanUndeclaredStaticProperty
