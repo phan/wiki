@@ -220,26 +220,60 @@ The second to last argument to %s must be of type %s
 
 ## PhanParamTooFew
 
+This issue indicates that you're not passing in at least the number of required parameters to a function or method.
+
 ```
 Call with %d arg(s) to %s() which requires %d arg(s) defined at %s:%d
 ```
 
+This will be emitted for the code
+
+```php
+function f6($i) {}
+f6();
+```
+
 ## PhanParamTooFewInternal
+
+This issue indicates that you're not passing in at least the number of required parameters to an internal function or method.
 
 ```
 Call with %d arg(s) to %s() which requires %d arg(s)
 ```
 
+This will be emitted for the code
+
+```php
+strlen();
+```
+
 ## PhanParamTooMany
+
+This issue is emitted when you're passing more than the number of required and optional parameters than are defined for a method or function.
 
 ```
 Call with %d arg(s) to %s() which only takes %d arg(s) defined at %s:%d
 ```
 
+This will be emitted for the code
+
+```php
+function f7($i) {}
+f7(1, 2);
+```
+
 ## PhanParamTooManyInternal
+
+This issue is emitted when you're passing more than the number of required and optional parameters than are defined for an internal method or function.
 
 ```
 Call with %d arg(s) to %s() which only takes %d arg(s)
+```
+
+This will be emitted for the code
+
+```php
+strlen('str', 42);
 ```
 
 ## PhanParamTypeMismatch
