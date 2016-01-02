@@ -2,7 +2,6 @@ See [\Phan\Issue](https://github.com/etsy/phan/blob/master/src/Phan/Issue.php) f
 
 Please add example code, fix outdated info and add any remedies to the issues below.
 
-
 # AccessError
 
 This category of issue is emitted when you're trying to access things that you can't access.
@@ -572,6 +571,8 @@ Must call parent::__construct() from %s which extends %s
 
 ## PhanUndeclaredTypeParameter
 
+If you have a parameter on a function or method of a type that is not defined, you'll see this issue.
+
 ```
 Parameter of undeclared type %s
 ```
@@ -584,6 +585,8 @@ function f(Undef $p) {}
 
 ## PhanUndeclaredTypeProperty
 
+If you have a property with an undefined type, you'll see this issue.
+
 ```
 Property of undeclared type %s
 ```
@@ -595,6 +598,10 @@ class D { /** @var Undef */ public $p; }
 ```
 
 # UndefError
+
+This category of issue come up when there are references to undefined things. These are a big source of false-positives in Phan given that code bases often take liberties with calling methods on sub-classes of the class defined to be returned by a function and things like that.
+
+You can ignore all errors of this category by passing in the command-line argument `-i` or `--ignore-undeclared`.
 
 ## PhanEmptyFile
 
@@ -611,6 +618,8 @@ This would be emitted if you have a file with the contents
 
 ## PhanParentlessClass
 
+If there is a reference to the parent of a class that does not extend something, you'll see this issue.
+
 ```
 Reference to parent of class %s that does not extend anything
 ```
@@ -622,6 +631,8 @@ class F { function f() { $v = parent::f(); } }
 ```
 
 ## PhanTraitParentReference
+
+If you reference `parent` from within a trait, you'll get this issue. This is a low priority issue given that its perfectly fine PHP for some reason.
 
 ```
 Reference to parent from trait %s
@@ -653,6 +664,8 @@ Reference to undeclared class %s
 ```
 
 ## PhanUndeclaredClassCatch
+
+If you're catching a throwable of a type that isn't defined, you'll see this issue.
 
 ```
 Catching undeclared class %s
@@ -703,11 +716,21 @@ Reference to undeclared class %s
 
 ## PhanUndeclaredConstant
 
+This issue comes up when you reference a constant that doesn't exist.
+
 ```
 Reference to undeclared constant %s
 ```
 
+You'll see this issue with code like
+
+```php
+class C16 {}
+$v7 = C16::C;
+```
 ## PhanUndeclaredExtendedClass
+
+You'll see this issue if you extend a class that doesn't exist.
 
 ```
 Class extends undeclared class %s
@@ -721,14 +744,30 @@ class E extends Undef {}
 
 ## PhanUndeclaredFunction
 
+This issue will be emitted if you reference a function that doesn't exist.
+
 ```
 Call to undeclared function %s
 ```
 
+This issue will be emitted for the code
+
+```php
+f10();
+```
+
 ## PhanUndeclaredInterface
+
+Implementing an interface that doesn't exist or otherwise can't be found will emit this issue.
 
 ```
 Class implements undeclared interface %s
+```
+
+The following code will express this issue.
+
+```php
+class C17 implements C18 {}
 ```
 
 ## PhanUndeclaredMethod
