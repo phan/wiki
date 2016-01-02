@@ -221,6 +221,12 @@ Invalid array operator
 Suspicious array access to %s
 ```
 
+This issue will be emitted for the following code
+
+```php
+$a = false; if($a[1]) {}
+```
+
 ## PhanTypeComparisonFromArray
 
 ```
@@ -245,10 +251,22 @@ array to %s conversion
 Instantiation of abstract class %s
 ```
 
+This issue will be emitted for the following code
+
+```php
+abstract class D {} (new D);
+```
+
 ## PhanTypeInstantiateInterface
 
 ```
 Instantiation of interface %s
+```
+
+This issue will be emitted for the following code
+
+```php
+interface E {} (new E);
 ```
 
 ## PhanTypeInvalidLeftOperand
@@ -293,10 +311,22 @@ Default value for %s $%s can't be %s
 Assigning %s to property but %s is %s
 ```
 
+This issue is emitted from the following code
+
+```php
+function f(int $p = false) {}
+```
+
 ## PhanTypeMismatchReturn
 
 ```
 Returning type %s but %s() is declared to return %s
+```
+
+This issue is emitted from the following code
+
+```php
+class G { function f() : int { return 'string'; } }
 ```
 
 ## PhanTypeMissingReturn
@@ -305,10 +335,22 @@ Returning type %s but %s() is declared to return %s
 Method %s is declared to return %s but has no return value
 ```
 
+This issue is emitted from the following code
+
+```php
+class H { function f() : int {} }
+```
+
 ## PhanTypeNonVarPassByRef
 
 ```
 Only variables can be passed by reference at argument %d of %s()
+```
+
+This issue is emitted from the following code
+
+```php
+class F { static function f(&$v) {} } F::f('string');
 ```
 
 ## PhanTypeParentConstructorCalled
