@@ -586,9 +586,16 @@ trait T { function f() { return parent::f(); } }
 
 ## PhanUnanalyzable
 
+This issue will be emitted when we hit a structure that Phan doesn't know how to parse. More commonly this will be expressed by Phan having an uncaught exception or behaving poorly.
+
 ```
 Expression is unanalyzable or feature is unimplemented. Please create an issue at https://github.com/etsy/phan/issues/new.
 ```
+
+Please do file an issue or otherwise get in touch if you get one of these (or an uncaught exception, or anything else thats shitty). 
+
+[![Gitter](https://badges.gitter.im/etsy/phan.svg)](https://gitter.im/etsy/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 
 ## PhanUndeclaredClass
 
