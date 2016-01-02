@@ -428,10 +428,23 @@ Invalid operator: left operand is array and right is not
 Argument %d (%s) is %s but %s() takes %s defined at %s:%d
 ```
 
+This will be emitted for the code
+
+```php
+function f8(int $i) {}
+f8('string');
+```
+
 ## PhanTypeMismatchArgumentInternal
 
 ```
 Argument %d (%s) is %s but %s() takes %s
+```
+
+This will be emitted for the code
+
+```php
+strlen(42);
 ```
 
 ## PhanTypeMismatchDefault
@@ -442,8 +455,16 @@ Default value for %s $%s can't be %s
 
 ## PhanTypeMismatchForeach
 
+This issue will be emitted when something that can't be an array is passed as the array_expression.
+
 ```
 %s passed to foreach instead of array
+```
+
+This will be emitted for the code
+
+```php
+foreach (null as $i) {}
 ```
 
 ## PhanTypeMismatchProperty
@@ -528,8 +549,15 @@ class D { /** @var Undef */ public $p; }
 
 ## PhanEmptyFile
 
+This low severity issue is emitted for empty files.
+
 ```
 Empty file %s
+```
+
+This would be emitted if you have a file with the contents
+
+```php
 ```
 
 ## PhanParentlessClass
