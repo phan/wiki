@@ -5,11 +5,15 @@ See [\Phan\Issue](https://github.com/etsy/phan/blob/master/src/Phan/Issue.php) f
 
 ## PhanAccessPropertyPrivate
 
+This issue comes up when there is an attempt to access a private property outside of the scope in which its defined.
+
 ```
 Cannot access private property %s
 ```
 
 ## PhanAccessPropertyProtected
+
+This issue comes up when there is an attempt to access a protected property outside of the scope in which its defined or an implementing child class.
 
 ```
 Cannot access protected property %s
@@ -19,11 +23,15 @@ Cannot access protected property %s
 
 ## PhanCompatibleExpressionPHP7
 
+This issue will be thrown if there is an expression that may be treated differently in PHP7 than it was in previous major versions of the PHP runtime. Take a look at the [PHP7 Migration Manual](http://php.net/manual/en/migration70.incompatible.php to understand changes in behavior).
+
 ```
 %s expression may not be PHP 7 compatible
 ```
 
 ## PhanCompatiblePHP7
+
+This issue will be thrown if there is an expression that may be treated differently in PHP7 than it was in previous major versions of the PHP runtime. Take a look at the [PHP7 Migration Manual](http://php.net/manual/en/migration70.incompatible.php to understand changes in behavior).
 
 ```
 Expression may not be PHP 7 compatible
@@ -33,11 +41,15 @@ Expression may not be PHP 7 compatible
 
 ## PhanContextNotObject
 
+This issue comes up when you attempt to use things like `$this` that only exist when you're inside of a class, trait or interface, but are not.
+
 ```
 Cannot access %s when not in object context
 ```
 
 ## PhanNonStaticSelf
+
+This issue is thrown when there is a reference to `self` in a non-static method.
 
 ```
 Reference to self when not in object context
@@ -46,6 +58,8 @@ Reference to self when not in object context
 # DeprecatedError
 
 ## PhanDeprecatedFunction
+
+If a class, method, function, property or constant is marked in its comment as `@deprecated`, any references to them will emit a deprecated error.
 
 ```
 Call to deprecated function %s() defined at %s:%d
