@@ -386,16 +386,36 @@ function strlen() {}
 
 ## PhanStaticCallToNonStatic
 
+If you make a static call to a non static method, you'll see this issue.
+
 ```
 Static call to non-static method %s defined at %s:%d
 ```
 
+An example of this issue would come from the following code.
+
+```php
+class C19 { function f() {} }
+C19::f();
+```
+
 # TypeError
+
+This category of issue come from using incorrect types or types that cannot cast to the expected types.
 
 ## PhanNonClassMethodCall
 
+If you call a method on a non-class element, you'll see this issue.
+
 ```
 Call to method on non-class type %s
+```
+
+An example would come from
+
+```php
+$v8 = null;
+$v8->f();
 ```
 
 ## PhanTypeArrayOperator
@@ -405,6 +425,8 @@ Invalid array operator
 ```
 
 ## PhanTypeArraySuspicious
+
+Attempting to treat a non-array or non-string element as an array will get you this issue.
 
 ```
 Suspicious array access to %s
@@ -418,14 +440,30 @@ $a = false; if($a[1]) {}
 
 ## PhanTypeComparisonFromArray
 
+Comparing an array to a non-array will result in this issue.
+
 ```
 array to %s comparison
 ```
 
+An example would be
+
+```php
+if ([1, 2] == 'string') {}
+```
+
 ## PhanTypeComparisonToArray
+
+Comparing a non-array to an array will result in this issue.
 
 ```
 %s to array comparison
+```
+
+An example would be
+
+```php
+if (42 == [1, 2]) {}
 ```
 
 ## PhanTypeConversionFromArray
