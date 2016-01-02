@@ -13,6 +13,13 @@ This issue comes up when there is an attempt to access a private property outsid
 Cannot access private property %s
 ```
 
+This will be emitted for the following code.
+
+```php
+class C1 { private static $p = 42; }
+print C1::$p;
+```
+
 ## PhanAccessPropertyProtected
 
 This issue comes up when there is an attempt to access a protected property outside of the scope in which its defined or an implementing child class.
@@ -21,11 +28,18 @@ This issue comes up when there is an attempt to access a protected property outs
 Cannot access protected property %s
 ```
 
+This will be emitted for the following code.
+
+```php
+class C1 { protected static $p = 42; }
+print C1::$p;
+```
+
 # CompatError
 
 ## PhanCompatibleExpressionPHP7
 
-This issue will be thrown if there is an expression that may be treated differently in PHP7 than it was in previous major versions of the PHP runtime. Take a look at the [PHP7 Migration Manual](http://php.net/manual/en/migration70.incompatible.php to understand changes in behavior).
+This issue will be thrown if there is an expression that may be treated differently in PHP7 than it was in previous major versions of the PHP runtime. Take a look at the [PHP7 Migration Manual](http://php.net/manual/en/migration70.incompatible.php) to understand changes in behavior.
 
 ```
 %s expression may not be PHP 7 compatible
@@ -33,7 +47,7 @@ This issue will be thrown if there is an expression that may be treated differen
 
 ## PhanCompatiblePHP7
 
-This issue will be thrown if there is an expression that may be treated differently in PHP7 than it was in previous major versions of the PHP runtime. Take a look at the [PHP7 Migration Manual](http://php.net/manual/en/migration70.incompatible.php to understand changes in behavior).
+This issue will be thrown if there is an expression that may be treated differently in PHP7 than it was in previous major versions of the PHP runtime. Take a look at the [PHP7 Migration Manual](http://php.net/manual/en/migration70.incompatible.php) to understand changes in behavior.
 
 ```
 Expression may not be PHP 7 compatible
