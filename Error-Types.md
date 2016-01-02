@@ -85,6 +85,15 @@ If a class, method, function, property or constant is marked in its comment as `
 Call to deprecated function %s() defined at %s:%d
 ```
 
+
+This will be emitted for the following code.
+
+```php
+/** @deprecated  */
+function f1() {}
+f1();
+```
+
 # NOOPError
 
 ## PhanNoopArray
