@@ -1,4 +1,4 @@
-See [\Phan\Issue](https://github.com/etsy/phan/blob/master/src/Phan/Issue.php) for the set of error types that are emitted. Below is a listing of all issue types as of [87ab20](https://github.com/etsy/phan/tree/87ab2044f78c0263018428ee260b1b5be2646ca6/).
+See [\Phan\Issue](https://github.com/etsy/phan/blob/master/src/Phan/Issue.php) for the set of error types that are emitted. Below is a listing of all issue types as of [87ab20](https://github.com/etsy/phan/tree/87ab2044f78c0263018428ee260b1b5be2646ca6/). The test case [0101_one_of_each.php](https://github.com/etsy/phan/blob/master/tests/files/src/0101_one_of_each.php) should cover all examples in this document.
 
 Please add example code, fix outdated info and add any remedies to the issues below.
 
@@ -841,8 +841,17 @@ C::staticMethod();
 
 ## PhanUndeclaredStaticProperty
 
+Attempting to read a property that doesn't exist will result in this issue. You'll also see this issue if you write to an undeclared static property so long as `Config::get()->allow_missing_property` is false (which defaults to true).
+
 ```
 Static property '%s' on %s is undeclared
+```
+
+An example would be 
+
+```php
+class C22 {}
+$v11 = C22::$p;
 ```
 
 ## PhanUndeclaredTrait
