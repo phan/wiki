@@ -853,8 +853,16 @@ Class uses undeclared trait %s
 
 ## PhanUndeclaredVariable
 
+Trying to use a variable that hasn't been defined anywhere in scope will produce this issue.
+
 ```
 Variable $%s is undeclared
+```
+
+An example would be 
+
+```php
+$v9 = $v10;
 ```
 
 # VarError
