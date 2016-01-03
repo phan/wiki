@@ -137,7 +137,7 @@ Unused closure
 This will be emitted for the following code.
 
 ```php
-function f() {};
+function () {};
 ```
 
 ## PhanNoopConstant
