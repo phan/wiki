@@ -2,6 +2,8 @@ See [\Phan\Issue](https://github.com/etsy/phan/blob/master/src/Phan/Issue.php) f
 
 Please add example code, fix outdated info and add any remedies to the issues below.
 
+[![Gitter](https://badges.gitter.im/etsy/phan.svg)](https://gitter.im/etsy/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 # AccessError
 
 This category of issue is emitted when you're trying to access things that you can't access.
