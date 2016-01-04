@@ -129,20 +129,20 @@ A great place to start to understand how parsing and analysis happens is in [\Ph
 
 Take a look at the [\Phan\Analyze](https://github.com/etsy/phan/tree/master/src/Phan/Analyze) namespace to see the various bits of analysis being done.
 
-## Logging
+## Logging Issues
 
-Issues found during analysis are emitted via the `[Log(https://github.com/etsy/phan/blob/master/src/Phan/Log.php)::err` method. A common usage is
+Issues found during analysis are emitted via the [Issue::emit](https://github.com/etsy/phan/blob/79b02a398751af156ff1c512867ee7006654e175/src/Phan/Issue.php#L482-L485) method. A common usage is
 
 ```php
-Log::err(
-    Log::ETYPE,
-    "$expression_type passed to foreach instead of array",
+Issue::emit(
+    Issue::TypeMismatchForeach,
     $this->context->getFile(),
-    $node->lineno
+    $node->lineno ?? 0,
+    (string)$expression_type
 );
 ```
 
-In this example, we're logging a type error (`Log::ETYPE`) where we're passing something other than an array as the first argument to a `foreach` and we're noting that its in a given file on a given line.
+In this example, we're logging an issue of type `Issue::TypeMismatchForeach` where we're passing something other than an array as the first argument to a `foreach` and we're noting that its in a given file on a given line. Each type of issue will take different parameters to fill into the message template. `Issue::emit` is a variadic function that takes the type of issue, the file where the issue was seen, the line number where it was seen and then anything that should be passed to `sprintf` to populate values in the issue template string. In this case, `Issue::TypeMismatchForeach` has [a template string](https://github.com/etsy/phan/blob/79b02a398751af156ff1c512867ee7006654e175/src/Phan/Issue.php#L261) that takes one `%s` parameter, which is the type of the expression (passed in as `(string)$expression_type`.
 
 ## AST Node Visitors
 
