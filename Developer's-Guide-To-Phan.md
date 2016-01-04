@@ -131,7 +131,7 @@ Take a look at the [\Phan\Analyze](https://github.com/etsy/phan/tree/master/src/
 
 ## Logging
 
-Issues found during analysis are emitted via the `[Log](https://github.com/etsy/phan/blob/master/src/Phan/Log.php)::err` method. A common usage is
+Issues found during analysis are emitted via the `[Log(https://github.com/etsy/phan/blob/master/src/Phan/Log.php)::err` method. A common usage is
 
 ```php
 Log::err(
