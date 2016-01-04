@@ -1,4 +1,4 @@
-This is a guide for developer's looking to hack on Phan.
+This is a guide for developers looking to hack on Phan.
 
 ## Core Concepts
 
