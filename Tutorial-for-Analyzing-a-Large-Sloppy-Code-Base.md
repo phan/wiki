@@ -8,6 +8,7 @@ The process of starting analysis looks like
 * Set up your environment
 * Generate a File List
 * Start doing the weakest analysis possible and fixing false-positives
+* Enforce clean analysis for your team
 * Slowly ramp-up the strength of the analysis
 
 ## Get Phan Running
@@ -176,7 +177,11 @@ Some common sources of false-positives include
 
 Fixing all of this stuff isn't going to be fun. Go get a cup of coffee, clear your schedule and get cozy. Perhaps this is a good time to work from home for a few days in isolation.
 
-# Slowly Ramp-Up the Strength of the Analysis
+## Enforce clean analysis for your team
+
+Now that you have clean output, you're going to want to make sure it stays that way. Whatever your team's process is, you'll want to make sure folks can't push code that doesn't pass analysis. If you don't, you're going to find yourself feeling like you have to constantly clean up after folks, and nobody wants that.
+
+## Slowly Ramp-Up the Strength of the Analysis
 
 Now that you've gotten rid of all of the false-positives and Phan is producing a clean set of issues that are truly problematic, you can start increasing Phan's strength until you get to a spot where you're comfortable blocking code that doesn't pass.
 
