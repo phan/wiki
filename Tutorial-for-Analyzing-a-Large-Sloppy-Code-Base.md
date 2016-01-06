@@ -6,6 +6,7 @@ The process of starting analysis looks like
 
 * Get Phan running
 * Set up your environment
+* Generate a File List
 * Start doing the weakest analysis possible and fixing annotations
 * Slowly ramp-up the strength of the analysis
 
@@ -83,3 +84,47 @@ return [
 This configuration sets up the weakest possible analysis to you get started. With this configuration we allow undefined properties to be written to, allow things of type `null` to be cast to any type, and only emit the most severe issues.
 
 You can take a look at [Phan's config](https://github.com/etsy/phan/blob/master/.phan/config.php) for an example.
+
+You should add any third-party code paths to the `exclude_analysis_directory_list` array so as to avoid having to deal with sloppiness in code that you don't want to fix.
+
+## Generate a File List
+
+You can pass the files to be analyzed to Phan on the command-line, but with a large code base, you'll want to create a file that lists all files and filters out junk to make your life easier.
+
+One way to generate this file list would be to create a file `.phan/generate_file_list.sh` with the following contents.
+
+```sh
+#!/bin/bash
+
+if [[ -z $WORKSPACE ]]
+then
+    export WORKSPACE=~/path/to/code/src
+fi
+
+cd $WORKSPACE
+
+JUNK=/var/tmp/junk.txt
+
+for dir in \
+    src \
+    vendor/path/to/project
+do
+    if [ -d "$dir" ]; then
+        find $dir -name '*.php' >> $JUNK
+    fi
+done
+
+cat $JUNK | \
+    grep -v "junk_file.php" | \
+    grep -v "junk/directory.php" | \
+    awk '!x[$0]++'
+
+rm $JUNK
+```
+
+You can then run `./.phan/generate_file_list.sh > files`. Take a look at [Phan's file list generator](https://github.com/etsy/phan/blob/master/.phan/generate_file_list.sh) to see an example.
+
+With this, you can now run `phan -f files` to run an analysis of your code base.
+
+
+
