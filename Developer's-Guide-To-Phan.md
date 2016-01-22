@@ -4,7 +4,11 @@ This is a guide for developers looking to hack on Phan.
 
 ## Submitting Patches
 
-Phan attempts to adhere to the [PSR-2](http://www.php-fig.org/psr/psr-2/) style guide. All files should use `declare(strict_types=1)`.
+Phan attempts to adhere to the [PSR-2](http://www.php-fig.org/psr/psr-2/) style guide. All files should use
+
+```php
+declare(strict_types=1)
+```
 
 Pull requests that come with tests are great.
 
