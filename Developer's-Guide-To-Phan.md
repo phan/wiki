@@ -4,15 +4,7 @@ This is a guide for developers looking to hack on Phan.
 
 ## Submitting Patches
 
-Phan attempts to adhere to the [PSR-2](http://www.php-fig.org/psr/psr-2/) style guide. All files should use
-
-```php
-declare(strict_types=1)
-```
-
-Pull requests that come with tests are great.
-
-Issues that come with simplified failing code are great, but don't let that stop you from submitting issues if you can't get a simple case.
+See [the Contribution Guidelines](https://github.com/etsy/phan/blob/master/.github/CONTRIBUTING.md) for some guidance on making great issues and pull requests.
 
 
 ## Core Concepts
