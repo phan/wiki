@@ -111,6 +111,16 @@ This will bite you and I apologize.
 
 Doc blocks must be enclosed in comments of the form `/** ... */` starting with `/**` and ending with `*/`. Annotations won't be read from comments with any other format. This will cause you frustration.
 
+Furthermore, Phan can only see doc block comments on
+
+* classes
+* constants
+* properties
+* methods
+* functions
+
+Doc blocks will not be read from any other elements (such as any kind of statement).
+
 ## Valid Doc Blocks
 
 ```php
@@ -127,12 +137,25 @@ function f() {}
 
 ## Invalid
 
+In the example below, we have the wrong comment type.
+
 ```php
 // @return void
 function f() {}
 ```
 
+Similarly, a single asterisk at the beginning won't cut it. This will burn you and I apologize.
+
 ```php
 /* @return void */
 function f() {}
+```
+
+In the case below, we have a valid comment type, but its not on a class, constant, property, method or function, so it will not be read.
+
+```php
+function f() {
+    /** @suppress PhanUndeclaredClassMethod */
+    Undef::g();
+}
 ```
