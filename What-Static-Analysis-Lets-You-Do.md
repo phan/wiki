@@ -21,11 +21,11 @@ class D {
 ```
 
 
-## Share Expectations with your Team
+## Communication Expectations
 
 If you find a piece of code you'd like to use, but you aren't certain about its return type, you can add a `@return` annotation to test your expectation and make sure that future development lines up with your expectations.
 
 
-## Write and Read Valid Docs
+## Produce Correct Documentation
 
 Without static analysis, your type annotations are going to drift away from reality. By adding a static analyzer and blocking deployment when they're incorrect, you're making it significantly easier to read your code.
