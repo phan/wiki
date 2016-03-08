@@ -60,9 +60,12 @@ class D {
 
     /**
      * @return string
+     *
+     * @var DateTime $date_time
      */
     public function getString() {
-        return $this->getDateTime()->format('M d Y');
+        $date_time = $this->getDateTime();
+        return $date_time->format('M d Y');
     }
 }
 ```
