@@ -128,6 +128,23 @@ Doc blocks will not be read from any other elements (such as any kind of stateme
  * @return void
  */
  function f() {}
+
+/** @deprecated */
+class C {
+    /** @var int */
+    const C = 42;
+
+    /** @var string|null */
+    public $p = null;
+
+    /**
+     * @param int|null $p
+     * @return int|null
+     */
+    public static function f($p) {
+        return $p;
+    }
+}
 ```
 
 ```php
