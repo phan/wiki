@@ -1,4 +1,11 @@
-* [[Developer's Guide To Phan]]
-* [[Error Types]]
-* [[About Union Types]]
-* [[Tutorial for Analyzing a Large Sloppy Code Base]]
+[[Developer's Guide To Phan]]<br />
+A guide for developers looking to hack on Phan.
+
+[[Error Types]]<br />
+An enumeration of error types, examples that cause them and tips on how to resolve the issues
+
+[[About Union Types]]<br />
+An explanation of what union types are and how to use them.
+
+[[Tutorial for Analyzing a Large Sloppy Code Base]]<br />
+An introductory guide to analyzing large code bases that aren't going to pass static analysis cleanly.
