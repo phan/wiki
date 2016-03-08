@@ -7,12 +7,13 @@ All of the following are valid union types;
 * `int[]|float[]|null`
 * `DateTime`
 * `DateTime|string|int`
+* `null`
 
 As a special case, `void` may be used as a return type indicating that the function or method is not expected to return anything. In practice, this still implies that the function or method returns null, but Phan will enforce that there is not an explicit return.
 
 # Example Union Type Annotations
 
-The following code represents a variety of type annotations that Phan respects.
+The following code represents a variety of union type annotations that Phan respects.
 
 ```php
 <?php
@@ -70,22 +71,25 @@ class D {
 }
 ```
 
-# Union Types as A BNF
+# Union Types as a BNF
+
+A union type is expressed as a pipe ('|') delimited list of types which can be scalars, arrays, arrays of a type, or classes.
 
 ```
 UNION_TYPE  : TYPE
             | TYPE '|' UNION_TYPE
             ;
 
-TYPE        : CLASS
+TYPE        : CLASS_NAME
             | NATIVE_TYPE
             | ARRAY_TYPE
+            | VOID_TYPE
             ;
 
 ARRAY_TYPE  | TYPE '[]'
             ;
 
-CLASS       : string
+CLASS_NAME  : string
             ;
 
 NATIVE_TYPE : 'int'
@@ -97,7 +101,9 @@ NATIVE_TYPE : 'int'
             | 'callable'
             | 'resource'
             | 'null'
-            | 'void'
+            ;
+
+VOID_TYPE   : 'void'
             ;
 
 ```
