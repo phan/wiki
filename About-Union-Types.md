@@ -20,7 +20,7 @@ The following code represents a variety of union type annotations that Phan resp
 
 class D {
 
-    /* @var string */
+    /** @var string */
     const CONSTANT = 'constant';
 
     /** @var DateTime|string|int|null */
