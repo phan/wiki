@@ -124,7 +124,7 @@ The universe of structural element types are defined in the [`\Phan\Language\Ele
 Phan runs in three phases;
 
 1. **Parsing**
-   All code is parsed in order to build maps from FQSENs to elements (such as classes or methods). During this phase the AST is read for each file and any addressable objects are created and stored in a map within the code base. A good place to start for understanding parsing is [\Phan\Analyze\ParseVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/ParseVisitor.php).
+   All code is parsed in order to build maps from FQSENs to elements (such as classes or methods). During this phase the AST is read for each file and any addressable objects are created and stored in a map within the code base. A good place to start for understanding parsing is [\Phan\Analyze\ParseVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Parse/ParseVisitor.php).
 
 2. **Class and Type Expansion**
    Before analysis can begin we take a pass over all elements (classes, methods, functions, etc.) and expand them with any information that was needed from the entire code base. Classes, for instance, get all constants, properties and methods from parents, interfaces and traits imported. The types of all classes are expanded to include the types of their parent classes, interfaces and traits.
