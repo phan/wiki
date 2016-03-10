@@ -124,17 +124,17 @@ The universe of structural element types are defined in the [`\Phan\Language\Ele
 Phan runs in three phases;
 
 1. **Parsing**
-   All code is parsed in order to build maps from FQSENs to elements (such as classes or methods). During this phase the AST is read for each file and any addressable objects are created and stored in a map within the code base. A good place to start for understanding parsing is [\Phan\Analyze\ParseVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Parse/ParseVisitor.php).
+   All code is parsed in order to build maps from FQSENs to elements (such as classes or methods). During this phase the AST is read for each file and any addressable objects are created and stored in a map within the code base. A good place to start for understanding parsing is [\Phan\Parse\ParseVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Parse/ParseVisitor.php).
 
 2. **Class and Type Expansion**
    Before analysis can begin we take a pass over all elements (classes, methods, functions, etc.) and expand them with any information that was needed from the entire code base. Classes, for instance, get all constants, properties and methods from parents, interfaces and traits imported. The types of all classes are expanded to include the types of their parent classes, interfaces and traits.
 
 3. **Analysis**
-   Now that we know about all elements throughout the code base, we can start doing analysis. During analysis we take another pass at reading the AST for all files so that we can start doing proofs on types and stuff. To understand analysis, take a look at [\Phan\Analyze\PreOrderAnalysisVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/PreOrderAnalysisVisitor.php) and [\Phan\Analyze\PostOrderAnalysisVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/PostOrderAnalysisVisitor.php).
+   Now that we know about all elements throughout the code base, we can start doing analysis. During analysis we take another pass at reading the AST for all files so that we can start doing proofs on types and stuff. To understand analysis, take a look at [\Phan\Analysis\PreOrderAnalysisVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analysis/PreOrderAnalysisVisitor.php) and [\Phan\Analysis\PostOrderAnalysisVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analysis/PostOrderAnalysisVisitor.php).
 
 A great place to start to understand how parsing and analysis happens is in [\Phan\Phan](https://github.com/etsy/phan/blob/master/src/Phan/Phan.php) where each step is explained.
 
-Take a look at the [\Phan\Analyze](https://github.com/etsy/phan/tree/master/src/Phan/Analyze) namespace to see the various bits of analysis being done.
+Take a look at the [\Phan\Analysis](https://github.com/etsy/phan/tree/master/src/Phan/Analysis) namespace to see the various bits of analysis being done.
 
 ## Logging Issues
 
@@ -164,12 +164,12 @@ class A {
 During the parsing phase, we'd
 
 * Create an AST in [\Phan\Phan::parseFile](https://github.com/etsy/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Phan.php#L140-L146)
-* Create a [ParseVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/ParseVisitor.php) for the root node in [\Phan\Phan::parseNodeInContext](https://github.com/etsy/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Phan.php#L200-L206)
-* Visit the class node via [ParseVisitor::visitClass](https://github.com/etsy/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Analyze/ParseVisitor.php#L77)
-* Visit the method node via [ParseVisitor::visitMethod](https://github.com/etsy/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Analyze/ParseVisitor.php#L239)
+* Create a [ParseVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analysis/ParseVisitor.php) for the root node in [\Phan\Phan::parseNodeInContext](https://github.com/etsy/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Phan.php#L200-L206)
+* Visit the class node via [ParseVisitor::visitClass](https://github.com/etsy/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Analysis/ParseVisitor.php#L77)
+* Visit the method node via [ParseVisitor::visitMethod](https://github.com/etsy/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Analysis/ParseVisitor.php#L239)
 
 Other node visitors include
 
-* [\Phan\Analyze\PreOrderAnalysisVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/PreOrderAnalysisVisitor.php) where we do part of the analysis during the analysis phase.
-* [\Phan\Analyze\PostOrderAnalysisVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analyze/PostOrderAnalysisVisitor.php) where we do another part of the analysis during the analysis phase.
+* [\Phan\Analysis\PreOrderAnalysisVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analysis/PreOrderAnalysisVisitor.php) where we do part of the analysis during the analysis phase.
+* [\Phan\Analysis\PostOrderAnalysisVisitor](https://github.com/etsy/phan/blob/master/src/Phan/Analysis/PostOrderAnalysisVisitor.php) where we do another part of the analysis during the analysis phase.
 * [\Phan\AST\UnionTypeVisitor](https://github.com/etsy/phan/blob/master/src/Phan/AST/UnionTypeVisitor.php) where we do much of the work figuring out the types of things throughout analysis.
