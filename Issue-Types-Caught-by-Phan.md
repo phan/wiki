@@ -637,6 +637,21 @@ This issue will be emitted from the following code
 class D { /** @var Undef */ public $p; }
 ```
 
+## PhanTypeVoidAssignment
+
+This is triggered by assigning the return value of a function or method that returns void.
+
+```
+Cannot assign void return value
+```
+
+This issue will be emitted from the following code:
+
+```php
+class A { /** @return void */ function v() {} }
+$a = (new A)->v();
+```
+
 # UndefError
 
 This category of issue come up when there are references to undefined things. These are a big source of false-positives in Phan given that code bases often take liberties with calling methods on sub-classes of the class defined to be returned by a function and things like that.
