@@ -35,3 +35,27 @@ $this->emitIssue(
 ```
 
 where `$code_base` is the `CodeBase` object passed to your hook, `$context` is the context in which the issue is found (such as the `$context` passed to the hook, or from `$class->getContext()`, `$method->getContext()` or `$function->getContext()`, a name for the issue type (allowing it to be suppressed via @suppress) and the message to emit to the user.
+
+
+
+# Reference Material
+
+When writing plugins, you'll likely need to understand a few concepts. The following contains some material that may be useful.
+
+**Node**
+A `Node` is an AST node returned from the [php-ast](https://github.com/nikic/php-ast) PHP extension. You can [read more about its interface in its README](https://github.com/nikic/php-ast#api-overview). You'll also find many references to `Node` that can be copied throughout the Phan code base.
+
+**Clazz**
+The [Clazz](https://github.com/etsy/phan/blob/master/src/Phan/Language/Element/Clazz.php) class contains things you'll need to know about a class such as its FQSEN (fully-qualified structural element name), name, type, context, and flags such as `isAbstract`, `isInterface`, `isTrait`, etc.
+
+**Method**
+The [Method](https://github.com/etsy/phan/blob/master/src/Phan/Language/Element/Method.php) class contains things you'll need to know about methods such as its FQSEN, name, parameters, return type, etc..
+
+**Func**
+Similarly, the [Func](https://github.com/etsy/phan/blob/master/src/Phan/Language/Element/Func.php) class contains things you'll need to know about functions.
+
+**Context**
+A [Context](https://github.com/etsy/phan/blob/master/src/Phan/Language/Context.php) is a thing defined for every line of code that tells you which file you're in, which line you're on, which class you're in, which methods, function or closure you're in and the [Scope](https://github.com/etsy/phan/blob/master/src/Phan/Language/Scope.php) that is available to you which contains all local and global variables.
+
+**UnionType**
+A [UnionType](https://github.com/etsy/phan/blob/master/src/Phan/Language/UnionType.php) is a set of [Type](https://github.com/etsy/phan/blob/master/src/Phan/Language/Type.php)s defined for an object such as `int|string|DateTime|null`. [You can read more about UnionTypes here](https://github.com/etsy/phan/wiki/About-Union-Types).
