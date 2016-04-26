@@ -12,3 +12,6 @@ An introductory guide to analyzing large code bases that aren't going to pass st
 
 **[[Developer's Guide To Phan]]**<br />
 A guide for developers looking to hack on Phan.
+
+**[[Writing Plugins for Phan]]**<br />
+A guide to writing one-off plugins for Phan.
