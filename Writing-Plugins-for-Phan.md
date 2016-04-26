@@ -42,20 +42,28 @@ where `$code_base` is the `CodeBase` object passed to your hook, `$context` is t
 
 When writing plugins, you'll likely need to understand a few concepts. The following contains some material that may be useful.
 
-**Node**
+## Node
 A `Node` is an AST node returned from the [php-ast](https://github.com/nikic/php-ast) PHP extension. You can [read more about its interface in its README](https://github.com/nikic/php-ast#api-overview). You'll also find many references to `Node` that can be copied throughout the Phan code base.
 
-**Clazz**
+## Clazz
 The [Clazz](https://github.com/etsy/phan/blob/master/src/Phan/Language/Element/Clazz.php) class contains things you'll need to know about a class such as its FQSEN (fully-qualified structural element name), name, type, context, and flags such as `isAbstract`, `isInterface`, `isTrait`, etc.
 
-**Method**
+## Method
 The [Method](https://github.com/etsy/phan/blob/master/src/Phan/Language/Element/Method.php) class contains things you'll need to know about methods such as its FQSEN, name, parameters, return type, etc..
 
-**Func**
+## Func
 Similarly, the [Func](https://github.com/etsy/phan/blob/master/src/Phan/Language/Element/Func.php) class contains things you'll need to know about functions.
 
-**Context**
+## Context
 A [Context](https://github.com/etsy/phan/blob/master/src/Phan/Language/Context.php) is a thing defined for every line of code that tells you which file you're in, which line you're on, which class you're in, which methods, function or closure you're in and the [Scope](https://github.com/etsy/phan/blob/master/src/Phan/Language/Scope.php) that is available to you which contains all local and global variables.
 
-**UnionType**
+## UnionType
 A [UnionType](https://github.com/etsy/phan/blob/master/src/Phan/Language/UnionType.php) is a set of [Type](https://github.com/etsy/phan/blob/master/src/Phan/Language/Type.php)s defined for an object such as `int|string|DateTime|null`. [You can read more about UnionTypes here](https://github.com/etsy/phan/wiki/About-Union-Types).
+
+You'll likely find yourself getting types frequently via a call to [`UnionType::fromNode(...)`](https://github.com/etsy/phan/blob/16b54d01217e19965eb293b455d5df1ccacb2c46/src/Phan/Language/UnionType.php#L124-L157) such as with
+
+```php
+$union_type = UnionType::fromNode($context, $code_base, $node);
+```
+
+providing you the union type of the statement defined by the AST node `$node`.
