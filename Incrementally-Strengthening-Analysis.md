@@ -219,6 +219,14 @@ fails.php:5 PhanCompatiblePHP7 Expression may not be PHP 7 compatible
 fails.php:13 PhanCompatiblePHP7 Expression may not be PHP 7 compatible
 ```
 
+# Suppressing Issues
+
+As you ramp-up your analysis, you'll often be confronted with an overwhelming number of possibly legit issues that by some miracle aren't destroying your product that you just don't have time to fix individually.
+
+This is going to feel gross, but if you want to get to a place where you can prevent new issues from being introduced in new code, you're going to want to add `@suppress` annotations to existing issues. The world isn't fair, nothing is perfect and you have much more important things to work on.
+
+Take a look at [Annotating Your Source Code](https://github.com/etsy/phan/wiki/Annotating-Your-Source-Code#suppress) for details on how to suppress issues.
+
 # Speeding up Analysis
 
 As you start playing around with figuring out the right strength for Phan, you'll end up running Phan over and over. A speedy analysis will help you to prevent losing your mind.
