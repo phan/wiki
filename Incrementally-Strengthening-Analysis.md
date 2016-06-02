@@ -227,6 +227,8 @@ This is going to feel gross, but if you want to get to a place where you can pre
 
 Take a look at [Annotating Your Source Code](https://github.com/etsy/phan/wiki/Annotating-Your-Source-Code#suppress) for details on how to suppress issues.
 
+Once you get a clean run for a new issue type and can enable the analysis, you'll want to let folks know that adding new `@suppress` annotations is uncool, and that true heroes remove existing `@suppress` annotations.
+
 # Speeding up Analysis
 
 As you start playing around with figuring out the right strength for Phan, you'll end up running Phan over and over. A speedy analysis will help you to prevent losing your mind.
