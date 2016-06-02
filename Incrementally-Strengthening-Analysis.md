@@ -218,3 +218,9 @@ fails.php:4 PhanCompatiblePHP7 Expression may not be PHP 7 compatible
 fails.php:5 PhanCompatiblePHP7 Expression may not be PHP 7 compatible
 fails.php:13 PhanCompatiblePHP7 Expression may not be PHP 7 compatible
 ```
+
+# Speeding up Analysis
+
+As you start playing around with figuring out the right strength for Phan, you'll end up running Phan over and over. A speedy analysis will help you to prevent losing your mind.
+
+The easiest way to speed up Phan is to use the `--processes <number>` command-line option to choose how many CPUs the analysis phase runs on. A good number of processes to use is one or two less than the available number of cores on your machine, so long as you have a good amount of available memory.
