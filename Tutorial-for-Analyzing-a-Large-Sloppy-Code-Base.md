@@ -187,6 +187,8 @@ Now that you have clean output, you're going to want to make sure it stays that 
 
 ## Slowly Ramp-Up the Strength of the Analysis
 
+Take a look at [[Incrementally Strengthening Analysis]] for some ideas on how to configure the strength of your analysis.
+
 Now that you've gotten rid of all of the false-positives and Phan is producing a clean set of issues that are truly problematic, you can start increasing Phan's strength until you get to a spot where you're comfortable blocking code that doesn't pass.
 
 You'll want to consider
