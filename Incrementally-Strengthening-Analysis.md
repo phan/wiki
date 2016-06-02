@@ -132,3 +132,85 @@ passes.php:27 PhanUndeclaredProperty Reference to undeclared property p
 passes.php:28 PhanUndeclaredProperty Reference to undeclared property property
 passes.php:34 PhanTypeMismatchArgument Argument 1 (p) is string but \C::g() takes int defined at passes.php:26
 ```
+
+# Only Looking At Backward Compatibility
+
+If you're in the process of migrating from PHP5 to PHP7, you may wish to only scan for backward compatibility issues that you'll need to fix before the switch.
+
+The following configuration will ignore all issue types but backward compatibility issues.
+
+```php
+<?php
+
+/**
+ * This configuration will be read and overlaid on top of the
+ * default configuration. Command line arguments will be applied
+ * after this file is read.
+ *
+ * @see src/Phan/Config.php
+ * See Config for all configurable options.
+ */
+return [
+    // Backwards Compatibility Checking. This is slow
+    // and expensive, but you should consider running
+    // it before upgrading your version of PHP to a
+    // new version that has backward compatibility
+    // breaks.
+    'backward_compatibility_checks' => true,
+
+    // By default, Phan will not analyze all node types
+    // in order to save time. If this config is set to true,
+    // Phan will dig deeper into the AST tree and do an
+    // analysis on all nodes, possibly finding more issues.
+    'should_visit_all_nodes' => true,
+
+    // If empty, no filter against issues types will be applied.
+    // If this white-list is non-empty, only issues within the list
+    // will be emitted by Phan.
+    'whitelist_issue_types' => [
+        'PhanCompatiblePHP7'
+    ],
+];
+```
+
+With such a config, the following code will emit the following issues.
+
+```php
+<?php
+echo $foo->$bar['baz'];
+Foo::$bar['baz']();
+$foo->$bar['baz']();
+strlen($foo->$bar['baz']);
+class C {
+    public $bb = 2;
+}
+class T {
+    public $b = null;
+    function fn($a) {
+      $this->b = new C;
+      echo $this->b->$a[1];
+    }
+}
+$t = new T;
+$t->fn(['aa','bb','cc']);
+// tests that should pass without warning below
+class Test {
+    public static $vals = array('a' => 'A', 'b' => 'B');
+    public static function get($letter) {
+        return self::$vals[$letter];
+    }
+	public function fn($letter) {
+        return $this->vals[$letter];
+    }
+}
+```
+
+with issues
+
+```
+fails.php:2 PhanCompatiblePHP7 Expression may not be PHP 7 compatible
+fails.php:3 PhanCompatiblePHP7 Expression may not be PHP 7 compatible
+fails.php:4 PhanCompatiblePHP7 Expression may not be PHP 7 compatible
+fails.php:5 PhanCompatiblePHP7 Expression may not be PHP 7 compatible
+fails.php:13 PhanCompatiblePHP7 Expression may not be PHP 7 compatible
+```
