@@ -8,7 +8,7 @@ You can configure Phan's analysis via a small number of command-line options and
 
 When you first begin analyzing your code base, you may want to consider starting with the following configuration (saved to `.phan/config.php`) that only looks at the most critical issues and allows for a reasonable degree of sloppiness.
 
-```
+```php
 <?php
 /**
  * This configuration will be read and overlaid on top of the
