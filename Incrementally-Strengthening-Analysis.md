@@ -6,6 +6,8 @@ Phan has a core philosophy of measuring its success by its ability to enable com
 
 You can configure Phan's analysis via a small number of command-line options and via the config file `.phan/config.php` which Phan will look for from the directory in which it's run or in the directory passed in via the `--directory <BASE_DIRECTORY>` CLI option.
 
+## Relaxed Analysis
+
 When you first begin analyzing your code base, you may want to consider starting with the following configuration (saved to `.phan/config.php`) that only looks at the most critical issues and allows for a reasonable degree of sloppiness.
 
 ```php
@@ -133,7 +135,7 @@ passes.php:28 PhanUndeclaredProperty Reference to undeclared property property
 passes.php:34 PhanTypeMismatchArgument Argument 1 (p) is string but \C::g() takes int defined at passes.php:26
 ```
 
-# Only Looking At Backward Compatibility
+## Just Backward Compatibility
 
 If you're in the process of migrating from PHP5 to PHP7, you may wish to only scan for backward compatibility issues that you'll need to fix before the switch.
 
