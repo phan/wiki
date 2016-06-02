@@ -49,3 +49,9 @@ return [
     ],
 ];
 ```
+
+With the Phan dependency installed and the configuration file in place, you can now do an analysis by running the following.
+
+```sh
+./vendor/bin/phan
+```
