@@ -87,8 +87,22 @@ With such a configuration, the following very questionable code will pass analys
 
 ```php
 <?php
+error_reporting(E_ERROR);
 
-class C {
+class B {
+    /**
+     * @param string $p
+     * @return string
+     */
+    function g($p) {
+        if (!$p) {
+            return null;
+        }
+        return $p;
+    }
+}
+
+class C extends B {
     function f($p) {
         return $this->$p[0];
     }
@@ -108,11 +122,13 @@ class C {
 print (new C)->g('property' . $undeclared_global) . "\n";
 ```
 
-[PHP will handle that code without failing](https://3v4l.org/3GvkL), so perhaps its not the most important thing to focus on initially. Once you've taken care of the most critical issues in your code base, you can start incrementally strengthening Phan by updating the configuration values to get to the point where the above code would cause the following issues to be emitted.
+[PHP will handle that code without failing](https://3v4l.org/q2WM6), so perhaps its not the most important thing to focus on initially. Once you've taken care of the most critical issues in your code base, you can start incrementally strengthening Phan by updating the configuration values to get to the point where the above code would cause the following issues to be emitted.
 
 ```
-./passes.php:6 PhanCompatiblePHP7 Expression may not be PHP 7 compatible
-./passes.php:14 PhanUndeclaredProperty Reference to undeclared property p
-./passes.php:15 PhanUndeclaredProperty Reference to undeclared property property
-./passes.php:21 PhanTypeMismatchArgument Argument 1 (p) is string but \C::g() takes int defined at ./passes.php:13
+passes.php:11 PhanTypeMismatchReturn Returning type null but g() is declared to return string
+passes.php:19 PhanCompatiblePHP7 Expression may not be PHP 7 compatible
+passes.php:26 PhanSignatureMismatch Declaration of function g(int $p) : int should be compatible with function g(string $p) : string defined in passes.php:9
+passes.php:27 PhanUndeclaredProperty Reference to undeclared property p
+passes.php:28 PhanUndeclaredProperty Reference to undeclared property property
+passes.php:34 PhanTypeMismatchArgument Argument 1 (p) is string but \C::g() takes int defined at passes.php:26
 ```
