@@ -6,6 +6,8 @@ Phan has a core philosophy of measuring its success by its ability to enable com
 
 You can configure Phan's analysis via a small number of command-line options and via the config file `.phan/config.php` which Phan will look for from the directory in which it's run or in the directory passed in via the `--directory <BASE_DIRECTORY>` CLI option.
 
+Take a look at Phan's own very strict configuration for analyzing itself at [`.phan/config.php`](https://github.com/etsy/phan/blob/master/.phan/config.php).
+
 ## Relaxed Analysis
 
 When you first begin analyzing your code base, you may want to consider starting with the following configuration (saved to `.phan/config.php`) that only looks at the most critical issues and allows for a reasonable degree of sloppiness.
