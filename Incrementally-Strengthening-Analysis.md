@@ -1,4 +1,4 @@
-PHP isn’t a language that makes you think of provably correct code. For large mature PHP code bases that have been around since before type-hinting, introducing static analysis needs to be introduced slowly if you want to avoid your team losing their minds.
+PHP isn’t a language that makes you think of provably correct code. For large mature PHP code bases that have been around since before type-hinting, introducing static analysis needs to be done slowly if you want to avoid your team losing their minds.
 
 Phan has a core philosophy of measuring its success by its ability to enable communication between engineers and improve a code base over time rather than by an ability to prove that code is correct. With this comes a product focus for Phan on enabling incremental-strengthening of analysis without forcing users to deal with tens of thousands of issues that you’d have to fix before getting any value out of ongoing static analysis. Phan offers a large range of configuration options for only doing the analysis that’s most important to you.
 
