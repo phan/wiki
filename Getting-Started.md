@@ -9,7 +9,7 @@ To get started, choose [a method for getting Phan running on your system](https:
 If you're managing dependencies via [Composer](https://getcomposer.org/), you can add Phan to your project by running the following.
 
 ```sh
-composer require --dev etsy/phan;
+composer require --dev "etsy/phan:dev-master"
 composer install;
 ```
 
@@ -118,3 +118,29 @@ return [
 ```
 
 Take a look at [[Incrementally Strengthening Analysis]] for some tips on how to start with a weak analysis and slowly increase the strictness as your code becomes better equipped to be analyzed.
+
+
+# Installing Phan Dependencies
+
+Phan depends on [PHP](http://php.net/) version 7 or greater and [php-ast](https://github.com/nikic/php-ast) by [Nikita Popov](https://github.com/nikic).
+
+If you don't have a version of PHP 7 installed, you can grab a php7dev Vagrant image or one of the many Docker builds out there.
+
+To compile [php-ast](https://github.com/nikic/php-ast). Something along these lines should do it:
+
+```sh
+git clone https://github.com/nikic/php-ast.git
+cd php-ast
+phpize
+./configure
+make install
+```
+
+And add `extension=ast.so` to your `php.ini` file. Check that it is there with `php -m`.
+If it isn't you probably added it to the wrong `php.ini` file. Check `php --ini` to see
+where it is looking.
+
+If `phpize` is unavailable on your system, you may need to install the PHP developer
+packages which are often available with names such as `php-dev`.
+
+Windows users can grab `ast.dll` directly from [PECL snaps](http://windows.php.net/downloads/pecl/snaps/ast/)
