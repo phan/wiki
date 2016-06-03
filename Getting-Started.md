@@ -60,6 +60,7 @@ Several docker images exist for Phan that include its dependencies (PHP version 
 [Code Climate](https://codeclimate.com/) provides a code analysis service that can be configured to run Phan on your code base. You can take a look at [the Code Climate Phan documentation here](https://docs.codeclimate.com/docs/phan).
 
 # Creating a Config File
+
 You'll want to create a configuration file within your code base at `.phan/config.php` so that Phan knows what to look at. The following config file will let Phan know that your source is in the `src/` with some dependency code in the `vendor/symfony/console` directory, and that anything under `vendor/` should be parsed, but not analyzed.
 
 ```php
@@ -100,3 +101,5 @@ return [
     ],
 ];
 ```
+
+Take a look at [[Incrementally Strengthening Analysis]] for some tips on how to start with a weak analysis and slowly increase the strictness as your code becomes better equipped to be analyzed.
