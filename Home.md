@@ -1,3 +1,6 @@
+**[[Getting Started]]**<br />
+Start here for getting Phan installed and running on your code base.
+
 **[[Annotating Your Source Code]]**<br />
 This document describes how to add types to your code via doc block annotations.
 
