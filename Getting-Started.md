@@ -36,6 +36,11 @@ To run Phan from a Phar package, you can download the Phar and run it.
 
 ```sh
 curl -L https://github.com/etsy/phan/releases/download/0.5/phan.phar -o phan.phar;
+```
+
+You'll now be able to run Phan via
+
+```sh
 php phan.phar
 ```
 
