@@ -46,6 +46,17 @@ php phan.phar
 
 ## From a Docker Image
 
+Several docker images exist for Phan that include its dependencies (PHP version 7, php-ast). I haven't tried any of them myself, but you could check out these projects.
+
+* https://github.com/cloudflare/docker-phan
+* https://github.com/mre/docker-php-phan
+* https://github.com/madmuffin1/phan-docker
+* [Others that show up now and then](https://www.google.com/webhp#q=phan%20docker)
+
+## From Code Climate
+
+[Code Climate](https://codeclimate.com/) provides a code analysis service that can be configured to run Phan on your code base. You can take a look at [the Code Climate Phan documentation here](https://docs.codeclimate.com/docs/phan).
+
 # Creating a Config File
 You'll want to create a configuration file within your code base at `.phan/config.php` so that Phan knows what to look at. The following config file will let Phan know that your source is in the `src/` with some dependency code in the `vendor/symfony/console` directory, and that anything under `vendor/` should be parsed, but not analyzed.
 
