@@ -1,6 +1,24 @@
 [![Build Status](https://travis-ci.org/etsy/phan.svg?branch=master)](https://travis-ci.org/etsy/phan) [![Gitter](https://badges.gitter.im/etsy/phan.svg)](https://gitter.im/etsy/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-This is a guide for developers looking to hack on Phan.
+One of the big changes in PHP 7 is the fact that the parser now uses a real Abstract Syntax Tree
+([AST](https://wiki.php.net/rfc/abstract_syntax_tree)). This makes it much easier to write code
+analysis tools by pulling the tree and walking it looking for interesting things.
+
+Phan has 2 passes. On the first pass it reads every file, gets the AST and recursively parses it
+looking only for functions, methods and classes in order to populate a bunch of
+global hashes which will hold all of them. It also loads up definitions for all internal
+functions and classes. The type info for these come from a big file called FunctionSignatureMap.
+
+The real complexity hits you hard in the second pass. Here some things are done recursively depth-first
+and others not. For example, we catch something like `foreach($arr as $k=>$v)` because we need to tell the
+foreach code block that `$k` and `$v` exist. For other things we need to recurse as deeply as possible
+into the tree before unrolling our way back out. For example, for something like `c(b(a(1)))` we need
+to call `a(1)` and check that `a()` actually takes an int, then get the return type and pass it to `b()`
+and check that, before doing the same to `c()`.
+
+There is a Scope object which keeps track of all variables. It mimics PHP's scope handling in that it
+has a globals along with entries for each function, method and closure. This is used to detect
+undefined variables and also type-checked on a `return $var`.
 
 ## Submitting Patches
 
