@@ -7,9 +7,6 @@ This document describes how to add types to your code via doc block annotations.
 **[[About Union Types]]**<br />
 An explanation of what union types are and how to use them.
 
-**[[Tutorial for Analyzing a Large Sloppy Code Base]]**<br />
-An introductory guide to analyzing large code bases that aren't going to pass static analysis cleanly.
-
 **[[Incrementally Strengthening Analysis]]**<br />
 A guide to how Phan can be configured to slowly increase the strength of the analysis.
 
