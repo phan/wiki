@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/etsy/phan.svg?branch=master)](https://travis-ci.org/etsy/phan) [![Gitter](https://badges.gitter.im/etsy/phan.svg)](https://gitter.im/etsy/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-One of the big changes in PHP 7 is the fact that the parser now uses a real Abstract Syntax Tree
-([AST](https://wiki.php.net/rfc/abstract_syntax_tree)). This makes it much easier to write code
+One of the big changes in PHP 7 is the fact that the parser now uses a real [Abstract Syntax Tree](https://wiki.php.net/rfc/abstract_syntax_tree). This makes it much easier to write code
 analysis tools by pulling the tree and walking it looking for interesting things.
 
 Phan has 2 passes. On the first pass it reads every file, gets the AST and recursively parses it
