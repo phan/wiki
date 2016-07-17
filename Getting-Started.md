@@ -46,6 +46,8 @@ You'll now be able to run Phan via
 php phan.phar
 ```
 
+As of this writing, 0.6 is the latest release. You may wish to check [etsy/phan/releases](https://github.com/etsy/phan/releases) to see if thats still the latest release, as I'll probably forget to update this page with subsequent releases.
+
 ## From a Docker Image
 
 Several docker images exist for Phan that include its dependencies (PHP version 7, php-ast). I haven't tried any of them myself, but you could check out these projects.
