@@ -37,7 +37,7 @@ You should now be able to run `./test` to make sure Phan is working correctly, a
 To run Phan from a Phar package, you can download the Phar and run it.
 
 ```sh
-curl -L https://github.com/etsy/phan/releases/download/0.5/phan.phar -o phan.phar;
+curl -L https://github.com/etsy/phan/releases/download/0.6/phan.phar -o phan.phar;
 ```
 
 You'll now be able to run Phan via
