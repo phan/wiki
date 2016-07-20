@@ -1,5 +1,6 @@
 Phan comes with a mechanism for adding plugins for your code base. Plugins have hooks for analyzing every node in the AST for every file, classes, methods and functions.
 
+Plugin code lives in your repo and is referenced from your phan config file, but runs in the Phan execution environment with access to all Phan APIs.
 
 # Creating a Plugin
 
