@@ -1,18 +1,79 @@
 Phan has primordial support for generic (templated) classes via type the annotations `@template` and `@extends` and via a type syntax of the form `Class<T>` that may be referenced within doc-block annotations.
 
-## Some Rules
-* All template types must be declared on the class via doc block comments via the `@template` annotation.
-* All template types must be filled in with concrete types in the constructor.
-* Classes extending generic classes need to fill in the types of the generic parent class via the `@extends` annotation.
-* Constants and static methods on a generic class cannot reference template types.
+# Rules for using Generics
 
-## How It Works
+Support for generics within Phan is not the same as other languages and comes with its own special rules.
+
+## Declare Template Types
+All template types must be declared on the class via doc block comments via the `@template` annotation.
+
+The annotation on the class below shows how template types can be defined.
+
+```php
+/** @template T */
+class C {
+
+    /** @var T */
+    protected $p;
+
+    /** @param T $p */
+    public function __constructor($p) {
+        $this->p = $p;
+    }
+}
+```
+
+## The Constructor Must Make All Types Concrete
+All template types must be filled in with concrete types via the constructor.
+
+In the example above, the template type `T` is declared for the `__constructor` method. An issue will be emitted by Phan for any template types that aren't specified as parameters on the constructor with the following form.
+
+```
+%s:%d PhanGenericConstructorTypes Missing template parameters %s on constructor for generic class %s
+```
+
+## Extending Classes Must Fill In Template Types
+Classes extending generic classes need to fill in the types of the generic parent class via the `@extends` annotation.
+
+The example below builds off of the definition of `C` from the example above to show how to extend a generic class.
+
+```php
+/**
+ * @extends C<int>
+ */
+class C1 extends C {
+    public function __constructor(int $p) {
+        $this->p = $p;
+    }
+}
+```
+
+You can carry template types through to a sub-class by defining a new template type and assigning that to the parent class such as in the example below.
+
+```php
+/**
+ * @template T2
+ *
+ * @extends C<T2>
+ */
+class C2 extends C {
+    /** @param T2 $p */
+    public function __constructor($p) {
+        $this->p = $p;
+    }
+}
+```
+
+## No Generic Statics
+Constants and static methods on a generic class cannot reference template types.
+
+# How It Works
 
 When a class is made generic by declaring template types, the Class's scope will be made aware of the template types so that properties and methods can refer to them via `@var`, `@param` and `@return`. When the class is analyzed, checks will be done by assuming that the template types are some undefined class.
 
 Given the rule that a generic class needs to have all templates mapped to concrete types in the constructor, Phan will express the type of `new C(...)` not as `Type('C')`, but as `Type('C<T>')` for parameter type `T`. This way, whenever a property is referenced or a method is called on the instance, the declared type of the property or return type of the method will be mapped from template types to concrete types using the map on the `Type` associated with the instance.
 
-## Example Generic Classes
+# Example Generic Classes
 
 The following implementation of `Tuple2` shows off how generics work.
 
