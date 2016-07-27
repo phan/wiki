@@ -1,5 +1,7 @@
 Phan has primordial support for generic (templated) classes via type the annotations `@template` and `@extends` and via a type syntax of the form `Class<T>` that may be referenced within doc-block annotations.
 
+For details on possible language-level support for generics, take a look at the draft RFC for [Generic Types and Functions](https://wiki.php.net/rfc/generics).
+
 # Rules for using Generics
 
 Support for generics within Phan is not the same as other languages and comes with its own special rules.
