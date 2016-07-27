@@ -2,6 +2,8 @@ Phan has primordial support for generic (templated) classes via type the annotat
 
 For details on possible language-level support for generics, take a look at the draft RFC for [Generic Types and Functions](https://wiki.php.net/rfc/generics).
 
+The current implementation is very incomplete. You'll likely end up being annoyed that we don't yet allow for generic interfaces, generic functions/methods, or defining constraints on types. There are also very likely to be significant bugs with the current implementation.
+
 # Rules for using Generics
 
 Support for generics within Phan is not the same as other languages and comes with its own special rules.
