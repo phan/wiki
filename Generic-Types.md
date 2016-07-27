@@ -77,6 +77,8 @@ Given the rule that a generic class needs to have all templates mapped to concre
 
 # Example Generic Classes
 
+Phan comes with a library that contains a few generic classes such as [Option](https://github.com/etsy/phan/blob/master/src/Phan/Library/Option.php), [Some](https://github.com/etsy/phan/blob/master/src/Phan/Library/Some.php), [None](https://github.com/etsy/phan/blob/master/src/Phan/Library/None.php), [Tuple2](https://github.com/etsy/phan/blob/master/src/Phan/Library/Tuple2.php), and others.
+
 The following implementation of `Tuple2` shows off how generics work.
 
 ```php
