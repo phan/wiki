@@ -19,5 +19,5 @@ A guide to writing one-off plugins for Phan.
 **[[Issue Types Caught by Phan]]**<br />
 An enumeration of error types, examples that cause them and tips on how to resolve the issues
 
-** [[Generic Types]]**<br />
+**[[Generic Types]]**<br />
 Phan supports generic (templated) types. This article describes how they can be used.
