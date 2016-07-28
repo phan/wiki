@@ -1,4 +1,4 @@
-Phan has primordial support for generic (templated) classes via type the annotations `@template` and `@extends` and via a type syntax of the form `Class<T>` that may be referenced within doc-block annotations.
+Phan has primordial support for generic (templated) classes via type the annotations `@template` and `@inherits` and via a type syntax of the form `Class<T>` that may be referenced within doc-block annotations.
 
 For details on possible language-level support for generics, take a look at the draft RFC for [Generic Types and Functions](https://wiki.php.net/rfc/generics).
 
@@ -37,13 +37,13 @@ In the example above, the template type `T` is declared for the `__constructor` 
 ```
 
 ## Extending Classes Must Fill In Template Types
-Classes extending generic classes need to fill in the types of the generic parent class via the `@extends` annotation.
+Classes extending generic classes need to fill in the types of the generic parent class via the `@inherits` annotation.
 
 The example below builds off of the definition of `C` from the example above to show how to extend a generic class.
 
 ```php
 /**
- * @extends C<int>
+ * @inherits C<int>
  */
 class C1 extends C {
     public function __constructor(int $p) {
@@ -58,7 +58,7 @@ You can carry template types through to a sub-class by defining a new template t
 /**
  * @template T2
  *
- * @extends C<T2>
+ * @inherits C<T2>
  */
 class C2 extends C {
     /** @param T2 $p */
@@ -138,7 +138,7 @@ class Tuple1 extends Tuple
  * @template T1
  * The type of element one
  *
- * @extends Tuple1<T0>
+ * @inherits Tuple1<T0>
  */
 class Tuple2 extends Tuple1
 {
@@ -206,7 +206,7 @@ abstract class Option
  * @template T
  * The type of the element
  *
- * @extends Option<T>
+ * @inherits Option<T>
  */
 class Some extends Option
 {
@@ -257,7 +257,7 @@ class Some extends Option
 }
 
 /**
- * @extends Option<null>
+ * @inherits Option<null>
  */
 class None extends Option
 {
