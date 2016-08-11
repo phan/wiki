@@ -13,6 +13,8 @@ function f(DateTime $t) { ... }
 
 In the example above, the type of `$t` will be `DateTime` with the `int` declaration being ignored.
 
+We prefer syntax-level types and type-hints because they're checked at runtime. Annotations are not.
+
 # Use `@param` for Union Types
 
 If a parameter can be one of many types, you'll need to express this via the `@param` annotation and leave the parameter type or type-hint empty.
@@ -25,6 +27,8 @@ function f($t) { ... }
 ```
 
 Since PHP does not support union types, you'll need to express a union type as in the example above.
+
+Keep in mind that in this case you're trading off runtime type checking for something that is better able to express the state of the world, but is not checked in the running code. For this reason, you should use union types to express the state of pre-existing code, but shouldn't use them when creating new interfaces.
 
 # Use `@param` for Scalars on PHP5 Compatible Code
 
