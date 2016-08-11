@@ -1,6 +1,6 @@
 PHP5 supports type hints on parameters. PHP7 supports proper types on parameters. Phan reads doc-block `@param` types. This article is meant to explain how they interact and when to use which system.
 
-# Syntax-level Types Override `@param` Types
+# Declared Types Override `@param` Types
 
 Whenever parameters have a type or type-hint, `@param` types are ignored.
 
