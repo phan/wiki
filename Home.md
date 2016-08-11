@@ -18,3 +18,6 @@ A guide to writing one-off plugins for Phan.
 
 **[[Issue Types Caught by Phan]]**<br />
 An enumeration of error types, examples that cause them and tips on how to resolve the issues
+
+**[[Typing Parameters]]**<br />
+A guide to handling interactions between Phan's `@param` types and declared parameter types or type-hints.
