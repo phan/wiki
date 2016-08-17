@@ -6,7 +6,7 @@ If you're having trouble getting Phan up and running, get in touch.
 
 [![Gitter](https://badges.gitter.im/etsy/phan.svg)](https://gitter.im/etsy/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-I should be able to respond within a few hours during US east coast working hours.
+I should be able to respond fairly quickly during US east coast working hours.
 
 # Installing Phan
 
