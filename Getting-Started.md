@@ -2,6 +2,12 @@ There are several options for getting Phan up and running on your code base.
 
 To get started, choose [a method for getting Phan running on your system](https://github.com/etsy/phan/wiki/Getting-Started#installing-phan) and then [create a config file](https://github.com/etsy/phan/wiki/Getting-Started#creating-a-config-file) so that Phan knows where to look for code and how to analyze it. Take a look at [Installing Phan Dependencies](https://github.com/etsy/phan/wiki/Getting-Started#installing-phan-dependencies) for some help getting Phan's dependencies running.
 
+If you're having trouble getting Phan up and running, get in touch.
+
+[![Gitter](https://badges.gitter.im/etsy/phan.svg)](https://gitter.im/etsy/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+I should be able to respond within a few hours during US east coast working hours.
+
 # Installing Phan
 
 ## Composer
