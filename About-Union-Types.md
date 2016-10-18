@@ -78,6 +78,7 @@ A union type is expressed as a pipe ('|') delimited list of types which can be s
 ```
 UNION_TYPE  : TYPE
             | TYPE '|' UNION_TYPE
+            |
             ;
 
 TYPE        : CLASS_NAME
