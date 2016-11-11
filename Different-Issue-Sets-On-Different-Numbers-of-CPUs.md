@@ -1,4 +1,4 @@
-When running Phan on more than one core, you may encounter an issue whereby an issue will go undetected until a seemingly random point in the future. This article attempts to explain (but not forgive) this odd behavior.
+When running Phan on more than one core, you may encounter a problem whereby an issue will go undetected until a seemingly random point in the future. This article attempts to explain (but not forgive) this odd behavior.
 
 # Phan On Multiple Cores
 
