@@ -41,7 +41,7 @@ class D {
 }
 ```
 
-Executing this code via `php B.php` (with a sufficient auto-loader) would give you no problems. If, however, this code was to be analyzed in the order `A.php`, `B.php`, `C.php`, `D.php`, Phan would emit an issue from file `C.php` explaining that you're attempting to assign a `int` to a property with type `string`.
+Executing this code via `php C.php` (with a sufficient auto-loader) would give you no problems. If, however, this code was to be analyzed in the order `A.php`, `B.php`, `C.php`, `D.php`, Phan would emit an issue from file `C.php` explaining that you're attempting to assign a `int` to a property with type `string`.
 
 Now consider a different ordering. If you analyzed the code with files in the order `D.php`, `C.php`, `B.php`, `A.php`, Phan would emit an issue for file `B.php` explaining that you're attempting to assign an `string` to a property of type `int`. Bummer.
 
