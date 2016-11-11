@@ -51,7 +51,7 @@ The file ordering issue is complicated enough on a single core, but now consider
 
 When Phan runs on `n` cores, it splits the work as evenly as it can among them. If again we wanted to analyze the four files given above, but this time on two cores, we might split up the work as follows.
 
-**Core 1**: `A.php`, `B.php` | **Core 2**: `C.php, `D.php`
+**Core 1**: `A.php`, `B.php` | **Core 2**: `C.php`, `D.php`
 
 When analyzed in this way, Phan would emit no issues, given that it can't see the conflicting types between `B.php` and `C.php`. This issue would happily make its way into your code base and sit hidden lying in wait for the right time to attack.
 
