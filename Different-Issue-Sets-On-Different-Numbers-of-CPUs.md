@@ -60,3 +60,16 @@ If at some point in the future, a totally unrelated file `E.php` is added, Phan 
 **Core 1**: `A.php`, `B.php`, `C.php` | **Core 2**: `D.php`, `E.php`
 
 Now that both `B.php` and `C.php` are on the same core, the trap is sprung, and you'll get an issue emitted for a bad type assignment from `C.php`.
+
+# What To Do About It
+
+This limitation of PHP and Phan is a big bummer, and there isn't much I can say to make it better.
+
+If you find yourself getting hit by one of these, you have a few options.
+
+* They're pretty rare, so fix the issues that mysteriously fire as they come up.
+* Add a `@suppress` annotation to inhibit the issue you got hit with and admit that nothing is perfect.
+* Switch to using a single-core and a stable file ordering.
+* Make everything in your code-base strictly typed.
+
+None of those are great, but this is the world we live in. I wish you the best of luck.
