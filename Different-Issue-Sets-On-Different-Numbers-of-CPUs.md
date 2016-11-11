@@ -2,7 +2,7 @@ When running Phan on more than one core, you may encounter a problem whereby an 
 
 # Phan On Multiple Cores
 
-Analyzing large code bases can be painfully slow. As such, Phan provides the ability to run an analysis on many cores. Because of the very large amount of random IO that takes place during analysis and because of the weak support for multi-threading, Phan takes the approach of first parsing all code on a single core and then forking off to different processes in order to analyze subsets of the code base.
+Analyzing large code bases can be painfully slow. As such, Phan provides the ability to run an analysis on many cores. Because of the very large amount of random IO that takes place during analysis and because of the weak support for threading in PHP, Phan takes the approach of first parsing all code on a single core and then forking off to different processes in order to analyze subsets of the code base.
 
 The reduction in time required to analyze a full code base is significant, but it comes with a pretty major tradeoff.
 
