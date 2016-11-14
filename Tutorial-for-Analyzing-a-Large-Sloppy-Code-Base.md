@@ -193,10 +193,10 @@ Now that you've gotten rid of all of the false-positives and Phan is producing a
 
 You'll want to consider
 
-* Moving `minimum_severity` in your config from `10` (severe) to `5` (normal) or even `0` (low) if you love fixing bugs
+* Moving `minimum_severity` in your config from `10` (severe) to `5` (normal) or even `0` (low) if you love fixing bugs.
 * Set `backward_compatibility_checks` to `true` to find out how your PHP5 code is going to break in PHP7.
-* Set `null_casts_as_any_type` to false to find out what kind of madness your team has been up to.
-* Set `allow_missing_properties` to `false` to see all of the undefined constants you've been writing too all these years
+* Set `null_casts_as_any_type` to `false` to find out what kind of madness your team has been up to.
+* Set `allow_missing_properties` to `false` to see all of the undefined constants you've been writing to all these years.
 * Set `quick_mode` to `false` to re-analyze each method on each method call given the input types you're sending it.
 
 Setting these values one at a time and fixing all issues you find will make the process less overwhelming.
