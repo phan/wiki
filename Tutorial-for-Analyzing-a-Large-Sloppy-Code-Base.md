@@ -96,7 +96,7 @@ You should add any third-party code paths to the `exclude_analysis_directory_lis
 
 You can pass the files to be analyzed to Phan on the command-line, but with a large code base, you'll want to create a file that lists all files and filters out junk to make your life easier.
 
-One way to generate this file list would be to create a file `.phan/bin/mkfileset` (like [Phan's](https://github.com/etsy/phan/blob/master/.phan/bin/mkfileset)) with the following contents.
+One way to generate this file list would be to create a file `.phan/bin/mkfilelist` (like [Phan's](https://github.com/etsy/phan/blob/master/.phan/bin/mkfilelist)) with the following contents.
 
 ```sh
 #!/bin/bash
@@ -127,7 +127,7 @@ cat $JUNK | \
 rm $JUNK
 ```
 
-You can then run `./.phan/bin/mkfileset.sh > files`. Take a look at [Phan's file list generator](https://github.com/etsy/phan/blob/master/.phan/bin/mkfileset) to see an example.
+You can then run `./.phan/bin/mkfilelist.sh > files`. Take a look at [Phan's file list generator](https://github.com/etsy/phan/blob/master/.phan/bin/mkfileset) to see an example.
 
 With this, you can now run `phan -f files` to run an analysis of your code base.
 
