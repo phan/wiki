@@ -127,7 +127,7 @@ cat $JUNK | \
 rm $JUNK
 ```
 
-You can then run `./.phan/bin/mkfilelist.sh > files`. Take a look at [Phan's file list generator](https://github.com/etsy/phan/blob/master/.phan/bin/mkfileset) to see an example.
+You can then run `./.phan/bin/mkfilelist.sh > files`. Take a look at [Phan's file list generator](https://github.com/etsy/phan/blob/master/.phan/bin/mkfilelist) to see an example.
 
 With this, you can now run `phan -f files` to run an analysis of your code base.
 
