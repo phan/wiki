@@ -43,7 +43,7 @@ You should now be able to run `./test` to make sure Phan is working correctly, a
 To run Phan from a Phar package, you can download the Phar and run it.
 
 ```sh
-curl -L https://github.com/etsy/phan/releases/download/0.6/phan.phar -o phan.phar;
+curl -L https://github.com/etsy/phan/releases/download/0.7/phan.phar -o phan.phar;
 ```
 
 You'll now be able to run Phan via
@@ -52,7 +52,7 @@ You'll now be able to run Phan via
 php phan.phar
 ```
 
-As of this writing, 0.6 is the latest release. You may wish to check [etsy/phan/releases](https://github.com/etsy/phan/releases) to see if thats still the latest release, as I'll probably forget to update this page with subsequent releases.
+As of this writing, 0.7 is the latest release. You may wish to check [etsy/phan/releases](https://github.com/etsy/phan/releases) to see if thats still the latest release, as I'll probably forget to update this page with subsequent releases.
 
 ## From a Docker Image
 
