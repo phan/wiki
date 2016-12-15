@@ -117,8 +117,8 @@ return [
     //
     // n.b.: If you'd like to parse but not analyze 3rd
     //       party code, directories containing that code
-    //       should be added to the `directory_list` as
-    //       to `excluce_analysis_directory_list`.
+    //       should be added to both the `directory_list`
+    //       and `exclude_analysis_directory_list` arrays.
     "exclude_analysis_directory_list" => [
         'vendor/'
     ],
