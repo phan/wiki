@@ -26,7 +26,7 @@ If you're running PHP version 7.1+, run
 composer require --dev "etsy/phan:dev-master"
 ```
 
-If you'd like a more stable ride, check out the [list of releases on Packagist](https://packagist.org/packages/etsy/phan).
+[For a full list of releases, check out https://packagist.org/packages/etsy/phan](https://packagist.org/packages/etsy/phan).
 
 With the Phan dependency installed, you can do an analysis by running the following (once you create a configuration file).
 
