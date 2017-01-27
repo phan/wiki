@@ -14,9 +14,16 @@ I should be able to respond fairly quickly during US east coast working hours.
 
 If you're managing dependencies via [Composer](https://getcomposer.org/), you can add Phan to your project by running the following.
 
+If you're running PHP version 7.0.x, run
+
+```sh
+composer require --dev "etsy/phan:0.8.x-dev"
+```
+
+If you're running PHP version 7.1+, run
+
 ```sh
 composer require --dev "etsy/phan:dev-master"
-composer install;
 ```
 
 With the Phan dependency installed, you can do an analysis by running the following (once you create a configuration file).
