@@ -17,7 +17,7 @@ The process of starting analysis looks like
 
 ## Get Phan Running
 
-The first step is to get Phan running. Take a look at [the README](https://github.com/etsy/phan#getting-it-running) for help getting PHP7, the php-ast module and Phan installed.
+The first step is to get Phan running. Take a look at [Getting Started](https://github.com/etsy/phan/wiki/Getting-Started) for help getting PHP7, the php-ast module and Phan installed.
 
 If you have PHP version 7 installed with the [php-ast](https://github.com/nikic/php-ast) module and your project uses composer, you can just run `composer require --dev "etsy/phan:dev-master"` to add Phan to your project with the binary available in `vendor/bin/phan`.
 
