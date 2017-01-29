@@ -687,7 +687,7 @@ class F { function f() { $v = parent::f(); } }
 
 ## PhanTraitParentReference
 
-If you reference `parent` from within a trait, you'll get this issue. This is a low priority issue given that its perfectly fine PHP for some reason.
+If you reference `parent` from within a trait, you'll get this issue. This is a low priority issue given that it is legal in PHP, but for general-purpose traits you should probably avoid this pattern.
 
 ```
 Reference to parent from trait %s
