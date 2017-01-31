@@ -21,3 +21,6 @@ An enumeration of error types, examples that cause them and tips on how to resol
 
 **[[Typing Parameters]]**<br />
 A guide to handling interactions between Phan's `@param` types and declared parameter types or type-hints.
+
+**[[How To Use Stubs]]**<br />
+Details on setting up a `stubs` directory for making code available to Phan that isn't loaded on its runtime.
