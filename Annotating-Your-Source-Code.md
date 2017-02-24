@@ -9,7 +9,7 @@ Phan supports the following doc block annotations.
 * `@suppress <issue_type>`
 
 ## @var
-The `@var <union_type>` annotation describes the type of the constant, property or variable being referenced such as in
+The `@var <union_type>` annotation describes the type of the constant or property.
 
 ```php
 class C
@@ -18,11 +18,6 @@ class C
 
    /** @var DateTime|null */
    private $p = null;
-
-   /** @var string $v */
-   public function f() {
-       $v = $_GET['thing'];
-   }
 ```
 
 ## @param
