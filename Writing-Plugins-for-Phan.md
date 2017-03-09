@@ -41,7 +41,7 @@ where `$code_base` is the `CodeBase` object passed to your hook, `$context` is t
 
 # Reference Material
 
-When writing plugins, you'll likely need to understand a few concepts. The following contains some material that may be useful.
+When writing plugins, you'll likely need to understand a few concepts. The following contains some material that may be useful. You can learn more from the [Developer's Guide to Phan](https://github.com/etsy/phan/wiki/Developer%27s-Guide-To-Phan)
 
 ## Node
 A `Node` is an AST node returned from the [php-ast](https://github.com/nikic/php-ast) PHP extension. You can [read more about its interface in its README](https://github.com/nikic/php-ast#api-overview). You'll also find many references to `Node` that can be copied throughout the Phan code base.
