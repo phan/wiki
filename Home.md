@@ -24,3 +24,6 @@ A guide to handling interactions between Phan's `@param` types and declared para
 
 **[[How To Use Stubs]]**<br />
 Details on setting up a `stubs` directory for making code available to Phan that isn't loaded on its runtime.
+
+**[[How To Create a Phan Release]]**<br />
+Follow this checklist when creating a new release of Phan.
