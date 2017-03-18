@@ -7,6 +7,7 @@ Phan supports the following doc block annotations.
 * `@return <union_type>`
 * `@deprecated`
 * `@suppress <issue_type>`
+* `@property <union_type> <variable_name>`
 
 ## @var
 The `@var <union_type>` annotation describes the type of the constant or property.
@@ -40,7 +41,7 @@ class C
 The `@return <union_type>` annotation describes the return type of a method.
 
 ```php
-class C
+class C {
    /**
     * @return null|int|string
     */
@@ -51,6 +52,27 @@ class C
      return rand(0,1) ?: 'string';
    }
 ```
+
+## @property
+
+The `@property <union_type> ` annotation describes a magic property of a class.
+Partial support for this annotation was added in phan 0.9.1.
+
+```php
+/** @property int $magic_prop comment can go here */
+class C {
+   public function __get($name) {
+       if ($name === 'magic_prop') { return 42; }
+   }
+   public function __set($name, $value) {}
+}
+```
+
+Currently, `@property-read` and `@property-write` are aliases of `@property`, but those annotations may be improved in future releases of Phan.
+
+Additionally, `@phan-forbid-undeclared-magic-properties` can be added to the class phpdoc (of a class with magic getters and setters) to indicate that phan should warn if any undeclared magic properties of that class were used elsewhere.
+
+Phan does not yet enforce that __get()/__set() exist if a class/trait/interface declares magic properties.
 
 ## @deprecated
 
