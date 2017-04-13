@@ -11,6 +11,6 @@ When creating a new release, make sure you do the following.
 - [ ] [Create a new release](https://github.com/etsy/phan/releases), and uploading the `phan.phar` file.
   - [ ] Make sure you mark it as "pre-release"
   - [ ] In the description, note the difference between the 0.8 branch and 0.9.
-  - [ ] Copy the release notes from [NEWS](https://github.com/etsy/phan/blob/master/NEWS) into the release notes.
+  - [ ] Copy the release notes from [NEWS](https://github.com/etsy/phan/blob/master/NEWS) into the release description.
 
 After creating the new release, check [packagist.org/packages/etsy/phan](https://packagist.org/packages/etsy/phan) to make sure it picked up the new release.
