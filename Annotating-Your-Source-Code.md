@@ -8,6 +8,7 @@ Phan supports the following doc block annotations.
 * `@deprecated`
 * `@suppress <issue_type>`
 * `@property <union_type> <variable_name>`
+* `@property <union_type> <method_name>(<union_type> <param1_name>)`
 
 ## @var
 The `@var <union_type>` annotation describes the type of the constant or property.
@@ -73,6 +74,38 @@ Currently, `@property-read` and `@property-write` are aliases of `@property`, bu
 Additionally, `@phan-forbid-undeclared-magic-properties` can be added to the class phpdoc (of a class with magic getters and setters) to indicate that phan should warn if any undeclared magic properties of that class were used elsewhere.
 
 Phan does not yet enforce that __get()/__set() exist if a class/trait/interface declares magic properties.
+
+## @method
+
+The `@method <union_type> <method_name>(<union_type> <param1_name>)` annotation describes a magic property of a class.
+Partial support for this annotation will be included in phan 0.9.2 (Not yet released)
+
+```php
+/**
+ * @method int fooWithReturnType() - Can be followed by optional description
+ * @method doSomething() implicitly has the void return type
+ * @method mixed doSomething() use this if you don't know the return type, or if the return type can be anything.
+ * @method fooWithOptionalParam(int, $b=null) - It's possible to leave out the name or the type, but not both.
+ * @method fooWithOptionalNullableParam(string $x= null) The param $x is a nullable string. Null is the only value for which the default affects param type inference.
+ * @method static static_foo() This is a static method returning void.
+ * @method static int static_foo_with_return_type() - This is a static method returning int.
+ * @method static static static_foo_with_return_type_of_static() This is a static method returning an instance of a class implementing this interface.
+ * @method int myMethodWithUntypedParams($x) - Types are optional.
+ * @method int myMethodWithPHPDocParams(double $x, object|null $y) - PHPDoc types and union types can be used.
+ * @method int|string myMethodWithVariadicParams(int $a, int|string   ... $x ) ... and variadic types can be used.
+ */
+interface MagicInterface {
+   // Non-abstract classes implementing this should define __call and/or __callStatic, but phan doesn't enforce that yet.
+}
+```
+
+If Phan can't parse an @method annotation or the parameters, it will silently ignore the entire method annotation. A new issue type will likely be added in the future.
+
+Phan also supports the `@phan-forbid-undeclared-magic-methods` annotation on classes (Support for inheriting this annotation for interfaces/traits is incomplete).
+This will cause Phan to warn about a method being undefined if there are no real or phpdoc declarations of that method.
+This can be used if you are concerned about magic methods being misspelled, being undocumented, or being used without the information Phan needs to type check their uses.
+
+The behavior of phan when a real method replaces a magic method is not yet fully defined. See https://github.com/etsy/phan/issues/670
 
 ## @deprecated
 
