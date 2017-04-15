@@ -8,7 +8,7 @@ Phan supports the following doc block annotations.
 * `@deprecated`
 * `@suppress <issue_type>`
 * `@property <union_type> <variable_name>`
-* `@property <union_type> <method_name>(<union_type> <param1_name>)`
+* `@method <union_type> <method_name>(<union_type> <param1_name>)`
 
 ## @var
 The `@var <union_type>` annotation describes the type of the constant or property.
