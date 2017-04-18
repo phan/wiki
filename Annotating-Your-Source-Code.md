@@ -127,7 +127,7 @@ function g() {}
 
 The `@internal` annotation marks an element (such as a constant, function, class, class constant, property or method) as internal to the package in which its defined.
 
-Any element marked as `@internal` and accessed outside of its exact namespace (disallowing both child and parent namesapces) will result in Phan emitting an issue.
+Any element marked as `@internal` and accessed outside of its exact namespace (disallowing both child and parent namespaces) will result in Phan emitting an issue.
 
 ```php
 <?php
