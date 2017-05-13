@@ -11,6 +11,17 @@ Phan supports the following doc block annotations.
 * `@suppress <issue_type>`
 * `@property <union_type> <variable_name>`
 
+Additionally, Phan can analyze `assert` statements.
+
+## assert
+
+Phan can analyze `assert()` statements to infer the types of variables within a block of code.
+This is one way of working around [limitations on analyzing comment doc blocks](#invalid).
+
+- Examples: `$x = someDynamicFactory(MyClass::class); assert($x instanceof MyClass)`, `assert(is_string($x))`, `assert(!is_null($x))`
+- Phan can infer the same types from `assert` as it would for the condition of `if()` statements or for the condition in ternary operators.
+- Be aware that incorrect assertions may cause [unpredictable behavior in your code](https://secure.php.net/manual/en/function.assert.php#refsect2-function.assert-unknown-descriptioo)
+
 ## @var
 The `@var <union_type>` annotation describes the type of the constant or property.
 
