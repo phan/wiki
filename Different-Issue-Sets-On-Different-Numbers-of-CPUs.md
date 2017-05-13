@@ -61,6 +61,11 @@ If at some point in the future, a totally unrelated file `E.php` is added, Phan 
 
 Now that both `B.php` and `C.php` are on the same core, the trap is sprung, and you'll get an issue emitted for a bad type assignment from `C.php`.
 
+If you see large inconsistencies between the analysis results with multiple cores (e.g. on 2 cores vs 3 cores),
+then setting the config setting `consistent_hashing_file_order` to true
+may make the issue sets on multiple cores a bit more predictable.
+(But if you want/need Phan to parse directories in a certain order, you can't use this setting)
+
 # What To Do About It
 
 This limitation of PHP and Phan is a big bummer, and there isn't much I can say to make it better.
@@ -71,5 +76,7 @@ If you find yourself getting hit by one of these, you have a few options.
 * Add a `@suppress` annotation to inhibit the issue you got hit with and admit that nothing is perfect.
 * Switch to using a single-core and a stable file ordering.
 * Make everything in your code-base strictly typed.
+  (E.g. if phan infers the wrong type for a function parameter when there are 3 cores,
+   then add an `@param int|false $x` annotation if you know those are the types expected for that function parameter. Or add real types.)
 
 None of those are great, but this is the world we live in. I wish you the best of luck.
