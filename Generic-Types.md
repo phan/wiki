@@ -21,7 +21,7 @@ class C {
     protected $p;
 
     /** @param T $p */
-    public function __constructor($p) {
+    public function __construct($p) {
         $this->p = $p;
     }
 }
@@ -46,7 +46,7 @@ The example below builds off of the definition of `C` from the example above to 
  * @inherits C<int>
  */
 class C1 extends C {
-    public function __constructor(int $p) {
+    public function __construct(int $p) {
         $this->p = $p;
     }
 }
@@ -62,7 +62,7 @@ You can carry template types through to a sub-class by defining a new template t
  */
 class C2 extends C {
     /** @param T2 $p */
-    public function __constructor($p) {
+    public function __construct($p) {
         $this->p = $p;
     }
 }
