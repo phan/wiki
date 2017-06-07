@@ -2,18 +2,18 @@ There are plenty of issues that Phan can find if you don't have type annotations
 
 Phan supports the following doc block annotations.
 
-* `@var <union_type>`
-* `@param <union_type> <variable_name>`
-* `@return <union_type>`
-* `@method <union_type> <method_name>(<union_type> <param1_name>)`
-* `@deprecated`
-* `@internal`
-* `@suppress <issue_type>`
-* `@property <union_type> <variable_name>`
+* [`@var <union_type>`](#var)
+* [`@param <union_type> <variable_name>`](#param)
+* [`@return <union_type>`](#return)
+* [`@method <union_type> <method_name>(<union_type> <param1_name>)`](#method)
+* [`@deprecated`](#deprecated)
+* [`@internal`](#internal)
+* [`@suppress <issue_type>`](#suppress)
+* [`@property <union_type> <variable_name>`](#property)
 
-Additionally, Phan can analyze `assert` statements and the conditionals of `if` statements and ternary operators.
+Additionally, Phan supports [inline type checks](#inline-type-checks), and can analyze `assert` statements and the conditionals of `if` statements and ternary operators.
 
-## inline type checks
+## Inline Type Checks
 
 Phan can analyze `assert()` statements and conditional branches to infer the types of variables within a block of code.
 This is one way of working around [limitations on analyzing comment doc blocks](#invalid).
