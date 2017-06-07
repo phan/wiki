@@ -7,6 +7,7 @@ All of the following are valid union types;
 * `int[]|float[]|null`
 * `DateTime`
 * `DateTime|string|int`
+* `?int|?DateTime`
 * `null`
 
 As a special case, `void` may be used as a return type indicating that the function or method is not expected to return anything. In practice, this still implies that the function or method returns null, but Phan will enforce that there is not an explicit return.
@@ -75,8 +76,8 @@ class D {
 
 # Union Types as a BNF
 
-A union type is expressed as a pipe ('|') delimited list of types which can be scalars, arrays, arrays of a type, or classes.
-Phan supports nullable types.
+A union type is expressed as a pipe (`|`) delimited list of types, which can be native types (e.g. scalars, arrays), special types (e.g. `object`, `mixed`), arrays of a type, or classes.
+Those types can be nullable.
 
 ```
 UNION_TYPE     : TYPE
