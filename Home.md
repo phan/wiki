@@ -34,7 +34,7 @@ Details on setting up a `stubs` directory for making code available to Phan that
 Phan has primordial support for generic (templated) classes via type the annotations `@template` and `@inherits` and via a type syntax of the form `Class<T>` that may be referenced within doc-block annotations.
 
 **[[Using Phan Daemon Mode]]**<br/>
-Daemon mode lets you request Phan results from your editor or IDE to detect Phan issues in a single file, with much lower latency than a full analysis. (experimental, requires dev-master)
+Daemon mode lets you request Phan results from your editor or IDE to detect Phan issues for a single file, with much lower latency than a full analysis. (experimental, requires dev-master)
 
 ## Frequently Asked Questions
 
