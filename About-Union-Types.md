@@ -76,40 +76,46 @@ class D {
 # Union Types as a BNF
 
 A union type is expressed as a pipe ('|') delimited list of types which can be scalars, arrays, arrays of a type, or classes.
+Phan supports nullable types.
 
 ```
-UNION_TYPE  : TYPE
-            | TYPE '|' UNION_TYPE
-            |
-            ;
+UNION_TYPE     : TYPE
+               | TYPE '|' UNION_TYPE
+               |
+               ;
 
-TYPE        : CLASS_NAME
-            | NATIVE_TYPE
-            | ARRAY_TYPE
-            | SPECIAL_TYPE
-            ;
+TYPE           : NON_NULL_TYPE
+               | '?' NON_NULL_TYPE
 
-ARRAY_TYPE  | TYPE '[]'
-            ;
+NON_NULL_TYPE  : CLASS_NAME
+               | NATIVE_TYPE
+               | ARRAY_TYPE
+               | SPECIAL_TYPE
+               ;
 
-CLASS_NAME  : string
-            ;
+ARRAY_TYPE     | NON_NULL_TYPE '[]'
+               ;
 
-NATIVE_TYPE : 'int'
-            | 'float'
-            | 'string'
-            | 'bool'
-            | 'array'
-            | 'mixed'
-            | 'callable'
-            | 'resource'
-            | 'null'
-            ;
+CLASS_NAME     : string
+               ;
 
-SPECIAL_TYPE : 'void'
-             | 'static'
-             | 'self'
-             | 'mixed'
-             ;
+NATIVE_TYPE    : 'int'
+               | 'float'
+               | 'string'
+               | 'bool'
+               | 'iterable'
+               | 'array'
+               | 'mixed'
+               | 'callable'
+               | 'resource'
+               | 'null'
+               ;
+
+SPECIAL_TYPE   : 'void'
+               | 'static'
+               | 'self'
+               | 'object'
+               | 'mixed'
+               ;
 
 ```
