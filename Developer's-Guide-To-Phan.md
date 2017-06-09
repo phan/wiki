@@ -1,5 +1,21 @@
 [![Build Status](https://travis-ci.org/etsy/phan.svg?branch=master)](https://travis-ci.org/etsy/phan) [![Gitter](https://badges.gitter.im/etsy/phan.svg)](https://gitter.im/etsy/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+## Table of Contents
+
+- **[Introduction](#introduction)**
+- **[Submitting Patches](#submitting-patches)**
+- **[Core Concepts](#core-concepts)** (Describes core concepts of phan)
+  - **[FQSEN](#fqsen)** : A Fully Qualified Structural Element Name.
+  - **[Type and UnionType](#type-and-uniontype)** (Representations of PHP data types, sets(union) of those types)
+  - **[CodeBase](#code-base)** (maps FQSENs to a representation of the object for both scanned code and internal PHP elements)
+  - **[Context](#context)** (represents the state of the world at any point during parsing or analysis)
+  - **[Scope](#scope)** (maps variable names to `Variable`s and is housed within the `Context`)
+  - **[Structural Elements](#structural-elements)** (Identified by FQSENs)
+- **[Parsing and Analysis](#parsing-and-analysis)** (Describes the phases Phan takes to analyze code)
+- **[Logging Issues](#logging-issues)** (How to log an `Issue` from Phan)
+- **[AST Node Visitors](#ast-node-visitors)** (Used to implement many operations acting on multiple types of AST Nodes)
+
+## Introduction
 One of the big changes in PHP 7 is the fact that the parser now uses a real [Abstract Syntax Tree](https://wiki.php.net/rfc/abstract_syntax_tree). This makes it much easier to write code
 analysis tools by pulling the tree and walking it looking for interesting things.
 
@@ -71,7 +87,7 @@ You'll note that all class and function FQSENs lowercase the name. We do this be
 
 An FQSEN for an element will inherit from the abstract class [\Phan\Language\FQSEN](https://github.com/etsy/phan/blob/master/src/Phan/Language/FQSEN.php). The actual FQSEN for each element (classes, methods, constants, properties, functions) will be defined by classes in the [\Phan\Language\FQSEN](https://github.com/etsy/phan/tree/master/src/Phan/Language/FQSEN) namespace.
 
-## Type and UnionType
+### Type and UnionType
 
 A [Type](https://github.com/etsy/phan/blob/master/src/Phan/Language/Type.php) is what you'd expect and can be a native type like `int`, `float`, `string`, `bool`, `array` or a non-native type for a class such as `\Phan\Language\Type`. A type can also be a generic array such as `int[]`, `string[]`, `\Phan\Language\Type[]`, etc. which denote an array of type `int`, `string` and `\Phan\Language\Type` respectively.
 
@@ -87,7 +103,7 @@ function f($a) : int {
 In the code above, the parameter `$a` is defined to be either a `bool` or an `array`. Passing the argument `true` or `[1, 2, 3]` would both pass analysis while passing `"string"` or `42` would not.
 
 
-## Code Base
+### Code Base
 
 The [CodeBase](https://github.com/etsy/phan/blob/master/src/Phan/CodeBase.php) in Phan is an object that maps FQSENs to a representation of the object for both scanned code and internal PHP elements.
 
@@ -99,9 +115,9 @@ $class = $code_base->getClassByFQSEN(
 );
 ```
 
-The CodeBase maps classes, methods, constants, properties and functions.
+The CodeBase maps FQSENs of classes, methods, constants, properties and functions to their corresponding subclasses of Element.
 
-## Context
+### Context
 
 The [Context](https://github.com/etsy/phan/blob/master/src/Phan/Language/Context.php) represents the state of the world at any point during parsing or analysis. It stores
 
@@ -120,11 +136,11 @@ and when appropriate
 
 The Context is used to map non-fully-qualified names to fully-qualified names (FQSENs) and for knowing which files and lines to associate errors with.
 
-## Scope
+### Scope
 
 The [Scope](https://github.com/etsy/phan/blob/master/src/Phan/Language/Scope.php) maps variable names to [variables](https://github.com/etsy/phan/blob/master/src/Phan/Language/Element/Variable.php) and is housed within the [Context](https://github.com/etsy/phan/blob/master/src/Phan/Language/Context.php). The Scope will be able to map both locally defined variables and globally available variables.
 
-## Structural Elements
+### Structural Elements
 
 The universe of structural element types are defined in the [`\Phan\Language\Element`](https://github.com/etsy/phan/tree/master/src/Phan/Language/Element) namespace and limited to
 
