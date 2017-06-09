@@ -6,7 +6,7 @@
 Start here for getting Phan installed and running on your code base.
 
 **[[Annotating Your Source Code]]**<br />
-This document describes how to add types to your code via doc block annotations.
+This document describes how to add types to your code via doc block annotations. (e.g. `@param`, `@return`, `@var`, `@suppress`)
 
 **[[About Union Types]]**<br />
 An explanation of what union types are and how to use them.
