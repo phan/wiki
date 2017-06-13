@@ -84,7 +84,7 @@ To get Phan running on a Mac with Homebrew, ensure that Homebrew is installed (s
 
 ```sh
 brew update
-brew install php70 php70-ast phan
+brew install php71 php71-ast phan
 ```
 
 Once that completes successfully, you can check that phan is working correctly by running
