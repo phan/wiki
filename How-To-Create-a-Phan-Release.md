@@ -18,4 +18,5 @@ After creating the new release, check [packagist.org/packages/etsy/phan](https:/
 
 Additional post-release tasks:
 
+- [ ] Create PRs to change Phan version in NEWS and CLI.php to 0.8.(x+1)-dev and 0.9.(y+1)-dev
 - [ ] Notify the maintainers of homebrew-php that a new Phan release exists and/or create a PR for [0.8.x](https://github.com/Homebrew/homebrew-php/pull/4219) and [0.9.x](https://github.com/Homebrew/homebrew-php/pull/4220)
