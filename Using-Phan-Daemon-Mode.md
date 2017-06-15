@@ -6,7 +6,7 @@ Description
 
 Daemon mode lets you use Phan from your editor or IDE to detect Phan issues on a single file, with much lower latency (< 0.3 seconds). This is useful on large codebases with hundreds or thousands of PHP files, where the full analysis would take minutes to run.
 
-**This is a draft, and daemon mode requires Phan 0.9.2 or dev-master**
+Daemon mode requires Phan 0.9.2+ or 0.8.4+. 
 
 Daemon mode was first introduced to Phan in https://github.com/etsy/phan/pull/563
 
@@ -31,7 +31,7 @@ It's recommended to pass `--quick` when starting the daemon. Analysis would take
 Requirements
 ------------
 
-1. The latest etsy/phan dev-master, or the 0.9.2 release or newer.
+1. The latest etsy/phan dev-master, or the 0.9.2/0.8.4 release or newer.
 2. Unix(e.g. Mac) or Linux, to run the daemon.
 
 To run the Phan daemon, you must have the pcntl extension installed (Requires that extension to be installed and enabled in PHP).
