@@ -53,23 +53,13 @@ Recommendations for performance
 -------------------------------
 
 If Phan daemon mode is noticeably slow, then make sure that you're following all of the recommendations for performance.
-The Phan daemon will warn on startup if you're using xdebug or using PHP compiled with `--enable-debug` (If it doesn't warn, those settings are fine)
+
+
 
 1. Start the daemon with `--quick`, optionally disable any plugins.
    
    In non-quick mode, methods and classes from other files would also be analyzed, making the request take several times longer.
-2. Don't use xdebug when starting the daemon. If you have xdebug enabled, then disable it (or provide a path to an alternate php.ini with xdebug disabled)
-   (Client requests would take about 10 times as long)
-3. Don't use PHP compiled with `--enable-debug`. If php was compiled with `--enable-debug`, client requests would take about 2 times as long.
-   (Install a different, non-debug version of PHP, and start the Phan daemon using the non-debug version of PHP)
-
-   Note: If a different PHP installation is used, you may want to install and enable the same extensions in order for Phan to not warn you about the extensions' classes and functions being undefined.
-4. Make sure that the Phan config only includes direct dependencies of your project from `vendor/`,
-   and skips indirect dependencies.
-   (i.e. the folders which contain declarations of classes used in analyzed code and phpdoc of analyzed code. The full analysis would warn you if any of those classes were removed, via a PhanUndeclaredClass issue)
-
-   Exclude test, documentation, and example folders in `vendor/` using `exclude_file_regex`.
-   (The Phan daemon has to scan all of the directories and files in the parse list, to check for file modifications before analyzing. Re-parsing files takes a large fraction of the time for a request.)
+2. Follow the steps from the wiki page [[Speeding up Phan Analysis]].
 
 Using phan_client from an editor
 ================================
