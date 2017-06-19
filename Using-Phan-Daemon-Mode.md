@@ -32,7 +32,7 @@ It's also recommended to install Phan in a directory outside of your project whe
 
 - Starting Phan daemon mode with an external phan installation can be done using the following commands: 
 
-  `cd /path/to/analyzed_project; /path/to/phan_checkout/phan --daemonize-tcp-port 4846` 
+  `cd /path/to/analyzed_project; /path/to/phan_checkout/phan --daemonize-tcp-port 4846 --quick` 
 
   (Would need to have run `composer.phar install` in the external phan checkout first)
 
