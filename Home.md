@@ -28,13 +28,16 @@ A guide to handling interactions between Phan's `@param` types and declared para
 **[[How To Use Stubs]]**<br />
 Details on setting up a `stubs` directory for making code available to Phan that isn't loaded on its runtime.
 
+**[[Speeding up Phan Analysis]]**<br/>
+A list of suggestions that may help speed up Phan analysis on your project.
+
 ## Using Advanced Features
 
 **[[Generic Types]]**<br/>
 Phan has primordial support for generic (templated) classes via type the annotations `@template` and `@inherits` and via a type syntax of the form `Class<T>` that may be referenced within doc-block annotations.
 
 **[[Using Phan Daemon Mode]]**<br/>
-Daemon mode lets you request Phan results from your editor or IDE to detect Phan issues for a single file, with much lower latency than a full analysis. (experimental, requires dev-master)
+Daemon mode lets you request Phan results from your editor or IDE to detect Phan issues for a single file, with much lower latency than a full analysis. (requires Phan 0.9.2+ or 0.8.4+)
 
 ## Frequently Asked Questions
 
