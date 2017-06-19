@@ -28,6 +28,14 @@ The same .phan/config.php works for the daemon mode.
 
 It's recommended to pass `--quick` when starting the daemon. Analysis would take longer if Phan also analyzes the functions/methods that are called by the file(s) being analyzed.
 
+It's also recommended to install Phan in a directory outside of your project when using daemon mode. If it's part of the project (or committed in version control), Phan may crash if you switch between branches, since a different branch may have a different Phan version or no Phan version. (or due to `git clean`)
+
+- Starting Phan daemon mode with an external phan installation can be done using the following commands: 
+
+  `cd /path/to/analyzed_project; /path/to/phan_checkout/phan --daemonize-tcp-port 4846` 
+
+  (Would need to have run `composer.phar install` in the external phan checkout first)
+
 Requirements
 ------------
 
