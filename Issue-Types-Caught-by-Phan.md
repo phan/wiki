@@ -8,12 +8,20 @@ Please add example code, fix outdated info and add any remedies to the issues be
 
 This category of issue is emitted when you're trying to access things that you can't access.
 
-## PhanAccessPropertyPrivate
+## PhanAccessClassConstantInternal
 
-This issue comes up when there is an attempt to access a private property outside of the scope in which its defined.
+This issue comes up when there is an attempt to access a `@internal` class constant outside of the namespace in which it's defined.
 
 ```
-Cannot access private property %s
+Cannot access internal class constant {CONST} defined at {FILE}:{LINE}
+```
+
+## PhanAccessPropertyPrivate
+
+This issue comes up when there is an attempt to access a private property outside of the scope in which it's defined.
+
+```
+Cannot access private property {PROPERTY}
 ```
 
 This will be emitted for the following code.
@@ -25,10 +33,10 @@ print C1::$p;
 
 ## PhanAccessPropertyProtected
 
-This issue comes up when there is an attempt to access a protected property outside of the scope in which its defined or an implementing child class.
+This issue comes up when there is an attempt to access a protected property outside of the scope in which it's defined or an implementing child class.
 
 ```
-Cannot access protected property %s
+Cannot access protected property {PROPERTY}
 ```
 
 This will be emitted for the following code.
@@ -49,7 +57,7 @@ This issue will be thrown if there is an expression that may be treated differen
 The config `Config::get()->backward_compatibility_checks` must be enabled for this to run such as by passing the command line argument `--backward-compatibility-checks` or by defining it in a `.phan/config.php` file such as [Phan's own config](https://github.com/etsy/phan/blob/master/.phan/config.php).
 
 ```
-%s expression may not be PHP 7 compatible
+{CLASS} expression may not be PHP 7 compatible
 ```
 
 ## PhanCompatiblePHP7
@@ -77,7 +85,7 @@ This category of issue are for when you're doing stuff out of the context in whi
 This issue comes up when you attempt to use things like `$this` that only exist when you're inside of a class, trait or interface, but are not.
 
 ```
-Cannot access %s when not in object context
+Cannot access {CLASS} when not in object context
 ```
 
 This will be emitted for the following code.
@@ -97,7 +105,7 @@ This category of issue comes up when you're accessing deprecated elements (as ma
 If a class, method, function, property or constant is marked in its comment as `@deprecated`, any references to them will emit a deprecated error.
 
 ```
-Call to deprecated function %s() defined at %s:%d
+Call to deprecated function {FUNCTIONLIKE}() defined at {FILE}:{LINE}
 ```
 
 This will be emitted for the following code.
@@ -189,12 +197,14 @@ $a = 42;
 $a;
 ```
 
-## PhanNoopZeroReferences
+## PhanUnreferencedClass
+
+Similar issues exist for PhanUnreferencedProperty, PhanUnreferencedConstant, and PhanUnreferencedFunction
 
 This issue is disabled by default, but can be enabled by setting `Config::get()->dead_code_detection` to enabled. It indicates that the given element is (possibly) unused.
 
 ```
-Possibly zero references to %s
+Possibly zero references to class {CLASS}
 ```
 
 This will be emitted for the following code so long as `Config::get()->dead_code_detection` is enabled.
@@ -237,25 +247,25 @@ function f2($p1 = null, $p2) {}
 ## PhanParamSpecial1
 
 ```
-Argument %d (%s) is %s but %s() takes %s when argument %d is %s
+Argument {INDEX} ({PARAMETER}) is {TYPE} but {FUNCTIONLIKE}() takes {TYPE} when argument {INDEX} is {TYPE}
 ```
 
 ## PhanParamSpecial2
 
 ```
-Argument %d (%s) is %s but %s() takes %s when passed only one argument
+Argument {INDEX} ({PARAMETER}) is {TYPE} but {FUNCTIONLIKE}() takes {TYPE} when passed only one argument
 ```
 
 ## PhanParamSpecial3
 
 ```
-The last argument to %s must be of type %s
+The last argument to {FUNCTIONLIKE} must be of type {TYPE}
 ```
 
 ## PhanParamSpecial4
 
 ```
-The second to last argument to %s must be of type %s
+The second to last argument to {FUNCTIONLIKE} must be of type {TYPE}
 ```
 
 ## PhanParamTooFew
@@ -263,7 +273,7 @@ The second to last argument to %s must be of type %s
 This issue indicates that you're not passing in at least the number of required parameters to a function or method.
 
 ```
-Call with %d arg(s) to %s() which requires %d arg(s) defined at %s:%d
+Call with {COUNT} arg(s) to {FUNCTIONLIKE}() which requires {COUNT} arg(s) defined at {FILE}:{LINE}
 ```
 
 This will be emitted for the code
@@ -278,7 +288,7 @@ f6();
 This issue indicates that you're not passing in at least the number of required parameters to an internal function or method.
 
 ```
-Call with %d arg(s) to %s() which requires %d arg(s)
+Call with {COUNT} arg(s) to {FUNCTIONLIKE}() which requires {COUNT} arg(s)
 ```
 
 This will be emitted for the code
@@ -292,7 +302,7 @@ strlen();
 This issue is emitted when you're passing more than the number of required and optional parameters than are defined for a method or function.
 
 ```
-Call with %d arg(s) to %s() which only takes %d arg(s) defined at %s:%d
+Call with {COUNT} arg(s) to {FUNCTIONLIKE}() which only takes {COUNT} arg(s) defined at {FILE}:{LINE}
 ```
 
 This will be emitted for the code
@@ -307,7 +317,7 @@ f7(1, 2);
 This issue is emitted when you're passing more than the number of required and optional parameters than are defined for an internal method or function.
 
 ```
-Call with %d arg(s) to %s() which only takes %d arg(s)
+Call with {COUNT} arg(s) to {FUNCTIONLIKE}() which only takes {COUNT} arg(s)
 ```
 
 This will be emitted for the code
@@ -319,7 +329,7 @@ strlen('str', 42);
 ## PhanParamTypeMismatch
 
 ```
-Argument %d is %s but %s() takes %s
+Argument {INDEX} is {TYPE} but {FUNCTIONLIKE}() takes {TYPE}
 ```
 
 # RedefineError
@@ -331,7 +341,7 @@ This category of issue come up when more than one thing of whatever type have th
 If you attempt to create a class that has the same name and namespace as a class that exists elsewhere you'll see this issue. Note that you'll get the issue on the second class in the order of files passed in to Phan.
 
 ```
-%s defined at %s:%d was previously defined as %s at %s:%d
+{CLASS} defined at {FILE}:{LINE} was previously defined as {CLASS} at {FILE}:{LINE}
 ```
 
 This issue will be emitted for code like
@@ -346,7 +356,7 @@ class C15 {}
 If you attempt to create a class that has the same name and namespace as a class that is internal to PHP, you'll see this issue.
 
 ```
-%s defined at %s:%d was previously defined as %s internally
+{CLASS} defined at {FILE}:{LINE} was previously defined as {CLASS} internally
 ```
 
 This issue will be emitted for code like
@@ -360,7 +370,7 @@ class DateTime {}
 This issue comes up when you have two functions (or methods) with the same name and namespace.
 
 ```
-Function %s defined at %s:%d was previously defined at %s:%d
+Function {FUNCTION} defined at {FILE}:{LINE} was previously defined at {FILE}:{LINE}
 ```
 
 It'll come up with code like
@@ -375,7 +385,7 @@ function f9() {}
 This issue comes up if you define a function or method that has the same name and namespace as an internal function or method.
 
 ```
-Function %s defined at %s:%d was previously defined internally
+Function {FUNCTION} defined at {FILE}:{LINE} was previously defined internally
 ```
 
 You'll see this issue with code like
@@ -391,7 +401,7 @@ function strlen() {}
 If you make a static call to a non static method, you'll see this issue.
 
 ```
-Static call to non-static method %s defined at %s:%d
+Static call to non-static method {METHOD} defined at {FILE}:{LINE}
 ```
 
 An example of this issue would come from the following code.
@@ -410,7 +420,7 @@ This category of issue come from using incorrect types or types that cannot cast
 If you call a method on a non-class element, you'll see this issue.
 
 ```
-Call to method on non-class type %s
+Call to method {METHOD} on non-class type {TYPE}
 ```
 
 An example would come from
@@ -431,7 +441,7 @@ Invalid array operator
 Attempting to treat a non-array or non-string element as an array will get you this issue.
 
 ```
-Suspicious array access to %s
+Suspicious array access to {TYPE}
 ```
 
 This issue will be emitted for the following code
@@ -445,7 +455,7 @@ $a = false; if($a[1]) {}
 Comparing an array to a non-array will result in this issue.
 
 ```
-array to %s comparison
+array to {TYPE} comparison
 ```
 
 An example would be
@@ -459,7 +469,7 @@ if ([1, 2] == 'string') {}
 Comparing a non-array to an array will result in this issue.
 
 ```
-%s to array comparison
+{TYPE} to array comparison
 ```
 
 An example would be
@@ -471,13 +481,13 @@ if (42 == [1, 2]) {}
 ## PhanTypeConversionFromArray
 
 ```
-array to %s conversion
+array to {TYPE} conversion
 ```
 
 ## PhanTypeInstantiateAbstract
 
 ```
-Instantiation of abstract class %s
+Instantiation of abstract class {CLASS}
 ```
 
 This issue will be emitted for the following code
@@ -489,7 +499,7 @@ abstract class D {} (new D);
 ## PhanTypeInstantiateInterface
 
 ```
-Instantiation of interface %s
+Instantiation of interface {INTERFACE}
 ```
 
 This issue will be emitted for the following code
@@ -513,7 +523,7 @@ Invalid operator: left operand is array and right is not
 ## PhanTypeMismatchArgument
 
 ```
-Argument %d (%s) is %s but %s() takes %s defined at %s:%d
+Argument {INDEX} ({VARIABLE}) is {TYPE} but {FUNCTIONLIKE}() takes {TYPE} defined at {FILE}:{LINE}
 ```
 
 This will be emitted for the code
@@ -526,7 +536,7 @@ f8('string');
 ## PhanTypeMismatchArgumentInternal
 
 ```
-Argument %d (%s) is %s but %s() takes %s
+Argument {INDEX} ({VARIABLE}) is {TYPE} but {FUNCTIONLIKE}() takes {TYPE}
 ```
 
 This will be emitted for the code
@@ -538,7 +548,7 @@ strlen(42);
 ## PhanTypeMismatchDefault
 
 ```
-Default value for %s $%s can't be %s
+Default value for {TYPE} ${VARIABLE} can't be {TYPE}
 ```
 
 ## PhanTypeMismatchForeach
@@ -546,7 +556,7 @@ Default value for %s $%s can't be %s
 This issue will be emitted when something that can't be an array is passed as the array_expression.
 
 ```
-%s passed to foreach instead of array
+{TYPE} passed to foreach instead of array
 ```
 
 This will be emitted for the code
@@ -558,7 +568,7 @@ foreach (null as $i) {}
 ## PhanTypeMismatchProperty
 
 ```
-Assigning %s to property but %s is %s
+Assigning {TYPE} to property but {PROPERTY} is {TYPE}
 ```
 
 This issue is emitted from the following code
@@ -570,7 +580,7 @@ function f(int $p = false) {}
 ## PhanTypeMismatchReturn
 
 ```
-Returning type %s but %s() is declared to return %s
+Returning type {TYPE} but {FUNCTIONLIKE}() is declared to return {TYPE}
 ```
 
 This issue is emitted from the following code
@@ -582,7 +592,7 @@ class G { function f() : int { return 'string'; } }
 ## PhanTypeMissingReturn
 
 ```
-Method %s is declared to return %s but has no return value
+Method {METHOD} is declared to return {TYPE} but has no return value
 ```
 
 This issue is emitted from the following code
@@ -594,7 +604,7 @@ class H { function f() : int {} }
 ## PhanTypeNonVarPassByRef
 
 ```
-Only variables can be passed by reference at argument %d of %s()
+Only variables can be passed by reference at argument {INDEX} of {FUNCTIONLIKE}()
 ```
 
 This issue is emitted from the following code
@@ -606,7 +616,7 @@ class F { static function f(&$v) {} } F::f('string');
 ## PhanTypeParentConstructorCalled
 
 ```
-Must call parent::__construct() from %s which extends %s
+Must call parent::__construct() from {CLASS} which extends {CLASS}
 ```
 
 ## PhanUndeclaredTypeParameter
@@ -614,7 +624,7 @@ Must call parent::__construct() from %s which extends %s
 If you have a parameter on a function or method of a type that is not defined, you'll see this issue.
 
 ```
-Parameter of undeclared type %s
+Parameter of undeclared type {TYPE}
 ```
 
 This issue will be emitted from the following code
@@ -628,7 +638,7 @@ function f(Undef $p) {}
 If you have a property with an undefined type, you'll see this issue.
 
 ```
-Property of undeclared type %s
+Property {PROPERTY} has undeclared type {TYPE}
 ```
 
 This issue will be emitted from the following code
@@ -663,7 +673,7 @@ You can ignore all errors of this category by passing in the command-line argume
 This low severity issue is emitted for empty files.
 
 ```
-Empty file %s
+Empty file {FILE}
 ```
 
 This would be emitted if you have a file with the contents
@@ -676,7 +686,7 @@ This would be emitted if you have a file with the contents
 If there is a reference to the parent of a class that does not extend something, you'll see this issue.
 
 ```
-Reference to parent of class %s that does not extend anything
+Reference to parent of class {CLASS} that does not extend anything
 ```
 
 This issue will be emitted from the following code
@@ -690,7 +700,7 @@ class F { function f() { $v = parent::f(); } }
 If you reference `parent` from within a trait, you'll get this issue. This is a low priority issue given that it is legal in PHP, but for general-purpose traits you should probably avoid this pattern.
 
 ```
-Reference to parent from trait %s
+Reference to parent from trait {TRAIT}
 ```
 
 This issue will be emitted from the following code
@@ -707,7 +717,7 @@ This issue will be emitted when we hit a structure that Phan doesn't know how to
 Expression is unanalyzable or feature is unimplemented. Please create an issue at https://github.com/etsy/phan/issues/new.
 ```
 
-Please do file an issue or otherwise get in touch if you get one of these (or an uncaught exception, or anything else thats shitty). 
+Please do file an issue or otherwise get in touch if you get one of these (or an uncaught exception, or anything else thats shitty).
 
 [![Gitter](https://badges.gitter.im/etsy/phan.svg)](https://gitter.im/etsy/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
@@ -715,7 +725,7 @@ Please do file an issue or otherwise get in touch if you get one of these (or an
 ## PhanUndeclaredClass
 
 ```
-Reference to undeclared class %s
+Reference to undeclared class {CLASS}
 ```
 
 ## PhanUndeclaredClassCatch
@@ -723,7 +733,7 @@ Reference to undeclared class %s
 If you're catching a throwable of a type that isn't defined, you'll see this issue.
 
 ```
-Catching undeclared class %s
+Catching undeclared class {CLASS}
 ```
 
 The following code will emit this error.
@@ -735,13 +745,13 @@ try {} catch (Undef $exception) {}
 ## PhanUndeclaredClassConstant
 
 ```
-Reference to constant %s from undeclared class %s
+Reference to constant {CONST} from undeclared class {CLASS}
 ```
 
 ## PhanUndeclaredClassInstanceof
 
 ```
-Checking instanceof against undeclared class %s
+Checking instanceof against undeclared class {CLASS}
 ```
 
 This issue will be emitted from the following code
@@ -754,7 +764,7 @@ if ($v instanceof Undef) {}
 ## PhanUndeclaredClassMethod
 
 ```
-Call to method %s from undeclared class %s
+Call to method {METHOD} from undeclared class {CLASS}
 ```
 
 This issue will be emitted from the following code
@@ -766,7 +776,7 @@ function g(Undef $v) { $v->f(); }
 ## PhanUndeclaredClassReference
 
 ```
-Reference to undeclared class %s
+Reference to undeclared class {CLASS}
 ```
 
 ## PhanUndeclaredConstant
@@ -774,21 +784,20 @@ Reference to undeclared class %s
 This issue comes up when you reference a constant that doesn't exist.
 
 ```
-Reference to undeclared constant %s
+Reference to undeclared constant {CONST}
 ```
 
 You'll see this issue with code like
 
 ```php
-class C16 {}
-$v7 = C16::C;
+$v7 = UNDECLARED_CONSTANT;
 ```
 ## PhanUndeclaredExtendedClass
 
 You'll see this issue if you extend a class that doesn't exist.
 
 ```
-Class extends undeclared class %s
+Class extends undeclared class {CLASS}
 ```
 
 This issue will be emitted from the following code
@@ -802,7 +811,7 @@ class E extends Undef {}
 This issue will be emitted if you reference a function that doesn't exist.
 
 ```
-Call to undeclared function %s
+Call to undeclared function {FUNCTION}
 ```
 
 This issue will be emitted for the code
@@ -816,7 +825,7 @@ f10();
 Implementing an interface that doesn't exist or otherwise can't be found will emit this issue.
 
 ```
-Class implements undeclared interface %s
+Class implements undeclared interface {INTERFACE}
 ```
 
 The following code will express this issue.
@@ -828,13 +837,13 @@ class C17 implements C18 {}
 ## PhanUndeclaredMethod
 
 ```
-Call to undeclared method %s
+Call to undeclared method {METHOD}
 ```
 
 ## PhanUndeclaredProperty
 
 ```
-Reference to undeclared property %s
+Reference to undeclared property {PROPERTY}
 ```
 
 This issue will be emitted from the following code
@@ -847,7 +856,7 @@ $v = (new C)->undef;
 ## PhanUndeclaredStaticMethod
 
 ```
-Static call to undeclared method %s
+Static call to undeclared method {METHOD}
 ```
 
 This issue will be emitted from the following code
@@ -861,10 +870,10 @@ C::staticMethod();
 Attempting to read a property that doesn't exist will result in this issue. You'll also see this issue if you write to an undeclared static property so long as `Config::get()->allow_missing_property` is false (which defaults to true).
 
 ```
-Static property '%s' on %s is undeclared
+Static property '{PROPERTY}' on {CLASS} is undeclared
 ```
 
-An example would be 
+An example would be
 
 ```php
 class C22 {}
@@ -876,7 +885,7 @@ $v11 = C22::$p;
 If you attempt to use a trait that doesn't exist, you'll see this issue.
 
 ```
-Class uses undeclared trait %s
+Class uses undeclared trait {TRAIT}
 ```
 
 An example would be
@@ -890,10 +899,10 @@ class C20 { use T2; }
 Trying to use a variable that hasn't been defined anywhere in scope will produce this issue.
 
 ```
-Variable $%s is undeclared
+Variable ${VARIABLE} is undeclared
 ```
 
-An example would be 
+An example would be
 
 ```php
 $v9 = $v10;
