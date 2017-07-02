@@ -4,7 +4,8 @@ Introduction
 Description
 -----------
 
-Daemon mode lets you use Phan from your editor or IDE to detect Phan issues on a single file, with much lower latency (< 0.3 seconds). This is useful on large codebases with hundreds or thousands of PHP files, where the full analysis would take minutes to run.
+Daemon mode lets you use Phan from your editor or IDE to detect Phan issues on a single file, with much lower latency (< 0.3 seconds).
+This is useful on large codebases with hundreds or thousands of PHP files, where the full analysis would take minutes to run.
 
 Daemon mode requires Phan 0.9.2+ or 0.8.4+. 
 
@@ -14,9 +15,10 @@ There are two components:
 
 1. The Phan daemon (i.e. server) (`./phan --daemonize-tcp-port 4846 --quick`) which responds to TCP requests.
 
-   The basic way that it works is that it pauses at the parse phase, and then runs the analysis phase on only a single file (or small list of files).
+   The Phan daemon pauses at the parse phase, and then runs the analysis phase on only a single file (or small list of files).
+   (If any files change, the daemon removes any state changes (e.g. class definitions, function definitions, emitted issues, etc.) caused by removed/modified files, and adds state changes caused by added/modified files.
 
-   It accepts requests over TCP, then scans and re-parses files to get the new class/method/function/constant/property definitions when the code base changes, and then forks a new process which will analyze the requested file(s) and send the response.
+   The daemon accepts requests over TCP, then scans and re-parses files to get the new class/method/function/constant/property definitions when the code base changes, and then forks a new process which will analyze the requested file(s) and send the response.
 2. The Phan client (`./phan_client`), which queries the server (over TCP) to quickly get Phan's analysis result for a single file.
 
    (Or outputs errors without querying the server, if the file does not exist or has PHP syntax errors)
@@ -24,7 +26,7 @@ There are two components:
 Configuration
 -------------
 
-The same .phan/config.php works for the daemon mode.
+The same `.phan/config.php` works for the daemon mode.
 
 It's recommended to pass `--quick` when starting the daemon. Analysis would take longer if Phan also analyzes the functions/methods that are called by the file(s) being analyzed.
 
@@ -39,8 +41,8 @@ It's also recommended to install Phan in a directory outside of your project whe
 Requirements
 ------------
 
-1. The latest etsy/phan dev-master, or the 0.9.2/0.8.4 release or newer.
-2. Unix(e.g. Mac) or Linux, to run the daemon.
+1. Phan 0.9.2+/0.8.4+
+2. Unix(e.g. Mac) or Linux with pcntl enabled, to run the daemon.
 
 To run the Phan daemon, you must have the pcntl extension installed (Requires that extension to be installed and enabled in PHP).
 
