@@ -7,13 +7,48 @@ Please add example code, fix outdated info and add any remedies to the issues be
 # AccessError
 
 This category of issue is emitted when you're trying to access things that you can't access.
+Note: in this document, "`@internal`" refers to user-defined elements with `/** @internal */` in their PHPDoc,
+while "internal" refers to classes, etc.  that are built into PHP and PHP modules (e.g. `
+
+## PhanAccessClassConstantPrivate
+
+This issue comes up when there is an attempt to access a private class constant outside of the scope in which it's defined.
+
+```
+Cannot access private class constant {CONST} defined at {FILE}:{LINE}
+```
+
+## PhanAccessClassConstantProtected
+
+This issue comes up when there is an attempt to access a protected class constant outside of the scope in which it's defined.
+
+```
+Cannot access protected class constant {CONST} defined at {FILE}:{LINE}
+```
+
 
 ## PhanAccessClassConstantInternal
 
-This issue comes up when there is an attempt to access a `@internal` class constant outside of the namespace in which it's defined.
+This issue comes up when there is an attempt to access an `@internal` class constant outside of the namespace in which it's defined.
 
 ```
 Cannot access internal class constant {CONST} defined at {FILE}:{LINE}
+```
+
+## PhanAccessClassInternal
+
+This issue comes up when there is an attempt to access an `@internal` class constant outside of the namespace in which it's defined.
+
+```
+Cannot access internal {CLASS} defined at {FILE}:{LINE}
+```
+
+## PhanAccessConstantInternal
+
+This issue comes up when there is an attempt to access an `@internal` global constant outside of the namespace in which it's defined.
+
+```
+Cannot access internal constant {CONST} of namepace {NAMESPACE} defined at {FILE}:{LINE} from namespace {NAMESPACE}
 ```
 
 ## PhanAccessPropertyPrivate
@@ -46,6 +81,178 @@ class C1 { protected static $p = 42; }
 print C1::$p;
 ```
 
+## PhanAccessExtendsFinalClass
+
+(Added in 0.9.3-dev)
+
+This issue comes up when there is an attempt to extend a user-defined final class.
+
+```
+Attempting to extend from final class {CLASS} defined at {FILE}:{LINE}
+```
+
+This will be emitted for the following code.
+
+```php
+final class FinalClass
+class A extends FinalClass {}
+```
+
+## PhanAccessExtendsFinalClassInternal
+
+(Added in 0.9.3-dev)
+
+This issue comes up when there is an attempt to extend an internal final class.
+
+```
+Attempting to extend from final internal class {CLASS}
+```
+
+This will be emitted for the following code.
+
+```php
+class A extends Closure {}
+```
+
+## PhanAccessMethodInternal
+
+This issue comes up when there is an attempt to access an `@internal` method outside of the namespace in which it's defined.
+
+```
+Cannot access internal method {METHOD} of namespace {NAMESPACE} defined at {FILE}:{LINE} from namespace {NAMESPACE}
+```
+
+## PhanAccessMethodPrivate
+
+This issue comes up when there is an attempt to invoke a private method outside of the scope in which it's defined.
+
+```
+Cannot access private method {METHOD} defined at {FILE}:{LINE}
+```
+
+## PhanAccessMethodPrivateWithCallMagicMethod
+
+This issue comes up when there is an attempt to invoke a private method outside of the scope in which it's defined, but the attempt would end up calling `__call` or `__callStatic` instead.
+
+```
+Cannot access private method {METHOD} defined at {FILE}:{LINE} (if this call should be handled by __call, consider adding a @method tag to the class)
+```
+
+## PhanAccessMethodProtected
+
+This issue comes up when there is an attempt to invoke a protected method outside of the scope in which it's defined or an implementing child class.
+
+```
+Cannot access protected method {METHOD} defined at {FILE}:{LINE}
+```
+
+## PhanAccessMethodProtectedWithCallMagicMethod
+
+This issue comes up when there is an attempt to invoke a protected method outside of the scope in which it's defined or an implementing child class, but the attempt would end up calling `__call` or `__callStatic` instead.
+
+```
+Cannot access protected method {METHOD} defined at {FILE}:{LINE} (if this call should be handled by __call, consider adding a @method tag to the class)
+```
+
+## PhanAccessNonStaticToStatic
+
+This issue is emitted when a class redeclares an inherited instance method as a static method.
+
+```
+Cannot make non static method {METHOD}() static
+```
+
+## PhanAccessOverridesFinalMethod
+
+(Added in 0.9.3-dev)
+
+This issue is emitted when a class attempts to override an inherited final method.
+
+```
+Declaration of method {METHOD} overrides final method {METHOD} defined in {FILE}:{LINE}
+```
+
+## PhanAccessOverridesFinalMethodInternal
+
+(Added in 0.9.3-dev)
+
+This issue is emitted when a class attempts to override an inherited final method of an internal class.
+
+```
+Declaration of method {METHOD} overrides final internal method {METHOD}
+```
+
+## PhanAccessOverridesFinalMethodPHPDoc
+
+(Added in 0.9.3-dev)
+
+This issue is emitted when a class declares a PHPDoc `@method` tag, despite having already inherited a final method from a base class.
+
+```
+Declaration of phpdoc method {METHOD} is an unnecessary override of final method {METHOD} defined in {FILE}:{LINE}
+```
+
+## PhanAccessOwnConstructor
+
+```
+Accessing own constructor directly via {CLASS}::__construct
+```
+
+## PhanAccessPropertyInternal
+
+This issue comes up when there is an attempt to access an `@internal` property outside of the namespace in which it's defined.
+
+```
+Cannot access internal property {PROPERTY} of namespace {NAMESPACE} defined at {FILE}:{LINE} from namespace {NAMESPACE}
+```
+
+## PhanAccessPropertyNonStaticAsStatic
+
+(Added in 0.9.3-dev)
+
+This issue comes up when there is an attempt to access a non-static(instance) property as if it were a static property.
+
+```
+Accessing non static property {PROPERTY} as static
+```
+
+This will be emitted for the following code.
+
+```php
+class A { public $prop = 'value'; }
+$x = A::$prop;
+```
+
+## PhanAccessPropertyStaticAsNonStatic
+
+This issue comes up when there is an attempt to access a static property as if it were a non static(instance) property.
+
+```
+Accessing static property {PROPERTY} as non static
+```
+
+This will be emitted for the following code.
+
+```php
+class A { public static $prop = 'value'; }
+$x = (new A())->prop;
+```
+
+## PhanAccessSignatureMismatch
+
+```
+Access level to {METHOD} must be compatible with {METHOD} defined in {FILE}:{LINE}
+```
+
+
+## PhanAccessStaticToNonStatic
+
+This issue is emitted when a class redeclares an inherited static method as an instance method.
+
+```
+Cannot make static method {METHOD}() non static
+```
+
 # CompatError
 
 This category of issue is emitted when there are compatibility issues. They will be thrown if there is an expression that may be treated differently in PHP7 than it was in previous major versions of the PHP runtime. Take a look at the [PHP7 Migration Manual](http://php.net/manual/en/migration70.incompatible.php) to understand changes in behavior.
@@ -75,6 +282,35 @@ This will be emitted for the following code.
 ```php
 $c->$m[0]();
 ```
+
+# GenericError
+
+This category contains issues related to [Phan's generic type support](https://github.com/etsy/phan/wiki/Generic-Types)
+
+## PhanTemplateTypeConstant
+
+This is emitted when a class constant's PHPDoc contains a type declared in a class's phpdoc template annotations.
+
+```
+constant {CONST} may not have a template type
+```
+
+## PhanTemplateTypeStaticMethod
+
+This is emitted when a static method's PHPdoc contains a param/return type declared in a class's phpdoc template annotations.
+
+```
+static method {METHOD} may not use template types
+```
+
+## PhanTemplateTypeStaticProperty
+
+This is emitted when a static property's PHPdoc contains an `@var` type declared in the class's phpdoc template annotations.
+
+```
+static property {PROPERTY} may not have a template type
+```
+
 
 # Context
 
@@ -199,7 +435,7 @@ $a;
 
 ## PhanUnreferencedClass
 
-Similar issues exist for PhanUnreferencedProperty, PhanUnreferencedConstant, and PhanUnreferencedFunction
+Similar issues exist for PhanUnreferencedProperty, PhanUnreferencedConstant, PhanUnreferencedMethod, and PhanUnreferencedFunction(split out of PhanUnreferencedMethod in 0.9.3-dev)
 
 This issue is disabled by default, but can be enabled by setting `Config::get()->dead_code_detection` to enabled. It indicates that the given element is (possibly) unused.
 
@@ -242,6 +478,229 @@ This will be emitted for the following code
 
 ```php
 function f2($p1 = null, $p2) {}
+```
+
+## PhanParamSignatureMismatch
+
+This compares the param and return types inferred from phpdoc and real types,
+and warns if an overriding method's signature is incompatible with the overridden method.
+**For a check with much lower false positives and clearer issue messages, use the `PhanParamSignatureRealMismatch...` issue types instead.**
+
+```
+Declaration of {METHOD} should be compatible with {METHOD} defined in {FILE}:{LINE}
+```
+
+## PhanParamSignatureMismatchInternal
+
+This compares the param and return types inferred from phpdoc and real types (as well as documentation of internal methods),
+and warns if an overriding method's signature is incompatible with the overridden internal method.
+For a check with much lower false positives and clearer issue messages, use the `PhanParamSignatureRealMismatchInternal...` issue types.
+
+```
+Declaration of {METHOD} should be compatible with internal {METHOD}
+```
+
+## PhanParamSignaturePHPDocMismatch...
+
+(These issues were split out, in 0.9.3-dev)
+
+This issue type warns when a `@method` tag conflicts with the an actual implementation or another `@method` tag (could refer to overriding or overridden).
+
+PhanParamSignaturePHPDocMismatchReturnType
+
+```
+Declaration of real/@method {METHOD} should be compatible with real/@method {METHOD} (method returning '{TYPE}' cannot override method returning '{TYPE}') defined in {FILE}:{LINE}
+```
+
+PhanParamSignaturePHPDocMismatchParamType
+
+```
+Declaration of real/@method {METHOD} should be compatible with real/@method {METHOD} (parameter #{INDEX} of type '{TYPE}' cannot replace original parameter of type '{TYPE}') defined in {FILE}:{LINE}
+```
+
+PhanParamSignaturePHPDocMismatchHasParamType
+
+```
+Declaration of real/@method {METHOD} should be compatible with real/@method {METHOD} (parameter #{INDEX} of has type '{TYPE}' cannot replace original parameter with no type) defined in {FILE}:{LINE}
+```
+
+PhanParamSignaturePHPDocMismatchHasNoParamType
+
+```
+Declaration of real/@method {METHOD} should be compatible with real/@method {METHOD} (parameter #{INDEX} with no type cannot replace original parameter with type '{TYPE}') defined in {FILE}:{LINE}
+```
+
+PhanParamSignaturePHPDocMismatchParamVariadic
+
+```
+Declaration of real/@method {METHOD} should be compatible with real/@method {METHOD} (parameter #{INDEX} is a variadic parameter replacing a non-variadic parameter) defined in {FILE}:{LINE}
+```
+
+PhanParamSignaturePHPDocMismatchParamNotVariadic
+
+```
+Declaration of real/@method {METHOD} should be compatible with real/@method {METHOD} (parameter #{INDEX} is a non-variadic parameter replacing a variadic parameter) defined in {FILE}:{LINE}
+```
+
+PhanParamSignaturePHPDocMismatchParamIsReference
+
+```
+Declaration of real/@method {METHOD} should be compatible with real/@method {METHOD} (parameter #{INDEX} is a reference parameter overriding a non-reference parameter) defined in {FILE}:{LINE}
+```
+
+PhanParamSignaturePHPDocMismatchParamIsNotReference
+
+```
+Declaration of real/@method {METHOD} should be compatible with real/@method {METHOD} (parameter #{INDEX} is a non-reference parameter overriding a reference parameter) defined in {FILE}:{LINE}
+```
+
+PhanParamSignaturePHPDocMismatchTooFewParameters
+
+```
+Declaration of real/@method {METHOD} should be compatible with real/@method {METHOD} (the method override accepts {COUNT} parameter(s), but the overridden method can accept {COUNT}) defined in {FILE}:{LINE}
+```
+
+PhanParamSignaturePHPDocMismatchTooManyRequiredParameters
+
+```
+Declaration of real/@method {METHOD} should be compatible with real/@method {METHOD} (the method override requires {COUNT} parameter(s), but the overridden method requires only {COUNT}) defined in {FILE}:{LINE}
+```
+
+## PhanParamSignatureRealMismatch....
+
+This compares the real param and return types (ignoring PHPDoc types, i.e. same types Reflection would tell you)
+and warns if an overriding method's signature is incompatible with the overridden internal method. (i.e. PHP interpreter would warn or throw)
+
+PhanParamSignatureRealMismatchParamType
+
+```
+Declaration of {METHOD} should be compatible with {METHOD} (parameter #{INDEX} of type '{TYPE}' cannot replace original parameter of type '{TYPE}') defined in {FILE}:{LINE}
+```
+
+PhanParamSignatureRealMismatchParamTypeInternal
+
+```
+Declaration of {METHOD} should be compatible with internal {METHOD} (parameter #{INDEX} of type '{TYPE}' cannot replace original parameter of type '{TYPE}')
+```
+
+PhanParamSignatureRealMismatchReturnType
+
+```
+Declaration of {METHOD} should be compatible with {METHOD} (method returning '{TYPE}' cannot override method returning '{TYPE}') defined in {FILE}:{LINE}
+```
+
+PhanParamSignatureRealMismatchReturnTypeInternal
+
+```
+Declaration of {METHOD} should be compatible with internal {METHOD} (method returning '{TYPE}' cannot override method returning '{TYPE}')
+```
+
+PhanParamSignatureRealMismatchParamType
+
+```
+Declaration of {METHOD} should be compatible with {METHOD} (parameter #{INDEX} of type '{TYPE}' cannot replace original parameter of type '{TYPE}') defined in {FILE}:{LINE}
+```
+
+PhanParamSignatureRealMismatchParamTypeInternal
+
+```
+Declaration of {METHOD} should be compatible with internal {METHOD} (parameter #{INDEX} of type '{TYPE}' cannot replace original parameter of type '{TYPE}')
+```
+
+PhanParamSignatureRealMismatchHasParamType,
+
+```
+Declaration of {METHOD} should be compatible with {METHOD} (parameter #{INDEX} of has type '{TYPE}' cannot replace original parameter with no type) defined in {FILE}:{LINE}
+```
+
+PhanParamSignatureRealMismatchHasParamTypeInternal
+
+```
+Declaration of {METHOD} should be compatible with internal {METHOD} (parameter #{INDEX} of has type '{TYPE}' cannot replace original parameter with no type)
+```
+
+PhanParamSignatureRealMismatchHasNoParamType
+
+```
+Declaration of {METHOD} should be compatible with {METHOD} (parameter #{INDEX} with no type cannot replace original parameter with type '{TYPE}') defined in {FILE}:{LINE}
+```
+
+PhanParamSignatureRealMismatchHasNoParamTypeInternal
+
+```
+Declaration of {METHOD} should be compatible with internal {METHOD} (parameter #{INDEX} with no type cannot replace original parameter with type '{TYPE}')
+```
+
+PhanParamSignatureRealMismatchParamVariadic
+
+```
+Declaration of {METHOD} should be compatible with {METHOD} (parameter #{INDEX} is a variadic parameter replacing a non-variadic parameter) defined in {FILE}:{LINE}
+```
+
+PhanParamSignatureRealMismatchParamVariadicInternal
+
+```
+Declaration of {METHOD} should be compatible with internal {METHOD} (parameter #{INDEX} is a variadic parameter replacing a non-variadic parameter)
+```
+
+PhanParamSignatureRealMismatchParamNotVariadic
+
+```
+Declaration of {METHOD} should be compatible with {METHOD} (parameter #{INDEX} is a non-variadic parameter replacing a variadic parameter) defined in {FILE}:{LINE}
+```
+
+PhanParamSignatureRealMismatchParamNotVariadicInternal
+
+```
+Declaration of {METHOD} should be compatible with internal {METHOD} (parameter #{INDEX} is a non-variadic parameter replacing a variadic parameter)
+```
+
+PhanParamSignatureRealMismatchParamIsReference
+
+```
+Declaration of {METHOD} should be compatible with {METHOD} (parameter #{INDEX} is a reference parameter overriding a non-reference parameter) defined in {FILE}:{LINE}
+```
+
+PhanParamSignatureRealMismatchParamIsReferenceInternal
+
+```
+Declaration of {METHOD} should be compatible with internal {METHOD} (parameter #{INDEX} is a reference parameter overriding a non-reference parameter)
+```
+
+PhanParamSignatureRealMismatchParamIsNotReference
+
+```
+Declaration of {METHOD} should be compatible with {METHOD} (parameter #{INDEX} is a non-reference parameter overriding a reference parameter) defined in {FILE}:{LINE}
+```
+
+PhanParamSignatureRealMismatchParamIsNotReferenceInternal
+
+```
+Declaration of {METHOD} should be compatible with internal {METHOD} (parameter #{INDEX} is a non-reference parameter overriding a reference parameter)
+```
+
+PhanParamSignatureRealMismatchTooFewParameters
+
+```
+Declaration of {METHOD} should be compatible with {METHOD} (the method override accepts {COUNT} parameter(s), but the overridden method can accept {COUNT}) defined in {FILE}:{LINE}
+```
+
+PhanParamSignatureRealMismatchTooFewParametersInternal
+
+```
+Declaration of {METHOD} should be compatible with internal {METHOD} (the method override accepts {COUNT} parameter(s), but the overridden method can accept {COUNT})
+```
+
+PhanParamSignatureRealMismatchTooManyRequiredParameters
+
+```
+Declaration of {METHOD} should be compatible with {METHOD} (the method override requires {COUNT} parameter(s), but the overridden method requires only {COUNT}) defined in {FILE}:{LINE}
+```
+
+PhanParamSignatureRealMismatchTooManyRequiredParametersInternal
+
+```
+Declaration of {METHOD} should be compatible with internal {METHOD} (the method override requires {COUNT} parameter(s), but the overridden method requires only {COUNT})
 ```
 
 ## PhanParamSpecial1
@@ -351,6 +810,17 @@ class C15 {}
 class C15 {}
 ```
 
+## PhanRedefineClassAlias
+
+(0.9.3-dev only)
+
+This issue is emitted when `class_alias` creates ambiguity in what the intended definition of a class is.
+If possible, exclude one of the files containing the conflicting definitions.
+
+```
+{CLASS} aliased at {FILE}:{LINE} was previously defined as {CLASS} at {FILE}:{LINE}
+```
+
 ## PhanRedefineClassInternal
 
 If you attempt to create a class that has the same name and namespace as a class that is internal to PHP, you'll see this issue.
@@ -393,6 +863,29 @@ You'll see this issue with code like
 ```php
 function strlen() {}
 ```
+
+## PhanRequiredTraitNotAdded
+
+This happens when a trait name is used in a trait adaptations clause, but that trait wasn't added to the class.
+
+```
+Required trait {TRAIT} for trait adaptation was not added to class
+```
+
+You'll see this issue with code like
+
+```php
+trait T1 {}
+trait T2 {}
+class A {
+	use T1 {T2::foo as bar;}
+}
+```
+
+## PhanSyntaxError
+
+This emits warnings for unparseable PHP files (detected by `php-ast`).
+Note: This is not the same thing as running `php -l` on a file - PhanSyntaxError checks for syntax errors, but not sematics such as where certain expressions can occur (Which `php -l` would check for).
 
 # StaticCallError
 
@@ -518,6 +1011,21 @@ Invalid operator: right operand is array and left is not
 
 ```
 Invalid operator: left operand is array and right is not
+```
+
+## PhanTypeMagicVoidWithReturn
+
+(0.9.3-dev only)
+
+```
+Found a return statement with a value in the implementation of the magic method {METHOD}, expected void return type
+```
+
+This will be emitted for the code
+
+```php
+// (PHP ignores the return value of some magic methods, such as __set)
+class A { public function __set() { return true; } }
 ```
 
 ## PhanTypeMismatchArgument
