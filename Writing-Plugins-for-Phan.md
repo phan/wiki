@@ -21,8 +21,9 @@ A plugin file returns an instance of a class extending [\Phan\Plugin](https://gi
 * `analyzeClass`
 * `analyzeMethod`
 * `analyzeFunction`
+* `preAnalyzeNode`
 
-As the method names suggest, they analyze AST nodes, classes, methods and functions respectively.
+As the method names suggest, they analyze AST nodes, classes, methods and functions; and pre-analyze AST nodes, respectively.
 
 When issues are found, they can be emitted to the log via a call to `emitIssue`.
 
