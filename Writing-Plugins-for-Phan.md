@@ -2,18 +2,84 @@ Phan comes with a mechanism for adding plugins for your code base. Plugins have 
 
 Plugin code lives in your repo and is referenced from your phan config file, but runs in the Phan execution environment with access to all Phan APIs.
 
-# Creating a Plugin
+# Plugin V2
+
+Phan 0.9.3+/0.8.5+ support V2 of the plugin system. In V2, plugins were designed to be extensible and as efficient as possible, and would be invoked only where needed.
+The constant `\Phan\Config::PHAN_PLUGIN_VERSION` may optionally be used by plugin files designed for backwards compatibility.
+If it is `defined()`, then V2 of the plugin system is supported.
+`version_compare` may be used to check if the current plugin system is >= the version where a given `Capability` was introduced. 
+
+## Creating a Plugin (V2)
 
 To create a plugin, you'll need to
 
-* Create a plugin file for which the last line returns an instance of a class extending [`\Phan\Plugin`](https://github.com/etsy/phan/blob/master/src/Phan/Plugin.php)
+* Create a plugin file for which the last line returns an instance of a class extending [`\Phan\PluginV2`](https://github.com/etsy/phan/blob/master/src/Phan/PluginV2.php),
+  and implementing one or more of the [`Capability`](https://github.com/etsy/phan/blob/master/src/Phan/PluginV2) interfaces 
 * Add a reference to the file in `.phan/config.php` under the `plugin` array.
 
 Phan contains an example plugin named [DemoPlugin](https://github.com/etsy/phan/blob/master/.phan/plugins/DemoPlugin.php) that is referenced from [Phan's .phan/config.php file](https://github.com/etsy/phan/blob/92552016b2d3c650f5c625a8f64a9db935a756d6/.phan/config.php#L117).
 
 A more meaningful real-world example is given in [DollarDollarPlugin](https://github.com/etsy/phan/blob/master/.phan/plugins/DollarDollarPlugin.php) which checks to make sure there are no variable of the form `$$var` in Phan's code base.
 
-# How Plugins Work
+## How Plugins Work (V2)
+
+A plugin file returns an instance of a class extending [\Phan\PluginV2](https://github.com/etsy/phan/blob/master/src/Phan/PluginV2.php) and should implement at least one of the below Capability interfaces (Documented in more detail in [\Phan\PluginV2](https://github.com/etsy/phan/blob/master/src/Phan/PluginV2.php)).
+
+* [\Phan\PluginV2\AnalyzeNodeCapability](https://github.com/etsy/phan/blob/master/src/Phan/PluginV2/AnalyzeNodeCapability.php)
+  with the method `getAnalyzeNodeVisitorClassName`
+* [\Phan\PluginV2\AnalyzeClassCapability](https://github.com/etsy/phan/blob/master/src/Phan/PluginV2/AnalyzeClassCapability.php)
+  with the method `analyzeClass`
+* [\Phan\PluginV2\AnalyzeMethodCapability](https://github.com/etsy/phan/blob/master/src/Phan/PluginV2/AnalyzeMethodCapability.php)
+  with the method `analyzeMethod`
+* [\Phan\PluginV2\AnalyzeFunctionCapability](https://github.com/etsy/phan/blob/master/src/Phan/PluginV2/AnalyzeFunctionCapability.php)
+  with the method `analyzeFunction`
+* [\Phan\PluginV2\PreAnalyzeNodeCapability](https://github.com/etsy/phan/blob/master/src/Phan/PluginV2/PreAnalyzeNodeCapability.php)
+  with the method `getPreAnalyzeNodeVisitorClassName`
+
+
+As the method names suggest, they analyze (Or return the class name of a Visitor that will analyze) AST nodes, classes, methods and functions; and pre-analyze AST nodes, respectively.
+
+When issues are found, they can be emitted to the log via a call to `emitIssue`.
+
+```php
+$this->emitIssue(
+    $code_base,
+    $context,
+    'PhanPluginMyPluginType',
+    "Message associated with the issue."
+);
+```
+
+where `$code_base` is the `CodeBase` object passed to your hook, `$context` is the context in which the issue is found (such as the `$context` passed to the hook, or from `$class->getContext()`, `$method->getContext()` or `$function->getContext()`, a name for the issue type (allowing it to be suppressed via @suppress) and the message to emit to the user.
+
+The emitted issues may also have arguments, and the same types of format strings as [`\Phan\Issue`](https://github.com/etsy/phan/blob/master/src/Phan/Issue.php) (E.g. in [`\UnusedSuppressionPlugin`](https://github.com/etsy/phan/blob/master/.phan/plugins/UnusedSuppressionPlugin.php)
+
+```php
+$this->emitIssue(
+    $code_base,
+    $element->getContext(),
+    'UnusedSuppression',
+    "Element {FUNCTIONLIKE} suppresses issue {ISSUETYPE} but does not use it",
+    [(string)$element->getFQSEN(), $issue_type]
+);  
+```
+
+# Legacy
+
+The original plugin types will work in all known versions of Phan, and must be used for Phan <= 0.9.2/0.8.4, but won't be as efficient as V2 plugins.
+
+## Creating a Plugin (Legacy)
+
+To create a plugin, you'll need to
+
+* Create a plugin file for which the last line returns an instance of a class extending [`\Phan\Plugin`](https://github.com/etsy/phan/blob/master/src/Phan/Plugin.php)
+* Add a reference to the file in `.phan/config.php` under the `plugin` array.
+
+Phan contains an example plugin named [DemoLegacyPlugin](https://github.com/etsy/phan/blob/master/.phan/plugins/DemoLegacyPlugin.php) that is referenced from [Phan's .phan/config.php file](https://github.com/etsy/phan/blob/92552016b2d3c650f5c625a8f64a9db935a756d6/.phan/config.php#L117).
+
+A more meaningful real-world example is given in [DollarDollarPlugin](https://github.com/etsy/phan/blob/0.9.2/.phan/plugins/DollarDollarPlugin.php) which checks to make sure there are no variable of the form `$$var` in Phan's code base.
+
+## How Plugins Work (Legacy)
 
 A plugin file returns an instance of a class extending [\Phan\Plugin](https://github.com/etsy/phan/blob/master/src/Phan/Plugin.php) and has four hooks.
 
