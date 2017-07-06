@@ -9,11 +9,15 @@ All of the following are valid union types;
 * `DateTime|string|int`
 * `?int|?DateTime`
 * `null`
-* `resource|false` (In Phan <= 0.9.2/0.8.4, this would be the same as `resource|bool`. In Phan 0.9.3+/0.8.5+, `false` and `true` are native types)
+* `resource|false`
 
 As a special case, `void` may be used as a return type indicating that the function or method is not expected to return anything. In practice, this still implies that the function or method returns null, but Phan will enforce that there is not an explicit return.
 
 The special cases `static` and `self` are also supported as return types on methods which specify that the return type is a late-statically-bound version of the class, or the class in which the method is defined respectively.
+
+In Phan <= 0.9.2/0.8.4, `T|false` and `T|true` would be treated the same way as `T|bool`.
+In Phan 0.9.3+/0.8.5+, `false` and `true` are native types.
+This change made Phan more effective at analyzing code such as `$x = fopen(...); if ($x){...}`
 
 # Example Union Type Annotations
 
