@@ -10,6 +10,8 @@ Phan supports the following doc block annotations.
 * [`@internal`](#internal)
 * [`@suppress <issue_type>`](#suppress)
 * [`@property <union_type> <variable_name>`](#property)
+* [`@override`](#override) (Since 0.9.3/0.8.5)
+* [`@phan-closure-scope`](#override) (Since 0.9.3/0.8.5)
 
 Additionally, Phan supports [inline type checks](#inline-type-checks), and can analyze `assert` statements and the conditionals of `if` statements and ternary operators.
 
@@ -260,6 +262,57 @@ This is because the first `@suppress` is on the class and is not the closest sco
 
 This will bite you and I apologize.
 
+## @override
+
+Supported in Phan 0.9.3+/0.8.5+
+
+Phan will check places where `@override` is mentioned to see if the method is actually overriding a definition or implementing an abstract method (Or a phpdoc `@method`) in an ancestor class/trait/interface.
+
+Additionally, in php 7.1+ (due to limitations of php-ast's implementation), Phan will check that class constants marked with `@override` override the definition of a constant in an ancestor class/interface/trait.
+
+Phan will warn if the element doesn't actually override anything. Other than that check, the annotation does not affect analysis.
+
+`@Override` and `@phan-override` are supported aliases of `@override`.
+
+The `@override` annotation is [not part of any official PHPDoc standard](https://github.com/etsy/phan/issues/926) I'm aware of. The semantics are similar to Java's `@Override`.
+
+```php
+class BaseClass {
+    const FOO = 'value';
+    public function myMethod(int $x) { return false; }
+}
+
+class SubClass extends BaseClass {
+    /** @override (valid use for Phan, checked in php 7.1+) */
+    const FOO = 'otherValue';
+
+    /** @override (valid use for Phan) */
+    public function myMethod(int $x) { return true; }
+}
+```
+
+## @phan-closure-scope
+
+Supported in Phan 0.9.3+/0.8.5+
+
+This can be used when a closure is intended to be bound to a class that is different from the class in which it was declared.
+This helps avoid false positive warnings about PhanUndeclaredProperty, etc.
+
+```php
+class MyClass {
+    private function privateMethod(int $x) {}
+}
+/** @phan-closure-scope MyClass - Phan analyzes the inner body of this closure as if it were a closure declared in MyClass. */
+$c = function(int $arg) {
+    return $this->privateMethod($arg);
+};
+// ...Do stuff...
+
+// This is an example of the eventual use, which may be in a completely different file
+$m = new MyClass();
+$invoker = $c->bindTo($m);
+$invoker(2);
+```
 
 # Doc Blocks
 
