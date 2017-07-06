@@ -9,6 +9,7 @@ All of the following are valid union types;
 * `DateTime|string|int`
 * `?int|?DateTime`
 * `null`
+* `resource|false` (In Phan <= 0.9.2/0.8.4, this would be the same as `resource|bool`. In Phan 0.9.3+/0.8.5+, `false` and `true` are native types)
 
 As a special case, `void` may be used as a return type indicating that the function or method is not expected to return anything. In practice, this still implies that the function or method returns null, but Phan will enforce that there is not an explicit return.
 
@@ -104,6 +105,8 @@ NATIVE_TYPE    : 'int'
                | 'float'
                | 'string'
                | 'bool'
+               | 'false'
+               | 'true'
                | 'iterable'
                | 'array'
                | 'mixed'
