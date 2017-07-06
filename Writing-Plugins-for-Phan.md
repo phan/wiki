@@ -52,17 +52,21 @@ $this->emitIssue(
 
 where `$code_base` is the `CodeBase` object passed to your hook, `$context` is the context in which the issue is found (such as the `$context` passed to the hook, or from `$class->getContext()`, `$method->getContext()` or `$function->getContext()`, a name for the issue type (allowing it to be suppressed via @suppress) and the message to emit to the user.
 
-The emitted issues may also have arguments, and the same types of format strings as [`\Phan\Issue`](https://github.com/etsy/phan/blob/master/src/Phan/Issue.php) (E.g. in [`\UnusedSuppressionPlugin`](https://github.com/etsy/phan/blob/master/.phan/plugins/UnusedSuppressionPlugin.php)
+The emitted issues may also have format strings (same as recent releases of Phan with V1 support), and the same types of format strings as [`\Phan\Issue`](https://github.com/etsy/phan/blob/master/src/Phan/Issue.php) (E.g. in [`\UnusedSuppressionPlugin`](https://github.com/etsy/phan/blob/master/.phan/plugins/UnusedSuppressionPlugin.php)
 
 ```php
 $this->emitIssue(
     $code_base,
     $element->getContext(),
     'UnusedSuppression',
-    "Element {FUNCTIONLIKE} suppresses issue {ISSUETYPE} but does not use it",
+    "Element {FUNCTIONLIKE} suppresses issue {ISSUETYPE} but does not use it",  // This type of format string lets ./phan --color colorize the output
     [(string)$element->getFQSEN(), $issue_type]
 );  
 ```
+
+A shorthand was added to emit issues from visitors such as PluginAwareAnalysisVisitor or PluginAwarePreAnalysisVisitor, via `$this->emit(issue type, format string, [args...], [...])` (Implicitly uses global codebase and current context),
+or `$this->emitPluginIssue(CodeBase, Context, issue type, format string, [args...], [...])`. See [`InvalidVariableIssetVisitor`](https://github.com/etsy/phan/blob/master/.phan/plugins/InvalidVariableIssetPlugin.php) for an example of this.
+
 
 # Legacy
 
