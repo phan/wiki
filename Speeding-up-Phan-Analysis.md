@@ -12,6 +12,8 @@ The following suggestions may help speed up Phan analysis on your project:
 
 6. [Run the latest release of Phan.](#6-run-the-latest-release-of-phan)
 
+7. [Install an optional C module.](#7-install-an-optional-c-module) (0.9.3+/0.8.5+ only)
+
 ## 1. PHP Interpreter Configuration Settings
 
 1. Disable xdebug before running Phan (Phan runs around 5 times slower with xdebug enabled)
@@ -137,3 +139,13 @@ There are two ways to do this.
 Phan 0.9.2 (For php 7.1) contains many small performance optimizations, and more optimizations are planned for the next release.
 
 Those optimizations were backported to the 0.8.4 release (for php 7.0).
+
+
+### 7. Install an optional C module
+
+Phan 0.9.3+/0.8.5+ refactored the way Phan represented union types, to reduce the amount of memory Phan needed by around 15%, without increasing the time needed for analysis.
+
+Phan can be sped up around 10% by installing a native C implementation of runkit_object_id. See https://github.com/etsy/phan/pull/729
+
+- https://github.com/runkit7/runkit_object_id is recommended
+- https://github.com/runkit7/runkit7 (PHP7 port of https://secure.php.net/runkit) includes `runkit_object_id`, but is not recommended unless it is already installed. It implements other functions that aren't needed for Phan, and those functions make PHP code harder to reason about.
