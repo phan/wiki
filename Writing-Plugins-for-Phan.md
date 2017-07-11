@@ -46,7 +46,8 @@ $this->emitIssue(
     $code_base,
     $context,
     'PhanPluginMyPluginType',
-    "Message associated with the issue."
+    "Issue message template associated with the issue.",
+    []  // optional template args
 );
 ```
 
@@ -102,7 +103,8 @@ $this->emitIssue(
     $code_base,
     $context,
     'PhanPluginMyPluginType',
-    "Message associated with the issue."
+    "Issue message template associated with the issue.",
+    []  // optional template args
 );
 ```
 
@@ -138,9 +140,9 @@ You'll likely find yourself getting types frequently via a call to [`UnionType::
 $union_type = UnionType::fromNode($context, $code_base, $node);
 ```
 
-providing you the union type of the statement defined by the AST node `$node`.
+providing you with the union type of the statement defined by the AST node `$node`.
 
 ## CodeBase
 A [CodeBase](https://github.com/etsy/phan/blob/master/src/codebase.php) is a thing containing a mapping from all FQSENs (fully qualified structural element names) to their associated objects (Classes, Methods, Functions, Properties, Constants).
 
-You can use the codebase to look up info on any objects you find references to. More typically, you'll need to keep the `$code_base` around to pass it to all of Phan's methods.
+You can use the CodeBase to look up info on any objects you find references to. More typically, you'll need to keep the `$code_base` around to pass it to all of Phan's methods.
