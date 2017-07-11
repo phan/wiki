@@ -62,9 +62,27 @@ return [
     // will cut down on false positives.
     'null_casts_as_any_type' => true,
 
-    // If enabled, scalars (int, float, bool, string, null)
+    // Allow null to be cast as any array-like type (Requires 0.9.3+)
+    // This is an incremental step in migrating away from null_casts_as_any_type.
+    // If null_casts_as_any_type is true, this has no effect.
+    'null_casts_as_array' => false,
+
+    // Allow any array-like type to be cast to null. (Requires 0.9.3+)
+    // This is an incremental step in migrating away from null_casts_as_any_type.
+    // If null_casts_as_any_type is true, this has no effect.
+    'array_casts_as_null' => false,
+
+    // If enabled, scalars (int, float, bool, true, false, string, null)
     // are treated as if they can cast to each other.
     'scalar_implicit_cast' => true,
+
+    // If this has entries, scalars (int, float, bool, true, false, string, null)
+    // are allowed to perform the casts listed.
+    // E.g. ['int' => ['float', 'string'], 'float' => ['int'], 'string' => ['int'], 'null' => ['string']]
+    // allows casting null to a string, but not vice versa.
+    // (subset of scalar_implicit_cast)
+    // (Requires 0.9.3+)
+    'scalar_implicit_partial' => [],
 
     // If true, seemingly undeclared variables in the global
     // scope will be ignored. This is useful for projects
