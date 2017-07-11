@@ -19,6 +19,8 @@ We prefer syntax-level types and type-hints because they're checked at runtime. 
 
 If a parameter can be one of many types, you'll need to express this via the `@param` annotation and leave the parameter type or type-hint empty.
 
+NOTE: In Phan 0.9.3+/0.8.5+, it is possible to use both `@param` annotations and type hints. This will use the `@param` type hints if each type in the `@param` union type is a narrowed version of the type hint ( subclasses or subtypes). This requires the config settings `prefer_narrowed_phpdoc_param_types` and `check_docblock_signature_param_type_match` to be true.
+
 ```php
 /**
  * @param DateTime|int|null $t
