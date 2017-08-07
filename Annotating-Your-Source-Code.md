@@ -54,8 +54,10 @@ class C
     * @param int $a
     * @param ?string $b
     * @param DateTime $c
+    * @param float &$d
+    * @param string ...$args
     */
-   public function f($a, $b, $c) {
+   public function f($a, $b, $c, &$d, ...$args) {
    }
 ```
 
