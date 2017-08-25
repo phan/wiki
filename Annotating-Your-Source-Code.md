@@ -17,14 +17,28 @@ Additionally, Phan supports [inline type checks](#inline-type-checks), and can a
 
 ## Inline Type Checks
 
-Phan can analyze `assert()` statements and conditional branches to infer the types of variables within a block of code.
-This is one way of working around [limitations on analyzing comment doc blocks](#invalid).
+Phan can analyze `assert()` statements and conditional branches to infer the types of variables within a block of code. This is one way of working around [limitations on analyzing comment doc blocks](#invalid).
 
-- Examples: `$x = someDynamicFactory(MyClass::class); assert($x instanceof MyClass)`, `assert(is_string($x))`, `assert(!is_null($x))`
-- Phan can infer the same types for the condition of `if()` statements and ternary operators as it would from `assert`.
+In the following example, the variable `$x` is assigned a value with a typed unknown to Phan. By calling `assert` we can tell Phan explicitly that it's type is `MyClass`.
 
-  Examples: `if ($x instanceof MyClass) { function_expecting_myclass($x); }`, `$result = ($x instanceof MyClass) ? function_expecting_myclass($x) : null`
-- Be aware that incorrect `assert` statements may cause [unpredictable behavior in your code](https://secure.php.net/manual/en/function.assert.php#refsect2-function.assert-unknown-descriptioo)
+```php
+$x = some_dynamic_factory(MyClass::class);
+assert($x instanceof MyClass)
+```
+
+Types can also be specified via the PHP built-in type checks such as in `assert(is_string($x))`, or `assert(!is_null($x))`.
+
+Phan can infer the same types for the condition of `if()` statements and ternary operators as it would from `assert`.
+
+```php
+if ($x instanceof MyClass) {
+   function_expecting_myclass($x);
+}
+
+$y = ($x instanceof MyClass) ? function_expecting_myclass($x) : null;
+```
+
+Be aware that incorrect `assert` statements may cause [unpredictable behavior in your code](https://secure.php.net/manual/en/function.assert.php#refsect2-function.assert-unknown-descriptioo)
 
 
 ## @var
