@@ -261,7 +261,7 @@ class D {
 }
 ```
 
-But the following will not suppress the issue.
+But the following **will not** suppress the issue.
 
 ```php
 /** @suppress PhanUndeclaredClassMethod */
