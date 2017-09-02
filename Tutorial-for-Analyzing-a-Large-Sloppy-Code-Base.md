@@ -17,7 +17,7 @@ The process of starting analysis looks like
 
 ## Get Phan Running
 
-The first step is to get Phan running. Take a look at [Getting Started](https://github.com/etsy/phan/wiki/Getting-Started) for help getting PHP7, the php-ast module and Phan installed.
+The first step is to get Phan running. Take a look at [Getting Started](https://github.com/phan/phan/wiki/Getting-Started) for help getting PHP7, the php-ast module and Phan installed.
 
 If you have PHP version 7 installed with the [php-ast](https://github.com/nikic/php-ast) module and your project uses composer, you can just run `composer require --dev "etsy/phan:dev-master"` to add Phan to your project with the binary available in `vendor/bin/phan`.
 
@@ -88,7 +88,7 @@ return [
 
 This configuration sets up the weakest possible analysis to you get started. With this configuration we allow undefined properties to be written to, allow things of type `null` to be cast to any type, and only emit the most severe issues.
 
-You can take a look at [Phan's config](https://github.com/etsy/phan/blob/master/.phan/config.php) for an example.
+You can take a look at [Phan's config](https://github.com/phan/phan/blob/master/.phan/config.php) for an example.
 
 You should add any third-party code paths to the `exclude_analysis_directory_list` array so as to avoid having to deal with sloppiness in code that you don't want to fix.
 
@@ -96,7 +96,7 @@ You should add any third-party code paths to the `exclude_analysis_directory_lis
 
 You can pass the files to be analyzed to Phan on the command-line, but with a large code base, you'll want to create a file that lists all files and filters out junk to make your life easier.
 
-One way to generate this file list would be to create a file `.phan/bin/mkfilelist` (like [Phan's](https://github.com/etsy/phan/blob/master/.phan/bin/mkfilelist)) with the following contents.
+One way to generate this file list would be to create a file `.phan/bin/mkfilelist` (like [Phan's](https://github.com/phan/phan/blob/master/.phan/bin/mkfilelist)) with the following contents.
 
 ```sh
 #!/bin/bash
@@ -127,7 +127,7 @@ cat $JUNK | \
 rm $JUNK
 ```
 
-You can then run `./.phan/bin/mkfilelist.sh > files`. Take a look at [Phan's file list generator](https://github.com/etsy/phan/blob/master/.phan/bin/mkfilelist) to see an example.
+You can then run `./.phan/bin/mkfilelist.sh > files`. Take a look at [Phan's file list generator](https://github.com/phan/phan/blob/master/.phan/bin/mkfilelist) to see an example.
 
 With this, you can now run `phan -f files` to run an analysis of your code base.
 
