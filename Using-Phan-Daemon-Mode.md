@@ -9,7 +9,7 @@ This is useful on large codebases with hundreds or thousands of PHP files, where
 
 Daemon mode requires Phan 0.9.2+ or 0.8.4+. 
 
-Daemon mode was first introduced to Phan in https://github.com/etsy/phan/pull/563
+Daemon mode was first introduced to Phan in https://github.com/phan/phan/pull/563
 
 There are two components:
 
@@ -75,7 +75,7 @@ Three things need to be done to use the Phan client from an editor.
 ### 1. Editors with phan support
 Currently, there are clients of Daemon mode for the following editors:
 
-1. Vim: Run phan_client on save in Vim, show the results: https://github.com/etsy/phan/blob/master/plugins/vim/phansnippet.vim
+1. Vim: Run phan_client on save in Vim, show the results: https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim
 
    
    ![screenshot from 2017-02-23 22-29-21](https://cloud.githubusercontent.com/assets/1904430/23336381/4210f212-fb83-11e6-9c55-79e0995307b1.png)
