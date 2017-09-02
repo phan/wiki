@@ -6,7 +6,7 @@ Phan has a core philosophy of measuring its success by its ability to enable com
 
 You can configure Phan's analysis via a small number of command-line options and via the config file `.phan/config.php` which Phan will look for from the directory in which it's run or in the directory passed in via the `--directory <BASE_DIRECTORY>` CLI option.
 
-Take a look at Phan's own very strict configuration for analyzing itself at [`.phan/config.php`](https://github.com/etsy/phan/blob/master/.phan/config.php) to see how configs work and to see what can be tuned. You can also take a look at [the default configuration](https://github.com/etsy/phan/blob/master/src/Phan/Config.php) to see what an analysis without configuration looks like.
+Take a look at Phan's own very strict configuration for analyzing itself at [`.phan/config.php`](https://github.com/phan/phan/blob/master/.phan/config.php) to see how configs work and to see what can be tuned. You can also take a look at [the default configuration](https://github.com/phan/phan/blob/master/src/Phan/Config.php) to see what an analysis without configuration looks like.
 
 ## Relaxed Analysis
 
@@ -245,7 +245,7 @@ As you ramp-up your analysis, you'll often be confronted with an overwhelming nu
 
 This is going to feel gross, but if you want to get to a place where you can prevent new issues from being introduced in new code, you're going to want to add `@suppress` annotations to existing issues. The world isn't fair, nothing is perfect and you have much more important things to work on.
 
-Take a look at [Annotating Your Source Code](https://github.com/etsy/phan/wiki/Annotating-Your-Source-Code#suppress) for details on how to suppress issues.
+Take a look at [Annotating Your Source Code](https://github.com/phan/phan/wiki/Annotating-Your-Source-Code#suppress) for details on how to suppress issues.
 
 Once you get a clean run for a new issue type and can enable the analysis, you'll want to let folks know that adding new `@suppress` annotations is uncool, and that true heroes remove existing `@suppress` annotations.
 
