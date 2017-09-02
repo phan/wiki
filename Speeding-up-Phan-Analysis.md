@@ -114,7 +114,7 @@ Then Phan analysis would complete faster if you change it to the below (may requ
 The analysis phase generally takes much longer than the parse phase.
 Note that this will significantly increase the total amount of memory Phan will use (Watch the memory usage with a tool such as `htop` (unix/linux)).
 
-If you're planning to start using multiple processes and haven't done so before, it's a good idea to read [[Different Issue Sets On Different Numbers of CPUs]] and [what to do about different issue sets](https://github.com/etsy/phan/wiki/Different-Issue-Sets-On-Different-Numbers-of-CPUs#what-to-do-about-it)
+If you're planning to start using multiple processes and haven't done so before, it's a good idea to read [[Different Issue Sets On Different Numbers of CPUs]] and [what to do about different issue sets](https://github.com/phan/phan/wiki/Different-Issue-Sets-On-Different-Numbers-of-CPUs#what-to-do-about-it)
 
 ### 5. Run Phan Only on the Files You Changed
 
@@ -145,7 +145,7 @@ Those optimizations were backported to the 0.8.4 release (for php 7.0).
 
 Phan 0.9.3+/0.8.5+ refactored the way Phan represented union types, to reduce the amount of memory Phan needed by around 15%, without increasing the time needed for analysis.
 
-Phan can be sped up around 10% by installing a native C implementation of runkit_object_id. See https://github.com/etsy/phan/pull/729
+Phan can be sped up around 10% by installing a native C implementation of runkit_object_id. See https://github.com/phan/phan/pull/729
 
 - https://github.com/runkit7/runkit_object_id is recommended
-- https://github.com/runkit7/runkit7 (PHP7 port of https://secure.php.net/runkit) includes `runkit_object_id`, but is not recommended unless it is already installed. It implements other functions that aren't needed for Phan, and those functions make PHP code harder to reason about.
+- https://github.com/runkit7/runkit7 (PHP7 port of https://secure.php.net/runkit) includes `runkit_object_id`, but is not recommended unless it is already installed. It implements other functions that aren't needed for Phan, and those functions make PHP code harder to reason about. The `runkit_object_id` extension also provides a native implementation of `spl_object_id` for PHP <= 7.1, which future Phan releases will use (disabled by default in runkit7/runkit7).
