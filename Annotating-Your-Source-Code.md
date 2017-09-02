@@ -143,7 +143,7 @@ Phan also supports the `@phan-forbid-undeclared-magic-methods` annotation on cla
 This will cause Phan to warn about a method being undefined if there are no real or phpdoc declarations of that method.
 This can be used if you are concerned about magic methods being misspelled, being undocumented, or being used without the information Phan needs to type check their uses.
 
-The behavior of Phan when a real method replaces a magic method is not yet fully defined. See https://github.com/etsy/phan/issues/670
+The behavior of Phan when a real method replaces a magic method is not yet fully defined. See https://github.com/phan/phan/issues/670
 
 ## @deprecated
 
@@ -290,7 +290,7 @@ Phan will warn if the element doesn't actually override anything. Other than tha
 
 `@Override` and `@phan-override` are supported aliases of `@override`.
 
-The `@override` annotation is [not part of any official PHPDoc standard](https://github.com/etsy/phan/issues/926) I'm aware of. The semantics are similar to Java's `@Override`.
+The `@override` annotation is [not part of any official PHPDoc standard](https://github.com/phan/phan/issues/926) I'm aware of. The semantics are similar to Java's `@Override`.
 
 ```php
 class BaseClass {
