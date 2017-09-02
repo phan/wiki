@@ -1,6 +1,6 @@
 There are several options for getting Phan up and running on your code base.
 
-To get started, choose [a method for getting Phan running on your system](https://github.com/etsy/phan/wiki/Getting-Started#installing-phan) and then [create a config file](https://github.com/etsy/phan/wiki/Getting-Started#creating-a-config-file) so that Phan knows where to look for code and how to analyze it. Take a look at [Installing Phan Dependencies](https://github.com/etsy/phan/wiki/Getting-Started#installing-phan-dependencies) for some help getting Phan's dependencies running.
+To get started, choose [a method for getting Phan running on your system](https://github.com/phan/phan/wiki/Getting-Started#installing-phan) and then [create a config file](https://github.com/phan/phan/wiki/Getting-Started#creating-a-config-file) so that Phan knows where to look for code and how to analyze it. Take a look at [Installing Phan Dependencies](https://github.com/phan/phan/wiki/Getting-Started#installing-phan-dependencies) for some help getting Phan's dependencies running.
 
 If you're having trouble getting Phan up and running, get in touch.
 
@@ -41,20 +41,20 @@ Before you begin, you'll want to make sure you have PHP version 7+ with the [php
 From there, you can clone the Phan source and use composer to install its dependencies.
 
 ```sh
-git clone https://github.com/etsy/phan.git;
+git clone https://github.com/phan/phan.git;
 composer install;
 ```
 
-*NOTE:* If you're running on PHP version 7.0.x and run into problems, you may wish to use the [0.8 branch of Phan](https://github.com/etsy/phan/tree/0.8) (`git checkout 0.8`).
+*NOTE:* If you're running on PHP version 7.0.x and run into problems, you may wish to use the [0.8 branch of Phan](https://github.com/phan/phan/tree/0.8) (`git checkout 0.8`).
 
-You should now be able to run `./test` to make sure Phan is working correctly, and run `./phan` to run Phan on itself (using its own [`.phan/config.php`](https://github.com/etsy/phan/blob/master/.phan/config.php) configuration).
+You should now be able to run `./test` to make sure Phan is working correctly, and run `./phan` to run Phan on itself (using its own [`.phan/config.php`](https://github.com/phan/phan/blob/master/.phan/config.php) configuration).
 
 ## From Phan.phar
 
 To run Phan from a Phar package, you can download the Phar and run it.
 
 ```sh
-curl -L https://github.com/etsy/phan/releases/download/0.8.3/phan.phar -o phan.phar;
+curl -L https://github.com/phan/phan/releases/download/0.8.3/phan.phar -o phan.phar;
 ```
 
 You'll now be able to run Phan via
@@ -63,7 +63,7 @@ You'll now be able to run Phan via
 php phan.phar
 ```
 
-As of this writing, [0.8.3](https://github.com/etsy/phan/releases/tag/0.8.3) is the latest release. You may wish to check [the list of releases](https://github.com/etsy/phan/releases) to see if thats still the latest, as I'll probably forget to update this page with subsequent releases.
+As of this writing, [0.8.3](https://github.com/phan/phan/releases/tag/0.8.3) is the latest release. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if thats still the latest, as I'll probably forget to update this page with subsequent releases.
 
 ## From a Docker Image
 
