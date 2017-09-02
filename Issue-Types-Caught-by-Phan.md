@@ -1,4 +1,4 @@
-See [\Phan\Issue](https://github.com/etsy/phan/blob/master/src/Phan/Issue.php) for the set of error types that are emitted. Below is a listing of all issue types as of [8c1435](https://github.com/etsy/phan/tree/8c1435f6044f15fa4fd39c2abf713062214f4087/). The test case [0101_one_of_each.php](https://github.com/etsy/phan/blob/master/tests/files/src/0101_one_of_each.php) should cover all examples in this document.
+See [\Phan\Issue](https://github.com/phan/phan/blob/master/src/Phan/Issue.php) for the set of error types that are emitted. Below is a listing of all issue types as of [8c1435](https://github.com/phan/phan/tree/8c1435f6044f15fa4fd39c2abf713062214f4087/). The test case [0101_one_of_each.php](https://github.com/phan/phan/blob/master/tests/files/src/0101_one_of_each.php) should cover all examples in this document.
 
 Please add example code, fix outdated info and add any remedies to the issues below.
 
@@ -261,7 +261,7 @@ This category of issue is emitted when there are compatibility issues. They will
 
 This issue will be thrown if there is an expression that may be treated differently in PHP7 than it was in previous major versions of the PHP runtime. Take a look at the [PHP7 Migration Manual](http://php.net/manual/en/migration70.incompatible.php) to understand changes in behavior.
 
-The config `Config::get()->backward_compatibility_checks` must be enabled for this to run such as by passing the command line argument `--backward-compatibility-checks` or by defining it in a `.phan/config.php` file such as [Phan's own config](https://github.com/etsy/phan/blob/master/.phan/config.php).
+The config `Config::get()->backward_compatibility_checks` must be enabled for this to run such as by passing the command line argument `--backward-compatibility-checks` or by defining it in a `.phan/config.php` file such as [Phan's own config](https://github.com/phan/phan/blob/master/.phan/config.php).
 
 ```
 {CLASS} expression may not be PHP 7 compatible
@@ -271,7 +271,7 @@ The config `Config::get()->backward_compatibility_checks` must be enabled for th
 
 This issue will be thrown if there is an expression that may be treated differently in PHP7 than it was in previous major versions of the PHP runtime. Take a look at the [PHP7 Migration Manual](http://php.net/manual/en/migration70.incompatible.php) to understand changes in behavior.
 
-The config `Config::get()->backward_compatibility_checks` must be enabled for this to run such as by passing the command line argument `--backward-compatibility-checks` or by defining it in a `.phan/config.php` file such as [Phan's own config](https://github.com/etsy/phan/blob/master/.phan/config.php).
+The config `Config::get()->backward_compatibility_checks` must be enabled for this to run such as by passing the command line argument `--backward-compatibility-checks` or by defining it in a `.phan/config.php` file such as [Phan's own config](https://github.com/phan/phan/blob/master/.phan/config.php).
 
 ```
 Expression may not be PHP 7 compatible
@@ -285,7 +285,7 @@ $c->$m[0]();
 
 # GenericError
 
-This category contains issues related to [Phan's generic type support](https://github.com/etsy/phan/wiki/Generic-Types)
+This category contains issues related to [Phan's generic type support](https://github.com/phan/phan/wiki/Generic-Types)
 
 ## PhanTemplateTypeConstant
 
@@ -1222,7 +1222,7 @@ trait T { function f() { return parent::f(); } }
 This issue will be emitted when we hit a structure that Phan doesn't know how to parse. More commonly this will be expressed by Phan having an uncaught exception or behaving poorly.
 
 ```
-Expression is unanalyzable or feature is unimplemented. Please create an issue at https://github.com/etsy/phan/issues/new.
+Expression is unanalyzable or feature is unimplemented. Please create an issue at https://github.com/phan/phan/issues/new.
 ```
 
 Please do file an issue or otherwise get in touch if you get one of these (or an uncaught exception, or anything else thats shitty).
