@@ -17,16 +17,16 @@ If you're managing dependencies via [Composer](https://getcomposer.org/), you ca
 If you're running PHP version 7.0.x, run
 
 ```sh
-composer require --dev "etsy/phan:0.8.x-dev"
+composer require --dev "phan/phan:0.8.x-dev"
 ```
 
 If you're running PHP version 7.1+, run
 
 ```sh
-composer require --dev "etsy/phan:dev-master"
+composer require --dev "phan/phan:dev-master"
 ```
 
-[For a full list of releases, check out https://packagist.org/packages/etsy/phan](https://packagist.org/packages/etsy/phan).
+[For a full list of releases, check out https://packagist.org/packages/phan/phan](https://packagist.org/packages/phan/phan).
 
 With the Phan dependency installed, you can do an analysis by running the following (once you create a configuration file).
 
