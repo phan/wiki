@@ -63,55 +63,25 @@ If Phan daemon mode is noticeably slow, then make sure that you're following all
    In non-quick mode, methods and classes from other files would also be analyzed, making the request take several times longer.
 2. Follow the steps from the wiki page [[Speeding up Phan Analysis]].
 
-Using phan_client from an editor
-================================
+Editor Support
+==============
 
-Three things need to be done to use the Phan client from an editor.
+### 1. Editor Support
 
-1. Use an editor with Phan support, or modify a plugin or config to show Phan issues alongside of PHP syntax errors.
-2. Manually start the Phan daemon for the project you are working on.
-3. Verify that `phan_client` is working properly.
+See [[Editor Support]].
 
-### 1. Editors with phan support
-Currently, there are clients of Daemon mode for the following editors:
-
-1. Vim: Run phan_client on save in Vim, show the results: https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim
-
-   
-   [![Vim integration example](https://cloud.githubusercontent.com/assets/1904430/23336381/4210f212-fb83-11e6-9c55-79e0995307b1.png)](https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim)
-
-
-2. Emacs: Run phan_client while the file is being edited in Emacs. (Alternately, it can be configured to run only when saving a file):
-
-   This depends on flycheck being installed.
-
-   See https://github.com/TysonAndre/flycheck-phanclient
-
-   [![Emacs flycheck example for Phan](https://cloud.githubusercontent.com/assets/1904430/23347092/85da0322-fc54-11e6-8fae-48b7a30d623b.png)](https://github.com/TysonAndre/flycheck-phanclient)
-
-3. VS Code (Currently Unix/Linux only)
-   
-   [![VS Code example, including error tolerance](https://raw.githubusercontent.com/TysonAndre/vscode-php-phan/master/images/tolerant_parsing.png)](https://github.com/tysonandre/vscode-php-phan)
-
-   This has room for improvement.
-
-   This is based on Phan's [language server protocol support](https://github.com/phan/phan/issues/821)
-
-4. Other: Try to adapt an existing plugin or configuration which uses php's syntax checks (`--syntax-check`/`-l`) (e.g. `php -l [-f] path/to/file.php`) to use `phan_client` (`path/to/phan_client -l path/to/file.php`).
-
-   (The error message format from `./phan_client` is almost the same, and `phan_client` run and outputs PHP's syntax check before requesting the Phan analysis results.)
-
-   It may or may not be simpler to write an extension using Phan's [language server protocol support for Unix/Linux](https://github.com/phan/phan/issues/821) (And issue detection may be faster)
+The below sections elaborate on how to start the Phan daemon for your editor, if the plugin requires it.
 
 ### 2. Starting the Phan daemon
 
-The Phan daemon must be manually started if you want to use it from your editor.
+The Phan daemon must be manually started if you want to use it from your editor, for plugins using phan daemon mode (instead of the Phan Language Server or whole-project analysis).
 
-If you're only working on one project, start it with the default client port of 4846.
+If you're only working on one project, start it with the default client port of 4846 (`--daemonize-tcp-port 4846` or `--daemonize-tcp-port default`)
 
-It must be started again if it was stopped (e.g. stopped manually, crashed, or the computer was restarted)
+It must be started again if it was stopped (e.g. stopped manually, crashed, or the computer was restarted).
+Currently, it that may require a restart to be aware of new classes.
 
-(If you plan to work on multiple projects at the same time, choose different ports for each project, and start an instance of the daemon for each project)
+(If you plan to work on multiple projects at the same time, choose different TCP ports for each project, and start an instance of the daemon for each project)
 
 Editor integration requires you to manually start the Phan daemon for the project you are working on.
 
