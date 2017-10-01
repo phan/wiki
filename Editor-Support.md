@@ -9,7 +9,7 @@ Three things need to be done to use Phan from an editor (with low latency).
 1. Use an editor with Phan support, or modify a plugin or config to show Phan issues alongside of PHP syntax errors.
 2. Manually start the Phan daemon/Phan Language Server for the project you are working on. These are two incompatible methods of running Phan in the background.
 
-   1. The Phan daemon, which uses a custom Phan-specific protocol and was implemented first. The only client is `https://github.com/phan/phan/blob/master/phan_client`, which emulates the output of `php -l`.
+   1. The Phan daemon, which uses a custom Phan-specific protocol and was implemented first. The only client is `https://github.com/phan/phan/blob/master/phan_client`, which emulates the output of `php -l`. Setup instructions are included in [[Using Phan Daemon Mode]]
    2. The Phan Language server, which uses an open standard (The [Language Server Protocol](https://github.com/Microsoft/language-server-protocol))
 3. Verify that `phan_client` (or the language server client) is working properly.
 
@@ -22,14 +22,15 @@ Currently, there are clients of Daemon mode/Language Server Protocol for the fol
 
 1. Vim: (Using Phan daemon) Run `phan_client` on save in Vim, show the results: https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim
 
-   This depends on flycheck being installed and manually started.
+   This depends on the daemon being started in the background.
    
    [![Vim integration example](https://cloud.githubusercontent.com/assets/1904430/23336381/4210f212-fb83-11e6-9c55-79e0995307b1.png)](https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim)
 
 
 2. Emacs: (Using Phan daemon) Run phan_client while the file is being edited in Emacs. (Alternately, it can be configured to run only when saving a file):
 
-   This depends on flycheck being installed.
+   This depends on the daemon being started in the background.
+   This also depends on flycheck(for Emacs) being installed.
 
    See https://github.com/TysonAndre/flycheck-phanclient
 
