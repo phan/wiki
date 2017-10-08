@@ -115,7 +115,7 @@ Phan does not yet enforce that `__get()`/`__set()` exist if a class/trait/interf
 
 ## @method
 
-The `@method <union_type> <method_name>(<union_type> <param1_name>)` annotation describes a magic property of a class.
+The `@method <union_type> <method_name>(<union_type> <param1_name>)` annotation describes a magic method of a class.
 Partial support for this annotation was added in phan 0.9.2/0.8.4.
 
 ```php
