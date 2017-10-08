@@ -2,26 +2,26 @@
 
 ### Setting up Phan
 
-**[[Getting Started]]**<br />
-**[[Annotating Your Source Code]]**<br />
-**[[About Union Types]]**<br />
-**[[Tutorial for Analyzing a Large Sloppy Code Base]]**<br/>
+- **[[Getting Started]]**<br />
+- **[[Annotating Your Source Code]]**<br />
+- **[[About Union Types]]**<br />
+- **[[Tutorial for Analyzing a Large Sloppy Code Base]]**<br/>
 
 ### Improving Phan Analysis
 
-**[[Incrementally Strengthening Analysis]]**<br />
-**[[Issue Types Caught by Phan]]**<br />
-**[[Typing Parameters]]**<br />
-**[[How To Use Stubs]]**<br />
-**[[Speeding up Phan Analysis]]**<br/>
+- **[[Incrementally Strengthening Analysis]]**<br />
+- **[[Issue Types Caught by Phan]]**<br />
+- **[[Typing Parameters]]**<br />
+- **[[How To Use Stubs]]**<br />
+- **[[Speeding up Phan Analysis]]**<br/>
 
 ### Using Advanced Features
 
-**[[Generic Types]]**<br/>
-**[[Editor Support]]**<br/>
-**[[Using Phan Daemon Mode]]**<br/>
+- **[[Generic Types]]**<br/>
+- **[[Editor Support]]**<br/>
+- **[[Using Phan Daemon Mode]]**<br/>
 
 ### Frequently Asked Questions
 
-**[[Different Issue Sets On Different Numbers of CPUs]]**<br/>
-**[[What Static Analysis Lets You Do]]**<br/>
+- **[[Different Issue Sets On Different Numbers of CPUs]]**<br/>
+- **[[What Static Analysis Lets You Do]]**<br/>
