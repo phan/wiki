@@ -180,6 +180,13 @@ return [
     // breaks.
     'backward_compatibility_checks' => true,
 
+    // Added in 0.10.0. Set this to false to emit 
+    // PhanUndeclaredFunction issues for internal functions
+    // that Phan has signatures for,
+    // but aren't available in the codebase or the
+    // internal functions used to run phan
+    'ignore_undeclared_functions_with_known_signatures' => false,
+    
     // By default, Phan will analyze all node types.
     // If this config is set to false, Phan will do a
     // shallower pass of the AST tree which will save
