@@ -159,3 +159,15 @@ return [
 ```
 
 Take a look at [[Incrementally Strengthening Analysis]] for some tips on how to start with a weak analysis and slowly increase the strictness as your code becomes better equipped to be analyzed.
+
+# Running Phan in Continuous Integration
+
+This assumes you have set up `.phan/config.php` in the root directory of your git project.
+
+Example Travis configuration: [php-parser-to-php-ast (simple)](https://github.com/TysonAndre/php-parser-to-php-ast/blob/master/.travis.yml), [Phan's own configuration (Runs self test separately)](https://github.com/phan/phan/blob/master/.travis.yml)
+
+Example Appveyor (Windows) configuration: [php-parser-to-php-ast (simple)](https://github.com/TysonAndre/php-parser-to-php-ast/blob/master/.travis.yml), [Phan's own configuration](https://github.com/phan/phan/blob/master/.travis.yml)
+
+Jenkins (Enterprise): Similar to the above. I've found that the pylint output formatter works well with Jenkins for generating a Violations view (see [issue #184](https://github.com/phan/phan/issues/184)).
+
+The above configurations work because Phan will exit with a non-zero exit code if 1 or more errors are detected (or if phan failed to run).
