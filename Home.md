@@ -19,6 +19,8 @@ A tutorial providing some guidance on how to get started analyzing your code and
 **[[Incrementally Strengthening Analysis]]**<br />
 A guide to how Phan can be configured to slowly increase the strength of the analysis.
 
+- [Adding Phan plugins to your project](https://github.com/phan/phan#features-provided-by-plugins) can strengthen analysis in other ways.
+
 **[[Issue Types Caught by Phan]]**<br />
 An enumeration of error types, examples that cause them and tips on how to resolve the issues
 
@@ -30,9 +32,6 @@ Details on setting up a `stubs` directory for making code available to Phan that
 
 **[[Speeding up Phan Analysis]]**<br/>
 A list of suggestions that may help speed up Phan analysis on your project.
-
-**[Add Phan plugins to your project](https://github.com/phan/phan#features-provided-by-plugins)**<br/>
-An overview of plugins that have been created for Phan.
 
 ## Using Advanced Features
 
