@@ -120,8 +120,10 @@ Prerequisites:
 
 ```bash
 # 1. Edit a file to include a call to an undefined function, etc. as a sanity check
-# Invoke phan (`./phan_client` or `php ./phan_client`) with a relative or absolute path to the file being analyzed.
-# NOTE: This must be a file which is in the phan config's list of files/directories to analyze
+# Invoke phan (`./phan_client` or `php ./phan_client`)
+# with a relative or absolute path to the file being analyzed.
+# NOTE: This must be a file which is in the
+# phan config's list of files/directories to analyze
 ./phan_client --verbose path/to/file/in_project.php
 # 2. You should see it emit errors, in a format similar to the format `php -l` uses
 # 3. Undo changes to the file, run phan again
