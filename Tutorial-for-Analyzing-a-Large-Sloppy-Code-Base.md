@@ -198,6 +198,6 @@ You'll want to consider
 * Setting `null_casts_as_any_type` to `false` to find out what kind of madness your team has been up to.
 * Setting `allow_missing_properties` to `false` to see all of the undefined properties you've been writing to all these years.
 * Setting `quick_mode` to `false` to re-analyze each method on each method call given the input types you're sending it.
-* [Adding some of Phan's plugins](https://github.com/phan/phan/tree/master/.phan/plugins) to your `.phan/config.php`
+* [Adding some of Phan's plugins](https://github.com/phan/phan#features-provided-by-plugins) to your [`.phan/config.php`](https://github.com/phan/phan#usage)
 
 Setting these values one at a time and fixing all issues you find will make the process less overwhelming.
