@@ -17,14 +17,17 @@ The following suggestions may help speed up Phan analysis on your project:
 ## 1. PHP Interpreter Configuration Settings
 
 1. Disable xdebug before running Phan (Phan runs around 5 times slower with xdebug enabled)
+   In Phan 0.10.1+/0.8.9+, Phan disables XDebug automatically.
 
-   The output of `php -m` will mention xdebug if xdebug is still enabled.
+   The output of `php -m` will mention XDebug if XDebug is still enabled.
 
-   Xdebug may be disabled in in various ways, e.g. by setting the environment variable `PHPRC` to the absolute path to a folder containing a copy of php.ini without xdebug.
+   XDebug may be disabled in in various ways, e.g. by setting the environment variable `PHPRC` to the absolute path to a folder containing a copy of php.ini without XDebug.
 
    (XDebug is only suggested if you're investigating a crash, or a test failure in Phan's test suite, or an uncaught error in Phan, and shouldn't be used in normal usage.)
 2. Run `php --version`. Normally, you should see (NTS), not (ZTS DEBUG) or (NTS DEBUG), but if you build PHP yourself (e.g. for PECL module development), the version you're currently using may have been built with `--enable-debug` (DEBUG).
    php built with `--enable-debug` (DEBUG) is around 2 times slower.
+
+   Also, Phan runs the fastest in php 7.2+.
    
 ## 2. Avoid Using Slow Phan Configuration Options
 
@@ -140,10 +143,11 @@ Phan 0.9.2 (For php 7.1) contains many small performance optimizations, and more
 
 Those optimizations were backported to the 0.8.4 release (for php 7.0).
 
+The latest release is [![Latest Stable Version](https://poser.pugx.org/phan/phan/v/stable)](https://packagist.org/packages/phan/phan)
 
 ### 7. Install an optional C module
 
-**Note: This will change to call `spl_object_id()` in Phan 0.10.0+/0.9.5+/0.8.7+**. `spl_object_id()` is built into PHP 7.2, and is also provided by https://github.com/runkit7/runkit_object_id.
+**Note: This will change to call `spl_object_id()` in Phan 0.10.0+/0.9.5+/0.8.7+**. `spl_object_id()` is built into PHP 7.2+. If you are running php <= 7.1, `spl_object_id()` is also provided by https://github.com/runkit7/runkit_object_id.
 
 Phan 0.9.3+/0.8.5+ refactored the way Phan represented union types, to reduce the amount of memory Phan needed by around 15%, without increasing the time needed for analysis.
 
