@@ -1,10 +1,10 @@
-Phan comes with a mechanism for adding plugins for your code base. Plugins have hooks for analyzing every node in the AST for every file, classes, methods and functions.
+Phan comes with a mechanism for adding plugins for your code base. Plugins have hooks for analyzing every node in the AST for every file, classes, methods and functions. (As well as analyzing param types or return types pf functions when they are invoked. And analyzing functions/constants/classes/class elements that Phan will analyze.)
 
 Plugin code lives in your repo and is referenced from your phan config file, but runs in the Phan execution environment with access to all Phan APIs.
 
 # Plugin V2
 
-Phan 0.9.3+/0.8.5+ support V2 of the plugin system. In V2, plugins were designed to be extensible and as efficient as possible, and would be invoked only where needed.
+Phan 0.10.0+/0.9.3+/0.8.5+ support V2 of the plugin system. In V2, plugins were designed to be extensible and as efficient as possible, and would be invoked only where needed.
 The constant `\Phan\Config::PHAN_PLUGIN_VERSION` may optionally be used by plugin files designed for backwards compatibility.
 If it is `defined()`, then V2 of the plugin system is supported.
 `version_compare` may be used to check if the current plugin system is >= the version where a given `Capability` was introduced. 
@@ -20,6 +20,8 @@ To create a plugin, you'll need to
 Phan contains an example plugin named [DemoPlugin](https://github.com/phan/phan/blob/master/.phan/plugins/DemoPlugin.php) that is referenced from [Phan's .phan/config.php file](https://github.com/phan/phan/blob/92552016b2d3c650f5c625a8f64a9db935a756d6/.phan/config.php#L117).
 
 A more meaningful real-world example is given in [DollarDollarPlugin](https://github.com/phan/phan/blob/master/.phan/plugins/DollarDollarPlugin.php) which checks to make sure there are no variable of the form `$$var` in Phan's code base.
+
+You may wish to base your plugin on a plugin performing a similar task ([list of plugins](https://github.com/phan/phan/tree/master/.phan/plugins#plugin-list))
 
 ## How Plugins Work (V2)
 
