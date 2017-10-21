@@ -31,6 +31,9 @@ Details on setting up a `stubs` directory for making code available to Phan that
 **[[Speeding up Phan Analysis]]**<br/>
 A list of suggestions that may help speed up Phan analysis on your project.
 
+**[Add Phan plugins to your project](https://github.com/phan/phan#features-provided-by-plugins)**<br/>
+An overview of plugins that have been created for Phan.
+
 ## Using Advanced Features
 
 **[[Generic Types]]**<br/>
@@ -41,8 +44,7 @@ This article explains how to set up support in an editor/IDE.
 Vim, Emacs, and VS Code have prototype plugins/extensions written for them. This article also explains how to create plugins/extensions for an editor.
 
 **[[Using Phan Daemon Mode]]**<br/>
-Daemon mode lets you request Phan results from your editor or IDE to detect Phan issues for a single file, with much lower latency than a full analysis. (requires Phan 0.9.2+ or 0.8.4+)
-
+Daemon mode lets you request Phan results from your editor or IDE to detect Phan issues for a single file, with much lower latency than a full analysis.
 
 ## Frequently Asked Questions
 
