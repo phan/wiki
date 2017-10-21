@@ -44,8 +44,8 @@ return [
     'analyze_signature_compatibility' => false,
 
     // The minimum severity level to report on. This can be
-    // set to Issue::SEVERITY_LOW, Issue::SEVERITY_NORMAL or
-    // Issue::SEVERITY_CRITICAL. Setting it to only
+    // set to Issue::SEVERITY_LOW(0), Issue::SEVERITY_NORMAL(5) or
+    // Issue::SEVERITY_CRITICAL(10). Setting it to only
     // critical issues is a good place to start on a big
     // sloppy mature code base.
     'minimum_severity' => 10,
@@ -62,12 +62,12 @@ return [
     // will cut down on false positives.
     'null_casts_as_any_type' => true,
 
-    // Allow null to be cast as any array-like type (Requires 0.9.3+)
+    // Allow null to be cast as any array-like type.
     // This is an incremental step in migrating away from null_casts_as_any_type.
     // If null_casts_as_any_type is true, this has no effect.
     'null_casts_as_array' => false,
 
-    // Allow any array-like type to be cast to null. (Requires 0.9.3+)
+    // Allow any array-like type to be cast to null.
     // This is an incremental step in migrating away from null_casts_as_any_type.
     // If null_casts_as_any_type is true, this has no effect.
     'array_casts_as_null' => false,
@@ -204,7 +204,7 @@ return [
 ];
 ```
 
-With such a config, the following code will emit the following issues.
+With the above config, the following code will emit the following issues.
 
 ```php
 <?php
@@ -236,7 +236,7 @@ class Test {
 }
 ```
 
-with issues
+with issues:
 
 ```
 fails.php:2 PhanCompatiblePHP7 Expression may not be PHP 7 compatible
