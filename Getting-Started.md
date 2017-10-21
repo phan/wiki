@@ -85,7 +85,9 @@ You'll now be able to run Phan via
 php phan.phar
 ```
 
-As of this writing, [0.10.1](https://github.com/phan/phan/releases/tag/0.10.1) is the latest release. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if thats still the latest, as I'll probably forget to update this page with subsequent releases.
+When this was last updated, [0.10.1](https://github.com/phan/phan/releases/tag/0.10.1) is the latest release. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if thats still the latest, as I'll probably forget to update this page with subsequent releases.
+
+According to packagist, the latest stable version is [![Latest Stable Version](https://poser.pugx.org/phan/phan/v/stable)](https://packagist.org/packages/phan/phan)
 
 ## From a Docker Image
 
