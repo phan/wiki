@@ -17,7 +17,7 @@ Phan depends on [PHP](http://php.net/) version 7 or greater and [php-ast](https:
 
 If you don't have a version of PHP 7 installed, you can grab a php7dev Vagrant image or one of the many Docker builds out there.
 
-To compile [php-ast](https://github.com/nikic/php-ast): Something along these lines should do it ([Alternate instructions](https://github.com/nikic/php-ast#installation):
+To compile [php-ast](https://github.com/nikic/php-ast): Something along these lines should do it ([Alternate instructions](https://github.com/nikic/php-ast#installation)):
 
 ```sh
 pecl install ast-0.1.6
@@ -76,7 +76,7 @@ You should now be able to run `./test` to make sure Phan is working correctly, a
 To run Phan from a Phar package, you can download the Phar and run it.
 
 ```sh
-curl -L https://github.com/phan/phan/releases/download/0.8.8/phan.phar -o phan.phar;
+curl -L https://github.com/phan/phan/releases/download/0.8.9/phan.phar -o phan.phar;
 ```
 
 You'll now be able to run Phan via
@@ -85,7 +85,7 @@ You'll now be able to run Phan via
 php phan.phar
 ```
 
-As of this writing, [0.10.0](https://github.com/phan/phan/releases/tag/0.10.0) is the latest release. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if thats still the latest, as I'll probably forget to update this page with subsequent releases.
+As of this writing, [0.10.1](https://github.com/phan/phan/releases/tag/0.10.1) is the latest release. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if thats still the latest, as I'll probably forget to update this page with subsequent releases.
 
 ## From a Docker Image
 
