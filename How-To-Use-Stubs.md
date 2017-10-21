@@ -2,6 +2,11 @@ From time to time you may encounter situations where there are entities that are
 
 # Stubs
 
+These are regular PHP files for Phan to parse but not analyze. They can be used for the following purposes:
+
+- Stub third party PHP libraries that Phan can't analyze, or which have incorrect PHP doc
+- Stub PHP modules that are unavailable ([Internal Stubs](https://github.com/phan/phan/wiki/How-To-Use-Stubs#internal-stubs) may be a better approach)
+
 Creating stubs that Phan has access to is pretty straight forward.
 
 1. Create a directory `.phan/stubs` ([like Phan's](https://github.com/phan/phan/tree/master/.phan/stubs)).
@@ -11,6 +16,15 @@ Creating stubs that Phan has access to is pretty straight forward.
 JetBrains makes a very large number of stubs available at [github.com/JetBrains/phpstorm-stubs](https://github.com/JetBrains/phpstorm-stubs/tree/master/standard). You may wish to consider using some of these for classes you need access to.
 
 # Internal Stubs
+
+Internal stubs (`'autoload_internal_extension_signatures' => [...]`) were introduced in Phan 0.10.1+/0.8.9+.
+Your `.phan/config.php` can point to parseable PHP files that will be used
+if the requested PHP extension(i.e. module) (xdebug, memcached, etc.) isn't available in the PHP binary used to run Phan.
+
+- Phan will use the real signature (properties, constants, methods, param counts, return types and *real* param types (Frequently empty for modules), etc.) from the `.phan_php` file instead of what it would have retrieved via PHP's Reflection APIs.
+- When using `autoload_internal_extension_signatures`, Phan will act almost identically to how it would behave if the extension were installed and enabled.
+  Phan will use it's own information about what the internal functions, classes, and methods **should** have as union types (for params, return types, properties, etc.). 
+  (Phan will also emit the same issue types, emitting `PhanParamTooManyInternal` instead of `PhanParamTooMany`, etc.) 
 
 A common use case is to have Phan analyze a codebase as if various extensions are present (e.g. `xdebug`). The stubs contain almost the same info as the real extensions would: The real (Reflection) class, function, and constant signatures.
 
@@ -37,19 +51,22 @@ You may or may not have success with stubs from [github.com/JetBrains/phpstorm-s
 
 ## Using Internal Stubs in a project
 
-Add something 
+Add a `'autoload_internal_extension_signatures' => ['extension_name' => 'path/to/stubs/for/extension_name.phan_php']` entry to your .phan/config.php
 
 ```php
     // You can put relative paths to internal stubs in this config option.
-    // Phan will continue using its detailed type annotations, but load the constants, classes, functions, and classes (and their Reflection types) from these stub files (doubling as valid php files).
+    // Phan will continue using its detailed type annotations,
+    // but load the constants, classes, functions, and classes (and their Reflection types)
+    // from these stub files (doubling as valid php files).
     // Use a different extension from php (and preferably a separate folder)
     // to avoid accidentally parsing these as PHP (includes projects depending on this).
     // The 'mkstubs' script can be used to generate your own stubs (compatible with php 7.0+ right now)
     // Note: The array key must be the same as the extension name reported by `php -m`,
     // so that phan can skip loading the stubs if the extension is actually available.
     'autoload_internal_extension_signatures' => [
-         // Xdebug stubs are bundled with Phan 0.10.1+/0.8.9+ because Phan disables xdebug by default.
-        'xdebug'  => 'vendor/phan/phan/.phan/internal_stubs/xdebug.phan_php',
-        'memcached'   => '.phan/your_internal_stubs_folder_name/memcached.phan_php',
+         // Xdebug stubs are bundled with Phan 0.10.1+/0.8.9+ for usage,
+         // because Phan disables xdebug by default.
+        'xdebug'     => 'vendor/phan/phan/.phan/internal_stubs/xdebug.phan_php',
+        'memcached'  => '.phan/your_internal_stubs_folder_name/memcached.phan_php',
     ],
 ```
