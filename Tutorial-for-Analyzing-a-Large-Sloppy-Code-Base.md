@@ -19,7 +19,7 @@ The process of starting analysis looks like
 
 The first step is to get Phan running. Take a look at [Getting Started](https://github.com/phan/phan/wiki/Getting-Started) for help getting PHP7, the php-ast module and Phan installed.
 
-If you have PHP version 7 installed with the [php-ast](https://github.com/nikic/php-ast) module and your project uses composer, you can just run `composer require --dev "etsy/phan:dev-master"` to add Phan to your project with the binary available in `vendor/bin/phan`.
+If you have PHP version 7 installed with the [php-ast](https://github.com/nikic/php-ast) module and your project uses composer, you can just run `composer require --dev "phan/phan:dev-master"` to add Phan to your project with the binary available in `vendor/bin/phan`.
 
 ## Set Up Your Environment
 
@@ -194,9 +194,10 @@ Now that you've gotten rid of all of the false-positives and Phan is producing a
 You'll want to consider
 
 * Moving `minimum_severity` in your config from `10` (severe) to `5` (normal) or even `0` (low) if you love fixing bugs.
-* Set `backward_compatibility_checks` to `true` to find out how your PHP5 code is going to break in PHP7.
-* Set `null_casts_as_any_type` to `false` to find out what kind of madness your team has been up to.
-* Set `allow_missing_properties` to `false` to see all of the undefined constants you've been writing to all these years.
-* Set `quick_mode` to `false` to re-analyze each method on each method call given the input types you're sending it.
+* Setting `backward_compatibility_checks` to `true` to find out how your PHP5 code is going to break in PHP7.
+* Setting `null_casts_as_any_type` to `false` to find out what kind of madness your team has been up to.
+* Setting `allow_missing_properties` to `false` to see all of the undefined properties you've been writing to all these years.
+* Setting `quick_mode` to `false` to re-analyze each method on each method call given the input types you're sending it.
+* [Adding some of Phan's plugins](https://github.com/phan/phan/tree/master/.phan/plugins) to your `.phan/config.php`
 
 Setting these values one at a time and fixing all issues you find will make the process less overwhelming.
