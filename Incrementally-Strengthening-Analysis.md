@@ -81,7 +81,6 @@ return [
     // E.g. ['int' => ['float', 'string'], 'float' => ['int'], 'string' => ['int'], 'null' => ['string']]
     // allows casting null to a string, but not vice versa.
     // (subset of scalar_implicit_cast)
-    // (Requires 0.9.3+)
     'scalar_implicit_partial' => [],
 
     // If true, seemingly undeclared variables in the global
@@ -198,7 +197,7 @@ return [
     // will be emitted by Phan.
     'whitelist_issue_types' => [
         'PhanCompatiblePHP7',  // This only checks for **syntax** where the parsing may have changed. This check is enabled by `backward_compatibility_checks`
-        'PhanDeprecatedFunctionInternal',  // Warns about a small number of functions deprecated in 7.0 and later. Requires phan 0.9.2
+        'PhanDeprecatedFunctionInternal',  // Warns about a small number of functions deprecated in 7.0 and later.
         'PhanUndeclaredFunction',  // Check for removed functions such as split() that were deprecated in php 5.x and removed in php 7.0.
     ],
 ];
