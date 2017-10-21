@@ -5,9 +5,9 @@ Description
 -----------
 
 Daemon mode lets you use Phan from your editor or IDE to detect Phan issues on a single file, with much lower latency (< 0.3 seconds).
-This is useful on large codebases with hundreds or thousands of PHP files, where the full analysis would take minutes to run.
+This is useful on large codebases with hundreds or thousands of PHP files, where the full analysis could take minutes to run.
 
-Daemon mode requires Phan 0.9.2+ or 0.8.4+. 
+Daemon mode requires Phan 0.10.0+ or 0.9.2+ or 0.8.4+. 
 
 Daemon mode was first introduced to Phan in https://github.com/phan/phan/pull/563
 
@@ -41,7 +41,7 @@ It's also recommended to install Phan in a directory outside of your project whe
 Requirements
 ------------
 
-1. Phan 0.9.2+/0.8.4+
+1. Phan 0.10.0+/0.9.2+/0.8.4+
 2. Unix(e.g. Mac) or Linux with pcntl enabled, to run the daemon.
 
 To run the Phan daemon, you must have the pcntl extension installed (Requires that extension to be installed and enabled in PHP).
@@ -115,8 +115,8 @@ Long term, https://github.com/Microsoft/language-server-protocol seems to make m
 Prerequisites:
 
 1. The project has a `.phan/config.php` file
-2. The phan daemon is started inside of the root of that project (`path/to/phan --daemonize-tcp-port 4846 --quick`)
-   (It output a message to the console saying that it is accepting connections on port 4846)
+2. The Phan daemon is started inside of the root of that project (`path/to/phan --daemonize-tcp-port 4846 --quick`)
+   (When the daemon is done setting up, it output a message to the console saying that it is accepting connections on port 4846)
 
 ```bash
 # 1. Edit a file to include a call to an undefined function, etc. as a sanity check
@@ -133,7 +133,7 @@ Prerequisites:
 ### Known bugs and limitations
 
 Occasionally, daemon mode will lose track of definitions for classes/methods, e.g. when switching between git checkouts.
-In that case, stop the phan daemon and start it again.
+In that case, stop the Phan daemon and start it again.
 
 The Phan config won't be reloaded if it changes.
 
