@@ -10,8 +10,8 @@ Phan supports the following doc block annotations.
 * [`@internal`](#internal)
 * [`@suppress <issue_type>`](#suppress)
 * [`@property <union_type> <variable_name>`](#property)
-* [`@override`](#override) (Since 0.9.3/0.8.5)
-* [`@phan-closure-scope`](#override) (Since 0.9.3/0.8.5)
+* [`@override`](#override) (Since 0.10.0/0.8.5)
+* [`@phan-closure-scope`](#override) (Since 0.10.0/0.8.5)
 
 Additionally, Phan supports [inline type checks](#inline-type-checks), and can analyze `assert` statements and the conditionals of `if` statements and ternary operators.
 
@@ -95,7 +95,6 @@ class C {
 ## @property
 
 The `@property <union_type> $prop_name` annotation describes a magic property of a class.
-Partial support for this annotation was added in phan 0.9.1.
 
 ```php
 /** @property int $magic_prop comment can go here */
@@ -116,7 +115,7 @@ Phan does not yet enforce that `__get()`/`__set()` exist if a class/trait/interf
 ## @method
 
 The `@method <union_type> <method_name>(<union_type> <param1_name>)` annotation describes a magic method of a class.
-Partial support for this annotation was added in phan 0.9.2/0.8.4.
+Partial support for this annotation was added in phan 0.10.0/0.8.4.
 
 ```php
 /**
@@ -280,7 +279,7 @@ This will bite you and I apologize.
 
 ## @override
 
-Supported in Phan 0.9.3+/0.8.5+
+Supported in Phan 0.10.0+/0.8.5+
 
 Phan will check places where `@override` is mentioned to see if the method is actually overriding a definition or implementing an abstract method (Or a phpdoc `@method`) in an ancestor class/trait/interface.
 
@@ -309,7 +308,7 @@ class SubClass extends BaseClass {
 
 ## @phan-closure-scope
 
-Supported in Phan 0.9.3+/0.8.5+
+Supported in Phan 0.10.0+/0.8.5+
 
 This can be used when a closure is intended to be bound to a class that is different from the class in which it was declared.
 This helps avoid false positive warnings about PhanUndeclaredProperty, etc.
