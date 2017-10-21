@@ -260,3 +260,5 @@ Once you get a clean run for a new issue type and can enable the analysis, you'l
 As you start playing around with figuring out the right strength for Phan, you'll end up running Phan over and over. A speedy analysis will help you to prevent losing your mind.
 
 The easiest way to speed up Phan is to use the `--processes <number>` command-line option to choose how many CPUs the analysis phase runs on. A good number of processes to use is one or two less than the available number of cores on your machine, so long as you have a good amount of available memory.
+
+See [[Speeding Up Phan Analysis]] for additional ways to speed up Phan analysis.
