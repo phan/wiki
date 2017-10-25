@@ -24,7 +24,8 @@ See https://github.com/phan/phan/wiki/Annotating-Your-Source-Code#doc-blocks (Co
 
 ### A crash or error with a stack trace has occurred
 
-Install dev-master (e.g. from composer) and see if the issue still there.
+Install dev-master (e.g. from composer) and see if the issue is still there.
+
 If the issue continues to happen on dev-master, then check for similar issues, and file an new issue (With stack trace and any information needed to reproduce, such as code snippets and related config settings) or comment on the similar issue.
 
 ### One of Phan's function or method signatures have incorrect parameter types or return types
@@ -41,16 +42,16 @@ The PHP version used to invoke Phan must be 7.1 or newer to parse php 7.1 code w
 
 ### A variadic function with phpdoc has unexpected types
 
-The type Phan reads for `@param` before `...` is the type of individual elements that are passed by the caller, not the type within the function body. The below is an example of how a function should be documented.
+The union type Phan reads for `@param` before `...` is the union type of individual elements that are passed by the caller, not the type within the function body. The below is an example of how a function should be documented.
 
 ```php
-/** @param string ...$args */
+/** @param string ...$args (should be string, not string[] or array) */
 function my_function(string ...$args) {}
 my_function('arg1', 'other_arg');
 ```
 
-See https://github.com/phpDocumentor/ReflectionDocBlock/blob/14f9edf1ae14d6ce417afb05a9ed37d7b3cc341e/tests/unit/DocBlock/Tags/ParamTest.php#L152-L168 - the phpdocumentor2 product does the same thing. It parses the individual element types as string from `@param string ...$varName`
+See https://github.com/phpDocumentor/ReflectionDocBlock/blob/14f9edf1ae14d6ce417afb05a9ed37d7b3cc341e/tests/unit/DocBlock/Tags/ParamTest.php#L152-L168 - the phpdocumentor2 product does the same thing. It parses the individual element types as `string` from `@param string ...$varName`
 
-### Different Issue Sets On Different Numbers of CPUs
+### There are Different Issue Sets On Different Numbers of CPUs
 
 See [[Different Issue Sets On Different Numbers of CPUs]]
