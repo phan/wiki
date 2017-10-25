@@ -47,6 +47,9 @@ Daemon mode lets you request Phan results from your editor or IDE to detect Phan
 
 ## Frequently Asked Questions
 
+**[[Frequently Asked Questions]]**<br/>
+A document with answers to common issues encountered when getting started with Phan.
+
 **[[Different Issue Sets On Different Numbers of CPUs]]**<br/>
 A document describing issues that may be seen when running Phan on more than one core, and workarounds.
 
