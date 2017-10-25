@@ -6,6 +6,7 @@
 - [One of Phan's function or method signatures have incorrect parameter types or return types](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#one-of-phans-function-or-method-signatures-have-incorrect-parameter-types-or-return-types)
 - [PHP 7.1 features such as nullable types aren't being parsed](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#php-71-features-such-as-nullable-types-arent-being-parsed)
 - [A variadic function with phpdoc has unexpected types](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#a-variadic-function-with-phpdoc-has-unexpected-types)
+- [[Different Issue Sets On Different Numbers of CPUs]]
 
 ## Common Questions
 
@@ -49,3 +50,7 @@ my_function('arg1', 'other_arg');
 ```
 
 See https://github.com/phpDocumentor/ReflectionDocBlock/blob/14f9edf1ae14d6ce417afb05a9ed37d7b3cc341e/tests/unit/DocBlock/Tags/ParamTest.php#L152-L168 - the phpdocumentor2 product does the same thing. It parses the individual element types as string from `@param string ...$varName`
+
+### Different Issue Sets On Different Numbers of CPUs
+
+See [[Different Issue Sets On Different Numbers of CPUs]]
