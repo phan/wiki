@@ -1,7 +1,7 @@
 ## Table of Contents
 
 - [Phan says that an internal class or function (e.g. xdebug_is_enabled, Soap, memcached, etc.) is undefined](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#phan-says-that-an-internal-class-or-function-eg-xdebug_is_enabled-soap-memcached-etc-is-undefined)
-- [Phan isn't picking up my project's comments](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#phan-isnt-picking-up-my-projects-comments)
+- [Phan isn't picking up my project's doc comments](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#phan-isnt-picking-up-my-projects-doc-comments)
 - [A crash or error with a stack trace has occurred](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#a-crash-or-error-with-a-stack-trace-has-occurred)
 - [One of Phan's function or method signatures have incorrect parameter types or return types](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#one-of-phans-function-or-method-signatures-have-incorrect-parameter-types-or-return-types)
 - [PHP 7.1 features such as nullable types aren't being parsed](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#php-71-features-such-as-nullable-types-arent-being-parsed)
@@ -18,7 +18,7 @@ Phan 0.10.1 supports [internal stubs](https://github.com/phan/phan/wiki/How-To-U
 
 Phan automatically disables xdebug for performance reasons. If your project uses xdebug, enable the corresponding [internal stubs](https://github.com/phan/phan/wiki/How-To-Use-Stubs#internal-stubs) in your project's `.phan/config.php`.
 
-### Phan isn't picking up my project's comments
+### Phan isn't picking up my project's doc comments
 
 See https://github.com/phan/phan/wiki/Annotating-Your-Source-Code#doc-blocks (Common issues: Phan does not support inline doc comments, doc comments must begin with `/**`, etc)
 
