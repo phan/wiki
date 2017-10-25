@@ -14,7 +14,7 @@
 
 For the best results, run Phan with the same extensions (and same extension versions) installed and enabled as you would in the project being enabled.
 
-Phan 0.10.1 supports [internal stubs](https://github.com/phan/phan/wiki/How-To-Use-Stubs#internal-stubs). [Regular stubs](https://github.com/phan/phan/wiki/How-To-Use-Stubs#stubs) are another option.
+Phan 0.10.1 supports [internal stubs](https://github.com/phan/phan/wiki/How-To-Use-Stubs#internal-stubs). [Regular stubs](https://github.com/phan/phan/wiki/How-To-Use-Stubs#stubs) are another option for older Phan releases.
 
 Phan automatically disables xdebug for performance reasons. If your project uses xdebug, enable the corresponding [internal stubs](https://github.com/phan/phan/wiki/How-To-Use-Stubs#internal-stubs) in your project's `.phan/config.php`.
 
