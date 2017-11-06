@@ -6,7 +6,7 @@
 - [PHP 7.1 features such as nullable types aren't being parsed](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#php-71-features-such-as-nullable-types-arent-being-parsed)
 - [A variadic function with phpdoc has unexpected types](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#a-variadic-function-with-phpdoc-has-unexpected-types)
 - There are [[Different Issue Sets On Different Numbers of CPUs]]
-- **[How to file a bug report for a crash, error, or incorrect analysis](https://github.com/phan/phan/wiki/Frequently-Asked-Questions/_edit#how-to-file-a-bug-report-for-a-crash-error-or-incorrect-analysis)**
+- **[How to file a bug report for a crash, error, or incorrect analysis](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#how-to-file-a-bug-report-for-a-crash-error-or-incorrect-analysis)**
 
 ## Common Questions
 
