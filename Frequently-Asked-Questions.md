@@ -2,11 +2,11 @@
 
 - [Phan says that an internal class or function (e.g. xdebug_is_enabled, Soap, memcached, etc.) is undefined](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#phan-says-that-an-internal-class-or-function-eg-xdebug_is_enabled-soap-memcached-etc-is-undefined)
 - [Phan isn't picking up my project's doc comments](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#phan-isnt-picking-up-my-projects-doc-comments)
-- [A crash or error with a stack trace has occurred](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#a-crash-or-error-with-a-stack-trace-has-occurred)
 - [One of Phan's function or method signatures have incorrect parameter types or return types](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#one-of-phans-function-or-method-signatures-have-incorrect-parameter-types-or-return-types)
 - [PHP 7.1 features such as nullable types aren't being parsed](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#php-71-features-such-as-nullable-types-arent-being-parsed)
 - [A variadic function with phpdoc has unexpected types](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#a-variadic-function-with-phpdoc-has-unexpected-types)
 - There are [[Different Issue Sets On Different Numbers of CPUs]]
+- **[How to file a bug report for a crash, error, or incorrect analysis](https://github.com/phan/phan/wiki/Frequently-Asked-Questions/_edit#how-to-file-a-bug-report-for-a-crash-error-or-incorrect-analysis)**
 
 ## Common Questions
 
@@ -21,12 +21,6 @@ Phan automatically disables xdebug for performance reasons. If your project uses
 ### Phan isn't picking up my project's doc comments
 
 See https://github.com/phan/phan/wiki/Annotating-Your-Source-Code#doc-blocks (Common issues: Phan does not support inline doc comments, doc comments must begin with `/**`, etc)
-
-### A crash or error with a stack trace has occurred
-
-Install dev-master (e.g. from composer) and see if the issue is still there.
-
-If the issue continues to happen on dev-master, then check for similar issues, and file an new issue (With stack trace and any information needed to reproduce, such as code snippets and related config settings) or comment on the similar issue.
 
 ### One of Phan's function or method signatures have incorrect parameter types or return types
 
@@ -55,3 +49,16 @@ See https://github.com/phpDocumentor/ReflectionDocBlock/blob/14f9edf1ae14d6ce417
 ### There are Different Issue Sets On Different Numbers of CPUs
 
 See [[Different Issue Sets On Different Numbers of CPUs]]
+
+### How to file a bug report for a crash, error, or incorrect analysis
+
+Install `dev-master` of Phan (e.g. from composer) and see if the issue still occurs. It may have been fixed recently.
+
+If the issue continues to happen on `dev-master`, then:
+
+1. Check for similar issues. If there is anything new to add, add that.
+2. If there are no similar issues, then file an new issue with any of the relevant information:
+   - stack trace for a crash
+   - Code snippets (or a link to an affected project, if possible) and config settings (if any) needed to reproduce the issue.
+   - Phan version used.
+   - Observed behavior and expected behavior.
