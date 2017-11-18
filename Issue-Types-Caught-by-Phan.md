@@ -6,7 +6,7 @@ Please add example code, fix outdated info and add any remedies to the issues be
 
 In addition to the below issue types, there are [additional issue types that can be detected by Phan's plugins](https://github.com/phan/phan/tree/master/.phan/plugins#plugins).
 
-[![Gitter](https://badges.gitter.im/etsy/phan.svg)](https://gitter.im/etsy/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://badges.gitter.im/phan/phan.svg)](https://gitter.im/phan/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # AccessError
 
@@ -1231,7 +1231,7 @@ Expression is unanalyzable or feature is unimplemented. Please create an issue a
 
 Please do file an issue or otherwise get in touch if you get one of these (or an uncaught exception, or anything else thats shitty).
 
-[![Gitter](https://badges.gitter.im/etsy/phan.svg)](https://gitter.im/etsy/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://badges.gitter.im/phan/phan.svg)](https://gitter.im/phan/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 
 ## PhanUndeclaredClass

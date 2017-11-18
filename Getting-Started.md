@@ -4,7 +4,7 @@ To get started, choose [a method for getting Phan running on your system](https:
 
 If you're having trouble getting Phan up and running, get in touch. If it's running but you're not sure of why some of the issues emitted by Phan are there, see [[Frequently Asked Questions]].
 
-[![Gitter](https://badges.gitter.im/etsy/phan.svg)](https://gitter.im/etsy/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://badges.gitter.im/phan/phan.svg)](https://gitter.im/phan/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 I should be able to respond fairly quickly during US east coast working hours.
 

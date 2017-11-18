@@ -2,7 +2,7 @@ A large mature PHP code base is very unlikely to pass analysis cleanly. This tut
 
 Edits to this page are very welcome. Feel free to get in touch if you have any questions.
 
-[![Gitter](https://badges.gitter.im/etsy/phan.svg)](https://gitter.im/etsy/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://badges.gitter.im/phan/phan.svg)](https://gitter.im/phan/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # Getting Started
 
