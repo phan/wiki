@@ -118,7 +118,7 @@ do
 done
 ```
 
-You can then run `./.phan/bin/mkfilelist.sh > files`. Take a look at [Phan's file list generator](https://github.com/phan/phan/blob/master/.phan/bin/mkfilelist) to see an example.
+You can then run `./.phan/bin/mkfilelist > files`. Take a look at [Phan's file list generator](https://github.com/phan/phan/blob/master/.phan/bin/mkfilelist) to see an example.
 
 With this, you can now run `phan -f files` to run an analysis of your code base.
 
