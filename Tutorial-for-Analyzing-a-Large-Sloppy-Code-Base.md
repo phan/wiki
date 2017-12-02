@@ -103,19 +103,28 @@ One way to generate this file list would be to create a file `.phan/bin/mkfileli
 
 if [[ -z $WORKSPACE ]]
 then
-    export WORKSPACE=.
+    export WORKSPACE=~/path/to/code/src
 fi
+
 cd $WORKSPACE
+
+JUNK=/var/tmp/junk.txt
 
 for dir in \
     src \
-    tests/Phan \
-    vendor/phpunit/phpunit/src vendor/symfony/console
+    vendor/path/to/project
 do
     if [ -d "$dir" ]; then
-        find $dir -name '*.php'
+        find $dir -name '*.php' >> $JUNK
     fi
 done
+
+cat $JUNK | \
+    grep -v "junk_file.php" | \
+    grep -v "junk/directory.php" | \
+    awk '!x[$0]++'
+
+rm $JUNK
 ```
 
 You can then run `./.phan/bin/mkfilelist > files`. Take a look at [Phan's file list generator](https://github.com/phan/phan/blob/master/.phan/bin/mkfilelist) to see an example.
