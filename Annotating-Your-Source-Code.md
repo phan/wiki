@@ -11,7 +11,7 @@ Phan supports the following doc block annotations.
 * [`@suppress <issue_type>`](#suppress)
 * [`@property <union_type> <variable_name>`](#property)
 * [`@override`](#override) (Since 0.10.0/0.8.5)
-* [`@phan-closure-scope`](#override) (Since 0.10.0/0.8.5)
+* [`@phan-closure-scope`](#phan-closure-scope) (Since 0.10.0/0.8.5)
 
 Additionally, Phan supports [inline type checks](#inline-type-checks), and can analyze `assert` statements and the conditionals of `if` statements and ternary operators.
 
