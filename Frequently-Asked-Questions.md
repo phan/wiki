@@ -1,6 +1,6 @@
 ## Table of Contents
 
-- [Phan says that an internal class or function (e.g. xdebug_is_enabled, Soap, memcached, etc.) is undefined](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#phan-says-that-an-internal-class-or-function-eg-xdebug_is_enabled-soap-memcached-etc-is-undefined)
+- [Phan says that an internal class, constant, or function (e.g. xdebug_is_enabled, Soap, memcached, etc.) is undefined](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#phan-says-that-an-internal-class-constant-or-function-eg-xdebug_is_enabled-soap-memcached-etc-is-undefined)
 - [Phan isn't picking up my project's doc comments](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#phan-isnt-picking-up-my-projects-doc-comments)
 - [One of Phan's function or method signatures have incorrect parameter types or return types](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#one-of-phans-function-or-method-signatures-have-incorrect-parameter-types-or-return-types)
 - [PHP 7.1 features such as nullable types aren't being parsed](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#php-71-features-such-as-nullable-types-arent-being-parsed)
@@ -10,7 +10,7 @@
 
 ## Common Questions
 
-### Phan says that an internal class or function (e.g. xdebug_is_enabled, Soap, memcached, etc.) is undefined
+### Phan says that an internal class, constant, or function (e.g. xdebug_is_enabled, Soap, Memcached, etc.) is undefined
 
 For the best results, run Phan with the same extensions (and same extension versions) installed and enabled as you would in the project being enabled.
 
