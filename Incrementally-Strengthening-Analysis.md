@@ -143,7 +143,7 @@ class C extends B {
 print (new C)->g('property' . $undeclared_global) . "\n";
 ```
 
-[PHP will handle that code without failing](https://3v4l.org/q2WM6), so perhaps its not the most important thing to focus on initially. Once you've taken care of the most critical issues in your code base, you can start incrementally strengthening Phan by updating the configuration values to get to the point where the above code would cause the following issues to be emitted.
+[PHP will handle that code without failing](https://3v4l.org/q2WM6), so perhaps it's not the most important thing to focus on initially. Once you've taken care of the most critical issues in your code base, you can start incrementally strengthening Phan by updating the configuration values to get to the point where the above code would cause the following issues to be emitted.
 
 ```
 passes.php:11 PhanTypeMismatchReturn Returning type null but g() is declared to return string
