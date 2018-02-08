@@ -161,7 +161,7 @@ function g() {}
 
 ## @internal
 
-The `@internal` annotation marks an element (such as a constant, function, class, class constant, property or method) as internal to the package in which its defined.
+The `@internal` annotation marks an element (such as a constant, function, class, class constant, property or method) as internal to the package in which it's defined.
 
 Any element marked as `@internal` and accessed outside of its exact namespace (disallowing both child and parent namespaces) will result in Phan emitting an issue.
 
@@ -390,7 +390,7 @@ Similarly, a single asterisk at the beginning won't cut it. This will burn you a
 function f() {}
 ```
 
-In the case below, we have a valid comment type, but its not on a class, constant, property, method or function, so it will not be read.
+In the case below, we have a valid comment type, but it's not on a class, constant, property, method or function, so it won't be read.
 
 ```php
 function f() {
