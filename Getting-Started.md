@@ -162,14 +162,21 @@ return [
 
 Take a look at [[Incrementally Strengthening Analysis]] for some tips on how to start with a weak analysis and slowly increase the strictness as your code becomes better equipped to be analyzed.
 
+A complete list of configuration options and their default values can be found at [`src/Phan/Config.php`](https://github.com/phan/phan/blob/0.10.4/src/Phan/Config.php#L65).
+
+Also see Phan's own [`.phan/config.php`](https://github.com/phan/phan/blob/master/.phan/config.php) for the config Phan uses to analyze itself.
+
 # Running Phan in Continuous Integration
 
 This assumes you have set up `.phan/config.php` in the root directory of your git project.
 
-Example Travis configuration: [php-parser-to-php-ast (simple)](https://github.com/TysonAndre/php-parser-to-php-ast/blob/master/.travis.yml), [Phan's own configuration (Runs self test separately)](https://github.com/phan/phan/blob/master/.travis.yml)
+Phan will exit with a non-zero exit code if 1 or more errors are detected (or if Phan failed to run).
 
-Example Appveyor (Windows) configuration: [php-parser-to-php-ast (simple)](https://github.com/TysonAndre/php-parser-to-php-ast/blob/master/.travis.yml), [Phan's own configuration](https://github.com/phan/phan/blob/master/.travis.yml)
+Many Continuous integration tools can be used to detect that exit code (And/or parse the generated report file) and cause the build to fail. A list of several examples is below:
 
-Jenkins (Enterprise): Similar to the above. I've found that the pylint output formatter works well with Jenkins for generating a Violations view (see [issue #184](https://github.com/phan/phan/issues/184)).
+- Travis: Example configurations: [for php-parser-to-php-ast (simple)](https://github.com/TysonAndre/php-parser-to-php-ast/blob/master/.travis.yml), [for phan/phan (Runs self test as part of a shell script)](https://github.com/phan/phan/blob/master/.travis.yml)
 
-Phan will exit with a non-zero exit code if 1 or more errors are detected (or if Phan failed to run), which will cause a build failure in the mentioned Continuous Integration tools.
+- Appveyor (Windows): Example configurations: [php-parser-to-php-ast (simple)](https://github.com/TysonAndre/php-parser-to-php-ast/blob/master/.travis.yml), [Phan's own configuration](https://github.com/phan/phan/blob/0.10.4/appveyor.yml#L85)
+
+- Jenkins (Enterprise): Similar to other build tools. I've found that the pylint output formatter works well with Jenkins for generating a Violations view (see [issue #184](https://github.com/phan/phan/issues/184)).
+
