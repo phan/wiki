@@ -291,7 +291,6 @@ class None extends Option
     public function get()
     {
         throw new \Exception("Cannot call get on None");
-        return null;
     }
 
     /**
