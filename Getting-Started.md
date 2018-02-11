@@ -6,14 +6,14 @@ If you're having trouble getting Phan up and running, get in touch. If it's runn
 
 [![Gitter](https://badges.gitter.im/phan/phan.svg)](https://gitter.im/phan/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-I should be able to respond fairly quickly during US east coast working hours.
+Maintainers should be able to respond fairly quickly during US east coast/west coast working hours.
 
 # Installing Phan
 
 
 ## Installing Dependencies
 
-Phan depends on [PHP](http://php.net/) version 7 or greater and [php-ast](https://github.com/nikic/php-ast) by [Nikita Popov](https://github.com/nikic).
+Phan depends on [PHP](http://php.net/) version 7 or greater and [php-ast](https://github.com/nikic/php-ast) 0.1.5+ by [Nikita Popov](https://github.com/nikic).
 
 If you don't have a version of PHP 7 installed, you can grab a php7dev Vagrant image or one of the many Docker builds out there.
 
@@ -63,8 +63,8 @@ Before you begin, you'll want to make sure you have PHP version 7+ with the [php
 From there, you can clone the Phan source and use composer to install its dependencies.
 
 ```sh
-git clone https://github.com/phan/phan.git;
-composer install;
+git clone https://github.com/phan/phan.git
+composer install
 ```
 
 *NOTE:* If you're running on PHP version 7.0.x and run into problems, you may wish to use the [0.8 branch of Phan](https://github.com/phan/phan/tree/0.8) (`git checkout 0.8`).
@@ -76,7 +76,7 @@ You should now be able to run `./test` to make sure Phan is working correctly, a
 To run Phan from a Phar package, you can download the Phar and run it.
 
 ```sh
-curl -L https://github.com/phan/phan/releases/download/0.8.9/phan.phar -o phan.phar;
+curl -L https://github.com/phan/phan/releases/download/0.10.4/phan.phar -o phan.phar;
 ```
 
 You'll now be able to run Phan via
@@ -85,9 +85,9 @@ You'll now be able to run Phan via
 php phan.phar
 ```
 
-When this was last updated, [0.10.1](https://github.com/phan/phan/releases/tag/0.10.1) is the latest release. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if thats still the latest, as I'll probably forget to update this page with subsequent releases.
+When this was last updated, [0.10.4](https://github.com/phan/phan/releases/tag/0.10.4) was the latest release for PHP 7.1. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if that's still the latest, as I'll probably forget to update this page with subsequent releases.
 
-According to packagist, the latest stable version is [![Latest Stable Version](https://poser.pugx.org/phan/phan/v/stable)](https://packagist.org/packages/phan/phan)
+According to packagist, the latest stable version (for PHP 7.2) is [![Latest Stable Version](https://poser.pugx.org/phan/phan/v/stable)](https://packagist.org/packages/phan/phan)
 
 ## From a Docker Image
 
@@ -114,7 +114,7 @@ brew install php71 php71-ast phan
 Once that completes successfully, you can check that phan is working correctly by running
 
 ```sh
-phan -h
+phan --help
 ```
 
 # Creating a Config File
@@ -172,4 +172,4 @@ Example Appveyor (Windows) configuration: [php-parser-to-php-ast (simple)](https
 
 Jenkins (Enterprise): Similar to the above. I've found that the pylint output formatter works well with Jenkins for generating a Violations view (see [issue #184](https://github.com/phan/phan/issues/184)).
 
-The above configurations work because Phan will exit with a non-zero exit code if 1 or more errors are detected (or if phan failed to run).
+Phan will exit with a non-zero exit code if 1 or more errors are detected (or if Phan failed to run), which will cause a build failure in the mentioned Continuous Integration tools.
