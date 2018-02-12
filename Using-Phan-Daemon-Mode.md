@@ -4,7 +4,7 @@ Introduction
 Description
 -----------
 
-Daemon mode lets you use Phan from your editor or IDE to detect Phan issues on a single file, with much lower latency (< 0.3 seconds).
+Daemon mode lets you use Phan [from your editor or IDE](https://github.com/phan/phan/wiki/Editor-Support#editor-support) to detect Phan issues on a single file (or small set of files), with much lower latency than a full analysis (< 0.3 seconds).
 This is useful on large codebases with hundreds or thousands of PHP files, where the full analysis could take minutes to run.
 
 Daemon mode requires Phan 0.10.0+ or 0.9.2+ or 0.8.4+. 
