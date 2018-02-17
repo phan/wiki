@@ -36,7 +36,7 @@ Currently, there are clients of Daemon mode/Language Server Protocol for the fol
 
    [![Emacs flycheck example for Phan](https://cloud.githubusercontent.com/assets/1904430/23347092/85da0322-fc54-11e6-8fae-48b7a30d623b.png)](https://github.com/TysonAndre/flycheck-phanclient)
 
-3. VS Code (Using phan language server)
+3. VS Code (Using the Phan language server)
 
    (Supports Unix/Linux only)
 
@@ -44,11 +44,15 @@ Currently, there are clients of Daemon mode/Language Server Protocol for the fol
    
    [![VS Code example, including error tolerance](https://raw.githubusercontent.com/TysonAndre/vscode-php-phan/master/images/tolerant_parsing.png)](https://github.com/tysonandre/vscode-php-phan)
 
-   Phan's Language Server Protocol support is new and experimental, and has room for improvement.
+4. Neovim (Using the Phan language server. This is new and not very configurable yet)
 
-   This is based on Phan's [language server protocol support](https://github.com/phan/phan/issues/821)
+   (Supports Unix/Linux only)
 
-4. Other: Try to adapt an existing plugin or configuration which uses php's syntax checks (`--syntax-check`/`-l`) (e.g. `php -l [-f] path/to/file.php`) to use `phan_client` (`path/to/phan_client -l path/to/file.php`).
+   Unlike the editor Plugins using the daemon, this plugin will automatically start the Phan language server.
+   
+   [![VS Code example, including error tolerance](https://raw.githubusercontent.com/TysonAndre/LanguageServer-phan-neovim/master/images/tolerant_parsing.png)](https://github.com/tysonandre/LanguageServer-phan-neovim)
+
+5. Other: Try to adapt an existing plugin or configuration which uses php's syntax checks (`--syntax-check`/`-l`) (e.g. `php -l [-f] path/to/file.php`) to use `phan_client` (`path/to/phan_client -l path/to/file.php`).
 
    (The error message format from `./phan_client` is almost the same, and `phan_client` run and outputs PHP's syntax check before requesting the Phan analysis results.)
 
