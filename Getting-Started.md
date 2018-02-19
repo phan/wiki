@@ -102,6 +102,8 @@ Several docker images exist for Phan that include its dependencies (PHP version 
 
 [Code Climate](https://codeclimate.com/) provides a code analysis service that can be configured to run Phan on your code base. You can take a look at [the Code Climate Phan documentation here](https://docs.codeclimate.com/docs/phan).
 
+- **The docker image on Code Climate hasn't been updated in a long time, see [Issue #1342](https://github.com/phan/phan/issues/1342)**. Until it gets updated, an alternate method of running Phan is recommended.
+
 ## From Homebrew
 
 To get Phan running on a Mac with Homebrew, ensure that Homebrew is installed (see [http://brew.sh](http://brew.sh)) and then run the following.
