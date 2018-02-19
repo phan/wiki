@@ -185,12 +185,6 @@ return [
     // but aren't available in the codebase or the
     // internal functions used to run phan
     'ignore_undeclared_functions_with_known_signatures' => false,
-    
-    // By default, Phan will analyze all node types.
-    // If this config is set to false, Phan will do a
-    // shallower pass of the AST tree which will save
-    // time but may find less issues.
-    'should_visit_all_nodes' => true,
 
     // If empty, no filter against issues types will be applied.
     // If this white-list is non-empty, only issues within the list
