@@ -7,7 +7,7 @@ Description
 Daemon mode lets you use Phan [from your editor or IDE](https://github.com/phan/phan/wiki/Editor-Support#editor-support) to detect Phan issues on a single file (or small set of files), with much lower latency than a full analysis (< 0.3 seconds).
 This is useful on large codebases with hundreds or thousands of PHP files, where the full analysis could take minutes to run.
 
-Daemon mode requires Phan 0.10.0+ or 0.9.2+ or 0.8.4+. 
+Daemon mode requires Phan 0.10.0+ or 0.8.4+.
 
 Daemon mode was first introduced to Phan in https://github.com/phan/phan/pull/563
 
@@ -32,16 +32,16 @@ It's recommended to pass `--quick` when starting the daemon. Analysis would take
 
 It's also recommended to install Phan in a directory outside of your project when using daemon mode. If it's part of the project (or committed in version control), Phan may crash if you switch between branches, since a different branch may have a different Phan version or no Phan version. (or due to `git clean`)
 
-- Starting Phan daemon mode with an external phan installation can be done using the following commands: 
+- Starting Phan daemon mode with an external phan installation can be done using the following commands:
 
-  `cd /path/to/analyzed_project; /path/to/phan_checkout/phan --daemonize-tcp-port 4846 --quick` 
+  `cd /path/to/analyzed_project; /path/to/phan_checkout/phan --daemonize-tcp-port 4846 --quick`
 
   (Would need to have run `composer.phar install` in the external phan checkout first)
 
 Requirements
 ------------
 
-1. Phan 0.10.0+/0.9.2+/0.8.4+
+1. Phan 0.10.0+/0.8.4+
 2. Unix(e.g. Mac) or Linux with pcntl enabled, to run the daemon.
 
 To run the Phan daemon, you must have the pcntl extension installed (Requires that extension to be installed and enabled in PHP).
@@ -59,7 +59,7 @@ If Phan daemon mode is noticeably slow, then make sure that you're following all
 
 
 1. Start the daemon with `--quick`, optionally disable any plugins.
-   
+
    In non-quick mode, methods and classes from other files would also be analyzed, making the request take several times longer.
 2. Follow the steps from the wiki page [[Speeding up Phan Analysis]].
 
@@ -101,7 +101,7 @@ By default, `phan_client` uses port 4846, so the port flag is optional for the c
 If you plan to work on multiple PHP projects and use phan at the same time:
 
 - You may need to make changes to check which project this is in before passing `--daemonize-tcp-port <portnumber>` if you plan to work on multiple PHP projects
-     
+
   One way to do this is to make a copy of `phan_client` which would choose the port number based on the project path for you)
 
   Long term, something like `$HOME/.phan_client_config` may be introduced to support that use case (mapping folders for projects to the port number)
@@ -147,3 +147,5 @@ There is some caching done by the analysis mode, which would be hard to undo, an
 This approach has the best chance of working, without interfering with (or being accidentally broken by) the development of Phan's analysis implementation.
 
 This is similar to the reason why the sqlite3 database is no longer included.
+
+An upcoming release of phan will let daemon mode work without `pcntl`.

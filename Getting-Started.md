@@ -87,7 +87,7 @@ php phan.phar
 
 When this was last updated, [0.10.4](https://github.com/phan/phan/releases/tag/0.10.4) was the latest release for PHP 7.1. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if that's still the latest, as I'll probably forget to update this page with subsequent releases.
 
-According to packagist, the latest stable version (for PHP 7.2) is [![Latest Stable Version](https://poser.pugx.org/phan/phan/v/stable)](https://packagist.org/packages/phan/phan)
+According to packagist, the latest stable version (for PHP 7.2) is [![Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
 
 ## From a Docker Image
 

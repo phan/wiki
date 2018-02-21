@@ -4,7 +4,7 @@ Plugin code lives in your repo and is referenced from your phan config file, but
 
 # Plugin V2
 
-Phan 0.10.0+/0.9.3+/0.8.5+ support V2 of the plugin system. In V2, plugins were designed to be extensible and as efficient as possible, and would be invoked only where needed.
+Phan 0.10.0+/0.8.5+ support V2 of the plugin system. In V2, plugins were designed to be extensible and as efficient as possible, and would be invoked only where needed.
 The constant `\Phan\Config::PHAN_PLUGIN_VERSION` may optionally be used by plugin files designed for backwards compatibility.
 If it is `defined()`, then V2 of the plugin system is supported.
 `version_compare` may be used to check if the current plugin system is >= the version where a given `Capability` was introduced. 
@@ -73,7 +73,7 @@ or `$this->emitPluginIssue(CodeBase, Context, issue type, format string, [args..
 
 # Legacy
 
-The original plugin types will work in all known versions of Phan, and must be used for Phan <= 0.9.2/0.8.4, but won't be as efficient as V2 plugins.
+The original plugin types will work in all known versions of Phan, and must be used for Phan <= 0.8.4, but won't be as efficient as V2 plugins.
 
 ## Creating a Plugin (Legacy)
 
@@ -84,7 +84,7 @@ To create a plugin, you'll need to
 
 Phan contains an example plugin named [DemoLegacyPlugin](https://github.com/phan/phan/blob/master/.phan/plugins/DemoLegacyPlugin.php) that is referenced from [Phan's .phan/config.php file](https://github.com/phan/phan/blob/92552016b2d3c650f5c625a8f64a9db935a756d6/.phan/config.php#L117).
 
-A more meaningful real-world example is given in [DollarDollarPlugin](https://github.com/phan/phan/blob/0.9.2/.phan/plugins/DollarDollarPlugin.php) which checks to make sure there are no variable of the form `$$var` in Phan's code base.
+A more meaningful real-world example is given in [DollarDollarPlugin](https://github.com/phan/phan/blob/0.10.4/.phan/plugins/DollarDollarPlugin.php) which checks to make sure there are no variable of the form `$$var` in Phan's code base.
 
 ## How Plugins Work (Legacy)
 

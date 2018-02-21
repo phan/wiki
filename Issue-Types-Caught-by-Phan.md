@@ -87,8 +87,6 @@ print C1::$p;
 
 ## PhanAccessExtendsFinalClass
 
-(Added in 0.9.3-dev)
-
 This issue comes up when there is an attempt to extend a user-defined final class.
 
 ```
@@ -103,8 +101,6 @@ class A extends FinalClass {}
 ```
 
 ## PhanAccessExtendsFinalClassInternal
-
-(Added in 0.9.3-dev)
 
 This issue comes up when there is an attempt to extend an internal final class.
 
@@ -168,8 +164,6 @@ Cannot make non static method {METHOD}() static
 
 ## PhanAccessOverridesFinalMethod
 
-(Added in 0.9.3-dev)
-
 This issue is emitted when a class attempts to override an inherited final method.
 
 ```
@@ -178,8 +172,6 @@ Declaration of method {METHOD} overrides final method {METHOD} defined in {FILE}
 
 ## PhanAccessOverridesFinalMethodInternal
 
-(Added in 0.9.3-dev)
-
 This issue is emitted when a class attempts to override an inherited final method of an internal class.
 
 ```
@@ -187,8 +179,6 @@ Declaration of method {METHOD} overrides final internal method {METHOD}
 ```
 
 ## PhanAccessOverridesFinalMethodPHPDoc
-
-(Added in 0.9.3-dev)
 
 This issue is emitted when a class declares a PHPDoc `@method` tag, despite having already inherited a final method from a base class.
 
@@ -211,8 +201,6 @@ Cannot access internal property {PROPERTY} of namespace {NAMESPACE} defined at {
 ```
 
 ## PhanAccessPropertyNonStaticAsStatic
-
-(Added in 0.9.3-dev)
 
 This issue comes up when there is an attempt to access a non-static(instance) property as if it were a static property.
 
@@ -439,7 +427,7 @@ $a;
 
 ## PhanUnreferencedClass
 
-Similar issues exist for PhanUnreferencedProperty, PhanUnreferencedConstant, PhanUnreferencedMethod, and PhanUnreferencedFunction(split out of PhanUnreferencedMethod in 0.9.3-dev)
+Similar issues exist for PhanUnreferencedProperty, PhanUnreferencedConstant, PhanUnreferencedMethod, and PhanUnreferencedFunction
 
 This issue is disabled by default, but can be enabled by setting `Config::get()->dead_code_detection` to enabled. It indicates that the given element is (possibly) unused.
 
@@ -505,8 +493,6 @@ Declaration of {METHOD} should be compatible with internal {METHOD}
 ```
 
 ## PhanParamSignaturePHPDocMismatch...
-
-(These issues were split out, in 0.9.3-dev)
 
 This issue type warns when a `@method` tag conflicts with the an actual implementation or another `@method` tag (could refer to overriding or overridden).
 
@@ -816,8 +802,6 @@ class C15 {}
 
 ## PhanRedefineClassAlias
 
-(0.9.3-dev only)
-
 This issue is emitted when `class_alias` creates ambiguity in what the intended definition of a class is.
 If possible, exclude one of the files containing the conflicting definitions.
 
@@ -1018,8 +1002,6 @@ Invalid operator: left operand is array and right is not
 ```
 
 ## PhanTypeMagicVoidWithReturn
-
-(0.9.3-dev only)
 
 ```
 Found a return statement with a value in the implementation of the magic method {METHOD}, expected void return type

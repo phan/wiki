@@ -27,7 +27,7 @@ Currently, there are clients of Daemon mode/Language Server Protocol for the fol
    [![Vim integration example](https://cloud.githubusercontent.com/assets/1904430/23336381/4210f212-fb83-11e6-9c55-79e0995307b1.png)](https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim)
 
 
-2. Emacs: (Using Phan daemon) Run phan_client while the file is being edited in Emacs. (Alternately, it can be configured to run only when saving a file):
+2. Emacs: (Using Phan daemon) Run `phan_client` while the file is being edited in Emacs. (Alternately, it can be configured to run only when saving a file):
 
    This depends on the daemon being started in the background.
    This also depends on flycheck(for Emacs) being installed.

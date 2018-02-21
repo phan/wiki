@@ -12,7 +12,7 @@ The following suggestions may help speed up Phan analysis on your project:
 
 6. [Run the latest release of Phan.](#6-run-the-latest-release-of-phan)
 
-7. [Install an optional C module.](#7-install-an-optional-c-module-for-php--71) (0.9.3+/0.8.5+ only)
+7. [Install an optional C module.](#7-install-an-optional-c-module-for-php--71) (0.10+/0.8.5+ only)
 
 ## 1. PHP Interpreter Configuration Settings
 
@@ -139,17 +139,15 @@ There are two ways to do this.
 
 ### 6. Run the Latest Release of Phan
 
-Phan 0.9.2 (For php 7.1) contains many small performance optimizations, and more optimizations are planned for the next release.
+Phan 0.10.5 (For php 7.1) contains many small performance optimizations, and more optimizations are planned for the next release.
 
 Those optimizations were backported to the 0.8.4 release (for php 7.0).
 
-The latest release is [![Latest Stable Version](https://poser.pugx.org/phan/phan/v/stable)](https://packagist.org/packages/phan/phan)
+The latest release (for php 7.2) is [![Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
 
 ### 7. Install an optional C module (for PHP <= 7.1)
 
-Phan started calling `spl_object_id(object $object) : int` in Phan 0.10.0+/0.9.5+/0.8.7+. `spl_object_id()` is built into PHP 7.2+. If you are running php <= 7.1, `spl_object_id()` is also provided by https://github.com/runkit7/runkit_object_id.
-
-Phan 0.9.3+/0.8.5+ refactored the way Phan represented union types, to reduce the amount of memory Phan needed by around 15%, without increasing the time needed for analysis.
+Phan started calling `spl_object_id(object $object) : int` in recent Phan releases. `spl_object_id()` is built into PHP 7.2+. If you are running php <= 7.1, `spl_object_id()` is also provided by https://github.com/runkit7/runkit_object_id.
 
 Phan can be sped up around 10% by installing a native C implementation of spl_object_id/runkit_object_id. See https://github.com/phan/phan/pull/729
 

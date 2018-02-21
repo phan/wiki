@@ -1,6 +1,6 @@
 We create releases for Phan whenever we want to get new bug fixes or features out to folks that choose to use stable releases.
 
-As of this writing, we're supporting three active versions; 0.8.x for PHP 7.0 syntax and 0.10.x for PHP 7.1 syntax, and 0.11.x for PHP 7.2 syntax.
+As of this writing, we're supporting three active versions: 0.8.x for PHP 7.0 syntax, 0.10.x for PHP 7.1 syntax, and 0.11.x for PHP 7.2 syntax.
 
 - Support for 0.9 has been dropped
 
