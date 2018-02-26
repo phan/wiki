@@ -7,9 +7,17 @@ All of the following are valid union types;
 * `int[]|float[]|null`
 * `DateTime`
 * `DateTime|string|int`
-* `?int|?DateTime`
+* `?int|?DateTime` (Note that `?T` in doc comments is not a part of the phpdoc2 standard. Phan analyzes this syntax more strictly than `int|DateTime|null`)
 * `null`
 * `resource|false`
+
+Phan also supports these union types, both internally and in phpdoc annotations (These are not part of the phpdoc2 standard):
+
+* `array<string,stdClass>` (an array with string keys and stdClass values)
+* `array<mixed,float>` (equivalent to `array<int|string,float>` and `float[]`)
+* `array{0:string,1:bool}` (The inferred type for an expression such as `['str', rand(0,2) > 0]`)
+* `array{key:value}` (The inferred type for an expression such as `['key'=>'str']`)
+
 
 As a special case, `void` may be used as a return type indicating that the function or method is not expected to return anything. In practice, this still implies that the function or method returns null, but Phan will enforce that there is not an explicit return.
 
@@ -83,6 +91,8 @@ class D {
 
 A union type is expressed as a pipe (`|`) delimited list of types, which can be native types (e.g. scalars, arrays), special types (e.g. `object`, `mixed`), arrays of a type, or classes.
 Those types can be nullable.
+
+TODO: Document generics, `array<key, value>`, `array<value>`, and `array{key:shape[...,keyN:shapeN]}`
 
 ```
 UNION_TYPE     : TYPE
