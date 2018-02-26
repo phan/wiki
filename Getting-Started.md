@@ -162,6 +162,8 @@ return [
 ];
 ```
 
+In the Phan 0.12.0+ releases, `/path/to/phan --init --init-level=3` can alternatively be used to automatically generate .phan/config.php for a project using composer. (--init-level=1 generates a very strict config, --init-level=5 generates a weak config). You may need to manually add some indirect third party dependencies to `directory_list`.
+
 Take a look at [[Incrementally Strengthening Analysis]] for some tips on how to start with a weak analysis and slowly increase the strictness as your code becomes better equipped to be analyzed.
 
 A complete list of configuration options and their default values can be found at [`src/Phan/Config.php`](https://github.com/phan/phan/blob/0.10.4/src/Phan/Config.php#L65).
