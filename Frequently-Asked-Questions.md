@@ -35,7 +35,7 @@ Make sure that Phan is being invoked with php 7.1 (or newer). For best results, 
 
 The PHP version used to invoke Phan must be 7.1 or newer to parse php 7.1 code with `php-ast` (As well as for getting the real function and method signatures, etc.). `php-ast` uses the current PHP version's internal parse tree.
 
-The CLI options `--force-polyfill-parser` and/or `--use-fallback-parser` may also be used, but the pure PHP parser implementation has bugs in a few edge cases.
+The CLI options `--force-polyfill-parser` and/or `--use-fallback-parser` may also be used, but the pure PHP parser implementation has bugs in a few edge cases. (and they're slower)
 
 ### Phan is warning about the codebase using syntax that is incompatible with php 7.0/7.1/7.2
 
