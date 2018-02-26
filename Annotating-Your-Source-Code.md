@@ -19,7 +19,7 @@ Additionally, Phan supports [inline type checks](#inline-type-checks), and can a
 
 Phan can analyze `assert()` statements and conditional branches to infer the types of variables within a block of code. This is one way of working around [limitations on analyzing comment doc blocks](#invalid).
 
-In the following example, the variable `$x` is assigned a value with a typed unknown to Phan. By calling `assert` we can tell Phan explicitly that it's type is `MyClass`.
+In the following example, the variable `$x` is assigned a value with a typed unknown to Phan. By calling `assert` we can tell Phan explicitly that its type is `MyClass`.
 
 ```php
 $x = some_dynamic_factory(MyClass::class);
@@ -27,6 +27,34 @@ assert($x instanceof MyClass)
 ```
 
 Types can also be specified via the PHP built-in type checks such as in `assert(is_string($x))`, or `assert(!is_null($x))`.
+
+Be aware that incorrect `assert` statements may cause [unpredictable behavior in your code](https://secure.php.net/manual/en/function.assert.php#refsect2-function.assert-unknown-descriptioo)
+
+### Inline Type Checks via String Literals
+
+Phan >= 0.12.0 allows setting variables to complicated types via `'@phan-var UnionType $varName'` or `'@phan-var-force UnionType $varName'` as a string literal in a statement.
+
+These are implemented as string literals due to the limitation of php-ast being unable to parse inline doc comments.
+Using these should be necessary in only a small fraction of use cases.
+
+`@phan-var-force` behaves the same way as `@phan-var`, except that Phan will create the variable in the current scope if the variable does not already exist. This is useful when analyzing loops, etc.
+
+```php
+$x = some_dynamic_array_maker(MyClass::class);
+'@phan-var array<int,MyClass> $x';
+// The above annotation is a string literal, not a doc comment. (Due to a limitation of php-ast)
+// It must occur after $x is assigned to a value.
+// The string literal expression must be a statement (will be ignored if it is part of another expression).
+// This is useful for complicated types that can't be expressed via an `assert`.
+
+// Any type of string can be used, e.g. heredoc
+list($first, $second) = some_function_returning_array('MyClass');
+<<<PHAN
+@phan-var bool $first description
+@phan-var MyClass $second
+PHAN;
+// other statements...
+```
 
 Phan can infer the same types for the condition of `if()` statements and ternary operators as it would from `assert`.
 
@@ -37,9 +65,6 @@ if ($x instanceof MyClass) {
 
 $y = ($x instanceof MyClass) ? function_expecting_myclass($x) : null;
 ```
-
-Be aware that incorrect `assert` statements may cause [unpredictable behavior in your code](https://secure.php.net/manual/en/function.assert.php#refsect2-function.assert-unknown-descriptioo)
-
 
 ## @var
 The `@var <union_type>` annotation describes the type of the constant or property.
@@ -317,7 +342,10 @@ This helps avoid false positive warnings about PhanUndeclaredProperty, etc.
 class MyClass {
     private function privateMethod(int $x) {}
 }
-/** @phan-closure-scope MyClass - Phan analyzes the inner body of this closure as if it were a closure declared in MyClass. */
+/** 
+ * @phan-closure-scope MyClass - Phan analyzes the inner body of this closure 
+ *                               as if it were a closure declared in MyClass.
+ */
 $c = function(int $arg) {
     return $this->privateMethod($arg);
 };
@@ -342,6 +370,9 @@ Furthermore, Phan can only see doc block comments on
 * functions
 
 Doc blocks will not be read from any other elements (such as any kind of statement).
+
+If you need to annotate the type of a variable in a given statement,
+see [Inline Type Checks](https://github.com/phan/phan/wiki/Annotating-Your-Source-Code/#inline-type-checks) (preferable) and [Inline Type Checks via String Literals](https://github.com/phan/phan/wiki/Annotating-Your-Source-Code/#inline-type-checks-via-string-literals)
 
 ## Valid Doc Blocks
 
