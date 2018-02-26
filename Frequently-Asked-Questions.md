@@ -4,6 +4,7 @@
 - [Phan isn't picking up my project's doc comments](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#phan-isnt-picking-up-my-projects-doc-comments)
 - [One of Phan's function or method signatures have incorrect parameter types or return types](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#one-of-phans-function-or-method-signatures-have-incorrect-parameter-types-or-return-types)
 - [PHP 7.1 features such as nullable types aren't being parsed](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#php-71-features-such-as-nullable-types-arent-being-parsed)
+- [Phan is warning about the code using PHP 7.1/7.2 features](https://github.com/phan/phan/wiki/Frequently-Asked-Questions/#phan-is-warning-about-the-codebase-using-syntax-that-is-incompatible-with-php-707172)
 - [A variadic function with phpdoc has unexpected types](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#a-variadic-function-with-phpdoc-has-unexpected-types)
 - There are [[Different Issue Sets On Different Numbers of CPUs]]
 - **[How to file a bug report for a crash, error, or incorrect analysis](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#how-to-file-a-bug-report-for-a-crash-error-or-incorrect-analysis)**
@@ -33,6 +34,19 @@ If Phan is inconsistent with the documentation, create a PR modifying the relate
 Make sure that Phan is being invoked with php 7.1 (or newer). For best results, the PHP version should be close to the version of the project being analyzed.
 
 The PHP version used to invoke Phan must be 7.1 or newer to parse php 7.1 code with `php-ast` (As well as for getting the real function and method signatures, etc.). `php-ast` uses the current PHP version's internal parse tree.
+
+The CLI options `--force-polyfill-parser` and/or `--use-fallback-parser` may also be used, but the pure PHP parser implementation has bugs in a few edge cases.
+
+### Phan is warning about the codebase using syntax that is incompatible with php 7.0/7.1/7.2
+
+These warnings were introduced in Phan 12.0. This can be solved by setting the `target_php_version` in your .phan/config.php to `'7.1'`/`'7.2'` (if that is the oldest php version your project supports), or by changing the code to stop using newer syntax. You may also suppress that issue in .phan/config.php, and various other ways.
+
++ `CompatibleNullableTypePHP70`, `CompatibleShortArrayAssignPHP70`, `CompatibleKeyedArrayAssignPHP70`,
+  `CompatibleKeyedArrayAssignPHP70`, and `CompatibleIterableTypePHP70`
+  are emitted when the `target_php_version` is less than '7.1'.
++ `CompatibleObjectTypePHP71` is emitted for the `object` typehint when the `target_php_version`
+  is less than 7.2.
+
 
 ### A variadic function with phpdoc has unexpected types
 
