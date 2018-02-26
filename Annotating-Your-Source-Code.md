@@ -11,6 +11,7 @@ Phan supports the following doc block annotations.
 * [`@suppress <issue_type>`](#suppress)
 * [`@property <union_type> <variable_name>`](#property)
 * [`@override`](#override) (Since 0.10.0/0.8.5)
+* [`@phan-param`, `@phan-return`, and other aliases of PHPDoc tags.](https://github.com/phan/phan/wiki/Annotating-Your-Source-Code/#aliases-of-phpdoc-annotations)
 * [`@phan-closure-scope`](#phan-closure-scope) (Since 0.10.0/0.8.5)
 
 Additionally, Phan supports [inline type checks](#inline-type-checks), and can analyze `assert` statements and the conditionals of `if` statements and ternary operators.
@@ -330,6 +331,15 @@ class SubClass extends BaseClass {
     public function myMethod(int $x) { return true; }
 }
 ```
+
+## Aliases of PHPDoc annotations
+
+Phan supports `@phan-var`, `@phan-param`, `@phan-return`, `@phan-property`, and `@phan-method` as aliases of the respective PHPDoc annotations for `@var`, `@param`, `@return`, `@property`, and `@method`.
+
+If both of these annotations occur in the doc comment of an element, the `@phan-tagname` annotations will be used instead of `@phan-tagname`.
+
+This may be useful if you are using non-standard union types in doc comments for purposes of analyzing a codebase, and are using other editor plugins or linters that cannot parse that syntax.
+(e.g. `?int` instead of `int|null`, `array<string,stdClass>` instead of `stdClass[]`, or `array{key:string}` instead of `string[]`)
 
 ## @phan-closure-scope
 
