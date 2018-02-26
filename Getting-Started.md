@@ -67,7 +67,7 @@ git clone https://github.com/phan/phan.git
 composer install
 ```
 
-*NOTE:* If you're running on PHP version 7.0.x and run into problems, you may wish to use the [0.8 branch of Phan](https://github.com/phan/phan/tree/0.8) (`git checkout 0.8`).
+*NOTE:* If you're running on PHP version 7.0.x and run into problems, you may wish to use the [0.8 branch of Phan](https://github.com/phan/phan/tree/0.8) (`git checkout 0.8`). However, this should not be necessary if you are using Phan 0.12.0.
 
 You should now be able to run `./test` to make sure Phan is working correctly, and run `./phan` to run Phan on itself (using its own [`.phan/config.php`](https://github.com/phan/phan/blob/master/.phan/config.php) configuration).
 
@@ -76,7 +76,7 @@ You should now be able to run `./test` to make sure Phan is working correctly, a
 To run Phan from a Phar package, you can download the Phar and run it.
 
 ```sh
-curl -L https://github.com/phan/phan/releases/download/0.10.4/phan.phar -o phan.phar;
+curl -L https://github.com/phan/phan/releases/download/0.12.0/phan.phar -o phan.phar;
 ```
 
 You'll now be able to run Phan via
@@ -132,6 +132,12 @@ You'll want to create a configuration file within your code base at `.phan/confi
  * after this file is read.
  */
 return [
+    // Supported values: '7.0', '7.1', '7.2', null.
+    // If this is set to null,
+    // then Phan assumes the PHP version which is closest to the minor version
+    // of the php executable used to execute phan.
+    // TODO: Set this.
+    'target_php_version' => null
 
     // A list of directories that should be parsed for class and
     // method information. After excluding the directories
