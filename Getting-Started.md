@@ -36,16 +36,8 @@ Windows users can grab `ast.dll` directly from [PECL snaps](http://windows.php.n
 
 If you're managing dependencies via [Composer](https://getcomposer.org/), you can add Phan to your project by running the following.
 
-If you're running PHP version 7.0.x, run
-
 ```sh
-composer require --dev "phan/phan:0.8.x"
-```
-
-If you're running PHP version 7.1+, run
-
-```sh
-composer require --dev "phan/phan:0.10.x"
+composer require --dev "phan/phan:0.12.x"
 ```
 
 [For a full list of releases, check out https://packagist.org/packages/phan/phan](https://packagist.org/packages/phan/phan).
@@ -85,9 +77,9 @@ You'll now be able to run Phan via
 php phan.phar
 ```
 
-When this was last updated, [0.10.4](https://github.com/phan/phan/releases/tag/0.10.4) was the latest release for PHP 7.1. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if that's still the latest, as I'll probably forget to update this page with subsequent releases.
+When this was last updated, [0.12.0](https://github.com/phan/phan/releases/tag/0.12.0) was the latest release for PHP 7.1. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if that's still the latest, as I'll probably forget to update this page with subsequent releases.
 
-According to packagist, the latest stable version (for PHP 7.2) is [![Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
+According to packagist, the latest stable version is [![Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
 
 ## From a Docker Image
 
