@@ -12,6 +12,8 @@ Take a look at Phan's own very strict configuration for analyzing itself at [`.p
 
 When you first begin analyzing your code base, you may want to consider starting with the following configuration (saved to `.phan/config.php`) that only looks at the most critical issues and allows for a reasonable degree of sloppiness.
 
+In a project set up to use the composer autoloader (including for its own subdirectories), this may also be done via `vendor/bin/phan --init --init-level=5`, where 5 is an weak analysis, and 1 would be a very strong analysis. (This probably won't work if autoloading starts at the root of the project instead of a subdirectory.)
+
 ```php
 <?php
 /**
@@ -172,11 +174,10 @@ The following configuration will ignore all issue types but backward compatibili
  * See Config for all configurable options.
  */
 return [
-    // Backwards Compatibility Checking. This is slow
+    // Backwards Compatibility Checking. This is very slow
     // and expensive, but you should consider running
-    // it before upgrading your version of PHP to a
-    // new version that has backward compatibility
-    // breaks.
+    // it before upgrading your version of PHP from 5.x to 7.0,
+    // due to the backward compatibility breaks of parsing in PHP 7.0
     'backward_compatibility_checks' => true,
 
     // Added in 0.10.0. Set this to false to emit 
