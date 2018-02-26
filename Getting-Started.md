@@ -59,7 +59,7 @@ git clone https://github.com/phan/phan.git
 composer install
 ```
 
-*NOTE:* If you're running on PHP version 7.0.x and run into problems, you may wish to use the [0.8 branch of Phan](https://github.com/phan/phan/tree/0.8) (`git checkout 0.8`). However, this should not be necessary if you are using Phan 0.12.0.
+*NOTE:* If you're running on PHP version 7.0.x and run into problems, you may wish to use the [0.8 branch of Phan](https://github.com/phan/phan/tree/0.8) (`git checkout 0.8`). However, this should not be necessary if you are using Phan 0.12.0+.
 
 You should now be able to run `./test` to make sure Phan is working correctly, and run `./phan` to run Phan on itself (using its own [`.phan/config.php`](https://github.com/phan/phan/blob/master/.phan/config.php) configuration).
 
