@@ -21,12 +21,13 @@ Phan also supports these union types, both internally and in phpdoc annotations 
 * `callable(ParamUnionType):ReturnUnionType` can optionally be used in phpdoc to describe the parameter and return types expected for a callable (As of Phan 0.12.3) 
 
    (See [this example](https://github.com/phan/phan/blob/master/tests/files/src/0457_callable_type_cast.php))
+
    The modifiers `=` (to indicate optional), `...` (to indicate variadic), and `&` can be used. Those modifiers must occur in the same order they'd occur in a function.
    E.g. `function(bool $optionalBool = false, int &...$refArgs): int {...}` can be cast to `callable(bool=,int&...):int`.
 
    Complex return union types must be surrounded by `()` to be parsed, e.g. `callable(): (int|false)`
 * `Closure(ParamUnionType):ReturnUnionType` (As of Phan 0.12.3): Same syntax as `callable(ParamUnionType):ReturnUnionType`
-  Can be prefixed with `\`.
+  Can be prefixed with `\`. See [this example](https://github.com/phan/phan/blob/master/tests/files/src/0455_closure_type_cast.php)
 
 As a special case, `void` may be used as a return type indicating that the function or method is not expected to return anything. In practice, this still implies that the function or method returns null, but Phan will enforce that there is not an explicit return.
 
