@@ -10,9 +10,10 @@ Phan supports the following doc block annotations.
 * [`@deprecated`](#deprecated)
 * [`@internal`](#internal)
 * [`@suppress <issue_type>`](#suppress)
+* [`@phan-file-suppress <issue_type>`](#phan-file-suppress)
 * [`@property <union_type> <variable_name>`](#property)
 * [`@override`](#override)
-* [`@inherits`, `@template` (See Generic Types)](https://github.com/phan/phan/wiki/Generic-Types)
+* [`@inherits <fqsen>`, `@template <template_id>` (See Generic Types)](https://github.com/phan/phan/wiki/Generic-Types)
 * [`@phan-param`, `@phan-return`, and other aliases of PHPDoc tags.](https://github.com/phan/phan/wiki/Annotating-Your-Source-Code/#aliases-of-phpdoc-annotations)
 * [`@phan-closure-scope`](#phan-closure-scope)
 
@@ -309,6 +310,34 @@ class D {
 This is because the first `@suppress` is on the class and is not the closest scope to the call, the second is not in a valid doc block, and the third is on a comment next to the call, not its closest scope.
 
 This will bite you and I apologize.
+
+`@phan-suppress` is an alias of `@suppress`
+
+## @phan-file-suppress
+
+This annotation can be used either by using a string literal as a no-op statement, or by adding this annotation to any structural element Phan can parse the doc comments of (e.g. a class).
+This annotation may fail to suppress some issues emitted in the parse phase.
+
+```php
+<?php
+// Any simple string literal without encapsulated expressions/variables can be used.
+// Phan would treat them the same way (heredoc, single quoted, double quoted, etc.)
+<<<'PHAN'
+@phan-file-suppress PhanUnreferencedUseNormal
+PHAN;
+
+use MyNS\MyClass;
+/** Some inline annotation referencing MyClass that phan can't parse */
+``` 
+
+```php
+<?php
+use MyNS\MyClass;
+/** @phan-file-suppress PhanUnreferencedUseNormal */
+class Example {
+   // ... code containing an annotation referencing MyClass that Phan can't parse
+}
+``` 
 
 ## @override
 
