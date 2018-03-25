@@ -15,7 +15,7 @@ In addition to the below issue types, there are [additional issue types that can
 
 This category of issue is emitted when you're trying to access things that you can't access.
 Note: in this document, "`@internal`" refers to user-defined elements with `/** @internal */` in their PHPDoc,
-while "internal" refers to classes, etc.  that are built into PHP and PHP modules (e.g. `
+while "internal" refers to classes, functions, methods, etc.  that are built into PHP and PHP modules (e.g. `is_string`, `stdClass`, etc)
 
 ## PhanAccessClassConstantPrivate
 
