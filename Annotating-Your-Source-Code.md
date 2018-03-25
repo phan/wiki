@@ -11,9 +11,10 @@ Phan supports the following doc block annotations.
 * [`@internal`](#internal)
 * [`@suppress <issue_type>`](#suppress)
 * [`@property <union_type> <variable_name>`](#property)
-* [`@override`](#override) (Since 0.10.0/0.8.5)
+* [`@override`](#override)
+* [`@inherits`, `@template` (See Generic Types)](https://github.com/phan/phan/wiki/Generic-Types)
 * [`@phan-param`, `@phan-return`, and other aliases of PHPDoc tags.](https://github.com/phan/phan/wiki/Annotating-Your-Source-Code/#aliases-of-phpdoc-annotations)
-* [`@phan-closure-scope`](#phan-closure-scope) (Since 0.10.0/0.8.5)
+* [`@phan-closure-scope`](#phan-closure-scope)
 
 Additionally, Phan supports [inline type checks](#inline-type-checks), and can analyze `assert` statements and the conditionals of `if` statements and ternary operators.
 
@@ -148,7 +149,6 @@ Phan does not yet enforce that `__get()`/`__set()` exist if a class/trait/interf
 ## @method
 
 The `@method <union_type> <method_name>(<union_type> <param1_name>)` annotation describes a magic method of a class.
-Partial support for this annotation was added in phan 0.10.0/0.8.4.
 
 ```php
 /**
@@ -169,7 +169,7 @@ interface MagicInterface {
 }
 ```
 
-If Phan can't parse an @method annotation or the parameters, it will silently ignore the entire method annotation. A new issue type will likely be added in the future.
+If Phan can't parse an @method annotation or the parameters, it will silently ignore the entire method annotation. A new issue type for unparsable annotations will likely be added in the future.
 
 Phan also supports the `@phan-forbid-undeclared-magic-methods` annotation on classes (Support for inheriting this annotation for interfaces/traits is incomplete).
 This will cause Phan to warn about a method being undefined if there are no real or phpdoc declarations of that method.
