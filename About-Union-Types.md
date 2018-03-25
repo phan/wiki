@@ -17,7 +17,16 @@ Phan also supports these union types, both internally and in phpdoc annotations 
 * `array<mixed,float>` (equivalent to `array<int|string,float>` and `float[]`)
 * `array{0:string,1:bool}` (The inferred type for an expression such as `['str', rand(0,2) > 0]`)
 * `array{key:value}` (The inferred type for an expression such as `['key'=>'str']`)
+* `array{key?:value}` (E.g. `@param array{key?:value} $options`, to indicate that a field with key `'key'` may or may not be defined) (As of Phan 0.12.3)
+* `callable(ParamUnionType):ReturnUnionType` can optionally be used in phpdoc to describe the parameter and return types expected for a callable (As of Phan 0.12.3) 
 
+   (See [this example](https://github.com/phan/phan/blob/master/tests/files/src/0457_callable_type_cast.php))
+   The modifiers `=` (to indicate optional), `...` (to indicate variadic), and `&` can be used. Those modifiers must occur in the same order they'd occur in a function.
+   E.g. `function(bool $optionalBool = false, int &...$refArgs): int {...}` can be cast to `callable(bool=,int&...):int`.
+
+   Complex return union types must be surrounded by `()` to be parsed, e.g. `callable(): (int|false)`
+* `Closure(ParamUnionType):ReturnUnionType` (As of Phan 0.12.3): Same syntax as `callable(ParamUnionType):ReturnUnionType`
+  Can be prefixed with `\`.
 
 As a special case, `void` may be used as a return type indicating that the function or method is not expected to return anything. In practice, this still implies that the function or method returns null, but Phan will enforce that there is not an explicit return.
 
@@ -91,7 +100,7 @@ class D {
 A union type is expressed as a pipe (`|`) delimited list of types, which can be native types (e.g. scalars, arrays), special types (e.g. `object`, `mixed`), arrays of a type, or classes.
 Those types can be nullable.
 
-TODO: Document generics, `array<key, value>`, `array<value>`, and `array{key:shape[...,keyN:shapeN]}`
+TODO: Document generics, `array<key, value>` (both UNION_TYPEs), `array<value>`, and `array{key:shape[...,keyN:shapeN]}`, and optional array keys, and typed closure/Callables.
 
 ```
 UNION_TYPE     : TYPE
