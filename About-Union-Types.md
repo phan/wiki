@@ -33,8 +33,8 @@ As a special case, `void` may be used as a return type indicating that the funct
 
 The special cases `static` and `self` are also supported as return types on methods which specify that the return type is a late-statically-bound version of the class, or the class in which the method is defined respectively.
 
-In Phan 0.10+/0.8.5+, `false` and `true` are treated as types that are separate from `bool`.
-This change made Phan more effective at analyzing code such as `$x = fopen(...); if ($x){...}`
+`false` and `true` are treated as types that are separate from `bool`.
+This makes Phan more effective at analyzing code such as `$x = fopen(...); if ($x){...}` (`fopen` returns `int|false`)
 
 # Example Union Type Annotations
 
