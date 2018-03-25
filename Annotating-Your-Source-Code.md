@@ -315,14 +315,17 @@ This will bite you and I apologize.
 
 ## @phan-file-suppress
 
-This annotation can be used either by using a string literal as a no-op statement, or by adding this annotation to any structural element Phan can parse the doc comments of (e.g. a class).
+This annotation can be used in two ways:
+1. by using a string literal as a no-op statement
+2. by adding this annotation to any structural element Phan can parse the doc comments of (e.g. a class, closure, or global function).
+
 This annotation may fail to suppress some issues emitted in the parse phase.
 
 ```php
 <?php
-// Any simple string literal without encapsulated expressions/variables can be used.
-// Phan would treat them the same way (heredoc, single quoted, double quoted, etc.)
-<<<'PHAN'
+// Any string literal without encapsulated expressions/variables can be used.
+// (heredoc, single quoted, double quoted, etc.)
+<<<PHAN
 @phan-file-suppress PhanUnreferencedUseNormal
 PHAN;
 
