@@ -5,6 +5,7 @@ Phan supports the following doc block annotations.
 * [`@var <union_type>`](#var)
 * [`@param <union_type> <variable_name>`](#param)
 * [`@return <union_type>`](#return)
+* [`@throws <union_type>`](#throws)
 * [`@method <union_type> <method_name>(<union_type> <param1_name>)`](#method)
 * [`@deprecated`](#deprecated)
 * [`@internal`](#internal)
@@ -117,6 +118,12 @@ class C {
      return rand(0,1) ?: 'string';
    }
 ```
+
+## @throws
+
+Phan checks that the class in `@throws <type>` annotations can be resolved to a class (and marks any `use` statements mentioning those classes as being referenced).
+
+Phan does not compare `@throws` against the function/method implementation right now.
 
 ## @property
 
@@ -304,8 +311,6 @@ This is because the first `@suppress` is on the class and is not the closest sco
 This will bite you and I apologize.
 
 ## @override
-
-Supported in Phan 0.10.0+/0.8.5+
 
 Phan will check places where `@override` is mentioned to see if the method is actually overriding a definition or implementing an abstract method (Or a phpdoc `@method`) in an ancestor class/trait/interface.
 
