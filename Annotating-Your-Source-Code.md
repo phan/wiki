@@ -15,7 +15,7 @@ Phan supports the following doc block annotations.
 * [`@override`](#override)
 * [`@inherits <fqsen>`, `@template <template_id>` (See Generic Types)](https://github.com/phan/phan/wiki/Generic-Types)
 * [`@phan-param`, `@phan-return`, and other aliases of PHPDoc tags.](https://github.com/phan/phan/wiki/Annotating-Your-Source-Code/#aliases-of-phpdoc-annotations)
-* [`@phan-closure-scope`](#phan-closure-scope)
+* [`@phan-closure-scope <fqsen>`](#phan-closure-scope)
 
 Additionally, Phan supports [inline type checks](#inline-type-checks), and can analyze `assert` statements and the conditionals of `if` statements and ternary operators.
 
