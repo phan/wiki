@@ -1,7 +1,7 @@
 <!-- This is mirrored at https://github.com/phan/phan/wiki/Issue-Types-Caught-by-Phan -->
 <!-- The copy distributed with Phan is in the internal folder because it may be removed or moved elsewhere -->
 
-See [\Phan\Issue](https://github.com/phan/phan/blob/master/src/Phan/Issue.php) for the most up to date list of error types that are emitted. Below is a listing of all issue types as of [8c1435](https://github.com/phan/phan/tree/8c1435f6044f15fa4fd39c2abf713062214f4087/). The test case [0101_one_of_each.php](https://github.com/phan/phan/blob/master/tests/files/src/0101_one_of_each.php) was intended to cover all examples in this document.
+See [\Phan\Issue](https://github.com/phan/phan/blob/master/src/Phan/Issue.php) for the most up to date list of error types that are emitted. Below is a listing of all issue types as of [47e98af](https://github.com/phan/phan/tree/47e98af627276a90c377fd349c69f6cd3063efda/). The test case [0101_one_of_each.php](https://github.com/phan/phan/blob/master/tests/files/src/0101_one_of_each.php) was originally intended to cover all examples in this document.
 
 A concise summary of issue categories found by Phan can be seen in [Phan's README](https://github.com/phan/phan#features).
 
@@ -1087,6 +1087,100 @@ $v8 = null;
 $v8->f();
 ```
 
+## PhanPartialTypeMismatchArgument
+
+This issue (and similar issues) may be emitted when `strict_param_checking` is true, when analyzing a user-defined function.
+(when some types of the argument's union type match, but not others.)
+
+```
+Argument {INDEX} ({VARIABLE}) is {TYPE} but {FUNCTIONLIKE}() takes {TYPE} ({TYPE} is incompatible) defined at {FILE}:{LINE}
+```
+
+## PhanPartialTypeMismatchArgumentInternal
+
+This issue may be emitted when `strict_param_checking` is true, when analyzing an internal function.
+
+```
+Argument {INDEX} ({VARIABLE}) is {TYPE} but {FUNCTIONLIKE}() takes {TYPE} ({TYPE} is incompatible)
+```
+
+## PhanPartialTypeMismatchProperty
+
+This issue (and similar issues) may be emitted when `strict_property_checking` is true
+
+```
+Assigning {TYPE} to property but {PROPERTY} is {TYPE} ({TYPE} is incompatible)
+```
+
+## PhanPartialTypeMismatchReturn
+
+This issue (and similar issues) may be emitted when `strict_return_checking` is true
+(when some types of the return statement's union type match, but not others.)
+
+```
+Returning type {TYPE} but {FUNCTIONLIKE}() is declared to return {TYPE} ({TYPE} is incompatible)
+```
+
+## PhanPossiblyFalseTypeArgument
+
+This issue may be emitted when `strict_param_checking` is true
+
+```
+Argument {INDEX} ({VARIABLE}) is {TYPE} but {FUNCTIONLIKE}() takes {TYPE} ({TYPE} is incompatible) defined at {FILE}:{LINE}
+```
+
+## PhanPossiblyFalseTypeArgumentInternal
+
+This issue may be emitted when `strict_param_checking` is true
+
+```
+Argument {INDEX} ({VARIABLE}) is {TYPE} but {FUNCTIONLIKE}() takes {TYPE} ({TYPE} is incompatible)
+```
+
+## PhanPossiblyFalseTypeMismatchProperty
+
+```
+Assigning {TYPE} to property but {PROPERTY} is {TYPE} ({TYPE} is incompatible)
+```
+
+## PhanPossiblyFalseTypeReturn
+
+This issue may be emitted when `strict_return_checking` is true
+
+```
+Returning type {TYPE} but {FUNCTIONLIKE}() is declared to return {TYPE} ({TYPE} is incompatible)
+```
+
+## PhanPossiblyNullTypeArgument
+
+This issue may be emitted when `strict_param_checking` is true
+
+```
+Argument {INDEX} ({VARIABLE}) is {TYPE} but {FUNCTIONLIKE}() takes {TYPE} ({TYPE} is incompatible) defined at {FILE}:{LINE}
+```
+
+## PhanPossiblyNullTypeArgumentInternal
+
+This issue may be emitted when `strict_param_checking` is true
+
+```
+Argument {INDEX} ({VARIABLE}) is {TYPE} but {FUNCTIONLIKE}() takes {TYPE} ({TYPE} is incompatible)
+```
+
+## PhanPossiblyNullTypeMismatchProperty
+
+```
+Assigning {TYPE} to property but {PROPERTY} is {TYPE} ({TYPE} is incompatible)
+```
+
+## PhanPossiblyNullTypeReturn
+
+This issue may be emitted when `strict_return_checking` is true
+
+```
+Returning type {TYPE} but {FUNCTIONLIKE}() is declared to return {TYPE} ({TYPE} is incompatible)
+```
+
 ## PhanTypeArrayOperator
 
 ```
@@ -1512,6 +1606,18 @@ non-abstract class {CLASS} contains abstract method {METHOD} declared at {FILE}:
 
 ```
 non-abstract class {CLASS} contains abstract internal method {METHOD}
+```
+
+## PhanEmptyFQSENInCallable
+
+```
+Possible call to a function '{FUNCTIONLIKE}' with an empty FQSEN.
+```
+
+## PhanEmptyFQSENInClasslike
+
+```
+Possible use of a classlike '{CLASSLIKE}' with an empty FQSEN.
 ```
 
 ## PhanEmptyFile
@@ -1995,10 +2101,22 @@ Saw misspelled annotation {COMMENT}, should be one of {COMMENT}
 Saw unextractable annotation for comment {COMMENT}
 ```
 
+## PhanUnextractableAnnotationElementName
+
+```
+Saw possibly unextractable annotation for a fragment of comment '{COMMENT}': after {TYPE}, did not see an element name (will guess based on comment order)
+```
+
 ## PhanUnextractableAnnotationPart
 
 ```
 Saw unextractable annotation for a fragment of comment {COMMENT}: {COMMENT}
+```
+
+## PhanUnextractableAnnotationSuffix
+
+```
+Saw a token Phan may have failed to parse after '{COMMENT}': after {TYPE}, saw '{COMMENT}'
 ```
 
 # Syntax
@@ -2009,4 +2127,3 @@ Emitted for syntax errors.
 
 This emits warnings for unparseable PHP files (detected by `php-ast`).
 Note: This is not the same thing as running `php -l` on a file - PhanSyntaxError checks for syntax errors, but not sematics such as where certain expressions can occur (Which `php -l` would check for).
-
