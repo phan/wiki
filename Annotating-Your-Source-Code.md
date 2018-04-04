@@ -53,7 +53,7 @@ $x = some_dynamic_array_maker(MyClass::class);
 
 // Any type of string can be used, e.g. heredoc
 list($first, $second) = some_function_returning_array('MyClass');
-<<<PHAN
+<<<'PHAN'
 @phan-var bool $first description
 @phan-var MyClass $second
 PHAN;
