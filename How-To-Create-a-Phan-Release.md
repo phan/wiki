@@ -21,4 +21,4 @@ After creating the new release, check [packagist.org/packages/phan/phan](https:/
 Additional post-release tasks:
 
 - [ ] Create PRs to change Phan version in NEWS.md and CLI.php to 0.12.(x+1)-dev
-- [ ] Notify the maintainers of [homebrew-php](https://github.com/Homebrew/homebrew-php) that a new Phan release exists and/or create a PR for [0.12.x](https://github.com/Homebrew/homebrew-php/pull/4219)
+- [ ] ~Notify the maintainers of [homebrew-php](https://github.com/Homebrew/homebrew-php) that a new Phan release exists and/or create a PR for [0.12.x](https://github.com/Homebrew/homebrew-php/pull/4219)~ (inaccurate because homebrew-php is getting merged into homebrew)
