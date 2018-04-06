@@ -98,17 +98,49 @@ Several docker images exist for Phan that include its dependencies (PHP version 
 
 ## From Homebrew
 
-To get Phan running on a Mac with Homebrew, ensure that Homebrew is installed (see [http://brew.sh](http://brew.sh)) and then run the following.
+To get Phan running on a Mac with Homebrew, ensure that Homebrew is installed (see [http://brew.sh](http://brew.sh)) and then run the following:
+
+Note: as of [Homebrew 1.5.0, the homebrew/php TAP was removed](https://brew.sh/2018/01/19/homebrew-1.5.0/), so the installation instructions are more complicated
+
+If you had the homebrew/php tap installed, or are upgrading from Homebrew < 1.5.0, then first run the following commands:
 
 ```sh
-brew update
-brew install php71 php71-ast phan
+brew update; # updates local brew meta data
+brew untap homebrew/php; # removes old homebrew php tab, now php is in homebrew core
+brew list | grep 'php'; # check for all php related installs
+# php72-ast never existed, I think, so leave out brew uninstall php72-ast
+brew uninstall php; # or brew uninstall php72 if you had that before
 ```
 
-Once that completes successfully, you can check that phan is working correctly by running
+Then, to install PHP 7.2 and php-ast, run the following commands ([let me know if they do or don't work](https://github.com/phan/phan/issues/1637)):
+
+**Note: If you are already using homebrew-php for other applications, upgrading homebrew (and removing the homebrew/php TAP) may cause other issues.** For example, you may need to install other missing extensions and applications)
 
 ```sh
+brew upgrade; # make sure all the other libs are up to date
+brew cleanup; # cleanup old files
+brew prune; # cleanup old symlinks
+brew install autoconf; # Required by pecl
+brew install php;
+pecl channel-update pecl.php.net;
+php --modules | grep 'ast'; # should not echo ast, if it does it is already installed, no need to run pecl install apcu then
+pecl install ast-0.1.6; # Install other pecl modules that you are still missing in a similar fashion
+php --modules | grep 'ast'; # should echo ast
+# brew services start php; # If you want php fpm and such
+```
+
+Once that completes successfully, you can check that phan is working correctly via any of the two other installation methods: [(1) from phan.phar](https://github.com/phan/phan/wiki/Getting-Started/_edit#from-phanphar) or [(2) from source](https://github.com/phan/phan/wiki/Getting-Started/_edit#from-source)
+
+```sh
+# or phan.phar --help
 phan --help
+```
+
+You can create an alias or symlink to phan for convenience (e.g. add an alias in `.bashrc`), or mark phan.phar as executable and move it into a folder in your `$PATH` environment variable):
+
+```sh
+# alias phan=/path/to/phan.phar
+# alias phan=/path/to/phan-git-checkout/phan
 ```
 
 # Creating a Config File
