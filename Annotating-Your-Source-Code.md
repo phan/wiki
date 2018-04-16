@@ -325,7 +325,7 @@ This annotation may fail to suppress some issues emitted in the parse phase.
 <?php
 // Any string literal without encapsulated expressions/variables can be used.
 // (heredoc, single quoted, double quoted, etc.)
-<<<PHAN
+<<<'PHAN'
 @phan-file-suppress PhanUnreferencedUseNormal
 PHAN;
 
