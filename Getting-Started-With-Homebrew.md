@@ -30,14 +30,14 @@ pecl channel-update pecl.php.net;
 # and you don't need to run pecl install ast
 php --modules | grep 'ast';
 # Install other pecl modules that you are still missing in a similar fashion
-pecl install ast-0.1.6; 
+pecl install ast-0.1.6;
 php --modules | grep 'ast'; # should echo ast
 # Note: If the project being analyzed had other dependencies such as apcu,
 # you may wish to install those with pecl or look at
 # https://github.com/phan/phan/wiki/How-To-Use-Stubs#internal-stubs
 # If you were using php fpm and such prior to upgrading Phan
 # (Completely unrelated to phan)
-### brew services start php; 
+### brew services start php;
 ```
 
 Once that completes successfully, you can check that phan is working correctly via any of the two other installation methods: [(1) from phan.phar](https://github.com/phan/phan/wiki/Getting-Started/_edit#from-phanphar) or [(2) from source](https://github.com/phan/phan/wiki/Getting-Started/_edit#from-source)

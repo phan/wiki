@@ -443,6 +443,18 @@ const C = 42;
 C;
 ```
 
+## PhanNoopEncapsulatedStringLiteral
+
+```
+Unused result of an encapsulated string literal
+```
+
+## PhanNoopNumericLiteral
+
+```
+Unused result of a numeric literal {STRING_LITERAL} near this line
+```
+
 ## PhanNoopProperty
 
 Emitted when you have a refence to a property that is unused.
@@ -460,6 +472,12 @@ class C {
         $this->p;
     }
 }
+```
+
+## PhanNoopStringLiteral
+
+```
+Unused result of a string literal {STRING_LITERAL} near this line
 ```
 
 ## PhanNoopUnaryOperator
@@ -481,6 +499,29 @@ This will be emitted for the following code.
 ```php
 $a = 42;
 $a;
+```
+
+## PhanReadOnlyPrivateProperty
+
+These issues are emitted when the analyzed file list contains at least one read operation
+for a given declared property, but no write operations on that property.
+
+There may be false positives if dynamic property accesses are performed, or if the code is a library that is used elsewhere.
+
+```
+Possibly zero write references to private property {PROPERTY}
+```
+
+## PhanReadOnlyProtectedProperty
+
+```
+Possibly zero write references to protected property {PROPERTY}
+```
+
+## PhanReadOnlyPublicProperty
+
+```
+Possibly zero write references to public property {PROPERTY}
 ```
 
 ## PhanUnreachableCatch
@@ -1567,6 +1608,12 @@ Suspicious argument {TYPE} for an echo/print statement
 
 ```
 Indirect variable ${(expr)} has invalid inner expression type {TYPE}, expected string/integer
+```
+
+## PhanTypeSuspiciousStringExpression
+
+```
+Suspicious type {TYPE} of a variable or expression encapsulated within a string. (Expected this to be able to cast to a string)
 ```
 
 ## PhanTypeVoidAssignment
