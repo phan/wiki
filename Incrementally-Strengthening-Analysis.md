@@ -35,7 +35,7 @@ return [
     // Run a quick version of checks that takes less
     // time at the cost of not running as thorough
     // an analysis. You should consider setting this
-    // to true only when you wish you had more issues
+    // to false only when you wish you had more issues
     // to fix in your code base.
     'quick_mode' => true,
 
