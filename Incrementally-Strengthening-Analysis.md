@@ -25,17 +25,23 @@ In a project set up to use the composer autoloader (including for its own subdir
  * See Config for all configurable options.
  */
 return [
+    // Supported values: '7.0', '7.1', '7.2', null.
+    // If this is set to null,
+    // then Phan assumes the PHP version which is closest to the minor version
+    // of the php executable used to execute phan.
+    'target_php_version' => null,
+
     // Backwards Compatibility Checking. This is slow
     // and expensive, but you should consider running
     // it before upgrading your version of PHP to a
     // new version that has backward compatibility
-    // breaks.
+    // breaks. (Also see target_php_version)
     'backward_compatibility_checks' => false,
 
-    // Run a quick version of checks that takes less
+    // If true, this run a quick version of checks that takes less
     // time at the cost of not running as thorough
     // an analysis. You should consider setting this
-    // to false only when you wish you had more issues
+    // to true only when you wish you had more **undiagnosed** issues
     // to fix in your code base.
     'quick_mode' => true,
 
