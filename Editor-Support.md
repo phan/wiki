@@ -1,6 +1,13 @@
 Editor Support
 ==============
 
+Features
+--------
+
+1. Real-time error detection from Phan (via daemon mode or language server protocol)
+2. Ability to detect additional errors while typing, despite syntax errors.
+3. Support for "Go to definition" and "Go to type definition" (For Language Server Protocol Clients)
+
 Overview
 --------
 
@@ -13,30 +20,16 @@ Three things need to be done to use Phan from an editor (with low latency).
    2. The Phan Language server, which uses an open standard (The [Language Server Protocol](https://github.com/Microsoft/language-server-protocol))
 3. Verify that `phan_client` (or the language server client) is working properly.
 
-An alternative approach to editor support is to run Phan on the entire project whenever a file is saved, then parse and display the output. This is noticeably slow on large projects because it has to parse thousands of files in the project directory. This can be sped up with `--quick`. Alternate approaches are also discussed in [Using Phan Daemon Mode](https://github.com/phan/phan/wiki/Using-Phan-Daemon-Mode)
+An alternative approach to editor support is to run Phan on the entire project whenever a file is saved, then parse and display the output.
+This is noticeably slow on large projects because it has to parse thousands of files in the project directory.
+This can be sped up with `--quick`. Alternate approaches are also discussed in [Using Phan Daemon Mode](https://github.com/phan/phan/wiki/Using-Phan-Daemon-Mode)
 
 Editors with Phan support
 -------------------------
 
 Currently, there are clients of Daemon mode/Language Server Protocol for the following editors:
 
-1. Vim: (Using Phan daemon) Run `phan_client` on save in Vim, show the results: https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim
-
-   This depends on the daemon being started in the background.
-   
-   [![Vim integration example](https://cloud.githubusercontent.com/assets/1904430/23336381/4210f212-fb83-11e6-9c55-79e0995307b1.png)](https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim)
-
-
-2. Emacs: (Using Phan daemon) Run `phan_client` while the file is being edited in Emacs. (Alternately, it can be configured to run only when saving a file):
-
-   This depends on the daemon being started in the background.
-   This also depends on flycheck(for Emacs) being installed.
-
-   See https://github.com/TysonAndre/flycheck-phanclient
-
-   [![Emacs flycheck example for Phan](https://cloud.githubusercontent.com/assets/1904430/23347092/85da0322-fc54-11e6-8fae-48b7a30d623b.png)](https://github.com/TysonAndre/flycheck-phanclient)
-
-3. VS Code (Using the Phan language server)
+1. VS Code (Using the Phan language server)
 
    (Supports Unix/Linux only)
 
@@ -44,16 +37,44 @@ Currently, there are clients of Daemon mode/Language Server Protocol for the fol
    
    [![VS Code example, including error tolerance](https://raw.githubusercontent.com/TysonAndre/vscode-php-phan/master/images/tolerant_parsing.png)](https://github.com/tysonandre/vscode-php-phan)
 
-4. Neovim (Using the Phan language server. This is new and not very configurable yet)
+2. Vim 8 and Neovim (Using the Phan language server. This is new and not very configurable yet)
 
    (Supports Unix/Linux only)
+
+   The version of vim you already have installed may be too old to run this extension.
+   A newer version of vim can be installed with the instructions found at https://www.vim.org/download.php
+   Alternately, you can use the [simpler snippet](https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim) along with the Phan daemon.
 
    Unlike the editor Plugins using the daemon, this plugin will automatically start the Phan language server.
    
    [![VS Code example, including error tolerance](https://raw.githubusercontent.com/TysonAndre/LanguageServer-phan-neovim/master/images/tolerant_parsing.png)](https://github.com/tysonandre/LanguageServer-phan-neovim)
 
-5. Other: Try to adapt an existing plugin or configuration which uses php's syntax checks (`--syntax-check`/`-l`) (e.g. `php -l [-f] path/to/file.php`) to use `phan_client` (`path/to/phan_client -l path/to/file.php`).
+2. Vim: (Using Phan daemon) Run `phan_client` on save in Vim, show the results: https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim
 
-   (The error message format from `./phan_client` is almost the same, and `phan_client` run and outputs PHP's syntax check before requesting the Phan analysis results.)
+   This depends on the daemon being started in the background.
 
-   It may or may not be simpler to write an extension using Phan's [language server protocol support for Unix/Linux](https://github.com/phan/phan/issues/821) (And issue detection may be faster)
+   This should work with Vim 7 and newer.
+   
+   [![Vim integration example](https://cloud.githubusercontent.com/assets/1904430/23336381/4210f212-fb83-11e6-9c55-79e0995307b1.png)](https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim)
+
+4. Emacs: (Using Phan daemon) Run `phan_client` while the file is being edited in Emacs. (Alternately, it can be configured to run only when saving a file):
+
+   This depends on the daemon being started in the background.
+   This also depends on flycheck(for Emacs) being installed.
+
+   See https://github.com/TysonAndre/flycheck-phanclient
+
+   [![Emacs flycheck example for Phan](https://cloud.githubusercontent.com/assets/1904430/23347092/85da0322-fc54-11e6-8fae-48b7a30d623b.png)](https://github.com/TysonAndre/flycheck-phanclient)
+  
+
+Adding support for other editors
+--------------------------------
+
+It may be possible to write an extension using Phan's Language Server Protocol support for Unix/Linux (And issue detection may be faster)
+
+- The [VS Code extension](https://github.com/tysonandre/vscode-php-phan) uses most of this language server's features.
+
+Another approach is to existing plugin or configuration which uses php's syntax checks (`--syntax-check`/`-l`) (e.g. `php -l [-f] path/to/file.php`) to use `phan_client` (`path/to/phan_client -l path/to/file.php`), and change the way it extracts error messages.
+
+- (The error message format from `./phan_client` is almost the same, and `phan_client` run and outputs PHP's syntax check before requesting the Phan analysis results.)
+
