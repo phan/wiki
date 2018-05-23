@@ -10,6 +10,8 @@ Phan supports the following doc block annotations.
 * [`@deprecated`](#deprecated)
 * [`@internal`](#internal)
 * [`@suppress <issue_type>`](#suppress)
+* [`@phan-suppress-current-line <issue_type_list>`](#phan-suppress-current-line) (since 0.12.9)
+* [`@phan-suppress-next-line <issue_type_list>`](#phan-suppress-next-line) (since 0.12.9)
 * [`@phan-file-suppress <issue_type>`](#phan-file-suppress)
 * [`@property <union_type> <variable_name>`](#property)
 * [`@override`](#override)
@@ -279,7 +281,7 @@ namespace NS\B {
 
 ## @suppress
 
-Phan issue types may be suppressed by adding `@suppress <issue_type>` to the doc block of the closest function, method or class scope to where the issue is emitted.
+Phan issue types may be suppressed by adding `@suppress <issue_type_list>` to the doc block of the closest function, method or class scope to where the issue is emitted.
 
 For example; the following will work.
 
@@ -312,6 +314,56 @@ This is because the first `@suppress` is on the class and is not the closest sco
 This will bite you and I apologize.
 
 `@phan-suppress` is an alias of `@suppress`
+
+Lists of comma separated issues can be passed to `@suppress` (Since Phan 0.12.9)
+
+```php
+/**
+ * There must be no space before the comma
+ * @suppress PhanUndeclaredClassMethod, UndeclaredVariable
+ */
+function example() {
+   return C::f() + $myVar;
+}
+```
+
+## @phan-suppress-current-line
+
+Introduced in Phan 0.12.9.
+This comment will suppress any issue (or comma separated list of issues) that Phan would report as occurring on a given line.
+
+```php
+
+/**
+ * This can also be used within doc comments
+ * @property int $prop2 @phan-suppress-current-line PhanInvalidCommentForDeclarationType
+ */
+function test_line_suppression() {
+    echo $undef1;  // @phan-suppress-current-line PhanUndeclaredVariable
+    echo $undef2 + missingFn();  /* @phan-suppress-current-line PhanUndeclaredVariable, PhanUndeclaredFunction */
+}
+```
+
+## @phan-suppress-next-line
+
+Introduced in Phan 0.12.9.
+
+This comment is similar to [`@phan-suppress-current-line`](#phan-suppress-current-line).
+It suppresses any issues that would be emitted on the line immediately below the comment's line.
+
+```php
+
+/**
+ * This can also be used within doc comments
+ * @phan-suppress-next-line PhanInvalidCommentForDeclarationType
+ * @property int $prop2 
+ */
+function test_line_suppression() {
+    // Or within any other type of comment:
+    /* @phan-suppress-next-line PhanUndeclaredVariable, PhanUndeclaredFunction */
+    echo $undefVar2 + missing_function();  
+}
+```
 
 ## @phan-file-suppress
 
