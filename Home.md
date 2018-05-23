@@ -39,8 +39,8 @@ A list of suggestions that may help speed up Phan analysis on your project.
 Phan has primordial support for generic (templated) classes via type the annotations `@template` and `@inherits` and via a type syntax of the form `Class<T>` that may be referenced within doc-block annotations.
 
 **[[Editor Support]]**<br/>
-This article explains how to set up support in an editor/IDE.
-Vim, Emacs, and VS Code have prototype plugins/extensions written for them. This article also explains how to create plugins/extensions for an editor.
+This article explains how to set up support for Phan in an editor/IDE.
+Vim, Emacs, and VS Code have plugins/extensions written for them. This article also explains how to create plugins/extensions for an editor.
 
 **[[Using Phan Daemon Mode]]**<br/>
 Daemon mode lets you request Phan results from your editor or IDE to detect Phan issues for a single file, with much lower latency than a full analysis.
