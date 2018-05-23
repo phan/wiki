@@ -33,6 +33,8 @@ As a special case, `void` may be used as a return type indicating that the funct
 
 The special cases `static` and `self` are also supported as return types on methods which specify that the return type is a late-statically-bound version of the class, or the class in which the method is defined respectively.
 
+- Phan currently treats `$this` the same way it treats `static`. Note that `$this` is only supported in return types.
+
 `false` and `true` are treated as types that are separate from `bool`.
 This makes Phan more effective at analyzing code such as `$x = fopen(...); if ($x){...}` (`fopen` returns `int|false`)
 
@@ -103,6 +105,8 @@ Those types can be nullable.
 
 TODO: Document generics, `array<key, value>` (both UNION_TYPEs), `array<value>`, and `array{key:shape[...,keyN:shapeN]}`, and optional array keys, and typed closure/Callables.
 
+TODO: Document `Traversable<...>`, `Generator<...`>, etc.
+
 ```
 UNION_TYPE     : TYPE
                | TYPE '|' UNION_TYPE
@@ -143,6 +147,7 @@ SPECIAL_TYPE   : 'void'
                | 'self'
                | 'object'
                | 'mixed'
+               | '$this'
                ;
 
 ```
