@@ -452,7 +452,7 @@ $c = function(int $arg) {
 
 // This is an example of the eventual use, which may be in a completely different file
 $m = new MyClass();
-$invoker = $c->bindTo($m);
+$invoker = $c->bindTo($m, $m);
 $invoker(2);
 ```
 
