@@ -649,6 +649,78 @@ Possibly zero references to use statement for function {FUNCTION} ({FUNCTION})
 Possibly zero references to use statement for classlike/namespace {CLASSLIKE} ({CLASSLIKE})
 ```
 
+## PhanUnusedClosureParameter
+
+Phan has various checks (See the `unused_variable_detection` config)
+to detect if a variable or parameter is unused.
+
+```
+Parameter ${PARAMETER} is never used
+```
+
+## PhanUnusedClosureUseVariable
+
+```
+Closure use variable ${VARIABLE} is never used
+```
+
+## PhanUnusedGlobalFunctionParameter
+
+```
+Parameter ${PARAMETER} is never used
+```
+
+## PhanUnusedPrivateFinalMethodParameter
+
+```
+Parameter ${PARAMETER} is never used
+```
+
+## PhanUnusedPrivateMethodParameter
+
+```
+Parameter ${PARAMETER} is never used
+```
+
+## PhanUnusedProtectedFinalMethodParameter
+
+```
+Parameter ${PARAMETER} is never used
+```
+
+## PhanUnusedProtectedMethodParameter
+
+```
+Parameter ${PARAMETER} is never used
+```
+
+## PhanUnusedPublicFinalMethodParameter
+
+```
+Parameter ${PARAMETER} is never used
+```
+
+## PhanUnusedPublicMethodParameter
+
+```
+Parameter ${PARAMETER} is never used
+```
+
+## PhanUnusedVariable
+
+Phan has various checks (See the `unused_variable_detection` config)
+to detect if a variable or parameter is unused.
+
+```
+Unused definition of variable ${VARIABLE}
+```
+
+## PhanUnusedVariableValueOfForeachWithKey
+
+```
+Unused definition of variable ${VARIABLE} as the value of a foreach loop that included keys
+```
+
 ## PhanWriteOnlyPrivateProperty
 
 ```
@@ -1420,6 +1492,12 @@ Invalid operator: left operand is array and right is not
 @throws annotation of {FUNCTIONLIKE} has suspicious class type {TYPE}, which does not extend Error/Exception
 ```
 
+## PhanTypeInvalidYieldFrom
+
+```
+Yield from statement was passed an invalid expression of type {TYPE} (expected Traversable/array)
+```
+
 ## PhanTypeMagicVoidWithReturn
 
 ```
@@ -1530,6 +1608,18 @@ This will be emitted for the code
 
 ```php
 foreach (null as $i) {}
+```
+
+## PhanTypeMismatchGeneratorYieldKey
+
+```
+Yield statement has a key with type {TYPE} but {FUNCTIONLIKE}() is declared to yield keys of type {TYPE} in {TYPE}
+```
+
+## PhanTypeMismatchGeneratorYieldValue
+
+```
+Yield statement has a value with type {TYPE} but {FUNCTIONLIKE}() is declared to yield values of type {TYPE} in {TYPE}
 ```
 
 ## PhanTypeMismatchProperty
