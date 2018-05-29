@@ -48,9 +48,11 @@ Using these should be necessary in only a small fraction of use cases.
 ```php
 $x = some_dynamic_array_maker(MyClass::class);
 '@phan-var array<int,MyClass> $x';
-// The above annotation is a string literal, not a doc comment. (Due to a limitation of php-ast)
+// The above annotation is a string literal, not a doc comment.
+// (Due to a limitation of php-ast)
 // It must occur after $x is assigned to a value.
-// The string literal expression must be a statement (will be ignored if it is part of another expression).
+// The string literal expression must be a statement
+// (will be ignored if it is part of another expression).
 // This is useful for complicated types that can't be expressed via an `assert`.
 
 // Any type of string can be used, e.g. heredoc
