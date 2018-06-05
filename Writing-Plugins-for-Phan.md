@@ -15,7 +15,7 @@ To create a plugin, you'll need to
 
 * Create a plugin file for which the last line returns an instance of a class extending [`\Phan\PluginV2`](https://github.com/phan/phan/blob/master/src/Phan/PluginV2.php),
   and implementing one or more of the [`Capability`](https://github.com/phan/phan/blob/master/src/Phan/PluginV2) interfaces 
-* Add a reference to the file in `.phan/config.php` under the `plugin` array.
+* Add a reference to the file in `.phan/config.php` under the `plugins` array.
 
 Phan contains an example plugin named [DemoPlugin](https://github.com/phan/phan/blob/master/.phan/plugins/DemoPlugin.php) that is referenced from [Phan's .phan/config.php file](https://github.com/phan/phan/blob/92552016b2d3c650f5c625a8f64a9db935a756d6/.phan/config.php#L117).
 
