@@ -14,6 +14,7 @@
 - **[Parsing and Analysis](#parsing-and-analysis)** (Describes the phases Phan takes to analyze code)
 - **[Logging Issues](#logging-issues)** (How to log an `Issue` from Phan)
 - **[AST Node Visitors](#ast-node-visitors)** (Used to implement many operations acting on multiple types of AST Nodes)
+- **[Miscellaneous Advice](#miscellaneous-advice)** (Advice that may be useful when working on Phan)
 
 ## Introduction
 One of the big changes in PHP 7 is the fact that the parser now uses a real [Abstract Syntax Tree](https://wiki.php.net/rfc/abstract_syntax_tree). This makes it much easier to write code
