@@ -103,6 +103,12 @@ This issue is emitted when a class redeclares an inherited instance method as a 
 Cannot make non static method {METHOD}() static
 ```
 
+## PhanAccessNonStaticToStaticProperty
+
+```
+Cannot make non static property {PROPERTY} into the static property {PROPERTY}
+```
+
 ## PhanAccessOverridesFinalMethod
 
 This issue is emitted when a class attempts to override an inherited final method.
@@ -214,6 +220,12 @@ This issue is emitted when a class redeclares an inherited static method as an i
 Cannot make static method {METHOD}() non static
 ```
 
+## PhanAccessStaticToNonStaticProperty
+
+```
+Cannot make static property {PROPERTY} into the non static property {PROPERTY}
+```
+
 ## PhanAccessWrongInheritanceCategory
 
 ```
@@ -224,6 +236,30 @@ Attempting to inherit {CLASSLIKE} defined at {FILE}:{LINE} as if it were a {CLAS
 
 ```
 Attempting to inherit internal {CLASSLIKE} as if it were a {CLASSLIKE}
+```
+
+## PhanConstantAccessSignatureMismatch
+
+```
+Access level to {CONST} must be compatible with {CONST} defined in {FILE}:{LINE}
+```
+
+## PhanConstantAccessSignatureMismatchInternal
+
+```
+Access level to {CONST} must be compatible with internal {CONST}
+```
+
+## PhanPropertyAccessSignatureMismatch
+
+```
+Access level to {PROPERTY} must be compatible with {PROPERTY} defined in {FILE}:{LINE}
+```
+
+## PhanPropertyAccessSignatureMismatchInternal
+
+```
+Access level to {PROPERTY} must be compatible with internal {PROPERTY}
 ```
 
 # Analysis
@@ -274,6 +310,18 @@ Return type '{TYPE}' means a Traversable/array value starting in PHP 7.1. In PHP
 Using array keys in an array destructuring assignment is not compatible with PHP 7.0
 ```
 
+## PhanCompatibleMultiExceptionCatchPHP70
+
+```
+Catching multiple exceptions is not supported before PHP 7.1
+```
+
+## PhanCompatibleNegativeStringOffset
+
+```
+Using negative string offsets is not supported before PHP 7.1 (emits an 'Uninitialized string offset' notice)
+```
+
 ## PhanCompatibleNullableTypePHP70
 
 ```
@@ -306,6 +354,24 @@ $c->$m[0]();
 
 ```
 Square bracket syntax for an array destructuring assignment is not compatible with PHP 7.0
+```
+
+## PhanCompatibleUseIterablePHP71
+
+```
+Using '{TYPE}' as iterable will be a syntax error in PHP 7.2 (iterable becomes a native type with subtypes Array and Iterator).
+```
+
+## PhanCompatibleUseObjectPHP71
+
+```
+Using '{TYPE}' as object will be a syntax error in PHP 7.2 (object becomes a native type that accepts any class instance).
+```
+
+## PhanCompatibleUseVoidPHP70
+
+```
+Using '{TYPE}' as void will be a syntax error in PHP 7.1 (void becomes the absense of a return type).
 ```
 
 ## PhanCompatibleVoidTypePHP70
@@ -1152,6 +1218,24 @@ You'll see this issue with code like
 function strlen() {}
 ```
 
+## PhanRedefinedExtendedClass
+
+```
+{CLASS} extends {CLASS} declared at {FILE}:{LINE} which is also declared at {FILE}:{LINE}. This may lead to confusing errors.
+```
+
+## PhanRedefinedInheritedInterface
+
+```
+{CLASS} inherits {INTERFACE} declared at {FILE}:{LINE} which is also declared at {FILE}:{LINE}. This may lead to confusing errors.
+```
+
+## PhanRedefinedUsedTrait
+
+```
+{CLASS} uses {TRAIT} declared at {FILE}:{LINE} which is also declared at {FILE}:{LINE}. This may lead to confusing errors.
+```
+
 # StaticCallError
 
 ## PhanStaticCallToNonStatic
@@ -1462,10 +1546,34 @@ Found an instanceof class name of type {TYPE}, but class name must be a valid ob
 Invalid operator: right operand is array and left is not
 ```
 
+## PhanTypeInvalidLeftOperandOfAdd
+
+```
+Invalid operator: left operand is {TYPE} (expected array or number)
+```
+
+## PhanTypeInvalidLeftOperandOfNumericOp
+
+```
+Invalid operator: left operand is {TYPE} (expected number)
+```
+
 ## PhanTypeInvalidRightOperand
 
 ```
 Invalid operator: left operand is array and right is not
+```
+
+## PhanTypeInvalidRightOperandOfAdd
+
+```
+Invalid operator: right operand is {TYPE} (expected array or number)
+```
+
+## PhanTypeInvalidRightOperandOfNumericOp
+
+```
+Invalid operator: right operand is {TYPE} (expected number)
 ```
 
 ## PhanTypeInvalidThrowsIsInterface
@@ -2082,6 +2190,12 @@ An example would be
 
 ```php
 $v9 = $v10;
+```
+
+## PhanUndeclaredVariableAssignOp
+
+```
+Variable ${VARIABLE} was undeclared, but it is being used as the left hand side of an assignment operation
 ```
 
 ## PhanUndeclaredVariableDim
