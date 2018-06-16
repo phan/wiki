@@ -11,9 +11,11 @@ When creating a new release, make sure you do the following.
 - [ ] Update version number and date of [NEWS.md](https://github.com/phan/phan/blob/master/NEWS.md).
 - [ ] Update version number under `CLI::PHAN_VERSION` in [\Phan\CLI](https://github.com/phan/phan/blob/master/src/Phan/CLI.php#L16).
 - [ ] Build Phar by running `internal/make_phar` and getting the output under `build/phan.phar`. See https://github.com/phan/phan/issues/880
+- [ ] Generate a phar signature with `gpg -u identity@domain --detach-sign --output build/phan.phar.asc build/phan.phar` (See [#1759](https://github.com/phan/phan/issues/1759)). If this is a new key, mention the id and signature there.
 - [ ] [Create a new release](https://github.com/phan/phan/releases), and uploading the `phan.phar` file.
   - [ ] Make sure you mark it as "pre-release"
   - [ ] Copy or link the release notes from [NEWS.md](https://github.com/phan/phan/blob/master/NEWS.md) into the release description.
+
 
 
 After creating the new release, check [packagist.org/packages/phan/phan](https://packagist.org/packages/phan/phan) to make sure it picked up the new release.
