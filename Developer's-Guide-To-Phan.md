@@ -208,9 +208,11 @@ Other node visitors include
 * [\Phan\Analysis\PostOrderAnalysisVisitor](https://github.com/phan/phan/blob/master/src/Phan/Analysis/PostOrderAnalysisVisitor.php) where we do another part of the analysis during the analysis phase.
 * [\Phan\AST\UnionTypeVisitor](https://github.com/phan/phan/blob/master/src/Phan/AST/UnionTypeVisitor.php) where we do much of the work figuring out the types of things throughout analysis.
 
-### Miscellaneous advice
+### Miscellaneous Advice
 
 `\Phan\Debug` is a collection of utilities that may be useful to you when working on Phan patches or plugins.
-For example, `\Phan\Debug::printNode(\ast\Node $node)` will print a compact representation of an AST node to stdout.
+For example, `\Phan\Debug::printNode(\ast\Node $node)` will print a compact representation of an AST node (and it's kind and flags) to stdout.
+
+- [`Element::VISIT_LOOKUP_TABLE`](https://github.com/phan/phan/blob/master/src/Phan/AST/Visitor/Element.php) tells you what visitor methods are called for a given `\ast\Node->kind`.
 
 When adding new functionality, check to see if there is any existing functionality or issues that is similar to what you want to implement, and search for references (a good place to start looking is where the corresponding issue types are emitted).
