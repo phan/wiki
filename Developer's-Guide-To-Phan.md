@@ -206,3 +206,10 @@ Other node visitors include
 * [\Phan\Analysis\PreOrderAnalysisVisitor](https://github.com/phan/phan/blob/master/src/Phan/Analysis/PreOrderAnalysisVisitor.php) where we do part of the analysis during the analysis phase.
 * [\Phan\Analysis\PostOrderAnalysisVisitor](https://github.com/phan/phan/blob/master/src/Phan/Analysis/PostOrderAnalysisVisitor.php) where we do another part of the analysis during the analysis phase.
 * [\Phan\AST\UnionTypeVisitor](https://github.com/phan/phan/blob/master/src/Phan/AST/UnionTypeVisitor.php) where we do much of the work figuring out the types of things throughout analysis.
+
+### Miscellaneous advice
+
+`\Phan\Debug` is a collection of utilities that may be useful to you when working on Phan patches or plugins.
+For example, `\Phan\Debug::printNode(\ast\Node $node)` will print a compact representation of an AST node to stdout.
+
+When adding new functionality, check to see if there is any existing functionality or issues that is similar to what you want to implement, and search for references (a good place to start looking is where the corresponding issue types are emitted).
