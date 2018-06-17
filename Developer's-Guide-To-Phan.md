@@ -17,13 +17,15 @@
 - **[Miscellaneous Advice](#miscellaneous-advice)** (Advice that may be useful when working on Phan)
 
 ## Introduction
-One of the big changes in PHP 7 is the fact that the parser now uses a real [Abstract Syntax Tree](https://wiki.php.net/rfc/abstract_syntax_tree). This makes it much easier to write code
+One of the big changes in PHP 7 is the fact that the parser now uses a real [Abstract Syntax Tree](https://wiki.php.net/rfc/abstract_syntax_tree).
+This makes it much easier to write code
 analysis tools by pulling the tree and walking it looking for interesting things.
 
 Phan has 2 passes. On the first pass it reads every file, gets the AST and recursively parses it
 looking only for functions, methods and classes in order to populate a bunch of
 global hashes which will hold all of them. It also loads up definitions for all internal
-functions and classes. The type info for these come from a big file called FunctionSignatureMap.
+functions and classes.
+The type info for these come from a big file called [FunctionSignatureMap. (and its deltas)](https://github.com/phan/phan/tree/master/src/Phan/Language/Internal).
 
 The real complexity hits you hard in the second pass. Here some things are done recursively depth-first
 and others not. For example, we catch something like `foreach($arr as $k=>$v)` because we need to tell the
@@ -216,3 +218,5 @@ For example, `\Phan\Debug::printNode(\ast\Node $node)` will print a compact repr
 - [`Element::VISIT_LOOKUP_TABLE`](https://github.com/phan/phan/blob/master/src/Phan/AST/Visitor/Element.php) tells you what visitor methods are called for a given `\ast\Node->kind`.
 
 When adding new functionality, check to see if there is any existing functionality or issues that is similar to what you want to implement, and search for references (a good place to start looking is where the corresponding issue types are emitted).
+
+A [`\Phan\AST\ContextNode`](https://github.com/phan/phan/blob/master/src/Phan/AST/ContextNode.php) contains a lot of useful functionality, such as locating the definition(s) of an element from a referencing node (class, function-like, property, etc) in a Context
