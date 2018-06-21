@@ -31,18 +31,13 @@ Currently, there are clients of Daemon mode/Language Server Protocol for the fol
 
 1. VS Code (Using the Phan language server)
 
-   (Supports Unix/Linux only)
-
    Unlike the editor Plugins using the daemon, this plugin will automatically start the Phan language server.
    
    [![VS Code example, including error tolerance](https://raw.githubusercontent.com/TysonAndre/vscode-php-phan/master/images/tolerant_parsing.png)](https://github.com/tysonandre/vscode-php-phan)
 
-2. Vim 8 and Neovim (Using the Phan language server. This is new and not very configurable yet)
+2. Vim 8.1+ and Neovim (Using the Phan language server. This is new )
 
-   (Supports Unix/Linux only)
-
-   The version of vim you already have installed may be too old to run this extension.
-   A newer version of vim can be installed with the instructions found at https://www.vim.org/download.php
+   If needed, A newer version of vim can be installed with the instructions found at https://www.vim.org/download.php
    Alternately, you can use the [simpler snippet](https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim) along with the Phan daemon.
 
    Unlike the editor Plugins using the daemon, this plugin will automatically start the Phan language server.
@@ -65,16 +60,16 @@ Currently, there are clients of Daemon mode/Language Server Protocol for the fol
    See https://github.com/TysonAndre/flycheck-phanclient
 
    [![Emacs flycheck example for Phan](https://cloud.githubusercontent.com/assets/1904430/23347092/85da0322-fc54-11e6-8fae-48b7a30d623b.png)](https://github.com/TysonAndre/flycheck-phanclient)
-  
+
+   For language server support (Adds "go to definition"), there is a WIP plugin at https://github.com/TysonAndre/lsp-phan
 
 Adding support for other editors
 --------------------------------
 
-It may be possible to write an extension using Phan's Language Server Protocol support for Unix/Linux (And issue detection may be faster)
+It may be possible to write an extension using Phan's Language Server Protocol support (And issue detection may be faster)
 
 - The [VS Code extension](https://github.com/tysonandre/vscode-php-phan) uses most of this language server's features.
 
 Another approach is to existing plugin or configuration which uses php's syntax checks (`--syntax-check`/`-l`) (e.g. `php -l [-f] path/to/file.php`) to use `phan_client` (`path/to/phan_client -l path/to/file.php`), and change the way it extracts error messages.
 
 - (The error message format from `./phan_client` is almost the same, and `phan_client` run and outputs PHP's syntax check before requesting the Phan analysis results.)
-
