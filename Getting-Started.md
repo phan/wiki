@@ -89,13 +89,6 @@ Several docker images exist for Phan that include its dependencies (PHP version 
 * https://github.com/mre/docker-php-phan
 * https://github.com/madmuffin1/phan-docker
 * [Others that show up now and then](https://www.google.com/webhp#q=phan%20docker)
-
-## From Code Climate
-
-[Code Climate](https://codeclimate.com/) provides a code analysis service that can be configured to run Phan on your code base. You can take a look at [the Code Climate Phan documentation here](https://docs.codeclimate.com/docs/phan).
-
-- **The docker image on Code Climate hasn't been updated in a long time, see [Issue #1342](https://github.com/phan/phan/issues/1342)**. Until it gets updated, an alternate method of running Phan is recommended.
-
 ## From Homebrew
 
 See [[Getting Started With Homebrew]]
