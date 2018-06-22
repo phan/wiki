@@ -158,9 +158,9 @@ Phan will exit with a non-zero exit code if 1 or more errors are detected (or if
 
 Many Continuous integration tools can be used to detect that exit code (And/or parse the generated report file) and cause the build to fail. A list of several examples is below:
 
-- Travis: Example configurations: [for php-parser-to-php-ast (simple)](https://github.com/TysonAndre/php-parser-to-php-ast/blob/master/.travis.yml), [for phan/phan (Runs self test as part of a shell script)](https://github.com/phan/phan/blob/master/.travis.yml)
+- Travis: Example configurations: [for tolerant-php-parser-to-php-ast (simple)](https://github.com/TysonAndre/tolerant-php-parser-to-php-ast/blob/master/.travis.yml), [for phan/phan (Runs self test as part of a shell script)](https://github.com/phan/phan/blob/master/.travis.yml)
 
-- Appveyor (Windows): Example configurations: [php-parser-to-php-ast (simple)](https://github.com/TysonAndre/php-parser-to-php-ast/blob/master/.travis.yml), [Phan's own configuration](https://github.com/phan/phan/blob/0.10.4/appveyor.yml#L85)
+- Appveyor (Windows): Example configurations: [Phan's own configuration](https://github.com/phan/phan/blob/0.10.4/appveyor.yml#L85)
 
 - Jenkins (Enterprise): Similar to other build tools. I've found that the pylint output formatter works well with Jenkins for generating a Violations view (see [issue #184](https://github.com/phan/phan/issues/184)).
 
