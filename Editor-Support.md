@@ -32,7 +32,7 @@ Currently, there are clients of Daemon mode/Language Server Protocol for the fol
 1. VS Code (Using the Phan language server)
 
    Unlike the editor Plugins using the daemon, this plugin will automatically start the Phan language server.
-   
+
    [![VS Code example, including error tolerance](https://raw.githubusercontent.com/TysonAndre/vscode-php-phan/master/images/tolerant_parsing.png)](https://github.com/tysonandre/vscode-php-phan)
 
 2. Vim 8.1+ and Neovim (Using the Phan language server. This is new )
@@ -41,7 +41,7 @@ Currently, there are clients of Daemon mode/Language Server Protocol for the fol
    Alternately, you can use the [simpler snippet](https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim) along with the Phan daemon.
 
    Unlike the editor Plugins using the daemon, this plugin will automatically start the Phan language server.
-   
+
    [![VS Code example, including error tolerance](https://raw.githubusercontent.com/TysonAndre/LanguageServer-phan-neovim/master/images/tolerant_parsing.png)](https://github.com/tysonandre/LanguageServer-phan-neovim)
 
 2. Vim: (Using Phan daemon) Run `phan_client` on save in Vim, show the results: https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim
@@ -49,7 +49,7 @@ Currently, there are clients of Daemon mode/Language Server Protocol for the fol
    This depends on the daemon being started in the background.
 
    This should work with Vim 7 and newer.
-   
+
    [![Vim integration example](https://cloud.githubusercontent.com/assets/1904430/23336381/4210f212-fb83-11e6-9c55-79e0995307b1.png)](https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim)
 
 4. Emacs: (Using Phan daemon) Run `phan_client` while the file is being edited in Emacs. (Alternately, it can be configured to run only when saving a file):
@@ -70,6 +70,6 @@ It may be possible to write an extension using Phan's Language Server Protocol s
 
 - The [VS Code extension](https://github.com/tysonandre/vscode-php-phan) uses most of this language server's features.
 
-Another approach is to existing plugin or configuration which uses php's syntax checks (`--syntax-check`/`-l`) (e.g. `php -l [-f] path/to/file.php`) to use `phan_client` (`path/to/phan_client -l path/to/file.php`), and change the way it extracts error messages.
+Another approach is to existing plugin or configuration which uses PHP's syntax checks (`--syntax-check`/`-l`) (e.g. `php -l [-f] path/to/file.php`) to use `phan_client` (`path/to/phan_client -l path/to/file.php`), and change the way it extracts error messages.
 
 - (The error message format from `./phan_client` is almost the same, and `phan_client` run and outputs PHP's syntax check before requesting the Phan analysis results.)

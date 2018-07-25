@@ -2326,7 +2326,7 @@ Cannot access internal property {PROPERTY} of namespace {NAMESPACE} defined at {
 
 # CommentError
 
-This is emitted for some (but not all) comments which Phan thinks are invalid or unparseable.
+This is emitted for some (but not all) comments which Phan thinks are invalid or unparsable.
 
 ## PhanCommentOverrideOnNonOverrideConstant
 
@@ -2430,5 +2430,5 @@ Constant expression contains invalid operations
 
 ## PhanSyntaxError
 
-This emits warnings for unparseable PHP files (detected by `php-ast`).
-Note: This is not the same thing as running `php -l` on a file - PhanSyntaxError checks for syntax errors, but not sematics such as where certain expressions can occur (Which `php -l` would check for).
+This emits warnings for unparsable PHP files (detected by `php-ast`).
+Note: This is not the same thing as running `php -l` on a file - PhanSyntaxError checks for syntax errors, but not semantics such as where certain expressions can occur (Which `php -l` would check for).

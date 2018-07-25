@@ -28,7 +28,7 @@ The following suggestions may help speed up Phan analysis on your project:
    php built with `--enable-debug` (DEBUG) is around 2 times slower.
 
    Also, Phan runs the fastest in php 7.2+.
-   
+
 ## 2. Avoid Using Slow Phan Configuration Options
 
 These configuration options should be changed to the below values in your project's `.phan/config.php`. (For the settings with a value of false, omitting them would do the same thing)
@@ -45,13 +45,13 @@ These configuration options should be changed to the below values in your projec
     // directories/files, unanalyzable files, or files that
     // can't be removed for whatever reason.
     // (e.g. '@Test\.php$@', or '@vendor/.*/(tests|Tests)/@')
-    // 
+    //
     'exclude_file_regex' => '@^vendor/.*/(tests|Tests)/@',
 
     // This hasn't been optimized yet, and is still experimental, but optimization is planned.
     // Set it to false or omit it.
     'simplify_ast' => false,
-    
+
     // This is somewhat slow and doesn't work with multiple processes.
     // Set it to false or omit it.
     'dead_code_detection' => false,
@@ -88,7 +88,7 @@ Then Phan analysis would complete faster if you change it to the below (may requ
         'src',
         'tests/ClassesUsedBySrc/',  // If the tests pass, you may not need to run Phan on your unit tests. However, some files may still need to be included, e.g. for constant definitions, defining classes used by `instanceof` checks, etc.
         // You can parse fewer files if you list only direct dependencies (exclude as many devDependencies as possible). (And maybe dependencies of those dependencies, to fix any Phan issues that show up
-        // Additionally, it's faster to avoid parsing tests, examples, and 
+        // Additionally, it's faster to avoid parsing tests, examples, and
         'vendorName/directDependencyProject1/src',
         'vendorName/directDependencyProject2/library',
         'vendorName/directDependencyProject3/src/ProjectName',

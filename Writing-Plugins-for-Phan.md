@@ -122,7 +122,7 @@ You'll likely find yourself getting types frequently via a call to [`UnionTypeVi
 $union_type = UnionTypeVisitor::unionTypeFromNode($code_base, $context, $node);
 ```
 
-providing you with the union type of the statement defined by the AST node `$node`.
+which provides you with the union type of the statement defined by the AST node `$node`.
 
 ## ContextNode
 

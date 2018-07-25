@@ -4,11 +4,11 @@ When running Phan on more than one core, you may encounter a problem whereby an 
 
 Analyzing large code bases can be painfully slow. As such, Phan provides the ability to run an analysis on many cores. Because of the very large amount of random IO that takes place during analysis and because of the weak support for threading in PHP, Phan takes the approach of first parsing all code on a single core and then forking off to different processes in order to analyze subsets of the code base.
 
-The reduction in time required to analyze a full code base is significant, but it comes with a pretty major tradeoff.
+The reduction in time required to analyze a full code base is significant, but it comes with a pretty major trade-off.
 
 # File Ordering Affects Analysis
 
-At runtime, PHP reads code on-demand in an order defined by the initial file thats executed and your `require`/`include` statements or by how your auto-loader is triggered. Because PHP can be very weakly typed and because file ordering will matter when trying to deduce types, you're required to define an ordering for files when passing them into Phan.
+At runtime, PHP reads code on-demand in an order defined by the initial file that's executed and your `require`/`include` statements or by how your auto-loader is triggered. Because PHP can be very weakly typed and because file ordering will matter when trying to deduce types, you're required to define an ordering for files when passing them into Phan.
 
 Consider the following four files.
 

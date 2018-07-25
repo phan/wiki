@@ -42,4 +42,3 @@ As of PHP7, parameters can be typed as scalars (such as `int` or `string`). This
  */
 function f($t) { ... }
 ```
-

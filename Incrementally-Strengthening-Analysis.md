@@ -186,7 +186,7 @@ return [
     // due to the backward compatibility breaks of parsing in PHP 7.0
     'backward_compatibility_checks' => true,
 
-    // Added in 0.10.0. Set this to false to emit 
+    // Added in 0.10.0. Set this to false to emit
     // PhanUndeclaredFunction issues for internal functions
     // that Phan has signatures for,
     // but aren't available in the codebase or the

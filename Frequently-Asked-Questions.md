@@ -60,7 +60,7 @@ my_function('arg1', 'other_arg');
 
 See [the phpdocumentor2 implementation](https://github.com/phpDocumentor/ReflectionDocBlock/blob/14f9edf1ae14d6ce417afb05a9ed37d7b3cc341e/tests/unit/DocBlock/Tags/ParamTest.php#L152-L168) It parses the individual element types as `string` from `@param string ...$varName`. This detail of phpDocumentor2 is also documented in [the phpDocumentor/fig-standards repo](https://github.com/phpDocumentor/fig-standards/issues/40#issuecomment-138117263).
 
-`@phan-param` can be used if you must use a different standard for documenting variadic $args with `@param`.
+`@phan-param` can be used if you must use a different standard for documenting variadic `$args` with `@param`.
 
 ### There are Different Issue Sets On Different Numbers of CPUs
 
