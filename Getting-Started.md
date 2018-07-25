@@ -59,8 +59,6 @@ git clone https://github.com/phan/phan.git
 composer install
 ```
 
-*NOTE:* If you're running on PHP version 7.0.x and run into problems, you may wish to use the [0.8 branch of Phan](https://github.com/phan/phan/tree/0.8) (`git checkout 0.8`). However, this should not be necessary if you are using Phan 0.12.0+.
-
 You should now be able to run `./test` to make sure Phan is working correctly, and run `./phan` to run Phan on itself (using its own [`.phan/config.php`](https://github.com/phan/phan/blob/master/.phan/config.php) configuration).
 
 ## From Phan.phar
@@ -68,7 +66,7 @@ You should now be able to run `./test` to make sure Phan is working correctly, a
 To run Phan from a Phar package, you can download the Phar and run it.
 
 ```sh
-curl -L https://github.com/phan/phan/releases/download/0.12.13/phan.phar -o phan.phar;
+curl -L https://github.com/phan/phan/releases/download/0.12.15/phan.phar -o phan.phar;
 ```
 
 You'll now be able to run Phan via
@@ -77,7 +75,7 @@ You'll now be able to run Phan via
 php phan.phar
 ```
 
-When this was last updated, [0.12.13](https://github.com/phan/phan/releases/tag/0.12.13) was the latest release. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if that's still the latest, as I'll probably forget to update this page with subsequent releases.
+When this was last updated, [0.12.15](https://github.com/phan/phan/releases/tag/0.12.15) was the latest release. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if that's still the latest, as I'll probably forget to update this page with subsequent releases.
 
 According to packagist, the latest stable version is [![Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
 
@@ -89,6 +87,7 @@ Several docker images exist for Phan that include its dependencies (PHP version 
 * https://github.com/mre/docker-php-phan
 * https://github.com/madmuffin1/phan-docker
 * [Others that show up now and then](https://www.google.com/webhp#q=phan%20docker)
+
 ## From Homebrew
 
 See [[Getting Started With Homebrew]]
