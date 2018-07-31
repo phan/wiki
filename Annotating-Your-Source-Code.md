@@ -434,8 +434,6 @@ This may be useful if you are using non-standard union types in doc comments for
 
 ## @phan-closure-scope
 
-Supported in Phan 0.10.0+/0.8.5+
-
 This can be used when a closure is intended to be bound to a class that is different from the class in which it was declared.
 This helps avoid false positive warnings about PhanUndeclaredProperty, etc.
 
