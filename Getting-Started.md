@@ -37,7 +37,7 @@ Windows users can grab `ast.dll` directly from [PECL snaps](http://windows.php.n
 If you're managing dependencies via [Composer](https://getcomposer.org/), you can add Phan to your project by running the following.
 
 ```sh
-composer require --dev "phan/phan:0.12.x"
+composer require --dev "phan/phan:1.x"
 ```
 
 [For a full list of releases, check out https://packagist.org/packages/phan/phan](https://packagist.org/packages/phan/phan).
@@ -66,7 +66,7 @@ You should now be able to run `./test` to make sure Phan is working correctly, a
 To run Phan from a Phar package, you can download the Phar and run it.
 
 ```sh
-curl -L https://github.com/phan/phan/releases/download/0.12.15/phan.phar -o phan.phar;
+curl -L https://github.com/phan/phan/releases/download/1.0.0/phan.phar -o phan.phar;
 ```
 
 You'll now be able to run Phan via
@@ -75,7 +75,7 @@ You'll now be able to run Phan via
 php phan.phar
 ```
 
-When this was last updated, [0.12.15](https://github.com/phan/phan/releases/tag/0.12.15) was the latest release. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if that's still the latest, as I'll probably forget to update this page with subsequent releases.
+When this was last updated, [1.0.0](https://github.com/phan/phan/releases/tag/1.0.0) was the latest release. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if that's still the latest, as I'll probably forget to update this page with subsequent releases.
 
 According to packagist, the latest stable version is [![Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
 
@@ -141,11 +141,11 @@ return [
 ];
 ```
 
-In the Phan 0.12.0+ releases, `/path/to/phan --init --init-level=3` can alternatively be used to automatically generate .phan/config.php for a project using composer. (--init-level=1 generates a very strict config, --init-level=5 generates a weak config). You may need to manually add some indirect third party dependencies to `directory_list`.
+`/path/to/phan --init --init-level=3` can alternatively be used to automatically generate .phan/config.php for a project using composer. (--init-level=1 generates a very strict config, --init-level=5 generates a weak config). You may need to manually add some indirect third party dependencies to `directory_list`.
 
 Take a look at [[Incrementally Strengthening Analysis]] for some tips on how to start with a weak analysis and slowly increase the strictness as your code becomes better equipped to be analyzed.
 
-A complete list of configuration options and their default values can be found at [`src/Phan/Config.php`](https://github.com/phan/phan/blob/0.10.4/src/Phan/Config.php#L65).
+A complete list of configuration options and their default values can be found at [`src/Phan/Config.php`](https://github.com/phan/phan/blob/1.0.0/src/Phan/Config.php#L79-L776).
 
 Also see Phan's own [`.phan/config.php`](https://github.com/phan/phan/blob/master/.phan/config.php) for the config Phan uses to analyze itself.
 

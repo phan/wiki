@@ -88,10 +88,6 @@ $this->emitIssue(
 A shorthand was added to emit issues from visitors such as PluginAwareAnalysisVisitor or PluginAwarePreAnalysisVisitor, via `$this->emit(issue type, format string, [args...], [...])` (Implicitly uses global codebase and current context),
 or `$this->emitPluginIssue(CodeBase, Context, issue type, format string, [args...], [...])`. See [`InvalidVariableIssetVisitor`](https://github.com/phan/phan/blob/master/.phan/plugins/InvalidVariableIssetPlugin.php) for an example of this.
 
-# Legacy
-
-See [[Writing Legacy Plugins for Phan]]. Writing plugins using the legacy API is discouraged.
-
 # Reference Material
 
 When writing plugins, you'll likely need to understand a few concepts.
@@ -116,7 +112,7 @@ A [Context](https://github.com/phan/phan/blob/master/src/Phan/Language/Context.p
 ## UnionType
 A [UnionType](https://github.com/phan/phan/blob/master/src/Phan/Language/UnionType.php) is a set of [Type](https://github.com/phan/phan/blob/master/src/Phan/Language/Type.php)s defined for an object such as `int|string|DateTime|null`. [You can read more about UnionTypes here](https://github.com/phan/phan/wiki/About-Union-Types).
 
-You'll likely find yourself getting types frequently via a call to [`UnionTypeVisitor::unionTypeFromNode(...)`](https://github.com/phan/phan/blob/0.12.13/src/Phan/AST/UnionTypeVisitor.php#L95-L165) such as with
+You'll likely find yourself getting types frequently via a call to [`UnionTypeVisitor::unionTypeFromNode(...)`](https://github.com/phan/phan/blob/1.0.0/src/Phan/AST/UnionTypeVisitor.php#L98-L168) such as with
 
 ```php
 $union_type = UnionTypeVisitor::unionTypeFromNode($code_base, $context, $node);
