@@ -371,7 +371,9 @@ function test_line_suppression() {
 
 This annotation can be used in two ways:
 1. by using a string literal as a no-op statement
-2. by adding this annotation to any structural element Phan can parse the doc comments of (e.g. a class, closure, or global function).
+2. by adding this annotation to any comment type (`//`, `/*`, or `/**`). Older versions of Phan only supported this when associated with the doc comment of a structural element.
+
+This accepts a comma separated list of 1 or more issue types, the same way as `@suppress`.
 
 This annotation may fail to suppress some issues emitted in the parse phase.
 
@@ -394,6 +396,9 @@ use MyNS\MyClass;
 class Example {
    // ... code containing an annotation referencing MyClass that Phan can't parse
 }
+// Alternate syntaxes:
+// @phan-file-suppress PhanUnreferencedUseNormal
+/* @phan-file-suppress PhanUnreferencedUseNormal */
 ``` 
 
 ## @override
