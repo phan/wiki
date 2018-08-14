@@ -35,7 +35,8 @@ These configuration options should be changed to the below values in your projec
 
 ```php
     // Backwards Compatibility Checking 
-    // (Disable this if the application no longer supports php 5, or use a different tool. 
+    // (Disable this if the application no longer supports php 5,
+    // or use a different tool. 
     // Phan's checks are currently slow)
     // Set it to false or omit it.
     'backward_compatibility_checks' => false,
@@ -69,8 +70,12 @@ For example, if your project's `.phan/config` has config options similar to the 
     // An example of a config which parses too many files:
     'directory_list' => [
         'src',
-        'tests',  // This includes more files than needed, and tests may have high false positives rates
-        'vendor',   // This includes more files than needed. Only include direct dependencies
+        // This includes more files than needed,
+        // and tests may have high false positives rates
+        'tests',
+        // This includes more files than needed.
+        // Including only the direct dependencies is recommended.
+        'vendor',
         'path/to/NonComposerThirdPartyProjects',
     ],
     "exclude_analysis_directory_list" => [
@@ -86,9 +91,15 @@ Then Phan analysis would complete faster if you change it to the below (may requ
     // Be as specific as possible with 'directory_list' and 'file_list' to avoid parsing files (or scanning directories) unnecessarily.
     'directory_list' => [
         'src',
-        'tests/ClassesUsedBySrc/',  // If the tests pass, you may not need to run Phan on your unit tests. However, some files may still need to be included, e.g. for constant definitions, defining classes used by `instanceof` checks, etc.
-        // You can parse fewer files if you list only direct dependencies (exclude as many devDependencies as possible). (And maybe dependencies of those dependencies, to fix any Phan issues that show up
-        // Additionally, it's faster to avoid parsing tests, examples, and
+        // If the tests pass, you may not need to run Phan on your unit tests.
+        // However, some files may still need to be included,
+        // e.g. for constant definitions, 
+        // defining classes used by `instanceof` checks, etc.
+        'tests/ClassesUsedBySrc/',
+        // You can parse fewer files if you list only direct dependencies
+        // (exclude as many devDependencies as possible).
+        // (And maybe dependencies of those dependencies, to fix any Phan issues that show up.)
+        // Additionally, it's faster to avoid parsing tests, examples, etc.
         'vendorName/directDependencyProject1/src',
         'vendorName/directDependencyProject2/library',
         'vendorName/directDependencyProject3/src/ProjectName',
@@ -109,7 +120,7 @@ Then Phan analysis would complete faster if you change it to the below (may requ
     // directories/files, unanalyzable files, or files that
     // can't be removed for whatever reason.
     // (e.g. '@Test\.php$@', or '@vendor/.*/(tests|Tests)/@')
-    'exclude_file_regex' => '@^(vendor|path/to/NonComposerThirdPartyProjects)/.*/(tests|Tests|doc|examples)/@',
+    'exclude_file_regex' => '@^(vendor|path/to/thirdparty)/.*/(tests|Tests|doc|examples)/@',
 ```
 
 ### 4. Start Using Multiple Processes for Phan Analysis
@@ -138,10 +149,6 @@ There are two ways to do this.
 ```
 
 ### 6. Run the Latest Release of Phan
-
-Phan 0.10.5 (For php 7.1) contains many small performance optimizations, and more optimizations are planned for the next release.
-
-Those optimizations were backported to the 0.8.4 release (for php 7.0).
 
 The latest release (for php 7.2) is [![Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
 
