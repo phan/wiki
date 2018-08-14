@@ -88,7 +88,8 @@ For example, if your project's `.phan/config` has config options similar to the 
 Then Phan analysis would complete faster if you change it to the below (may require some tweaking to add any classes that are indirect dependencies):
 
 ```php
-    // Be as specific as possible with 'directory_list' and 'file_list' to avoid parsing files (or scanning directories) unnecessarily.
+    // Be as specific as possible with 'directory_list' and 'file_list'
+    // to avoid parsing files (or scanning directories) unnecessarily.
     'directory_list' => [
         'src',
         // If the tests pass, you may not need to run Phan on your unit tests.
