@@ -34,7 +34,9 @@ The following suggestions may help speed up Phan analysis on your project:
 These configuration options should be changed to the below values in your project's `.phan/config.php`. (For the settings with a value of false, omitting them would do the same thing)
 
 ```php
-    // Backwards Compatibility Checking (Disable this if the application no longer supports php 5, or use a different tool. Phan's checks are currently slow)
+    // Backwards Compatibility Checking 
+    // (Disable this if the application no longer supports php 5, or use a different tool. 
+    // Phan's checks are currently slow)
     // Set it to false or omit it.
     'backward_compatibility_checks' => false,
 
@@ -45,11 +47,9 @@ These configuration options should be changed to the below values in your projec
     // directories/files, unanalyzable files, or files that
     // can't be removed for whatever reason.
     // (e.g. '@Test\.php$@', or '@vendor/.*/(tests|Tests)/@')
-    //
     'exclude_file_regex' => '@^vendor/.*/(tests|Tests)/@',
 
-    // This hasn't been optimized yet, and is still experimental, but optimization is planned.
-    // Set it to false or omit it.
+    // Disabling this may give a small performance boost.
     'simplify_ast' => false,
 
     // This is somewhat slow and doesn't work with multiple processes.
