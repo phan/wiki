@@ -48,7 +48,7 @@ The CLI options `--force-polyfill-parser` and/or `--use-fallback-parser` may als
 
 ### Phan is warning about the codebase using syntax that is incompatible with php 7.0/7.1/7.2
 
-These warnings were introduced in Phan 12.0. This can be solved by setting the `target_php_version` in your .phan/config.php to `'7.1'`/`'7.2'` (if that is the oldest php version your project supports), or by changing the code to stop using newer syntax. You may also suppress that issue in .phan/config.php, and various other ways.
+This can be solved by setting the `target_php_version` in your .phan/config.php to `'7.1'`/`'7.2'` (if that is the oldest php version your project supports), or by changing the code to stop using newer syntax. You may also suppress that issue in .phan/config.php, and various other ways.
 
 + `CompatibleNullableTypePHP70`, `CompatibleShortArrayAssignPHP70`, `CompatibleKeyedArrayAssignPHP70`,
   `CompatibleKeyedArrayAssignPHP70`, and `CompatibleIterableTypePHP70`
