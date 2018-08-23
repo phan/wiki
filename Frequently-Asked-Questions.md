@@ -1,6 +1,7 @@
 ## Table of Contents
 
 - [Phan says that an internal class, constant, or function (e.g. xdebug_is_enabled, Soap, memcached, etc.) is undeclared](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#phan-says-that-an-internal-class-constant-or-function-eg-xdebug_is_enabled-soap-memcached-etc-is-undeclared)
+- [Phan says that a composer dependency of my project(a class, constant, or function) is undeclared](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#phan-says-that-a-composer-dependency-of-my-projecta-class-constant-or-function-is-undeclared)
 - [Phan isn't picking up my project's doc comments](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#phan-isnt-picking-up-my-projects-doc-comments)
 - [One of Phan's function or method signatures have incorrect parameter types or return types](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#one-of-phans-function-or-method-signatures-have-incorrect-parameter-types-or-return-types)
 - [PHP 7.1 features such as nullable types aren't being parsed](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#php-71-features-such-as-nullable-types-arent-being-parsed)
@@ -15,9 +16,17 @@
 
 For the best results, run Phan with the same extensions (and same extension versions) installed and enabled as you would in the project being enabled.
 
-Phan 0.10.1 supports [internal stubs](https://github.com/phan/phan/wiki/How-To-Use-Stubs#internal-stubs). [Regular stubs](https://github.com/phan/phan/wiki/How-To-Use-Stubs#stubs) are another option for older Phan releases.
+Phan supports [internal stubs](https://github.com/phan/phan/wiki/How-To-Use-Stubs#internal-stubs). [Regular stubs](https://github.com/phan/phan/wiki/How-To-Use-Stubs#stubs) are another option for older Phan releases.
 
 Phan automatically disables xdebug for performance reasons. If your project uses xdebug, enable the corresponding [internal stubs](https://github.com/phan/phan/wiki/How-To-Use-Stubs#internal-stubs) in your project's `.phan/config.php`.
+
+### Phan says that a composer dependency of my project(a class, constant, or function) is undeclared
+
+- You must add the directory (or file) of that dependency to `'directory_list'` or `'file_list'` in `.phan/config.php`. Usually, you will want to add `'vendor'` to `'exclude_analysis_directory_list'` as well. See https://github.com/phan/phan/wiki/Getting-Started#creating-a-config-file
+- Make sure that the file exists in vendor/ (e.g. make sure that `composer.phar install` was executed if this is running in CI)
+- Make sure that there are no typos in the variable name, that the namespace of the class is correct, and that the file containing the class/constant/function exists.
+
+This is a common cause of PhanUndeclaredClassMethod, PhanUndeclaredClass, PhanUndeclaredFunction, etc.
 
 ### Phan isn't picking up my project's doc comments
 
