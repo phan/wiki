@@ -69,6 +69,7 @@ Adding support for other editors
 It may be possible to write an extension using Phan's Language Server Protocol support (And issue detection may be faster)
 
 - The [VS Code extension](https://github.com/tysonandre/vscode-php-phan) uses most of this language server's features.
+- Invoke `./phan --extended-help` to see a full list of CLI flags, including those useful when implementing language servers.
 
 Another approach is to existing plugin or configuration which uses PHP's syntax checks (`--syntax-check`/`-l`) (e.g. `php -l [-f] path/to/file.php`) to use `phan_client` (`path/to/phan_client -l path/to/file.php`), and change the way it extracts error messages.
 
