@@ -1546,6 +1546,12 @@ Invalid offset {SCALAR} of array type {TYPE}
 Invalid offset {SCALAR} of array type {TYPE} in an array destructuring assignment
 ```
 
+## PhanTypeInvalidExpressionArrayDestructuring
+
+```
+Invalid value of type {TYPE} in an array destructuring assignment, expected {TYPE}
+```
+
 ## PhanTypeInvalidInstanceof
 
 ```
@@ -2328,6 +2334,12 @@ Cannot access internal property {PROPERTY} of namespace {NAMESPACE} defined at {
 
 This is emitted for some (but not all) comments which Phan thinks are invalid or unparsable.
 
+## PhanCommentAmbiguousClosure
+
+```
+Comment {STRING_LITERAL} refers to {TYPE} instead of \Closure - Assuming \Closure
+```
+
 ## PhanCommentOverrideOnNonOverrideConstant
 
 ```
@@ -2426,6 +2438,18 @@ Emitted for syntax errors.
 
 ```
 Constant expression contains invalid operations
+```
+
+## PhanInvalidNode
+
+```
+%s
+```
+
+## PhanInvalidWriteToTemporaryExpression
+
+```
+Cannot use temporary expression (of type {TYPE}) in write context
 ```
 
 ## PhanSyntaxError
