@@ -104,8 +104,9 @@ return [
          // Change this to include the folders you wish to analyze
          // (and the folders of their dependencies)
          'src',
-         // To speed up analysis, we recommend going back later and 
-         // limiting this to only the vendor/ subdirectories your project depends on.
+         // To speed up analysis, we recommend going back later and
+         // limiting this to only the vendor/ subdirectories your
+         // project depends on.
          // `phan --init` will generate a list of folders for you
          'vendor',
     ],
