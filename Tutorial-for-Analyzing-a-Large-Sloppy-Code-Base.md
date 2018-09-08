@@ -89,7 +89,8 @@ return [
     // time
     "quick_mode" => true,
 
-    // Only emit critical issues to start with (0 is low severity, 5 is normal severity, 10 is critical)
+    // Only emit critical issues to start with
+    // (0 is low severity, 5 is normal severity, 10 is critical)
     "minimum_severity" => 10,
 
     // A list of directories that should be parsed for class and
@@ -100,10 +101,12 @@ return [
     // Thus, both first-party and third-party code being used by
     // your application should be included in this list.
     'directory_list' => [
-         // Change this to include the folders you wish to analyze (and the folders of their dependencies)
+         // Change this to include the folders you wish to analyze
+         // (and the folders of their dependencies)
          'src',
-         // To speed up analysis, we recommend going back later and limiting this to only the vendor/ subdirectories your project depends on.
-         // `phan --init` will generate a list of those for you
+         // To speed up analysis, we recommend going back later and 
+         // limiting this to only the vendor/ subdirectories your project depends on.
+         // `phan --init` will generate a list of folders for you
          'vendor',
     ],
 
