@@ -25,12 +25,30 @@ If you have PHP version 7 installed with the [php-ast](https://github.com/nikic/
 
 Because many people will be running Phan over and over, it'll be helpful to check in a Phan config to the root of your code base.
 
-To do this, create a directory `.phan` in the root of your project and make a file `.phan/config.php` with the following contents.
+There are three ways to set this up
+
+### 1. Automated setup for composer projects
+
+This can be used on a project that has composer.json set up with an autoloader configuration for your project. If your project does not use composer, [manually set up `.phan/config.php` instead](https://github.com/phan/phan/wiki/Tutorial-for-Analyzing-a-Large-Sloppy-Code-Base/#2-manual-setup)
+
+```sh
+cd /path/to/project-to-analyze
+# --init-level can be anywhere from 1 (strictest) to 5 (least strict)
+path/to/phan --init --init-level=5
+```
+
+We recommend manually checking the generated config to see if the directory_list, file_list, and exclusions are reasonable.
+
+If Phan runs report that classes/global functions/global constants are missing, you will probably need to [add the corresponding folder to the directory_list of `.phan/config.php`](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#phan-says-that-a-composer-dependency-of-my-projecta-class-constant-or-function-is-undeclared)
+
+### 2. Manual Setup
+
+To manually set up a .phan/config.php instead, create a directory `.phan` in the root of your project and make a file `.phan/config.php` with the following contents:
 
 ```php
 <?php
 
-use \Phan\Config;
+use Phan\Config;
 
 /**
  * This configuration will be read and overlayed on top of the
@@ -71,72 +89,54 @@ return [
     // time
     "quick_mode" => true,
 
-    // Only emit critical issues
+    // Only emit critical issues to start with (0 is low severity, 5 is normal severity, 10 is critical)
     "minimum_severity" => 10,
 
-    // A set of fully qualified class-names for which
-    // a call to parent::__construct() is required
-    'parent_constructor_required' => [
+    // A list of directories that should be parsed for class and
+    // method information. After excluding the directories
+    // defined in exclude_analysis_directory_list, the remaining
+    // files will be statically analyzed for errors.
+    //
+    // Thus, both first-party and third-party code being used by
+    // your application should be included in this list.
+    'directory_list' => [
+         // Change this to include the folders you wish to analyze (and the folders of their dependencies)
+         'src',
+         // To speed up analysis, we recommend going back later and limiting this to only the vendor/ subdirectories your project depends on.
+         // `phan --init` will generate a list of those for you
+         'vendor',
     ],
 
     // A list of directories holding code that we want
     // to parse, but not analyze
     "exclude_analysis_directory_list" => [
+         'vendor',
     ],
 ];
 ```
 
-This configuration sets up the weakest possible analysis to you get started. With this configuration we allow undefined properties to be written to, allow things of type `null` to be cast to any type, and only emit the most severe issues.
+This configuration sets up the weakest possible analysis to get you started. With this configuration we allow undefined properties to be written to, allow things of type `null` to be cast to any type, and only emit the most severe issues.
 
 You can take a look at [Phan's config](https://github.com/phan/phan/blob/master/.phan/config.php) for an example.
 
 You should add any third-party code paths to the `exclude_analysis_directory_list` array so as to avoid having to deal with sloppiness in code that you don't want to fix.
 
-## Generate a File List
+### 3. Generate a File List
 
-You can pass the files to be analyzed to Phan on the command-line, but with a large code base, you'll want to create a file that lists all files and filters out junk to make your life easier.
+If the files and directories that you are going to analyze can't be represented in `.phan/config.php` (They usually can be), see [Externally generating a list of files for Phan](https://github.com/phan/phan/wiki/Externally-generating-a-list-of-files-for-Phan)
 
-One way to generate this file list would be to create a file `.phan/bin/mkfilelist` (like [Phan's](https://github.com/phan/phan/blob/master/.phan/bin/mkfilelist)) with the following contents.
-
-```sh
-#!/bin/bash
-
-if [[ -z $WORKSPACE ]]
-then
-    export WORKSPACE=~/path/to/code/src
-fi
-
-cd $WORKSPACE
-
-JUNK=/var/tmp/junk.txt
-
-for dir in \
-    src \
-    vendor/path/to/project
-do
-    if [ -d "$dir" ]; then
-        find $dir -name '*.php' >> $JUNK
-    fi
-done
-
-cat $JUNK | \
-    grep -v "junk_file.php" | \
-    grep -v "junk/directory.php" | \
-    awk '!x[$0]++'
-
-rm $JUNK
-```
-
-You can then run `./.phan/bin/mkfilelist > files`. Take a look at [Phan's file list generator](https://github.com/phan/phan/blob/master/.phan/bin/mkfilelist) to see an example.
-
-With this, you can now run `phan -f files` to run an analysis of your code base.
+If you have saved a list of files to `./files`, then when running Phan, add the option `-f ./files` when invoking Phan so that it will read files to analyze from that list.
 
 ## Start Doing a Weak Analysis
 
-With Phan installed and running, a configuration file and a file list, you can now do an analysis.
+After doing this, we recommend checking in `.phan/config.php` into source control.
+
+
+With Phan installed and running and a configuration file, you can now do an analysis.
 
 ```sh
-phan --progress-bar -f files -o analysis.txt
+# add '-f files' if you chose to manually generate a file list
+phan --progress-bar -o analysis.txt
 ```
 
 If after running there are no errors in the file `analysis.txt`, either something went wrong or your code base is a magical unicorn.
@@ -177,13 +177,17 @@ Some common sources of false-positives include
 
 * Annotations (@param, @var, @return) that aren't formatted correctly (as per [phpDocumentor](http://www.phpdoc.org/)). You'll want to go through and fix the formatting so we're picking up the actual type being referenced.
 * Sloppy annotations that don't accurately name the type being returned such as `@return Thing` when `Thing` isn't in any known namespace
-* Third party code that wasn't included in the analysis but who's classes and methods are still being used.
+* Third party code that wasn't included in the analysis but whose classes and methods are still being used.
 
 Fixing all of this stuff isn't going to be fun. Go get a cup of coffee, clear your schedule and get cozy. Perhaps this is a good time to work from home for a few days in isolation.
 
 ## Enforce clean analysis for your team
 
 Now that you have clean output, you're going to want to make sure it stays that way. Whatever your team's process is, you'll want to make sure folks can't push code that doesn't pass analysis. If you don't, you're going to find yourself feeling like you have to constantly clean up after folks, and nobody wants that.
+
+- See [Running Phan in Continuous Integration](https://github.com/phan/phan/wiki/Getting-Started#running-phan-in-continuous-integration)
+
+Also, if you haven't done so already, check `.phan/config.php` into source control.
 
 ## Slowly Ramp-Up the Strength of the Analysis
 
@@ -193,7 +197,7 @@ Now that you've gotten rid of all of the false-positives and Phan is producing a
 
 You'll want to consider
 
-* Moving `minimum_severity` in your config from `10` (severe) to `5` (normal) or even `0` (low) if you love fixing bugs.
+* Moving `minimum_severity` in your config from `10` (critical) to `5` (normal) or even `0` (low) if you love fixing bugs.
 * Setting `backward_compatibility_checks` to `true` to find out how your PHP5 code is going to break in PHP7.
 * Setting `null_casts_as_any_type` to `false` to find out what kind of madness your team has been up to.
 * Setting `allow_missing_properties` to `false` to see all of the undefined properties you've been writing to all these years.
