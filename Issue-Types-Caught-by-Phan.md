@@ -271,6 +271,12 @@ Please do file an issue or otherwise get in touch if you get one of these (or an
 [![Gitter](https://badges.gitter.im/phan/phan.svg)](https://gitter.im/phan/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 
+## PhanInvalidConstantFQSEN
+
+```
+{CONST} is an invalid FQSEN for a constant
+```
+
 ## PhanUnanalyzable
 
 This issue will be emitted when we hit a structure that Phan doesn't know how to parse. More commonly this will be expressed by Phan having an uncaught exception or behaving poorly.
@@ -402,6 +408,12 @@ new parent;
 
 ```
 Cannot access {CLASS} when not in object context, but code is using callable {METHOD}
+```
+
+## PhanContextNotObjectUsingSelf
+
+```
+Cannot use {CLASS} as type when not in object context in {FUNCTION}
 ```
 
 # DeprecatedError
@@ -864,7 +876,7 @@ Declaration of real/@method {METHOD} should be compatible with real/@method {MET
 ## PhanParamSignaturePHPDocMismatchHasParamType
 
 ```
-Declaration of real/@method {METHOD} should be compatible with real/@method {METHOD} (parameter #{INDEX} has type '{TYPE}' cannot replace original parameter with no type) defined in {FILE}:{LINE}
+Declaration of real/@method {METHOD} should be compatible with real/@method {METHOD} (parameter #{INDEX} has type '{TYPE}' which cannot replace original parameter with no type) defined in {FILE}:{LINE}
 ```
 
 ## PhanParamSignaturePHPDocMismatchParamIsNotReference
@@ -930,13 +942,13 @@ Declaration of {METHOD} should be compatible with internal {METHOD} (parameter #
 ## PhanParamSignatureRealMismatchHasParamType
 
 ```
-Declaration of {METHOD} should be compatible with {METHOD} (parameter #{INDEX} has type '{TYPE}' cannot replace original parameter with no type) defined in {FILE}:{LINE}
+Declaration of {METHOD} should be compatible with {METHOD} (parameter #{INDEX} has type '{TYPE}' which cannot replace original parameter with no type) defined in {FILE}:{LINE}
 ```
 
 ## PhanParamSignatureRealMismatchHasParamTypeInternal
 
 ```
-Declaration of {METHOD} should be compatible with internal {METHOD} (parameter #{INDEX} has type '{TYPE}' cannot replace original parameter with no type)
+Declaration of {METHOD} should be compatible with internal {METHOD} (parameter #{INDEX} has type '{TYPE}' which cannot replace original parameter with no type)
 ```
 
 ## PhanParamSignatureRealMismatchParamIsNotReference
@@ -2023,10 +2035,22 @@ This issue will be emitted from the following code
 function g(Undef $v) { $v->f(); }
 ```
 
+## PhanUndeclaredClassProperty
+
+```
+Reference to instance property {PROPERTY} from undeclared class {CLASS}
+```
+
 ## PhanUndeclaredClassReference
 
 ```
 Reference to undeclared class {CLASS}
+```
+
+## PhanUndeclaredClassStaticProperty
+
+```
+Reference to static property {PROPERTY} from undeclared class {CLASS}
 ```
 
 ## PhanUndeclaredClosureScope
@@ -2268,7 +2292,7 @@ constant {CONST} may not have a template type
 
 ## PhanTemplateTypeStaticMethod
 
-This is emitted when a static method's PHPdoc contains a param/return type declared in a class's phpdoc template annotations.
+This is emitted when a static method's PHPDoc contains a param/return type declared in a class's phpdoc template annotations.
 
 ```
 static method {METHOD} may not use template types
@@ -2276,7 +2300,7 @@ static method {METHOD} may not use template types
 
 ## PhanTemplateTypeStaticProperty
 
-This is emitted when a static property's PHPdoc contains an `@var` type declared in the class's phpdoc template annotations.
+This is emitted when a static property's PHPDoc contains an `@var` type declared in the class's phpdoc template annotations.
 
 ```
 static property {PROPERTY} may not have a template type
@@ -2311,7 +2335,7 @@ Cannot access internal {CLASS} defined at {FILE}:{LINE}
 This issue comes up when there is an attempt to access an `@internal` global constant outside of the namespace in which it's defined.
 
 ```
-Cannot access internal constant {CONST} of namepace {NAMESPACE} defined at {FILE}:{LINE} from namespace {NAMESPACE}
+Cannot access internal constant {CONST} of namespace {NAMESPACE} defined at {FILE}:{LINE} from namespace {NAMESPACE}
 ```
 
 ## PhanAccessMethodInternal
@@ -2338,6 +2362,24 @@ This is emitted for some (but not all) comments which Phan thinks are invalid or
 
 ```
 Comment {STRING_LITERAL} refers to {TYPE} instead of \Closure - Assuming \Closure
+```
+
+## PhanCommentDuplicateMagicMethod
+
+```
+Comment declares @method {METHOD} multiple times
+```
+
+## PhanCommentDuplicateMagicProperty
+
+```
+Comment declares @property* ${PROPERTY} multiple times
+```
+
+## PhanCommentDuplicateParam
+
+```
+Comment declares @param ${PARAMETER} multiple times
 ```
 
 ## PhanCommentOverrideOnNonOverrideConstant
@@ -2444,6 +2486,12 @@ Constant expression contains invalid operations
 
 ```
 %s
+```
+
+## PhanInvalidTraitUse
+
+```
+Invalid trait use: {DETAILS}
 ```
 
 ## PhanInvalidWriteToTemporaryExpression
