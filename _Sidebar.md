@@ -11,6 +11,7 @@
 
 - **[[Incrementally Strengthening Analysis]]**<br />
 - **[[Issue Types Caught by Phan]]**<br />
+- **[[Phan Config Settings]]**<br />
 - **[[Typing Parameters]]**<br />
 - **[[How To Use Stubs]]**<br />
 - **[[Speeding up Phan Analysis]]**<br/>
