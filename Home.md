@@ -24,6 +24,9 @@ A guide to how Phan can be configured to slowly increase the strength of the ana
 **[[Issue Types Caught by Phan]]**<br />
 An enumeration of error types, examples that cause them and tips on how to resolve the issues
 
+**[[Phan Config Settings]]**<br />
+Documents Phan's config settings. These affect the strictness of analysis, what files are analyzed, etc.
+
 **[[Typing Parameters]]**<br />
 A guide to handling interactions between Phan's `@param` types and declared parameter types or type-hints.
 
