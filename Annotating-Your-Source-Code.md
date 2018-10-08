@@ -18,6 +18,8 @@ Phan supports the following doc block annotations.
 * [`@inherits <fqsen>`, `@template <template_id>` (See Generic Types)](https://github.com/phan/phan/wiki/Generic-Types)
 * [`@phan-param`, `@phan-return`, and other aliases of PHPDoc tags.](https://github.com/phan/phan/wiki/Annotating-Your-Source-Code/#aliases-of-phpdoc-annotations)
 * [`@phan-closure-scope <fqsen>`](#phan-closure-scope)
+* [`@param <union_type> <param_name> @phan-output-reference`](#phan-output-reference)
+
 
 Additionally, Phan supports [inline type checks](#inline-type-checks), and can analyze `assert` statements and the conditionals of `if` statements and ternary operators.
 
@@ -459,6 +461,23 @@ $c = function(int $arg) {
 $m = new MyClass();
 $invoker = $c->bindTo($m, $m);
 $invoker(2);
+```
+
+## @phan-output-reference
+
+Phan supports indicating that a reference parameter's input value is unused by writing `@phan-output-reference` on the same line as an `@param` annotation.
+
+```php
+/**
+ * @param float $input
+ * @param float $output @phan-output-reference
+ */
+function double_passed_in_argument($input, &$output) {
+    $output = $input * 2;
+}
+// ...
+$output = false;
+double_passed_in_argument(2, $output);  // Phan won't warn about $output being an incompatible type.
 ```
 
 # Doc Blocks
