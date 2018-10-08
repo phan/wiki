@@ -449,15 +449,17 @@ class MyClass {
     private function privateMethod(int $x) {}
 }
 /** 
- * @phan-closure-scope MyClass - Phan analyzes the inner body of this closure 
- *                               as if it were a closure declared in MyClass.
+ * @phan-closure-scope MyClass
+ * Phan analyzes the inner body of this closure
+ * as if it were a closure declared in MyClass.
  */
 $c = function(int $arg) {
     return $this->privateMethod($arg);
 };
 // ...Do stuff...
 
-// This is an example of the eventual use, which may be in a completely different file
+// This is an example of the eventual use,
+// which may be in a completely different file
 $m = new MyClass();
 $invoker = $c->bindTo($m, $m);
 $invoker(2);
@@ -477,7 +479,9 @@ function double_passed_in_argument($input, &$output) {
 }
 // ...
 $output = false;
-double_passed_in_argument(2, $output);  // Phan won't warn about $output being an incompatible type.
+// Phan won't warn about $output being an incompatible type,
+// and will infer that $output is a float after this statement.
+double_passed_in_argument(2, $output);
 ```
 
 # Doc Blocks
