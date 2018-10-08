@@ -3,7 +3,7 @@ There are plenty of issues that Phan can find if you don't have type annotations
 Phan supports the following doc block annotations.
 
 * [`@var <union_type>`](#var)
-* [`@param <union_type> <variable_name>`](#param)
+* [`@param <union_type> <param_name>`](#param)
 * [`@return <union_type>`](#return)
 * [`@throws <union_type>`](#throws)
 * [`@method <union_type> <method_name>(<union_type> <param1_name>)`](#method)
