@@ -21,7 +21,7 @@ The following suggestions may help speed up Phan analysis on your project:
 
    The output of `php -m` will mention XDebug if XDebug is still enabled.
 
-   XDebug may be disabled in in various ways, e.g. by setting the environment variable `PHPRC` to the absolute path to a folder containing a copy of php.ini without XDebug.
+   XDebug may be disabled in various ways, e.g. by setting the environment variable `PHPRC` to the absolute path to a folder containing a copy of php.ini without XDebug.
 
    (XDebug is only suggested if you're investigating a crash, or a test failure in Phan's test suite, or an uncaught error in Phan, and shouldn't be used in normal usage.)
 2. Run `php --version`. Normally, you should see (NTS), not (ZTS DEBUG) or (NTS DEBUG), but if you build PHP yourself (e.g. for PECL module development), the version you're currently using may have been built with `--enable-debug` (DEBUG).
@@ -34,9 +34,9 @@ The following suggestions may help speed up Phan analysis on your project:
 These configuration options should be changed to the below values in your project's `.phan/config.php`. (For the settings with a value of false, omitting them would do the same thing)
 
 ```php
-    // Backwards Compatibility Checking 
+    // Backwards Compatibility Checking
     // (Disable this if the application no longer supports php 5,
-    // or use a different tool. 
+    // or use a different tool.
     // Phan's checks are currently slow)
     // Set it to false or omit it.
     'backward_compatibility_checks' => false,
@@ -61,7 +61,8 @@ These configuration options should be changed to the below values in your projec
 ### 3. Reduce the Number of Files Phan Parses
 
 Phan currently ignores any autoloading configuration that is set up for your project.
-It assumes that the files will be autoloaded correctly, and will unconditionally parses all files and directories listed in the parsed file and directory list (except for the excluded ones).
+It assumes that the files will be autoloaded correctly,
+and will unconditionally parse all files and directories listed in the parsed file and directory list (except for the excluded ones).
 
 
 For example, if your project's `.phan/config` has config options similar to the below settings:
@@ -94,7 +95,7 @@ Then Phan analysis would complete faster if you change it to the below (may requ
         'src',
         // If the tests pass, you may not need to run Phan on your unit tests.
         // However, some files may still need to be included,
-        // e.g. for constant definitions, 
+        // e.g. for constant definitions,
         // defining classes used by `instanceof` checks, etc.
         'tests/ClassesUsedBySrc/',
         // You can parse fewer files if you list only direct dependencies
@@ -151,7 +152,7 @@ There are two ways to do this.
 
 ### 6. Run the Latest Release of Phan
 
-The latest release (for php 7.2) is [![Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
+The latest release (for php 7.2) is [![the Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
 
 ### 7. Install an optional C module (for PHP <= 7.1)
 

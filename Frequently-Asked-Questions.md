@@ -82,7 +82,7 @@ Install `dev-master` of Phan (e.g. from composer) and see if the issue still occ
 If the issue continues to happen on `dev-master`, then:
 
 1. Check for similar issues. If there is anything new to add, add that.
-2. If there are no similar issues, then file an new issue with any of the relevant information:
+2. If there are no similar issues, then file a new issue with any of the relevant information:
    - stack trace for a crash
    - Code snippets (or a link to an affected project, if possible) and config settings (if any) needed to reproduce the issue.
    - Phan version used.

@@ -25,7 +25,7 @@ If you have PHP version 7 installed with the [php-ast](https://github.com/nikic/
 
 Because many people will be running Phan over and over, it'll be helpful to check in a Phan config to the root of your code base.
 
-There are three ways to set this up
+There are three ways to set this up:
 
 ### 1. Automated setup for composer projects
 
@@ -123,7 +123,7 @@ This configuration sets up the weakest possible analysis to get you started. Wit
 
 You can take a look at [Phan's config](https://github.com/phan/phan/blob/master/.phan/config.php) for an example.
 
-You should add any third-party code paths to the `exclude_analysis_directory_list` array so as to avoid having to deal with sloppiness in code that you don't want to fix.
+You should add any third-party code paths to the `exclude_analysis_directory_list` array to avoid having to deal with sloppiness in code that you don't want to fix.
 
 ### 3. Generate a File List
 
@@ -145,9 +145,9 @@ phan --progress-bar -o analysis.txt
 
 If after running there are no errors in the file `analysis.txt`, either something went wrong or your code base is a magical unicorn.
 
-Now that you have a giant list of severe issues for which the majority are likely false-positives, you're going to want to start fixing annotations and method signatures.
+Now that you have a giant list of severe issues for which the majority of issues are likely false-positives, you're going to want to start fixing annotations and method signatures.
 
-To find your largest sources of issues, its a good idea to look at your breakdown of issue types;
+To find your largest sources of issues, it's a good idea to look at your breakdown of issue types;
 
 ```sh
 cat analysis.txt| cut -d ' ' -f2 | sort | uniq -c | sort -n -r
@@ -179,7 +179,7 @@ cat analysis.txt | grep PhanUndeclaredClassMethod
 
 Some common sources of false-positives include
 
-* Annotations (@param, @var, @return) that aren't formatted correctly (as per [phpDocumentor](http://www.phpdoc.org/)). You'll want to go through and fix the formatting so we're picking up the actual type being referenced.
+* Annotations (@param, @var, @return) that aren't formatted correctly (as per [phpDocumentor](http://www.phpdoc.org/)). You'll want to go through and fix the formatting to ensure that we're picking up the actual type being referenced.
 * Sloppy annotations that don't accurately name the type being returned such as `@return Thing` when `Thing` isn't in any known namespace
 * Third party code that wasn't included in the analysis but whose classes and methods are still being used.
 
@@ -199,7 +199,7 @@ Take a look at [[Incrementally Strengthening Analysis]] for some ideas on how to
 
 Now that you've gotten rid of all of the false-positives and Phan is producing a clean set of issues that are truly problematic, you can start increasing Phan's strength until you get to a spot where you're comfortable blocking code that doesn't pass.
 
-You'll want to consider
+You'll want to consider the following changes:
 
 * Moving `minimum_severity` in your config from `10` (critical) to `5` (normal) or even `0` (low) if you love fixing bugs.
 * Setting `backward_compatibility_checks` to `true` to find out how your PHP5 code is going to break in PHP7.

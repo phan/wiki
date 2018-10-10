@@ -2,7 +2,8 @@ There are several options for getting Phan up and running on your code base.
 
 To get started, choose [a method for getting Phan running on your system](https://github.com/phan/phan/wiki/Getting-Started#installing-phan) and then [create a config file](https://github.com/phan/phan/wiki/Getting-Started#creating-a-config-file) so that Phan knows where to look for code and how to analyze it. Take a look at [Installing Phan Dependencies](https://github.com/phan/phan/wiki/Getting-Started#installing-phan-dependencies) for some help getting Phan's dependencies running.
 
-If you're having trouble getting Phan up and running, get in touch. If it's running but you're not sure of why some of the issues emitted by Phan are there, see [[Frequently Asked Questions]].
+If you're having trouble getting Phan up and running, get in touch.
+If it's running but you're not sure of why some issues emitted by Phan are there, see [[Frequently Asked Questions]].
 
 [![Gitter](https://badges.gitter.im/phan/phan.svg)](https://gitter.im/phan/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
@@ -24,8 +25,8 @@ pecl install ast-0.1.6
 ```
 
 And add `extension=ast.so` to your `php.ini` file. Check that it is there with `php -m`.
-If it isn't you probably added it to the wrong `php.ini` file. Check `php --ini` to see
-where it is looking.
+If it isn't, then you probably added it to the wrong `php.ini` file.
+Check `php --ini` to see where it is looking.
 
 If `phpize` is unavailable on your system, you may need to install the PHP developer
 packages which are often available with names such as `php-dev`.
@@ -77,7 +78,7 @@ php phan.phar
 
 When this was last updated, [1.0.3](https://github.com/phan/phan/releases/tag/1.0.3) was the latest release. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if that's still the latest, as I'll probably forget to update this page with subsequent releases.
 
-According to packagist, the latest stable version is [![Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
+According to packagist, the latest stable version is [![the Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
 
 ## From a Docker Image
 
@@ -145,9 +146,9 @@ return [
 
 Take a look at [[Incrementally Strengthening Analysis]] for some tips on how to start with a weak analysis and slowly increase the strictness as your code becomes better equipped to be analyzed.
 
-A complete list of configuration options and their default values can be found at [`src/Phan/Config.php`](https://github.com/phan/phan/blob/1.0.3/src/Phan/Config.php#L80-L777).
+A list of configuration options and their default values can be found at the page [[Phan Config Settings]].
 
-Also see Phan's own [`.phan/config.php`](https://github.com/phan/phan/blob/master/.phan/config.php) for the config Phan uses to analyze itself.
+Also, see Phan's own [`.phan/config.php`](https://github.com/phan/phan/blob/master/.phan/config.php) for the (fairly strict) config Phan uses to analyze itself.
 
 # Running Phan in Continuous Integration
 

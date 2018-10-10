@@ -22,7 +22,7 @@ To create a plugin, you'll need to
 
 Phan contains an example plugin named [DemoPlugin](https://github.com/phan/phan/blob/master/.phan/plugins/DemoPlugin.php) that is referenced from [Phan's .phan/config.php file](https://github.com/phan/phan/blob/92552016b2d3c650f5c625a8f64a9db935a756d6/.phan/config.php#L117).
 
-A more meaningful real-world example is given in [DollarDollarPlugin](https://github.com/phan/phan/blob/master/.phan/plugins/DollarDollarPlugin.php) which checks to make sure there are no variable of the form `$$var` in Phan's code base.
+A more meaningful real-world example is given in [DollarDollarPlugin](https://github.com/phan/phan/blob/master/.phan/plugins/DollarDollarPlugin.php) which checks to make sure there are no variables of the form `$$var` in Phan's code base.
 
 You may wish to base your plugin on a plugin performing a similar task. ([list of plugins](https://github.com/phan/phan/tree/master/.phan/plugins#plugin-list))
 
@@ -112,7 +112,7 @@ A [Context](https://github.com/phan/phan/blob/master/src/Phan/Language/Context.p
 ## UnionType
 A [UnionType](https://github.com/phan/phan/blob/master/src/Phan/Language/UnionType.php) is a set of [Type](https://github.com/phan/phan/blob/master/src/Phan/Language/Type.php)s defined for an object such as `int|string|DateTime|null`. [You can read more about UnionTypes here](https://github.com/phan/phan/wiki/About-Union-Types).
 
-You'll likely find yourself getting types frequently via a call to [`UnionTypeVisitor::unionTypeFromNode(...)`](https://github.com/phan/phan/blob/1.0.0/src/Phan/AST/UnionTypeVisitor.php#L98-L168) such as with
+You'll likely find yourself getting types frequently via a call to [`UnionTypeVisitor::unionTypeFromNode(...)`](https://github.com/phan/phan/blob/1.0.0/src/Phan/AST/UnionTypeVisitor.php#L98-L168) such as with:
 
 ```php
 $union_type = UnionTypeVisitor::unionTypeFromNode($code_base, $context, $node);

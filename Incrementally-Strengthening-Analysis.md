@@ -4,7 +4,7 @@ Phan has a core philosophy of measuring its success by its ability to enable com
 
 # Configuration Options
 
-You can configure Phan's analysis via a small number of command-line options and via the config file `.phan/config.php` which Phan will look for from the directory in which it's run or in the directory passed in via the `--directory <BASE_DIRECTORY>` CLI option.
+You can configure Phan's analysis via various command-line options and via the [config file](https://github.com/phan/phan/wiki/Phan-Config-Settings) `.phan/config.php` which Phan will look for from the directory in which it's run or in the directory passed in via the `--directory <BASE_DIRECTORY>` CLI option.
 
 Take a look at Phan's own very strict configuration for analyzing itself at [`.phan/config.php`](https://github.com/phan/phan/blob/master/.phan/config.php) to see how configs work and to see what can be tuned. You can also take a look at [the default configuration](https://github.com/phan/phan/blob/master/src/Phan/Config.php) to see what an analysis without configuration looks like.
 
@@ -198,7 +198,7 @@ return [
     // will be emitted by Phan.
     'whitelist_issue_types' => [
         'PhanCompatiblePHP7',  // This only checks for **syntax** where the parsing may have changed. This check is enabled by `backward_compatibility_checks`
-        'PhanDeprecatedFunctionInternal',  // Warns about a small number of functions deprecated in 7.0 and later.
+        'PhanDeprecatedFunctionInternal',  // Warns about a few functions deprecated in 7.0 and later.
         'PhanUndeclaredFunction',  // Check for removed functions such as split() that were deprecated in php 5.x and removed in php 7.0.
     ],
 ];

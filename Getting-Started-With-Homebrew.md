@@ -5,7 +5,7 @@ Note: as of [Homebrew 1.5.0, the homebrew/php TAP was removed](https://brew.sh/2
 If you had the homebrew/php tap installed, or are upgrading from Homebrew < 1.5.0, then first run the following commands:
 
 ```sh
-brew update; # updates local brew meta data
+brew update; # updates local brew metadata
 # removes old homebrew php TAP, now php is in homebrew core
 brew untap homebrew/php;
 brew list | grep 'php'; # check for all php related installs
@@ -26,7 +26,7 @@ brew prune; # cleanup old symlinks
 brew install autoconf; # Required by pecl
 brew install php;
 pecl channel-update pecl.php.net;
-# should not echo ast. If it does it is already installed,
+# should not echo ast. If it does, then it is already installed,
 # and you don't need to run pecl install ast
 php --modules | grep 'ast';
 # Install other pecl modules that you are still missing in a similar fashion

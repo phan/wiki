@@ -28,9 +28,11 @@ functions and classes.
 The type info for these come from a big file called [FunctionSignatureMap. (and its deltas)](https://github.com/phan/phan/tree/master/src/Phan/Language/Internal).
 
 The real complexity hits you hard in the second pass. Here some things are done recursively depth-first
-and others not. For example, we catch something like `foreach($arr as $k=>$v)` because we need to tell the
+and others not.
+For example, we catch something like `foreach($arr as $k=>$v)` because we need to tell the
 foreach code block that `$k` and `$v` exist. For other things we need to recurse as deeply as possible
-into the tree before unrolling our way back out. For example, for something like `c(b(a(1)))` we need
+into the tree before unrolling our way back out.
+And for code such as `c(b(a(1)))` we need
 to call `a(1)` and check that `a()` actually takes an int, then get the return type and pass it to `b()`
 and check that, before doing the same to `c()`.
 
@@ -49,7 +51,9 @@ There are a few concepts that are important to understand when looking at the Ph
 
 ### FQSEN
 
-An [FQSEN](https://github.com/phan/phan/blob/master/src/Phan/Language/FQSEN.php) is a Fully Qualified Structural Element Name. Any element in PHP that can be accessed from elsewhere has an FQSEN that we use to look it up. In the following code for example
+An [FQSEN](https://github.com/phan/phan/blob/master/src/Phan/Language/FQSEN.php) is a Fully Qualified Structural Element Name.
+Any element in PHP that can be accessed from elsewhere has an FQSEN that Phan uses to look it up.
+For example, in the following code:
 
 ```php
 namespace NS;
@@ -71,7 +75,7 @@ we have the following fully qualified structural element names;
 * **\NS\a::f** is function `f` in the class `\NS\a`
 * **\NS::g** is the function `g` in namespace `\NS`
 
-Its important to note that even if we didn't have a namespace defined for the code, we'd still be in the implicit root namespace `\`. For example, in the code
+It's important to note that even if we didn't have a namespace defined for the code, we'd still be in the implicit root namespace `\`. For example, in the code
 
 ```php
 class B {
@@ -86,13 +90,13 @@ we have the following FQSENs.
 * **\b::f** is the function `f` in class `B`
 * **\g** is the function `g`
 
-You'll note that all class and function FQSENs lowercase the name. We do this because function and class names are case insensitive in PHP. We'll likely make an option for enforcing casing in function and class names in future releases of Phan.
+You'll note that all class and function FQSENs lowercase the name. We do this because function and class names are case-insensitive in PHP. We'll likely make an option for enforcing casing in function and class names in future releases of Phan.
 
 An FQSEN for an element will inherit from the abstract class [\Phan\Language\FQSEN](https://github.com/phan/phan/blob/master/src/Phan/Language/FQSEN.php). The actual FQSEN for each element (classes, methods, constants, properties, functions) will be defined by classes in the [\Phan\Language\FQSEN](https://github.com/phan/phan/tree/master/src/Phan/Language/FQSEN) namespace.
 
 ### Type and UnionType
 
-A [Type](https://github.com/phan/phan/blob/master/src/Phan/Language/Type.php) is what you'd expect and can be a native type like `int`, `float`, `string`, `bool`, `array` or a non-native type for a class such as `\Phan\Language\Type`. A type can also be a generic array such as `int[]`, `string[]`, `\Phan\Language\Type[]`, etc. which denote an array of type `int`, `string` and `\Phan\Language\Type` respectively.
+A [Type](https://github.com/phan/phan/blob/master/src/Phan/Language/Type.php) is what you'd expect and can be a native type like `int`, `float`, `string`, `bool`, `array` or a non-native type for a class such as `\Phan\Language\Type`. Types can also be a generic array such as `int[]`, `string[]`, `\Phan\Language\Type[]`, etc. which denote an array of type `int`, `string` and `\Phan\Language\Type` respectively.
 
 A [UnionType](https://github.com/phan/phan/blob/master/src/Phan/Language/UnionType.php) denotes a set of types for which an element can be any of them. A UnionType could be something like `int|string` to denote that something can be an `int` or a `string`.
 
@@ -122,7 +126,7 @@ The CodeBase maps FQSENs of classes, methods, constants, properties and function
 
 ### Context
 
-The [Context](https://github.com/phan/phan/blob/master/src/Phan/Language/Context.php) represents the state of the world at any point during parsing or analysis. It stores
+The [Context](https://github.com/phan/phan/blob/master/src/Phan/Language/Context.php) represents the state of the world at any point during parsing or analysis. It stores the following information:
 
 * The file we're looking at (available via `getFile()`)
 * The line number we're on (available via `getLine()`)
@@ -130,7 +134,7 @@ The [Context](https://github.com/phan/phan/blob/master/src/Phan/Language/Context
 * Any namespace maps that are available to us (available via `getNamespaceMapFor(...)`)
 * The scope holding any variables available to us (available via `getScope()`)
 
-and when appropriate
+and when appropriate, it also stores:
 
 * The class we're in (available via `getClassFQSEN()`)
 * The method we're in (available via `getMethodFQSEN()`)
@@ -166,7 +170,9 @@ Phan runs in three phases;
    Before analysis can begin we take a pass over all elements (classes, methods, functions, etc.) and expand them with any information that was needed from the entire code base. Classes, for instance, get all constants, properties and methods from parents, interfaces and traits imported. The types of all classes are expanded to include the types of their parent classes, interfaces and traits.
 
 3. **Analysis**
-   Now that we know about all elements throughout the code base, we can start doing analysis. During analysis we take another pass at reading the AST for all files so that we can start doing proofs on types and stuff. To understand analysis, take a look at [\Phan\Analysis\PreOrderAnalysisVisitor](https://github.com/phan/phan/blob/master/src/Phan/Analysis/PreOrderAnalysisVisitor.php) and [\Phan\Analysis\PostOrderAnalysisVisitor](https://github.com/phan/phan/blob/master/src/Phan/Analysis/PostOrderAnalysisVisitor.php).
+   Now that we know about all elements throughout the code base, we can start doing analysis.
+   During analysis, we take another pass at reading the AST for all files so that we can start doing proofs on types and stuff.
+   To understand analysis, take a look at [\Phan\Analysis\PreOrderAnalysisVisitor](https://github.com/phan/phan/blob/master/src/Phan/Analysis/PreOrderAnalysisVisitor.php) and [\Phan\Analysis\PostOrderAnalysisVisitor](https://github.com/phan/phan/blob/master/src/Phan/Analysis/PostOrderAnalysisVisitor.php).
 
 A great place to start to understand how parsing and analysis happens is in [\Phan\Phan](https://github.com/phan/phan/blob/master/src/Phan/Phan.php) where each step is explained.
 
@@ -174,7 +180,7 @@ Take a look at the [\Phan\Analysis](https://github.com/phan/phan/tree/master/src
 
 ## Logging Issues
 
-Issues found during analysis are emitted via the [Issue::emit](https://github.com/phan/phan/blob/79b02a398751af156ff1c512867ee7006654e175/src/Phan/Issue.php#L482-L485) method. A common usage is
+Issues found during analysis are emitted via the [Issue::emit](https://github.com/phan/phan/blob/79b02a398751af156ff1c512867ee7006654e175/src/Phan/Issue.php#L482-L485) method. A common usage is below:
 
 ```php
 Issue::emit(
@@ -185,7 +191,10 @@ Issue::emit(
 );
 ```
 
-In this example, we're logging an issue of type `Issue::TypeMismatchForeach` where we're passing something other than an array as the first argument to a `foreach` and we're noting that its in a given file on a given line. Each type of issue will take different parameters to fill into the message template. `Issue::emit` is a variadic function that takes the type of issue, the file where the issue was seen, the line number where it was seen and then anything that should be passed to `sprintf` to populate values in the issue template string. In this case, `Issue::TypeMismatchForeach` has [a template string](https://github.com/phan/phan/blob/79b02a398751af156ff1c512867ee7006654e175/src/Phan/Issue.php#L261) that takes one `%s` parameter, which is the type of the expression (passed in as `(string)$expression_type`.
+In this example, we're logging an issue of type `Issue::TypeMismatchForeach` where we're passing something other than an array as the first argument to a `foreach` and we're noting that its in a given file on a given line.
+Each type of issue will take different parameters to fill into the message template.
+`Issue::emit` is a variadic function that takes the type of issue, the file where the issue was seen, the line number where it was seen and then anything that should be passed to `sprintf` to populate values in the issue template string.
+In this case, `Issue::TypeMismatchForeach` has [a template string](https://github.com/phan/phan/blob/79b02a398751af156ff1c512867ee7006654e175/src/Phan/Issue.php#L261) that takes one `%s` parameter, which is the type of the expression (passed in as `(string)$expression_type`.
 
 ## AST Node Visitors
 
@@ -219,4 +228,4 @@ For example, `\Phan\Debug::printNode(\ast\Node $node)` will print a compact repr
 
 When adding new functionality, check to see if there is any existing functionality or issues that is similar to what you want to implement, and search for references (a good place to start looking is where the corresponding issue types are emitted).
 
-A [`\Phan\AST\ContextNode`](https://github.com/phan/phan/blob/master/src/Phan/AST/ContextNode.php) contains a lot of useful functionality, such as locating the definition(s) of an element from a referencing node (class, function-like, property, etc) in a Context
+A [`\Phan\AST\ContextNode`](https://github.com/phan/phan/blob/master/src/Phan/AST/ContextNode.php) contains a lot of useful functionality, such as locating the definition(s) of an element from a referencing node (class, function-like, property, etc) in a Context.

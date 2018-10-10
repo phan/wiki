@@ -2,7 +2,7 @@ Running a static analyzer on your code and blocking deploys on code that doesn't
 
 ## Sandbox Old Confusing Code
 
-When you write a better version of something, you can prevent the old version from ever being used again outside of its existing callers by adding a `@deprecated` annotation to the replace element and `@suppress PhanDeprecatedFunction` or `@suppress PhanDeprecatedClass` to existing call sites.
+When you write a better version of something, you can prevent the old version from ever being used again outside of its existing callers by adding a `@deprecated` annotation to the replaced element and `@suppress PhanDeprecatedFunction` or `@suppress PhanDeprecatedClass` to existing call sites.
 
 ```php
 class C {

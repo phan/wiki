@@ -24,7 +24,7 @@ if (and only if) the corresponding PHP extension(i.e. module) (xdebug, memcached
 
 - Phan will use the real signature (properties, constants, methods, param counts, return types and *real* param types (Frequently empty for modules), etc.) from the `.phan_php` file instead of what it would have retrieved via PHP's Reflection APIs.
 - When using `autoload_internal_extension_signatures`, Phan will act almost identically to how it would behave if the extension were installed and enabled.
-  Phan will use it's own information about what the internal functions, classes, and methods **should** have as union types (for params, return types, properties, etc.).
+  Phan will use its own information about what the internal functions, classes, and methods **should** have as union types (for params, return types, properties, etc.).
   (Phan will also emit the same issue types, emitting `PhanParamTooManyInternal` instead of `PhanParamTooMany`, etc.)
 
 A common use case is to have Phan analyze a codebase as if various extensions are present (e.g. `xdebug`). The stubs contain almost the same info as the real extensions would: The real (Reflection) class, function, and constant signatures.
@@ -44,9 +44,11 @@ vendor/phan/phan/tool/make_stubs -e $EXTENSION_NAME | tee $EXTENSION_NAME.phan_p
 
 ### Downloading Internal Stubs
 
-Phan is bundled with some internal stubs, but *only for extensions it uses for self-analysis*. See https://github.com/phan/phan/tree/master/.phan/internal_stubs
+Phan is bundled with some internal stubs, but *only for extensions it uses for self-analysis*. See [.phan/internal_stubs/](https://github.com/phan/phan/tree/master/.phan/internal_stubs)
 
-https://github.com/TysonAndre/phan_stubs/tree/master/stubs contains a small number of stubs for extensions (for php 7.1, most should work with 7.0) that are internal or external to php. This may increase in the future.  **If you wish to contribute stubs, do so there**. This repo may be moved to the phan organization later on.
+https://github.com/TysonAndre/phan_stubs/tree/master/stubs contains various stubs for extensions (for php 7.1, most should work with 7.0) that are internal or external to php.
+This may increase in the future.
+**If you wish to contribute stubs, do so there**. This repo may be moved to the phan organization later on.
 
 You may or may not have success with stubs from [github.com/JetBrains/phpstorm-stubs](https://github.com/JetBrains/phpstorm-stubs/tree/master/standard), the phpdoc may change Phan's behavior.
 
