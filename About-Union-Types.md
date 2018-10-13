@@ -16,7 +16,7 @@ Phan also supports these union types, both internally and in phpdoc annotations 
 * `array<string,stdClass>` (an array with string keys and stdClass values)
 * `array<mixed,float>` (equivalent to `array<int|string,float>` and `float[]`)
 * `array{0:string,1:bool}` (The inferred type for an expression such as `['str', rand(0,2) > 0]`)
-* `array{key:value}` (The inferred type for an expression such as `['key'=>'str']`)
+* `array{key:value}` (The inferred type for an expression such as `['key'=>$myValue]`)
 * `array{key?:value}` (E.g. `@param array{key?:value} $options`, to indicate that a field with key `'key'` may or may not be defined)
 * `callable(ParamUnionType):ReturnUnionType` can optionally be used in phpdoc to describe the parameter and return types expected for a callable
 
@@ -28,6 +28,8 @@ Phan also supports these union types, both internally and in phpdoc annotations 
    Complex return union types must be surrounded by `()` to be parsed, e.g. `callable(): (int|false)`
 * `Closure(ParamUnionType):ReturnUnionType`: Same syntax as `callable(ParamUnionType):ReturnUnionType`
   Can be prefixed with `\`. See [this example](https://github.com/phan/phan/blob/master/tests/files/src/0455_closure_type_cast.php)
+* `2` (The inferred type for an expression such as `1+1`)
+* `'myvalue'` (The inferred type for an expression such as `"myvalue"`)
 
 As a special case, `void` may be used as a return type indicating that the function or method is not expected to return anything. In practice, this still implies that the function or method returns null, but Phan will enforce that there is not an explicit return.
 
@@ -106,6 +108,9 @@ Those types can be nullable.
 TODO: Document generics, `array<key, value>` (both UNION_TYPEs), `array<value>`, and `array{key:shape[...,keyN:shapeN]}`, and optional array keys, and typed closure/Callables.
 
 TODO: Document `Traversable<...>`, `Generator<...`>, etc.
+
+TODO: Document literal integers (`2`) and literal strings (`'a value'`)
+
 
 ```
 UNION_TYPE     : TYPE
