@@ -248,6 +248,12 @@ NOTE: THIS IS EXPERIMENTAL, and the implementation may change.
 
 (Default: `false`)
 
+## enable_include_path_checks
+
+Enable this to enable checks of require/include statements referring to valid paths.
+
+(Default: `false`)
+
 ## enable_internal_return_type_plugins
 
 Set this to false to disable the plugins that Phan uses to infer more accurate return types of `array_map`, `array_filter`, and many other functions.
@@ -313,6 +319,19 @@ globals that you have no hope of fixing.
 
 (Default: `false`)
 
+## include_paths
+
+A list of [include paths](https://secure.php.net/manual/en/ini.core.php#ini.include-path) to check when checking if `require_once`, `include`, etc. are pointing to valid files.
+
+To refer to the directory of the file being analyzed, use `'.'`
+To refer to the project root directory, use \Phan\Config::getProjectRootDirectory()
+
+(E.g. `['.', \Phan\Config::getProjectRootDirectory() . '/src/folder-added-to-include_path']`)
+
+This is ignored if [`enable_include_path_checks`](#enable_include_path_checks) is not `true`.
+
+(Default: `["."]`)
+
 ## inherit_phpdoc_types
 
 If enabled, inherit any missing phpdoc for types from
@@ -326,11 +345,11 @@ NOTE: This step will only be performed if [`analyze_signature_compatibility`](#a
 
 If a literal string type exceeds this length,
 then Phan converts it to a regular string type.
-This setting cannot be used to decrease the maximum.
+This setting cannot be less than 50.
 
-This setting can be used if users wish to store strings that are even longer than 50 bytes.
+This setting can be overridden if users wish to store strings that are even longer than 50 bytes.
 
-(Default: `50`)
+(Default: `200`)
 
 ## parent_constructor_required
 
@@ -503,6 +522,15 @@ E.g. rewrites `if ($a = value() && $a > 0) {...}`
 into `$a = value(); if ($a) { if ($a > 0) {...}}`
 
 (Default: `true`)
+
+## warn_about_relative_include_statement
+
+Enable this to warn about the use of relative paths in `require_once`, `include`, etc.
+Relative paths are harder to reason about, and opcache may have issues with relative paths in edge cases.
+
+This is ignored if [`enable_include_path_checks`](#enable_include_path_checks) is not `true`.
+
+(Default: `false`)
 
 ## warn_about_undocumented_throw_statements
 
