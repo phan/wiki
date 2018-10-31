@@ -57,6 +57,7 @@ From there, you can clone the Phan source and use composer to install its depend
 
 ```sh
 git clone https://github.com/phan/phan.git
+cd phan
 composer install
 ```
 
