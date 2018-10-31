@@ -40,7 +40,7 @@ php --modules | grep 'ast'; # should echo ast
 ### brew services start php;
 ```
 
-Once that completes successfully, you can check that phan is working correctly via any of the two other installation methods: [(1) from phan.phar](https://github.com/phan/phan/wiki/Getting-Started/_edit#from-phanphar) or [(2) from source](https://github.com/phan/phan/wiki/Getting-Started/_edit#from-source)
+Once that completes successfully, you can check that phan is working correctly via any of the two other installation methods: [(1) from phan.phar](https://github.com/phan/phan/wiki/Getting-Started/#from-phanphar) or [(2) from source](https://github.com/phan/phan/wiki/Getting-Started/#from-source)
 
 ```sh
 # or phan.phar --help
