@@ -19,7 +19,7 @@ JetBrains makes a very large number of stubs available at [github.com/JetBrains/
 
 # Internal Stubs
 
-Internal stubs can be declared with 'autoload_internal_extension_signatures' => [...]`) in your `.phan/config.php`. That setting will point to the parsable PHP files that will be used
+Internal stubs can be declared with `'autoload_internal_extension_signatures' => [...]`) in your `.phan/config.php`. That setting will point to the parsable PHP files that will be used
 if (and only if) the corresponding PHP extension(i.e. module) (xdebug, memcached, etc.) isn't available in the PHP binary used to run Phan.
 
 - Phan will use the real signature (properties, constants, methods, param counts, return types and *real* param types (Frequently empty for modules), etc.) from the `.phan_php` file instead of what it would have retrieved via PHP's Reflection APIs.
