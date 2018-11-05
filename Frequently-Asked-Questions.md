@@ -5,8 +5,10 @@
 - [Phan isn't picking up my project's doc comments](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#phan-isnt-picking-up-my-projects-doc-comments)
 - [One of Phan's function or method signatures have incorrect parameter types or return types](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#one-of-phans-function-or-method-signatures-have-incorrect-parameter-types-or-return-types)
 - [PHP 7.1 features such as nullable types aren't being parsed](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#php-71-features-such-as-nullable-types-arent-being-parsed)
-- [Phan is warning about the code using PHP 7.1/7.2 features](https://github.com/phan/phan/wiki/Frequently-Asked-Questions/#phan-is-warning-about-the-codebase-using-syntax-that-is-incompatible-with-php-707172)
+- [Phan is warning about the code using PHP 7.1/7.2 features](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#phan-is-warning-about-the-codebase-using-syntax-that-is-incompatible-with-php-707172)
 - [A variadic function with phpdoc has unexpected types](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#a-variadic-function-with-phpdoc-has-unexpected-types)
+- [I upgraded php-ast to 1.0.0 and Phan no longer works](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#i-upgraded-php-ast-to-100-and-phan-no-longer-works)
+
 - There are [[Different Issue Sets On Different Numbers of CPUs]]
 - **[How to file a bug report for a crash, error, or incorrect analysis](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#how-to-file-a-bug-report-for-a-crash-error-or-incorrect-analysis)**
 
@@ -70,6 +72,14 @@ my_function('arg1', 'other_arg');
 See [the phpdocumentor2 implementation](https://github.com/phpDocumentor/ReflectionDocBlock/blob/14f9edf1ae14d6ce417afb05a9ed37d7b3cc341e/tests/unit/DocBlock/Tags/ParamTest.php#L152-L168) It parses the individual element types as `string` from `@param string ...$varName`. This detail of phpDocumentor2 is also documented in [the phpDocumentor/fig-standards repo](https://github.com/phpDocumentor/fig-standards/issues/40#issuecomment-138117263).
 
 `@phan-param` can be used if you must use a different standard for documenting variadic `$args` with `@param`.
+
+### I upgraded php-ast to 1.0.0 and Phan no longer works.
+
+Check the Phan version in your composer.json (or the method you're using to install Phan), e.g. with `/path/to/phan --version`.
+
+You're likely still using Phan 0.12.x or 1.0. Upgrade to Phan 1.1.0 and you'll be able to use php-ast 1.0.0.
+
+The latest stable version of Phan is [![the Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
 
 ### There are Different Issue Sets On Different Numbers of CPUs
 
