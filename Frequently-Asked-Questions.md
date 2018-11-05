@@ -64,7 +64,10 @@ This can be solved by setting the `target_php_version` in your .phan/config.php 
 The union type Phan reads for `@param` before `...` is the union type of individual elements that are passed by the caller, not the type within the function body. The below is an example of how a function should be documented.
 
 ```php
-/** @param string ...$args (should be string, not string[] or array, and include "..." before the parameter name) */
+/** 
+ * @param string ...$args (should be string, not string[] or array,
+ *                        and include "..." before the parameter name)
+ */
 function my_function(string ...$args) {}
 my_function('arg1', 'other_arg');
 ```
