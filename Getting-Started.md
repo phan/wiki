@@ -69,7 +69,7 @@ You should now be able to run `./test` to make sure Phan is working correctly, a
 To run Phan from a Phar package, you can download the Phar and run it.
 
 ```sh
-curl -L https://github.com/phan/phan/releases/download/1.1.2/phan.phar -o phan.phar;
+curl -L https://github.com/phan/phan/releases/download/1.1.4/phan.phar -o phan.phar;
 ```
 
 You'll now be able to run Phan via
@@ -78,7 +78,7 @@ You'll now be able to run Phan via
 php phan.phar
 ```
 
-When this was last updated, [1.1.2](https://github.com/phan/phan/releases/tag/1.1.2) was the latest release. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if that's still the latest, as I'll probably forget to update this page with subsequent releases.
+When this was last updated, [1.1.4](https://github.com/phan/phan/releases/tag/1.1.4) was the latest release. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if that's still the latest, as I'll probably forget to update this page with subsequent releases.
 
 According to packagist, the latest stable version is [![the Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
 
@@ -162,7 +162,7 @@ Many Continuous integration tools can be used to detect that exit code (And/or p
 
 - Travis: Example configurations: [for tolerant-php-parser-to-php-ast (simple)](https://github.com/TysonAndre/tolerant-php-parser-to-php-ast/blob/master/.travis.yml), [for phan/phan (Runs self test as part of a shell script)](https://github.com/phan/phan/blob/master/.travis.yml)
 
-- Appveyor (Windows): Example configurations: [Phan's own configuration](https://github.com/phan/phan/blob/1.1.2/.appveyor.yml#L91-L92)
+- Appveyor (Windows): Example configurations: [Phan's own configuration](https://github.com/phan/phan/blob/1.1.4/.appveyor.yml#L96-L97)
 
 - Jenkins (Enterprise): Similar to other build tools. I've found that the pylint output formatter works well with Jenkins for generating a Violations view (see [issue #184](https://github.com/phan/phan/issues/184)).
 
