@@ -93,7 +93,7 @@ Several docker images exist for Phan that include its dependencies (PHP version 
 
 ## From Homebrew
 
-See [[Getting Started With Homebrew]]
+See [[Getting Started With Homebrew]] (useful for Mac OS)
 
 # Creating a Config File
 
