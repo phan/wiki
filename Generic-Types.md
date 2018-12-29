@@ -1,4 +1,4 @@
-Phan has primordial support for generic (templated) classes via type the annotations `@template` and `@inherits` and via a type syntax of the form `Class<T>` that may be referenced within doc-block annotations.
+Phan has primordial support for generic (templated) classes via type the annotations `@template` and `@inherits` and via a type syntax of the form `MyClass<T>` that may be referenced within doc-block annotations.
 
 For details on possible language-level support for generics, take a look at the draft RFC for [Generic Types and Functions](https://wiki.php.net/rfc/generics).
 
