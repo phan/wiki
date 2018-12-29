@@ -39,7 +39,7 @@ A list of suggestions that may help speed up Phan analysis on your project.
 ## Using Advanced Features
 
 **[[Generic Types]]**<br/>
-Phan has primordial support for generic (templated) classes via type the annotations `@template` and `@inherits` and via a type syntax of the form `Class<T>` that may be referenced within doc-block annotations.
+Phan has primordial support for generic (templated) classes via type the annotations `@template` and `@inherits` and via a type syntax of the form `MyClass<T>` that may be referenced within doc-block annotations.
 
 **[[Editor Support]]**<br/>
 This article explains how to set up support for Phan in an editor/IDE.
