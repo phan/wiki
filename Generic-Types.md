@@ -2,14 +2,17 @@ Phan has primordial support for generic (templated) classes via type the annotat
 
 For details on possible language-level support for generics, take a look at the draft RFC for [Generic Types and Functions](https://wiki.php.net/rfc/generics).
 
-The current implementation is very incomplete. You'll likely end up being annoyed that we don't yet allow for generic interfaces, generic functions/methods, or defining constraints on types. There are also very likely to be significant bugs with the current implementation.
+The current implementation is very incomplete. You'll likely end up being annoyed that we don't yet allow for generic interfaces or defining constraints on types. There are also very likely to be significant bugs with the current implementation.
+
+- As of Phan 1.1.9, there is also support for declaring templates on function-likes (functions, methods, and closures) based on their parameters. See the section [Function-Like Templates](#function-templates).
 
 # Rules for using Generics
 
 Support for generics within Phan is not the same as other languages and comes with its own special rules.
 
 ## Declare Template Types
-All template types must be declared on the class via doc block comments via the `@template` annotation.
+
+All template types for a generic class must be declared on the class via doc block comments via the `@template` annotation.
 
 The annotation on the class below shows how template types can be defined.
 
@@ -28,7 +31,7 @@ class C {
 ```
 
 ## The Constructor Must Make All Types Concrete
-All template types must be filled in with concrete types via the constructor.
+All template types (of a generic class) must be filled in with concrete types via the constructor.
 
 In the example above, the template type `T` is declared for the `__constructor` method. An issue will be emitted by Phan for any template types that aren't specified as parameters on the constructor with the following form.
 
@@ -69,7 +72,10 @@ class C2 extends C {
 ```
 
 ## No Generic Statics
-Constants and static methods on a generic class cannot reference template types.
+
+Constants and static methods on a generic class cannot reference template types of the generic class.
+
+See the section [Function-Like Templates](#function-templates) for an alternative for static (and instance) methods.
 
 # How It Works
 
@@ -79,7 +85,7 @@ Given the rule that a generic class needs to have all templates mapped to concre
 
 # Example Generic Classes
 
-Phan comes with a library that contains a few generic classes such as [Option](https://github.com/phan/phan/blob/master/src/Phan/Library/Option.php), [Some](https://github.com/phan/phan/blob/master/src/Phan/Library/Some.php), [None](https://github.com/phan/phan/blob/master/src/Phan/Library/None.php), [Tuple2](https://github.com/phan/phan/blob/master/src/Phan/Library/Tuple2.php), and others.
+Phan comes with a library that contains a few generic classes such as [Option](https://github.com/phan/phan/blob/master/src/Phan/Library/Option.php), [Some](https://github.com/phan/phan/blob/master/src/Phan/Library/Some.php), [None](https://github.com/phan/phan/blob/master/src/Phan/Library/None.php), [Tuple2](https://github.com/phan/phan/blob/master/src/Phan/Library/Tuple2.php), [Set](https://github.com/phan/phan/blob/master/src/Phan/Library/Set.php), and others.
 
 The following implementation of `Tuple2` shows off how generics work.
 
@@ -302,4 +308,93 @@ class None extends Option
         return 'None()';
     }
 }
+```
+
+# Function templates
+
+An early version of templates on function-like elements was added in Phan 1.1.9.
+These are useful for inferring the value returned by a function/closure/method.
+Improvements and bug fixes for this will be included in subsequent releases.
+
+Phan can now infer template types in regular functions/methods. For example, it can infer the types of a template `T` from other types (both in Generics and when inferring return types)
+
+- array values, e.g. `@param T[]`
+- return types, e.g. `@param Closure():T`
+- templates of other generics, e.g. `@param OtherClass<\stdClass,T>`
+
+Note that this implementation is currently incomplete - Phan is not yet able to extract `T` from types not mentioned here (e.g. `array{0:T}`, `Generator<T>`, etc.)
+
+Phan will take the union of all types inferred for `T` (without checking if the parameters are compatible)
+
+## Indicating a function returns elements of an array
+
+```php
+class ArrayUtil {
+    /**
+     * @template T
+     * @param T[] $x
+     * @return T
+     * @throws InvalidArgumentException
+     */
+    public static function firstElement(array $x) {
+        if (count($x) == 0) {
+            throw new InvalidArgumentException("Expected one element");
+        }
+        return reset($x);
+    }
+}
+// Phan will that this must be an stdClass because of this annotation.
+$result = ArrayUtil::firstElement([new stdClass()]);
+```
+
+## Indicating a function depends on the return type of a closure
+
+```php
+function identity($x) {
+    var_dump($x);
+    return $x;
+}
+
+/**
+ * @template T
+ * @param Closure(int $i):T $x
+ * @return array<int,T>
+ */
+function example_closure_usage(Closure $x) {
+    $result = [];
+    for ($i = 0; $i < 10; $i++) {
+        // Extra code that makes this harder to analyze recursively
+        $result[] = identity($x($i));
+    }
+    return $result;
+}
+
+// Phan will infer from the closure's return type
+// that $result is an `array<int,int>` instead of something vaguer
+$result = example_closure_usage(function (int $i) : int {
+    return rand(0, abs($i));
+});
+```
+
+## Indicating a return type depends on template types of another generic
+
+See [this file](https://github.com/phan/phan/blob/1.1.9/tests/files/src/0600_template_from_template.php) and [the example detected issues](https://github.com/phan/phan/blob/1.1.9/tests/files/expected/0600_template_from_template.php.expected)
+
+## Indicating a method creates an instance of the passed in class name
+
+This requires using the type `class-string<T>` type. This indicates that the argument is a string: the name of the class `T` of the object that will be returned.
+
+```php
+<?php
+/**
+ * @template T
+ * @param class-string<T> $name
+ * @return T
+ */
+function my_object_factory(string $name) {
+    // The same annotation can be used for complex factories
+    return new $name;
+}
+$result = my_object_factory('stdClass');  // Phan infers that this is an stdClass
+$other = my_object_factory(MyClass::class);  // Phan infers that this is an instance of MyClass
 ```
