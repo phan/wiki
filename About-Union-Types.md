@@ -30,6 +30,7 @@ Phan also supports these union types, both internally and in phpdoc annotations 
   Can be prefixed with `\`. See [this example](https://github.com/phan/phan/blob/master/tests/files/src/0455_closure_type_cast.php)
 * `2` (The inferred type for an expression such as `1+1`)
 * `'myvalue'` (The inferred type for an expression such as `"myvalue"`)
+* `class-string`, `class-string<T>`, and `callable-string` (strings that are fully qualified names of classes or callables)
 
 As a special case, `void` may be used as a return type indicating that the function or method is not expected to return anything. In practice, this still implies that the function or method returns null, but Phan will enforce that there is not an explicit return.
 
