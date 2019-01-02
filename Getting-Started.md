@@ -138,7 +138,7 @@ return [
     //       party code, directories containing that code
     //       should be added to both the `directory_list`
     //       and `exclude_analysis_directory_list` arrays.
-    "exclude_analysis_directory_list" => [
+    'exclude_analysis_directory_list' => [
         'vendor/'
     ],
 ];
