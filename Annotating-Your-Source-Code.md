@@ -457,7 +457,8 @@ A simple example of how `@phan-assert` can be used:
 function my_assert_string($x) {
     if (!is_string($x)) {
         // This can be implemented in various ways.
-        // E.g. you may want to instead log a warning such as "this should not happen" with the backtrace.
+        // E.g. you may want to instead log a warning such as
+        // "this should not happen" with the backtrace.
         throw new InvalidArgumentException("expected a string, got $x");
     }
 }
