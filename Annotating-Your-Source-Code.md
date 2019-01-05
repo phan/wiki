@@ -435,11 +435,16 @@ class SubClass extends BaseClass {
 
 ## Assertions
 
+Phan supports adding annotations to functions/methods indicating what the argument value should be inferred to be,
+in the subsequent statements. (i.e. if the function/method returns without throwing/exiting)
+
 - `@phan-assert int $x` will assert that the argument to the parameter `$x` is of type `int`.
 - `@phan-assert !false $x` will assert that the argument to the parameter `$x` is not false.
 - `@phan-assert !\Traversable $x` will assert that the argument to the parameter `$x` is not `Traversable` (or a subclass)
 - `@phan-assert-true-condition $x` will make Phan infer that the argument to parameter `$x` is truthy if the function returned successfully.
+  Invocations of this function will be analyzed similarly to `assert(expr);`.
 - `@phan-assert-false-condition $x` will make Phan infer that the argument to parameter `$x` is falsey if the function returned successfully.
+  Invocations of this function will be analyzed similarly to `assert(!expr);`.
 - This can be used in combination with Phan's template support.
 
 A simple example of how `@phan-assert` can be used:
