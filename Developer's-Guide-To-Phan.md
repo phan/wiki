@@ -225,6 +225,7 @@ Other node visitors include
 For example, `\Phan\Debug::printNode(\ast\Node $node)` will print a compact representation of an AST node (and it's kind and flags) to stdout.
 
 - [`Element::VISIT_LOOKUP_TABLE`](https://github.com/phan/phan/blob/master/src/Phan/AST/Visitor/Element.php) tells you what visitor methods are called for a given `\ast\Node->kind`.
+- `php internal/dump_fallback_ast.php --php-ast '2 xor 3;'` can be used if you want to quickly see what AST kind and flags a given expression (or php file's contents) would have. 
 
 When adding new functionality, check to see if there is any existing functionality or issues that is similar to what you want to implement, and search for references (a good place to start looking is where the corresponding issue types are emitted).
 
