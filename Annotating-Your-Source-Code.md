@@ -442,8 +442,10 @@ in the subsequent statements. (i.e. if the function/method returns without throw
 - `@phan-assert !false $x` will assert that the argument to the parameter `$x` is not false.
 - `@phan-assert !\Traversable $x` will assert that the argument to the parameter `$x` is not `Traversable` (or a subclass)
 - `@phan-assert-true-condition $x` will make Phan infer that the argument to parameter `$x` is truthy if the function returned successfully.
+
   Invocations of this function will be analyzed similarly to `assert(expr);`.
 - `@phan-assert-false-condition $x` will make Phan infer that the argument to parameter `$x` is falsey if the function returned successfully.
+
   Invocations of this function will be analyzed similarly to `assert(!expr);`.
 - This can be used in combination with Phan's template support.
 
@@ -464,7 +466,7 @@ function my_assert_string($x) {
 }
 $x = json_decode($someEncodedString);
 my_assert_string($x);
-// Phan infers that $x must be a string, in the statements following that assertion.
+// Phan infers that $x must be a string, starting here.
 ```
 
 See [this example file](https://github.com/phan/phan/blob/1.2.0/tests/plugin_test/src/072_custom_assertions.php) for even more examples of how to use these annotations.
