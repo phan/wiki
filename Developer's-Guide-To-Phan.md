@@ -180,21 +180,24 @@ Take a look at the [\Phan\Analysis](https://github.com/phan/phan/tree/master/src
 
 ## Logging Issues
 
-Issues found during analysis are emitted via the [Issue::emit](https://github.com/phan/phan/blob/79b02a398751af156ff1c512867ee7006654e175/src/Phan/Issue.php#L482-L485) method. A common usage is below:
+Issues found during analysis are emitted via the [`Issue::maybeEmit()`](https://github.com/phan/phan/blob/1.2.0/src/Phan/Issue.php#L3798-L3812) method. A common usage is below:
 
 ```php
-Issue::emit(
-    Issue::TypeMismatchForeach,
-    $this->context->getFile(),
-    $node->lineno ?? 0,
-    (string)$expression_type
+Issue::maybeEmit(
+    $this->code_base,  // The CodeBase
+    $this->context,    // A Context with the file the issue is being emitted in
+    Issue::TypeInvalidMethodName,  // The issue type
+    $node->lineno,     // The line within the file the issue is being emitted in
+    $method_name_type  // 0 or more arguments for the issue's format string
 );
 ```
 
-In this example, we're logging an issue of type `Issue::TypeMismatchForeach` where we're passing something other than an array as the first argument to a `foreach` and we're noting that its in a given file on a given line.
+In this example, we're logging an issue of type `Issue::TypeInvalidMethodName` where we're passing something other than an string as the name of a dynamic call to an instance method, and we're noting that its in a given file on a given line, and including the type we saw (instead of `string`).
 Each type of issue will take different parameters to fill into the message template.
-`Issue::emit` is a variadic function that takes the type of issue, the file where the issue was seen, the line number where it was seen and then anything that should be passed to `sprintf` to populate values in the issue template string.
-In this case, `Issue::TypeMismatchForeach` has [a template string](https://github.com/phan/phan/blob/79b02a398751af156ff1c512867ee7006654e175/src/Phan/Issue.php#L261) that takes one `%s` parameter, which is the type of the expression (passed in as `(string)$expression_type`.
+`Issue::maybeEmit` is a variadic function that takes the CodeBase, the Context (with the file where the issue was seen), the issue type, the line number where it was seen and then anything that should be passed to `sprintf` to populate values in the issue template string.
+In this case, `Issue::TypeInvalidMethodName` has [a template string](https://github.com/phan/phan/blob/1.2.0/src/Phan/Issue.php#L1695-L1702) that takes one `{TYPE}` (alias of `%s`) parameter, which is the type of the expression (passed in as `$method_string`.
+
+Most of the time, you want `Issue::maybeEmit()` or `Issue::maybeEmitWithParameters()`, so that false positives can be suppressed in codebases using your plugin. Many classes have helper methods with names such as `emitIssue` (in classes defining $this->code_base and $this->context), to make emitting issues less verbose.
 
 ## AST Node Visitors
 
