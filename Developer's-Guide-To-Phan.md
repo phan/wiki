@@ -230,6 +230,6 @@ For example, `\Phan\Debug::printNode(\ast\Node $node)` will print a compact repr
 - [`Element::VISIT_LOOKUP_TABLE`](https://github.com/phan/phan/blob/master/src/Phan/AST/Visitor/Element.php) tells you what visitor methods are called for a given `\ast\Node->kind`.
 - `php internal/dump_fallback_ast.php --php-ast '2 xor 3;'` can be used if you want to quickly see what AST kind and flags a given expression (or php file's contents) would have. 
 
-When adding new functionality, check to see if there is any existing functionality or issues that is similar to what you want to implement, and search for references (a good place to start looking is where the corresponding issue types are emitted).
+When adding new functionality, it often helps to check if there is any existing functionality or issues that is similar to what you want to implement, and search for references (a good place to start looking is where the corresponding issue types are emitted. e.g. to find out where `PhanTypeInvalidMethodName` is emitted, search the codebase for `TypeInvalidMethodName`).
 
 A [`\Phan\AST\ContextNode`](https://github.com/phan/phan/blob/master/src/Phan/AST/ContextNode.php) contains a lot of useful functionality, such as locating the definition(s) of an element from a referencing node (class, function-like, property, etc) in a Context.
