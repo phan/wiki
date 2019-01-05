@@ -69,10 +69,10 @@ function g() {}
 
 we have the following fully qualified structural element names;
 
-* **\NS\a** is the class `A` in namespace `\NS`
-* **\NS\a::C** is the constant `C` in class `\NS\a`
-* **\NS\a::$p** is the property `$p` in class `\NS\a`
-* **\NS\a::f** is function `f` in the class `\NS\a`
+* **\NS\A** is the class `A` in namespace `\NS`
+* **\NS\A::C** is the constant `C` in class `\NS\A`
+* **\NS\A::$p** is the property `$p` in class `\NS\A`
+* **\NS\A::f** is function `f` in the class `\NS\A`
 * **\NS::g** is the function `g` in namespace `\NS`
 
 It's important to note that even if we didn't have a namespace defined for the code, we'd still be in the implicit root namespace `\`. For example, in the code
@@ -86,11 +86,11 @@ function g() {}
 
 we have the following FQSENs.
 
-* **\b** is the class `B`
-* **\b::f** is the function `f` in class `B`
+* **\B** is the class `B`
+* **\B::f** is the function `f` in class `B`
 * **\g** is the function `g`
 
-You'll note that all class and function FQSENs lowercase the name. We do this because function and class names are case-insensitive in PHP. We'll likely make an option for enforcing casing in function and class names in future releases of Phan.
+Phan will use the **first occurrence** of an FQSEN (either the declaration or a usage) to render it elsewhere. Internally, it maps the normalized stringified FQSEN to an FQSEN instance with the original casing (e.g. converting namespace and class names and global function names to lowercase).  We'll likely make an option for enforcing casing in function and class names in future releases of Phan.
 
 An FQSEN for an element will inherit from the abstract class [\Phan\Language\FQSEN](https://github.com/phan/phan/blob/master/src/Phan/Language/FQSEN.php). The actual FQSEN for each element (classes, methods, constants, properties, functions) will be defined by classes in the [\Phan\Language\FQSEN](https://github.com/phan/phan/tree/master/src/Phan/Language/FQSEN) namespace.
 
@@ -98,7 +98,7 @@ An FQSEN for an element will inherit from the abstract class [\Phan\Language\FQS
 
 A [Type](https://github.com/phan/phan/blob/master/src/Phan/Language/Type.php) is what you'd expect and can be a native type like `int`, `float`, `string`, `bool`, `array` or a non-native type for a class such as `\Phan\Language\Type`. Types can also be a generic array such as `int[]`, `string[]`, `\Phan\Language\Type[]`, etc. which denote an array of type `int`, `string` and `\Phan\Language\Type` respectively.
 
-A [UnionType](https://github.com/phan/phan/blob/master/src/Phan/Language/UnionType.php) denotes a set of types for which an element can be any of them. A UnionType could be something like `int|string` to denote that something can be an `int` or a `string`.
+A [UnionType](https://github.com/phan/phan/blob/master/src/Phan/Language/UnionType.php) denotes a set of types for which an element can be any of them. A UnionType could be something like `int|string` to denote that something can be an `int` or a `string`.  See [[About Union Types]] for more details.
 
 ```php
 /** @param bool|array $a */
@@ -118,7 +118,7 @@ Classes, for instance are stored and looked up from the [Class Map](https://gith
 
 ```php
 $class = $code_base->getClassByFQSEN(
-    FullyQualifiedClassName::fromFullyQualifiedString("\NS\a")
+    FullyQualifiedClassName::fromFullyQualifiedString("\NS\A")
 );
 ```
 
