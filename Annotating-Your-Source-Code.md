@@ -16,6 +16,7 @@ Phan supports the following doc block annotations.
 * [`@property <union_type> <variable_name>`](#property)
 * [`@override`](#override)
 * [`@inherits <fqsen>`, `@template <template_id>` (See Generic Types)](https://github.com/phan/phan/wiki/Generic-Types)
+* [`@phan-assert`](#assertions)
 * [`@phan-param`, `@phan-return`, and other aliases of PHPDoc tags.](https://github.com/phan/phan/wiki/Annotating-Your-Source-Code/#aliases-of-phpdoc-annotations)
 * [`@phan-closure-scope <fqsen>`](#phan-closure-scope)
 * [`@param <union_type> <param_name> @phan-output-reference`](#phan-output-reference)
@@ -39,6 +40,8 @@ Types can also be specified via the PHP built-in type checks such as in `assert(
 Be aware that incorrect `assert` statements may cause [unpredictable behavior in your code](https://secure.php.net/manual/en/function.assert.php#refsect2-function.assert-unknown-descriptioo)
 
 ### Inline Type Checks via String Literals
+
+Phan >= 1.2.0 allows you to annotate runtime type assertion functions/methods with the annotation [`@phan-assert*`](#assertions).
 
 Phan >= 0.12.0 allows setting variables to complicated types via `'@phan-var UnionType $varName'` or `'@phan-var-force UnionType $varName'` as a string literal in a statement.
 
@@ -360,12 +363,12 @@ It suppresses any issues that would be emitted on the line immediately below the
 /**
  * This can also be used within doc comments
  * @phan-suppress-next-line PhanInvalidCommentForDeclarationType
- * @property int $prop2 
+ * @property int $prop2
  */
 function test_line_suppression() {
     // Or within any other type of comment:
     /* @phan-suppress-next-line PhanUndeclaredVariable, PhanUndeclaredFunction */
-    echo $undefVar2 + missing_function();  
+    echo $undefVar2 + missing_function();
 }
 ```
 
@@ -389,7 +392,7 @@ PHAN;
 
 use MyNS\MyClass;
 /** Some inline annotation referencing MyClass that phan can't parse */
-``` 
+```
 
 ```php
 <?php
@@ -401,7 +404,7 @@ class Example {
 // Alternate syntaxes:
 // @phan-file-suppress PhanUnreferencedUseNormal
 /* @phan-file-suppress PhanUnreferencedUseNormal */
-``` 
+```
 
 ## @override
 
@@ -430,6 +433,36 @@ class SubClass extends BaseClass {
 }
 ```
 
+## Assertions
+
+- `@phan-assert int $x` will assert that the argument to the parameter `$x` is of type `int`.
+- `@phan-assert !false $x` will assert that the argument to the parameter `$x` is not false.
+- `@phan-assert !\Traversable $x` will assert that the argument to the parameter `$x` is not `Traversable` (or a subclass)
+- `@phan-assert-true-condition $x` will make Phan infer that the argument to parameter `$x` is truthy if the function returned successfully.
+- `@phan-assert-false-condition $x` will make Phan infer that the argument to parameter `$x` is falsey if the function returned successfully.
+- This can be used in combination with Phan's template support.
+
+A simple example of how `@phan-assert` can be used:
+
+```php
+/**
+ * @param mixed $x
+ * @phan-assert string $x
+ */
+function my_assert_string($x) {
+    if (!is_string($x)) {
+        // This can be implemented in various ways.
+        // E.g. you may want to instead log a warning such as "this should not happen" with the backtrace.
+        throw new InvalidArgumentException("expected a string, got $x");
+    }
+}
+$x = json_decode($someEncodedString);
+my_assert_string($x);
+// Phan infers that $x must be a string, in the statements following that assertion.
+```
+
+See [this example file](https://github.com/phan/phan/blob/1.2.0/tests/plugin_test/src/072_custom_assertions.php) for even more examples of how to use these annotations.
+
 ## Aliases of PHPDoc annotations
 
 Phan supports `@phan-var`, `@phan-param`, `@phan-return`, `@phan-property`, and `@phan-method` as aliases of the respective PHPDoc annotations for `@var`, `@param`, `@return`, `@property`, and `@method`.
@@ -448,7 +481,7 @@ This helps avoid false positive warnings about PhanUndeclaredProperty, etc.
 class MyClass {
     private function privateMethod(int $x) {}
 }
-/** 
+/**
  * @phan-closure-scope MyClass
  * Phan analyzes the inner body of this closure
  * as if it were a closure declared in MyClass.
