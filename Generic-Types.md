@@ -318,11 +318,13 @@ Improvements and bug fixes for this will be included in subsequent releases.
 
 Phan can now infer template types in regular functions/methods. For example, it can infer the types of a template `T` from other types (both in Generics and when inferring return types)
 
-- array values, e.g. `@param T[]`
-- return types, e.g. `@param Closure():T`
+- simple, e.g. `@param T`
+- array values, e.g. `@param T[]`, `@param array{myFieldName:T}`
+- return types, e.g. `@param Closure():T`, `@param callable(T):bool`
 - templates of other generics, e.g. `@param OtherClass<\stdClass,T>`
+- class names, e.g. `@param class-string<T>`
 
-Note that this implementation is currently incomplete - Phan is not yet able to extract `T` from types not mentioned here (e.g. `array{0:T}`, `Generator<T>`, etc.)
+Note that this implementation is currently incomplete - Phan is not yet able to extract `T` from types not mentioned here (e.g. `Generator<T>`, etc.)
 
 Phan will take the union of all types inferred for `T` (without checking if the parameters are compatible)
 

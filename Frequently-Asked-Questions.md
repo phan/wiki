@@ -64,7 +64,7 @@ This can be solved by setting the `target_php_version` in your .phan/config.php 
 The union type Phan reads for `@param` before `...` is the union type of individual elements that are passed by the caller, not the type within the function body. The below is an example of how a function should be documented.
 
 ```php
-/** 
+/**
  * @param string ...$args (should be string, not string[] or array,
  *                        and include "..." before the parameter name)
  */
@@ -80,7 +80,7 @@ See [the phpdocumentor2 implementation](https://github.com/phpDocumentor/Reflect
 
 Check the Phan version in your composer.json (or the method you're using to install Phan), e.g. with `/path/to/phan --version`.
 
-You're likely still using Phan 0.12.x or 1.0. Upgrade to Phan 1.1.0 and you'll be able to use php-ast 1.0.0.
+You're likely still using Phan 0.12.x or 1.0. Upgrade to Phan 1.1.0+ and you'll be able to use php-ast 1.0.0.
 
 The latest stable version of Phan is [![the Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
 
