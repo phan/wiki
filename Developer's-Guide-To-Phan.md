@@ -15,6 +15,7 @@
 - **[Logging Issues](#logging-issues)** (How to log an `Issue` from Phan)
 - **[AST Node Visitors](#ast-node-visitors)** (Used to implement many operations acting on multiple types of AST Nodes)
 - **[Miscellaneous Advice](#miscellaneous-advice)** (Advice that may be useful when working on Phan)
+- **[Testing your changes](#testing-your-changes)**
 
 ## Introduction
 One of the big changes in PHP 7 is the fact that the parser now uses a real [Abstract Syntax Tree](https://wiki.php.net/rfc/abstract_syntax_tree).
@@ -233,3 +234,7 @@ For example, `\Phan\Debug::printNode(\ast\Node $node)` will print a compact repr
 When adding new functionality, it often helps to check if there is any existing functionality or issues that is similar to what you want to implement, and search for references (a good place to start looking is where the corresponding issue types are emitted. e.g. to find out where `PhanTypeInvalidMethodName` is emitted, search the codebase for `TypeInvalidMethodName`).
 
 A [`\Phan\AST\ContextNode`](https://github.com/phan/phan/blob/master/src/Phan/AST/ContextNode.php) contains a lot of useful functionality, such as locating the definition(s) of an element from a referencing node (class, function-like, property, etc) in a Context.
+
+### Testing your changes
+
+See [tests/README.md](https://github.com/phan/phan/tree/master/tests#scripts) for how to run tests and what Phan's various tests do.
