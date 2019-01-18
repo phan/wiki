@@ -1,6 +1,6 @@
 To get Phan running on a Mac with Homebrew, ensure that Homebrew is installed (see [http://brew.sh](http://brew.sh)) and then run the following:
 
-Note: as of [Homebrew 1.5.0, the homebrew/php TAP was removed](https://brew.sh/2018/01/19/homebrew-1.5.0/), so the installation instructions are more complicated
+Note: as of [Homebrew 1.5.0, the homebrew/php TAP was removed](https://brew.sh/2018/01/19/homebrew-1.5.0/) (and replaced with [`php` in core](https://formulae.brew.sh/formula/php)), so the installation instructions are more complicated
 
 If you had the homebrew/php tap installed, or are upgrading from Homebrew < 1.5.0, then first run the following commands:
 
@@ -15,7 +15,7 @@ brew uninstall php; # or brew uninstall php72 if you had that before
 
 ---
 
-Then, to install PHP 7.2 and php-ast, run the following commands ([let me know if they do or don't work](https://github.com/phan/phan/issues/1637)):
+Then, to install PHP 7.3 and php-ast, run the following commands ([let me know if they do or don't work](https://github.com/phan/phan/issues/1637)):
 
 **Note: If you are already using homebrew-php for other applications, upgrading homebrew (and removing the homebrew/php TAP) may cause other issues.** For example, you may need to install other missing extensions and applications)
 
@@ -24,13 +24,13 @@ brew upgrade; # make sure all the other libs are up to date
 brew cleanup; # cleanup old files
 brew prune; # cleanup old symlinks
 brew install autoconf; # Required by pecl
-brew install php;
+brew install php; # or php@7.1, or php@7.2
 pecl channel-update pecl.php.net;
-# should not echo ast. If it does, then it is already installed,
+# the below command should not echo ast. If it does, then it is already installed,
 # and you don't need to run pecl install ast
 php --modules | grep 'ast';
 # Install other pecl modules that you are still missing in a similar fashion
-pecl install ast-0.1.6;
+pecl install ast-1.0.0;
 php --modules | grep 'ast'; # should echo ast
 # Note: If the project being analyzed had other dependencies such as APCu,
 # you may wish to install those with pecl or look at
