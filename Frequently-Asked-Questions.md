@@ -48,9 +48,9 @@ The PHP version used to invoke Phan must be 7.1 or newer to parse php 7.1 code w
 
 The CLI options `--force-polyfill-parser` and/or `--use-fallback-parser` may also be used, but the pure PHP parser implementation has bugs in a few edge cases. (and they're slower)
 
-### Phan is warning about the codebase using syntax that is incompatible with php 7.0/7.1/7.2
+### Phan is warning about the codebase using syntax that is incompatible with php 7.0/7.1/7.2/7.3
 
-This can be solved by setting the `target_php_version` in your .phan/config.php to `'7.1'`/`'7.2'` (if that is the oldest php version your project supports), or by changing the code to stop using newer syntax. You may also suppress that issue in .phan/config.php, and various other ways.
+This can be solved by setting the `target_php_version` in your `.phan/config.php` to `'7.1'`/`'7.2'`/`'7.3'` (if that is the oldest php version your project supports), or by changing the code to stop using newer syntax. You may also suppress that issue in .phan/config.php, and various other ways.
 
 + `CompatibleNullableTypePHP70`, `CompatibleShortArrayAssignPHP70`, `CompatibleKeyedArrayAssignPHP70`,
   `CompatibleKeyedArrayAssignPHP70`, and `CompatibleIterableTypePHP70`

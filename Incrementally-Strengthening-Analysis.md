@@ -25,10 +25,13 @@ In a project set up to use the composer autoloader (including for its own subdir
  * See Config for all configurable options.
  */
 return [
-    // Supported values: '7.0', '7.1', '7.2', null.
-    // If this is set to null,
+    // Supported values: `'5.6'`, `'7.0'`, `'7.1'`, `'7.2'`, `'7.3'`, `null`.
+    // If this is set to `null`,
     // then Phan assumes the PHP version which is closest to the minor version
-    // of the php executable used to execute phan.
+    // of the php executable used to execute Phan.
+    //
+    // Note that the **only** effect of choosing `'5.6'` is to infer that functions removed in php 7.0 exist.
+    // (See `backward_compatibility_checks` for additional options)
     'target_php_version' => null,
 
     // Backwards Compatibility Checking. This is slow
