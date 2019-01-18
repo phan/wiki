@@ -12,12 +12,10 @@ The following suggestions may help speed up Phan analysis on your project:
 
 6. [Run the latest release of Phan.](#6-run-the-latest-release-of-phan)
 
-7. [Install an optional C module.](#7-install-an-optional-c-module-for-php--71) (PHP <= 7.1 only)
-
 ## 1. PHP Interpreter Configuration Settings
 
-1. Disable xdebug before running Phan (Phan runs around 5 times slower with xdebug enabled)
-   In Phan 0.10.1+/0.8.9+, Phan disables XDebug automatically.
+1. Disable xdebug before running Phan.
+   Phan disables XDebug automatically by default, but makes Phan take longer to start up.
 
    The output of `php -m` will mention XDebug if XDebug is still enabled.
 
@@ -27,7 +25,7 @@ The following suggestions may help speed up Phan analysis on your project:
 2. Run `php --version`. Normally, you should see (NTS), not (ZTS DEBUG) or (NTS DEBUG), but if you build PHP yourself (e.g. for PECL module development), the version you're currently using may have been built with `--enable-debug` (DEBUG).
    php built with `--enable-debug` (DEBUG) is around 2 times slower.
 
-   Also, Phan runs the fastest in php 7.2+.
+   Also, Phan runs the fastest in the newest PHP minor versions (7.3 is the fastest).
 
 ## 2. Avoid Using Slow Phan Configuration Options
 
@@ -138,7 +136,9 @@ This will be less accurate, but much faster (Won't be able to infer types of uns
 
 There are two ways to do this.
 
-1. By [[Using Phan Daemon Mode]] (Experimental), which lets you reuse the results of the parse phase
+1. By [[Using Phan Daemon Mode]] (Experimental), which lets you reuse the results of the parse phase.
+
+   Also see [[Editor Support]].
 2. By invoking Phan with `--include-analysis-file-list`
 
 ```
@@ -152,15 +152,4 @@ There are two ways to do this.
 
 ### 6. Run the Latest Release of Phan
 
-The latest release (for php 7.2) is [![the Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
-
-### 7. Install an optional C module (for PHP <= 7.1)
-
-Phan started calling `spl_object_id(object $object) : int` in recent Phan releases. `spl_object_id()` is built into PHP 7.2+. If you are running php <= 7.1, `spl_object_id()` is also provided by https://github.com/runkit7/runkit_object_id.
-
-Earlier releases of Phan can be sped up around 10% by installing a native C implementation of spl_object_id/runkit_object_id. See https://github.com/phan/phan/pull/729
-
-- This performance increase won't be as large in the latest releases, which use spl_object_id less frequently (in different parts of the code base)
-
-- In PHP <= 7.1, https://github.com/runkit7/runkit_object_id is recommended (It also provides `spl_object_id()` for PHP <= 7.1 by default.)
-- https://github.com/runkit7/runkit7 (PHP7 port of https://secure.php.net/runkit) includes `runkit_object_id`, but is not recommended unless it is already installed. It implements other functions that aren't needed for Phan, and those functions make PHP code harder to reason about. The `runkit_object_id` extension also provides a native implementation of `spl_object_id` for PHP <= 7.1, which future Phan releases will use (disabled by default in runkit7/runkit7).
+The latest release (for php 7.0 – 7.3) is [![the Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
