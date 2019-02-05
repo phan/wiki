@@ -19,6 +19,7 @@ Phan supports the following doc block annotations.
 * [`@phan-assert`](#assertions)
 * [`@phan-param`, `@phan-return`, and other aliases of PHPDoc tags.](https://github.com/phan/phan/wiki/Annotating-Your-Source-Code/#aliases-of-phpdoc-annotations)
 * [`@phan-closure-scope <fqsen>`](#phan-closure-scope)
+* [`@phan-read-only` and `@phan-write-only`](#phan-read-only-and-phan-write-only)
 * [`@param <union_type> <param_name> @phan-output-reference`](#phan-output-reference)
 
 
@@ -505,6 +506,15 @@ $m = new MyClass();
 $invoker = $c->bindTo($m, $m);
 $invoker(2);
 ```
+
+## @phan-read-only and @phan-write-only
+
+`@phan-read-only` can be used on properties (not yet on classes) to make Phan warn if it detects writes to a property outside of the constructor.
+This is useful when indicating to callers that an object should be immutable,
+or to indicate that a public instance/static property should not be modified.
+
+`@phan-write-only` can be used on properties (not yet on classes) to make Phan warn if it detects reads from a property.
+This is much less commonly useful (e.g. could be used for building up objects to be serialized or json encoded).
 
 ## @phan-output-reference
 
