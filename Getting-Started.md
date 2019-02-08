@@ -7,7 +7,7 @@ If it's running but you're not sure of why some issues emitted by Phan are there
 
 [![Gitter](https://badges.gitter.im/phan/phan.svg)](https://gitter.im/phan/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-Maintainers should be able to respond fairly quickly during US east coast/west coast working hours.
+Maintainers should be able to respond fairly quickly before/after US east coast working hours.
 
 # Installing Phan
 
