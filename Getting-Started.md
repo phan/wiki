@@ -15,14 +15,14 @@ Maintainers should be able to respond fairly quickly before/after US east coast 
 ## Installing Dependencies
 
 Phan depends on [PHP](http://php.net/) version 7 or greater and [php-ast](https://github.com/nikic/php-ast) 0.1.5+ by [Nikita Popov](https://github.com/nikic).
-The latest Phan releases (>= 1.1.0) also support php-ast 1.0.0+.
+php-ast 1.0.1+ is recommended for compatibility with future Phan releases.
 
 If you don't have a version of PHP 7 installed, you can grab a php7dev Vagrant image or one of the many Docker builds out there.
 
 To compile [php-ast](https://github.com/nikic/php-ast): Something along these lines should do it ([Alternate instructions](https://github.com/nikic/php-ast#installation)):
 
 ```sh
-pecl install ast-0.1.6
+pecl install ast-1.0.1
 ```
 
 And add `extension=ast.so` to your `php.ini` file. Check that it is there with `php -m`.
@@ -69,7 +69,7 @@ You should now be able to run `./test` to make sure Phan is working correctly, a
 To run Phan from a Phar package, you can download the Phar and run it.
 
 ```sh
-curl -L https://github.com/phan/phan/releases/download/1.2.3/phan.phar -o phan.phar;
+curl -L https://github.com/phan/phan/releases/download/1.2.4/phan.phar -o phan.phar;
 ```
 
 You'll now be able to run Phan via
@@ -78,7 +78,7 @@ You'll now be able to run Phan via
 php phan.phar
 ```
 
-When this was last updated, [1.2.3](https://github.com/phan/phan/releases/tag/1.2.3) was the latest release. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if that's still the latest, as I'll probably forget to update this page with subsequent releases.
+When this was last updated, [1.2.4](https://github.com/phan/phan/releases/tag/1.2.4) was the latest release. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if that's still the latest, as I'll probably forget to update this page with subsequent releases.
 
 According to packagist, the latest stable version is [![the Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
 
