@@ -130,6 +130,12 @@ return [
         'vendor/symfony/console',
     ],
 
+    // A regex used to match every file name that you want to
+    // exclude from parsing. Actual value will exclude every  
+    // "test", "tests", "Test" and "Tests" folders found in
+    // "vendor/" directory.
+    'exclude_file_regex' => '@^vendor/.*/(tests?|Tests?)/@'
+
     // A directory list that defines files that will be excluded
     // from static analysis, but whose class and method
     // information should be included.
