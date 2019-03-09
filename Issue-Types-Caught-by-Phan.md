@@ -389,6 +389,14 @@ Unable to determine the method(s) which {METHOD} overrides, but Phan inferred th
 
 This category of issue is emitted when there are compatibility issues. They will be thrown if there is an expression that may be treated differently in PHP7 than it was in previous major versions of the PHP runtime. Take a look at the [PHP7 Migration Manual](http://php.net/manual/en/migration70.incompatible.php) to understand changes in behavior.
 
+## PhanCompatibleAutoload
+
+```
+Declaring an autoloader with function __autoload() was deprecated in PHP 7.2 and will become a fatal error in PHP 8.0. Use spl_autoload_register() instead (supported since PHP 5.1).
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/master/tests/plugin_test/expected/000_plugins.php.expected#L20) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/master/tests/plugin_test/src/000_plugins.php#L64).
+
 ## PhanCompatibleExpressionPHP7
 
 This issue will be thrown if there is an expression that may be treated differently in PHP7 than it was in previous major versions of the PHP runtime. Take a look at the [PHP7 Migration Manual](http://php.net/manual/en/migration70.incompatible.php) to understand changes in behavior.
@@ -624,6 +632,14 @@ This will be emitted for the following code.
 ```php
 [1,2,3];
 ```
+
+## PhanNoopArrayAccess
+
+```
+Unused array offset fetch
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/master/tests/misc/fallback_test/expected/062_test.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/master/tests/misc/fallback_test/src/062_test.php#L2).
 
 ## PhanNoopBinaryOperator
 
@@ -1572,6 +1588,14 @@ If possible, exclude one of the files containing the conflicting definitions.
 
 e.g. [this issue](https://github.com/phan/phan/tree/1.1.2/tests/files/expected/0278_class_alias.php.expected#L2) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/1.1.2/tests/files/src/0278_class_alias.php#L36).
 
+## PhanRedefineClassConstant
+
+```
+Class constant {CONST} defined at {FILE}:{LINE} was previously defined at {FILE}:{LINE}
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/master/tests/files/expected/0639_duplicate_const_prop.php.expected#L2) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/master/tests/files/src/0639_duplicate_const_prop.php#L9).
+
 ## PhanRedefineClassInternal
 
 If you attempt to create a class that has the same name and namespace as a class that is internal to PHP, you'll see this issue.
@@ -1614,6 +1638,14 @@ You'll see this issue with code like
 ```php
 function strlen() {}
 ```
+
+## PhanRedefineProperty
+
+```
+Property ${PROPERTY} defined at {FILE}:{LINE} was previously defined at {FILE}:{LINE}
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/master/tests/files/expected/0639_duplicate_const_prop.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/master/tests/files/src/0639_duplicate_const_prop.php#L5).
 
 ## PhanRedefinedExtendedClass
 
@@ -1937,6 +1969,16 @@ array to {TYPE} conversion
 ```
 
 e.g. [this issue](https://github.com/phan/phan/tree/1.1.2/tests/files/expected/0532_empty_array_element.php.expected#L2) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/1.1.2/tests/files/src/0532_empty_array_element.php#L2).
+
+## PhanTypeErrorInInternalCall
+
+NOTE: This is only emitted for the functions that `enable_extended_internal_return_type_plugins` would try to infer literal return values of.
+
+```
+Saw a call to an internal function {FUNCTION}() with what would be invalid arguments in strict mode, when trying to infer the return value literal type: {DETAILS}
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/master/tests/plugin_test/expected/101_extended_return_inferences.php.expected#L12) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/master/tests/plugin_test/src/101_extended_return_inferences.php#L22).
 
 ## PhanTypeExpectedObject
 
@@ -3305,7 +3347,7 @@ e.g. [this issue](https://github.com/phan/phan/tree/1.1.2/tests/files/expected/0
 ## PhanMisspelledAnnotation
 
 ```
-Saw misspelled annotation {COMMENT}, should be one of {COMMENT}
+Saw misspelled annotation {COMMENT}. {SUGGESTION}
 ```
 
 e.g. [this issue](https://github.com/phan/phan/tree/1.1.2/tests/files/expected/0301_comment_checks.php.expected#L4) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/1.1.2/tests/files/src/0301_comment_checks.php#L7).
