@@ -150,7 +150,7 @@ Now that you have a giant list of severe issues for which the majority of issues
 To find your largest sources of issues, it's a good idea to look at your breakdown of issue types;
 
 ```sh
-cat analysis.txt| cut -d ' ' -f2 | sort | uniq -c | sort -n -r
+cat analysis.txt | cut -d ' ' -f2 | sort | uniq -c | sort -n -r
 ```
 
 This should look something like
