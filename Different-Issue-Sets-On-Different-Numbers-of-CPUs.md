@@ -68,7 +68,7 @@ may make the issue sets on multiple cores a bit more predictable.
 
 # What To Do About It
 
-This limitation of PHP and Phan is a big bummer, and there isn't much I can say to make it better.
+This limitation of PHP and Phan is a big bummer, and there isn't much that can be done to make it better.
 
 If you find yourself getting hit by one of these, you have a few options.
 
@@ -79,4 +79,4 @@ If you find yourself getting hit by one of these, you have a few options.
   (E.g. if phan infers the wrong type for a function parameter when there are 3 cores,
    then add an `@param int|false $x` annotation if you know those are the types expected for that function parameter. Or add real types.)
 
-None of those are great, but this is the world we live in. I wish you the best of luck.
+None of those are great, but this is the world we live in. We wish you the best of luck.
