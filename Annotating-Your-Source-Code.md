@@ -476,7 +476,7 @@ See [this example file](https://github.com/phan/phan/blob/1.2.0/tests/plugin_tes
 
 Phan supports `@phan-var`, `@phan-param`, `@phan-return`, `@phan-property`, and `@phan-method` as aliases of the respective PHPDoc annotations for `@var`, `@param`, `@return`, `@property`, and `@method`.
 
-If both of these annotations occur in the doc comment of an element, the `@phan-tagname` annotations will be used instead of `@phan-tagname`.
+If both of these annotations occur in the doc comment of an element, the `@phan-tagname` annotations will be used instead of `@tagname`.
 
 This may be useful if you are using non-standard union types in doc comments for purposes of analyzing a codebase, and are using other editor plugins or linters that cannot parse that syntax.
 (e.g. `?int` instead of `int|null`, `array<string,stdClass>` instead of `stdClass[]`, or `array{key:string}` instead of `string[]`)
