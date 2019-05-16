@@ -89,6 +89,7 @@ Several docker images exist for Phan that include its dependencies (PHP version 
 * https://github.com/cloudflare/docker-phan
 * https://github.com/mre/docker-php-phan
 * https://github.com/madmuffin1/phan-docker
+* https://github.com/jakzal/phpqa
 * [Others that show up now and then](https://www.google.com/webhp#q=phan%20docker)
 
 ## From Homebrew
@@ -174,4 +175,3 @@ Many Continuous integration tools can be used to detect that exit code (And/or p
 - Appveyor (Windows): Example configurations: [Phan's own configuration](https://github.com/phan/phan/blob/1.2.0/.appveyor.yml#L101-L102)
 
 - Jenkins (Enterprise): Similar to other build tools. I've found that the pylint output formatter works well with Jenkins for generating a Violations view (see [issue #184](https://github.com/phan/phan/issues/184)).
-
