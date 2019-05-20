@@ -30,7 +30,7 @@ pecl channel-update pecl.php.net;
 # and you don't need to run pecl install ast
 php --modules | grep 'ast';
 # Install other pecl modules that you are still missing in a similar fashion
-pecl install ast-1.0.0;
+pecl install ast-1.0.1;
 php --modules | grep 'ast'; # should echo ast
 # Note: If the project being analyzed had other dependencies such as APCu,
 # you may wish to install those with pecl or look at

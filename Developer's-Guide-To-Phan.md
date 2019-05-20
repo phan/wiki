@@ -181,7 +181,7 @@ Take a look at the [\Phan\Analysis](https://github.com/phan/phan/tree/master/src
 
 ## Logging Issues
 
-Issues found during analysis are emitted via the [`Issue::maybeEmit()`](https://github.com/phan/phan/blob/1.2.0/src/Phan/Issue.php#L3798-L3812) method. A common usage is below:
+Issues found during analysis are emitted via the [`Issue::maybeEmit()`](https://github.com/phan/phan/blob/2.0.0/src/Phan/Issue.php#L4153-L4185) method. A common usage is below:
 
 ```php
 Issue::maybeEmit(
@@ -196,7 +196,7 @@ Issue::maybeEmit(
 In this example, we're logging an issue of type `Issue::TypeInvalidMethodName` where we're passing something other than an string as the name of a dynamic call to an instance method, and we're noting that its in a given file on a given line, and including the type we saw (instead of `string`).
 Each type of issue will take different parameters to fill into the message template.
 `Issue::maybeEmit` is a variadic function that takes the CodeBase, the Context (with the file where the issue was seen), the issue type, the line number where it was seen and then anything that should be passed to `sprintf` to populate values in the issue template string.
-In this case, `Issue::TypeInvalidMethodName` has [a template string](https://github.com/phan/phan/blob/1.2.0/src/Phan/Issue.php#L1695-L1702) that takes one `{TYPE}` (alias of `%s`) parameter, which is the type of the expression (passed in as `$method_string`.
+In this case, `Issue::TypeInvalidMethodName` has [a template string](https://github.com/phan/phan/blob/2.0.0/src/Phan/Issue.php#L1814-L1821) that takes one `{TYPE}` (alias of `%s`) parameter, which is the type of the expression (passed in as `$method_string`.
 
 Most of the time, you want `Issue::maybeEmit()` or `Issue::maybeEmitWithParameters()`, so that false positives can be suppressed in codebases using your plugin. Many classes have helper methods with names such as `emitIssue` (in classes defining $this->code_base and $this->context), to make emitting issues less verbose.
 
@@ -229,7 +229,7 @@ Other node visitors include
 For example, `\Phan\Debug::printNode(\ast\Node $node)` will print a compact representation of an AST node (and it's kind and flags) to stdout.
 
 - [`Element::VISIT_LOOKUP_TABLE`](https://github.com/phan/phan/blob/master/src/Phan/AST/Visitor/Element.php) tells you what visitor methods are called for a given `\ast\Node->kind`.
-- `php internal/dump_fallback_ast.php --php-ast '2 xor 3;'` can be used if you want to quickly see what AST kind and flags a given expression (or php file's contents) would have. 
+- `php internal/dump_fallback_ast.php --php-ast '2 xor 3;'` can be used if you want to quickly see what AST kind and flags a given expression (or php file's contents) would have.
 
 When adding new functionality, it often helps to check if there is any existing functionality or issues that is similar to what you want to implement, and search for references (a good place to start looking is where the corresponding issue types are emitted. e.g. to find out where `PhanTypeInvalidMethodName` is emitted, search the codebase for `TypeInvalidMethodName`).
 

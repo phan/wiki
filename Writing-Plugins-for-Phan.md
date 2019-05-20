@@ -4,20 +4,19 @@ Plugins have hooks for analyzing every node in the AST for every file, classes, 
 Plugin code lives in your repo and is referenced from your phan config file,
 but runs in the Phan execution environment with access to all Phan APIs.
 
-# Plugin V2
+# Plugin V3
 
-`PluginV2` is the current version of the plugin system.
+`PluginV3` is the current version of the plugin system.
 The system is designed to be extensible and as efficient as possible. (e.g. plugins would only be invoked for the functionality they implement)
 The constant `\Phan\Config::PHAN_PLUGIN_VERSION` may optionally be used by plugin files designed for backwards compatibility.
-If it is `defined()`, then V2 of the plugin system is supported.
-`version_compare` may be used to check if the current plugin system is >= the version where a given `Capability` was introduced.
+`version_compare` may be used to check if the current plugin system is >= the version where a given `Capability` was introduced or changed.
 
-## Creating a Plugin (V2)
+## Creating a Plugin (V3)
 
 To create a plugin, you'll need to
 
-* Create a plugin file for which the last line returns an instance of a class extending [`\Phan\PluginV2`](https://github.com/phan/phan/blob/master/src/Phan/PluginV2.php),
-  and implementing one or more of the [`Capability`](https://github.com/phan/phan/blob/master/src/Phan/PluginV2) interfaces
+* Create a plugin file for which the last line returns an instance of a class extending [`\Phan\PluginV3`](https://github.com/phan/phan/blob/master/src/Phan/PluginV3.php),
+  and implementing one or more of the [`Capability`](https://github.com/phan/phan/blob/master/src/Phan/PluginV3) interfaces
 * Add a reference to the file in `.phan/config.php` under the `plugins` array.
 
 Phan contains an example plugin named [DemoPlugin](https://github.com/phan/phan/blob/master/.phan/plugins/DemoPlugin.php) that is referenced from [Phan's .phan/config.php file](https://github.com/phan/phan/blob/92552016b2d3c650f5c625a8f64a9db935a756d6/.phan/config.php#L117).
@@ -28,32 +27,32 @@ You may wish to base your plugin on a plugin performing a similar task. ([list o
 
 - Additionally, [you may wish to base code on other functionality that Phan implements internally as plugins](https://github.com/phan/phan/tree/master/src/Phan/Plugin/Internal)
 
-## How Plugins Work (V2)
+## How Plugins Work (V3)
 
-A plugin file returns an instance of a class extending [\Phan\PluginV2](https://github.com/phan/phan/blob/master/src/Phan/PluginV2.php) and should implement at least one of the below Capability interfaces (The most up to date documentation is found in [\Phan\PluginV2](https://github.com/phan/phan/blob/master/src/Phan/PluginV2.php)).
+A plugin file returns an instance of a class extending [\Phan\PluginV3](https://github.com/phan/phan/blob/master/src/Phan/PluginV3.php) and should implement at least one of the below Capability interfaces (The most up to date documentation is found in [\Phan\PluginV3](https://github.com/phan/phan/blob/master/src/Phan/PluginV3.php)).
 
-* [\Phan\PluginV2\PostAnalyzeNodeCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV2/PostAnalyzeNodeCapability.php)
+* [\Phan\PluginV3\PostAnalyzeNodeCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV3/PostAnalyzeNodeCapability.php)
   to analyze a subset of node kinds **after** child nodes of that node are analyzed. (e.g. DuplicateArrayKeyPlugin uses this for nodes of the kind `AST_ARRAY`)
-* [\Phan\PluginV2\AnalyzeFunctionCallCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV2/AnalyzeFunctionCallCapability.php)
+* [\Phan\PluginV3\AnalyzeFunctionCallCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV3/AnalyzeFunctionCallCapability.php)
   can be used to run additional checks of the parameters of function or method invocations. (E.g. PregRegexChecker does this for `preg_match`, etc to check regex uses)
-* [\Phan\PluginV2\ReturnTypeOverrideCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV2/ReturnTypeOverrideCapability.php)
+* [\Phan\PluginV3\ReturnTypeOverrideCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV3/ReturnTypeOverrideCapability.php)
   can be used to manipulate the return types of a function or method call based on its arguments and other information.
   (E.g. [Phan uses this for `json_decode`, `var_export`, etc](https://github.com/phan/phan/blob/master/src/Phan/Plugin/Internal/DependentReturnTypeOverridePlugin.php)
-* [\Phan\PluginV2\AnalyzeClassCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV2/AnalyzeClassCapability.php)
+* [\Phan\PluginV3\AnalyzeClassCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV3/AnalyzeClassCapability.php)
   will call a plugin to analyze every class declaration. (e.g. UnusedSuppressionPlugin uses this to check if suppression doc comments on classes are used)
-* [\Phan\PluginV2\AnalyzeMethodCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV2/AnalyzeMethodCapability.php)
+* [\Phan\PluginV3\AnalyzeMethodCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV3/AnalyzeMethodCapability.php)
   will call a plugin to analyze every method declaration. (e.g. AlwaysReturnPlugin uses this to check if a method is guaranteed to return)
-* [\Phan\PluginV2\AnalyzeFunctionCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV2/AnalyzeFunctionCapability.php)
+* [\Phan\PluginV3\AnalyzeFunctionCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV3/AnalyzeFunctionCapability.php)
   will call a plugin to analyze every function declaration. (e.g. AlwaysReturnPlugin uses this to check if a function is guaranteed to return)
-* [\Phan\PluginV2\AnalyzePropertyCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV2/AnalyzePropertyCapability.php)
+* [\Phan\PluginV3\AnalyzePropertyCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV3/AnalyzePropertyCapability.php)
   will call a plugin to analyze every property declaration. (e.g. UnusedSuppressionPlugin uses this to check if suppression doc comments on a property are used)
-* [\Phan\PluginV2\FinalizeProcessCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV2/FinalizeProcessCapability.php)
+* [\Phan\PluginV3\FinalizeProcessCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV3/FinalizeProcessCapability.php)
   will call `finalize(CodeBase)` once after each analysis process (as in `--processes N`) ends.
   (e.g. UnusedSuppressionPlugin will defer emitting warnings until `finalize(...)`, which indicates that Phan has analyzed every single file and emitted all possible issues)
-* [\Phan\PluginV2\PreAnalyzeNodeCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV2/PostAnalyzeNodeCapability.php)
+* [\Phan\PluginV3\PreAnalyzeNodeCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV3/PostAnalyzeNodeCapability.php)
   to analyze a subset of node kinds **before** child nodes of that node are analyzed. (e.g. DuplicateArrayKeyPlugin uses this for nodes of the kind `AST_ARRAY`)
   Most plugins will use PostAnalyzeNodeCapability instead of PreAnalyzeNodeCapability.
-* [\Phan\PluginV2\SuppressionCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV2/SuppressionCapability.php)
+* [\Phan\PluginV3\SuppressionCapability](https://github.com/phan/phan/blob/master/src/Phan/PluginV3/SuppressionCapability.php)
   can be used to suppress issues based on custom logic.
   (e.g. [`BuiltinSuppressionPlugin` implements `@phan-suppress-next-line`, etc](https://github.com/phan/phan/blob/master/src/Phan/Plugin/Internal/BuiltinSuppressionPlugin.php))
 
@@ -112,7 +111,7 @@ A [Context](https://github.com/phan/phan/blob/master/src/Phan/Language/Context.p
 ## UnionType
 A [UnionType](https://github.com/phan/phan/blob/master/src/Phan/Language/UnionType.php) is a set of [Type](https://github.com/phan/phan/blob/master/src/Phan/Language/Type.php)s defined for an object such as `int|string|DateTime|null`. [You can read more about UnionTypes here](https://github.com/phan/phan/wiki/About-Union-Types).
 
-You'll likely find yourself getting types frequently via a call to [`UnionTypeVisitor::unionTypeFromNode(...)`](https://github.com/phan/phan/blob/1.0.0/src/Phan/AST/UnionTypeVisitor.php#L98-L168) such as with:
+You'll likely find yourself getting types frequently via a call to [`UnionTypeVisitor::unionTypeFromNode(...)`](https://github.com/phan/phan/blob/2.0.0/src/Phan/AST/UnionTypeVisitor.php#L116-L186) such as with:
 
 ```php
 $union_type = UnionTypeVisitor::unionTypeFromNode($code_base, $context, $node);

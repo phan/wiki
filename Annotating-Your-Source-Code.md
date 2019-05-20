@@ -470,7 +470,7 @@ my_assert_string($x);
 // Phan infers that $x must be a string, starting here.
 ```
 
-See [this example file](https://github.com/phan/phan/blob/1.2.0/tests/plugin_test/src/072_custom_assertions.php) for even more examples of how to use these annotations.
+See [this example file](https://github.com/phan/phan/blob/2.0.0/tests/plugin_test/src/072_custom_assertions.php) for even more examples of how to use these annotations.
 
 ## Aliases of PHPDoc annotations
 

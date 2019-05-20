@@ -7,10 +7,6 @@ Description
 Daemon mode lets you use Phan [from your editor or IDE](https://github.com/phan/phan/wiki/Editor-Support#editor-support) to detect Phan issues on a single file (or small set of files), with much lower latency than a full analysis (< 0.3 seconds).
 This is useful on large codebases with hundreds or thousands of PHP files, where the full analysis could take minutes to run.
 
-Daemon mode requires Phan 0.10.0+ or 0.8.4+.
-
-Daemon mode was first introduced to Phan in https://github.com/phan/phan/pull/563
-
 There are two components:
 
 1. The Phan daemon (i.e. server) (`./phan --daemonize-tcp-port 4846 --quick`) which responds to TCP requests.
@@ -38,24 +34,10 @@ We also recommend installing Phan in a directory outside of your project when us
 
   (Would need to have run `composer.phar install` in the external phan checkout first)
 
-Requirements
-------------
-
-1. Phan 0.10.0+/0.8.4+
-2. Unix(e.g. Mac) or Linux with pcntl enabled, to run the daemon.
-
-To run the Phan daemon, you must have the pcntl extension installed (Requires that extension to be installed and enabled in PHP).
-
-This doesn't work natively in Windows, due to the dependency on pcntl.
-
-- It may be possible for Windows users to run the Phan daemon from inside of docker, using a volume and exposing port 4846 from the container (May also need to change the daemon code to listen for connections on all interfaces instead of 127.0.0.1 (localhost))
-  (See https://docs.docker.com/docker-for-windows/)
-
 Recommendations for performance
 -------------------------------
 
 If Phan daemon mode is noticeably slow, then make sure that you're following all of the recommendations for performance.
-
 
 
 1. Start the daemon with `--quick`, optionally disable any plugins.
@@ -138,14 +120,3 @@ Occasionally, daemon mode will lose track of definitions for classes/methods, e.
 In that case, stop the Phan daemon and start it again.
 
 The Phan config won't be reloaded if it changes.
-
-### FAQ
-
-**Why use pcntl and forked processes for the daemon?**:
-Phan is under development, and the data representation it uses is frequently modified.
-There is some caching done by the analysis mode, which would be hard to undo, and take a lot of time).
-This approach has the best chance of working, without interfering with (or being accidentally broken by) the development of Phan's analysis implementation.
-
-This is similar to the reason why the sqlite3 database is no longer included.
-
-An upcoming release of phan will let daemon mode work without `pcntl`.

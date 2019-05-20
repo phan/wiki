@@ -4,7 +4,7 @@ For details on possible language-level support for generics, take a look at the 
 
 The current implementation is very incomplete. You'll likely end up being annoyed that we don't yet allow for generic interfaces or defining constraints on types. There are also very likely to be significant bugs with the current implementation.
 
-- As of Phan 1.1.9, there is also support for declaring templates on function-likes (functions, methods, and closures) based on their parameters. See the section [Function-Like Templates](#function-templates).
+- There is also support for declaring templates on function-likes (functions, methods, and closures) based on their parameters. See the section [Function-Like Templates](#function-templates).
 
 # Rules for using Generics
 
@@ -312,17 +312,17 @@ class None extends Option
 
 # Function templates
 
-An early version of templates on function-like elements was added in Phan 1.1.9.
+Templates can be inferred from arguments on function-like elements.
 These are useful for inferring the value returned by a function/closure/method.
 Improvements and bug fixes for this will be included in subsequent releases.
 
 Phan can now infer template types in regular functions/methods. For example, it can infer the types of a template `T` from other types (both in Generics and when inferring return types)
 
-- simple, e.g. `@param T`
-- array values, e.g. `@param T[]`, `@param array{myFieldName:T}`
-- return types, e.g. `@param Closure():T`, `@param callable(T):bool`
-- templates of other generics, e.g. `@param OtherClass<\stdClass,T>`
-- class names, e.g. `@param class-string<T>`
+- simple, e.g. `@param T $argName`
+- array values, e.g. `@param T[] $argName`, `@param array{myFieldName:T} $argName`
+- return types, e.g. `@param Closure():T $argName`, `@param callable(T):bool $argName`
+- templates of other generics, e.g. `@param OtherClass<\stdClass,T> $argName`
+- class names, e.g. `@param class-string<T> $argName`
 
 Note that this implementation is currently incomplete - Phan is not yet able to extract `T` from types not mentioned here (e.g. `Generator<T>`, etc.)
 
@@ -380,7 +380,7 @@ $result = example_closure_usage(function (int $i) : int {
 
 ## Indicating a return type depends on template types of another generic
 
-See [this file](https://github.com/phan/phan/blob/1.1.9/tests/files/src/0600_template_from_template.php) and [the example detected issues](https://github.com/phan/phan/blob/1.1.9/tests/files/expected/0600_template_from_template.php.expected)
+See [this file](https://github.com/phan/phan/blob/2.0.0/tests/files/src/0600_template_from_template.php) and [the example detected issues](https://github.com/phan/phan/blob/2.0.0/tests/files/expected/0600_template_from_template.php.expected)
 
 ## Indicating a method creates an instance of the passed in class name
 
