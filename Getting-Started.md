@@ -114,7 +114,8 @@ return [
     // then Phan assumes the PHP version which is closest to the minor version
     // of the php executable used to execute Phan.
     //
-    // Note that the **only** effect of choosing `'5.6'` is to infer that functions removed in php 7.0 exist.
+    // Note that the **only** effect of choosing `'5.6'` is to infer
+    // that functions removed in php 7.0 exist.
     // (See `backward_compatibility_checks` for additional options)
     // TODO: Set this.
     'target_php_version' => null,
