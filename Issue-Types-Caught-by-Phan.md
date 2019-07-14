@@ -479,6 +479,14 @@ Square bracket syntax for an array destructuring assignment is not compatible wi
 
 e.g. [this issue](https://github.com/phan/phan/tree/2.0.0/tests/php70_files/expected/003_short_array.php.expected#L2) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.0.0/tests/php70_files/src/003_short_array.php#L8).
 
+## PhanCompatibleUnsetCast
+
+```
+The unset cast (in {CODE}) was deprecated in PHP 7.2 and will become a fatal error in PHP 8.0.
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/2.2.5/tests/misc/fallback_test/expected/061_cast_crash.php.expected#L11) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.2.5/tests/misc/fallback_test/src/061_cast_crash.php#L45).
+
 ## PhanCompatibleUseIterablePHP71
 
 ```
@@ -562,7 +570,7 @@ e.g. [this issue](https://github.com/phan/phan/tree/2.0.0/tests/files/expected/0
 ## PhanDeprecatedClass
 
 ```
-Call to deprecated class {CLASS} defined at {FILE}:{LINE}
+Using a deprecated class {CLASS} defined at {FILE}:{LINE}{DETAILS}
 ```
 
 e.g. [this issue](https://github.com/phan/phan/tree/2.0.0/tests/files/expected/0123_deprecated_class.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.0.0/tests/files/src/0123_deprecated_class.php#L12).
@@ -570,7 +578,7 @@ e.g. [this issue](https://github.com/phan/phan/tree/2.0.0/tests/files/expected/0
 ## PhanDeprecatedClassConstant
 
 ```
-Reference to deprecated property {PROPERTY} defined at {FILE}:{LINE}
+Reference to deprecated property {PROPERTY} defined at {FILE}:{LINE}{DETAILS}
 ```
 
 e.g. [this issue](https://github.com/phan/phan/tree/2.0.0/tests/php72_files/expected/0007_deprecated_class_constant.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.0.0/tests/php72_files/src/0007_deprecated_class_constant.php#L6).
@@ -580,7 +588,7 @@ e.g. [this issue](https://github.com/phan/phan/tree/2.0.0/tests/php72_files/expe
 If a class, method, function, property or constant is marked in its comment as `@deprecated`, any references to them will emit a deprecated error.
 
 ```
-Call to deprecated function {FUNCTIONLIKE} defined at {FILE}:{LINE}
+Call to deprecated function {FUNCTIONLIKE} defined at {FILE}:{LINE}{DETAILS}
 ```
 
 This will be emitted for the following code.
@@ -602,7 +610,7 @@ e.g. [this issue](https://github.com/phan/phan/tree/2.0.0/tests/php72_files/expe
 ## PhanDeprecatedInterface
 
 ```
-Using a deprecated interface {INTERFACE} defined at {FILE}:{LINE}
+Using a deprecated interface {INTERFACE} defined at {FILE}:{LINE}{DETAILS}
 ```
 
 e.g. [this issue](https://github.com/phan/phan/tree/2.0.0/tests/files/expected/0269_deprecated_interface.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.0.0/tests/files/src/0269_deprecated_interface.php#L7).
@@ -610,7 +618,7 @@ e.g. [this issue](https://github.com/phan/phan/tree/2.0.0/tests/files/expected/0
 ## PhanDeprecatedProperty
 
 ```
-Reference to deprecated property {PROPERTY} defined at {FILE}:{LINE}
+Reference to deprecated property {PROPERTY} defined at {FILE}:{LINE}{DETAILS}
 ```
 
 e.g. [this issue](https://github.com/phan/phan/tree/2.0.0/tests/files/expected/0171_deprecated_property.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.0.0/tests/files/src/0171_deprecated_property.php#L9).
@@ -618,7 +626,7 @@ e.g. [this issue](https://github.com/phan/phan/tree/2.0.0/tests/files/expected/0
 ## PhanDeprecatedTrait
 
 ```
-Using a deprecated trait {TRAIT} defined at {FILE}:{LINE}
+Using a deprecated trait {TRAIT} defined at {FILE}:{LINE}{DETAILS}
 ```
 
 e.g. [this issue](https://github.com/phan/phan/tree/2.0.0/tests/files/expected/0270_deprecated_trait.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.0.0/tests/files/src/0270_deprecated_trait.php#L7).
@@ -1935,6 +1943,14 @@ e.g. [this issue](https://github.com/phan/phan/tree/2.2.3/tests/files/expected/0
 Impossible attempt to check if {CODE} of type {TYPE} is identical to {CODE} of type {TYPE} in a loop body (likely a false positive)
 ```
 
+## PhanInfiniteLoop
+
+```
+The loop condition {CODE} of type {TYPE} is always {TYPE} and nothing seems to exit the loop
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/2.2.5/tests/files/expected/0728_infinite_loops.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.2.5/tests/files/src/0728_infinite_loops.php#L4).
+
 ## PhanInfiniteRecursion
 
 NOTE: This is based on very simple heuristics. It has known false positives and false negatives.
@@ -2138,6 +2154,61 @@ Relative paths are harder to reason about, and opcache may have issues with rela
 ```
 
 e.g. [this issue](https://github.com/phan/phan/tree/2.0.0/tests/files/expected/0545_require_testing.php.expected#L5) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.0.0/tests/files/src/0545_require_testing.php#L5).
+
+## PhanSuspiciousLoopDirection
+
+```
+Suspicious loop appears to {DETAILS} after each iteration in {CODE}, but the loop condition is {CODE}
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/2.2.5/tests/files/expected/0724_suspicious_comparison_in_loop.php.expected#L3) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.2.5/tests/files/src/0724_suspicious_comparison_in_loop.php#L8).
+
+## PhanSuspiciousValueComparison
+
+```
+Suspicious attempt to compare {CODE} of type {TYPE} to {CODE} of type {TYPE} with operator '{OPERATOR}'
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/2.2.5/tests/files/expected/0697_coalescing_always_never_null.php.expected#L2) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.2.5/tests/files/src/0697_coalescing_always_never_null.php#L4).
+
+## PhanSuspiciousValueComparisonInGlobalScope
+
+```
+Suspicious attempt to compare {CODE} of type {TYPE} to {CODE} of type {TYPE} with operator '{OPERATOR}' in the global scope (likely a false positive)
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/2.2.5/tests/files/expected/0526_crash.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.2.5/tests/files/src/0526_crash.php#L2).
+
+## PhanSuspiciousValueComparisonInLoop
+
+```
+Suspicious attempt to compare {CODE} of type {TYPE} to {CODE} of type {TYPE} with operator '{OPERATOR}' in a loop (likely a false positive)
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/2.2.5/tests/files/expected/0728_suspicious_value_comparison_in_loop_false_positive.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.2.5/tests/files/src/0728_suspicious_value_comparison_in_loop_false_positive.php#L30).
+
+## PhanSuspiciousWeakTypeComparison
+
+Some of these issues may be valid, but these are often confusing ways of checking for empty/null/false.
+Phan does not support all types of comparisons (e.g. extensions may define comparisons on data types)
+
+```
+Suspicious attempt to compare {CODE} of type {TYPE} to {CODE} of type {TYPE}
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/2.2.5/tests/files/expected/0254_array_bool_comparison.php.expected#L4) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.2.5/tests/files/src/0254_array_bool_comparison.php#L6).
+
+## PhanSuspiciousWeakTypeComparisonInGlobalScope
+
+```
+Suspicious attempt to compare {CODE} of type {TYPE} to {CODE} of type {TYPE} in the global scope (likely a false positive)
+```
+
+## PhanSuspiciousWeakTypeComparisonInLoop
+
+```
+Suspicious attempt to compare {CODE} of type {TYPE} to {CODE} of type {TYPE} in a loop body (likely a false positive)
+```
 
 ## PhanTypeArrayOperator
 
@@ -3667,6 +3738,12 @@ Saw an @param annotation for ${PARAMETER}, but it was not found in the param lis
 
 e.g. [this issue](https://github.com/phan/phan/tree/2.0.0/tests/files/expected/0373_reject_bad_type_narrowing.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.0.0/tests/files/src/0373_reject_bad_type_narrowing.php#L4).
 
+## PhanDebugAnnotation
+
+```
+@phan-debug-var requested for variable ${VARIABLE} - it has union type {TYPE}
+```
+
 ## PhanInvalidCommentForDeclarationType
 
 ```
@@ -3775,6 +3852,30 @@ This detects code causing a [warning in PHP 7.3](http://php.net/manual/en/migrat
 "continue" targeting switch is equivalent to "break". Did you mean to use "continue 2"?
 ```
 
+
+## PhanDuplicateUseConstant
+
+```
+Cannot use constant {CONST} as {CONST} because the name is already in use
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/2.2.5/tests/files/expected/0723_duplicate_use.php.expected#L3) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.2.5/tests/files/src/0723_duplicate_use.php#L8).
+
+## PhanDuplicateUseFunction
+
+```
+Cannot use function {FUNCTION} as {FUNCTION} because the name is already in use
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/2.2.5/tests/files/expected/0723_duplicate_use.php.expected#L2) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.2.5/tests/files/src/0723_duplicate_use.php#L6).
+
+## PhanDuplicateUseNormal
+
+```
+Cannot use {CLASSLIKE} as {CLASSLIKE} because the name is already in use
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/2.2.5/tests/files/expected/0723_duplicate_use.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.2.5/tests/files/src/0723_duplicate_use.php#L4).
 
 ## PhanInvalidConstantExpression
 
