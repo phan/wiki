@@ -26,6 +26,7 @@ The following suggestions may help speed up Phan analysis on your project:
    php built with `--enable-debug` (DEBUG) is around 2 times slower.
 
    Also, Phan runs the fastest in the newest PHP minor versions.
+3. Ensure that php-ast is installed and enabled. The output of `php -m` will mention ast if it is enabled.
 
 ## 2. Avoid Using Slow Phan Configuration Options
 
