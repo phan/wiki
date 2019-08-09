@@ -25,7 +25,7 @@ The following suggestions may help speed up Phan analysis on your project:
 2. Run `php --version`. Normally, you should see (NTS), not (ZTS DEBUG) or (NTS DEBUG), but if you build PHP yourself (e.g. for PECL module development), the version you're currently using may have been built with `--enable-debug` (DEBUG).
    php built with `--enable-debug` (DEBUG) is around 2 times slower.
 
-   Also, Phan runs the fastest in the newest PHP minor versions (7.3 is the fastest).
+   Also, Phan runs the fastest in the newest PHP minor versions.
 
 ## 2. Avoid Using Slow Phan Configuration Options
 
@@ -152,4 +152,4 @@ There are two ways to do this.
 
 ### 6. Run the Latest Release of Phan
 
-The latest release (for php 7.0 – 7.3) is [![the Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
+The latest release (for php 7.0 – 7.4) is [![the Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
