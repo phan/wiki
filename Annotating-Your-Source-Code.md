@@ -535,6 +535,8 @@ $output = false;
 double_passed_in_argument(2, $output);
 ```
 
+Phan also supports indicating that a reference parameter should be treated as if it doesn't set or modify the argument's union type (e.g. array shapes, string literals) by writing `@phan-ignore-reference` on the same line as an `@param` annotation.
+
 # Doc Blocks
 
 Doc blocks must be enclosed in comments of the form `/** ... */` starting with `/**` and ending with `*/`. Annotations won't be read from comments with any other format. This will cause you frustration.
