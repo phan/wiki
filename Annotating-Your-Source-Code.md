@@ -20,6 +20,7 @@ Phan supports the following doc block annotations.
 * [`@phan-param`, `@phan-return`, and other aliases of PHPDoc tags.](https://github.com/phan/phan/wiki/Annotating-Your-Source-Code/#aliases-of-phpdoc-annotations)
 * [`@phan-closure-scope <fqsen>`](#phan-closure-scope)
 * [`@phan-read-only` and `@phan-write-only`](#phan-read-only-and-phan-write-only)
+* [`@phan-pure`](#phan-pure)
 * [`@param <union_type> <param_name> @phan-output-reference`](#phan-output-reference)
 
 
@@ -516,6 +517,27 @@ or to indicate that a public instance/static property should not be modified.
 `@phan-write-only` can be used on properties (not yet on classes) to make Phan warn if it detects reads from a property.
 This is much less commonly useful (e.g. could be used for building up objects to be serialized or json encoded).
 
+## @phan-pure
+
+`@phan-pure` can be used to indicate that a function, method, or closure does not have any side effects, and should have its return value be used.
+
+```php
+/** @phan-pure */
+function debug_trace(string $value) {
+    if (getenv('DEBUG')) {
+        echo "Processing '$value'\n";
+    }
+    return $value;
+}
+// Phan emits "PhanPluginUseReturnValueKnown Expected to use the return value..."
+debug_trace(sprintf("Hello, %s", "world"));
+```
+
+Trivial pure functions/methods can be automatically identified with `UseReturnValuePlugin` and `'plugin_config' => ['infer_pure_methods' => true],`), provided that:
+
+- They are in the list of files to be analyzed.
+- There are no overrides of/by the method
+
 ## @phan-output-reference
 
 Phan supports indicating that a reference parameter's input value is unused by writing `@phan-output-reference` on the same line as an `@param` annotation.
@@ -536,6 +558,24 @@ double_passed_in_argument(2, $output);
 ```
 
 Phan also supports indicating that a reference parameter should be treated as if it doesn't set or modify the argument's union type (e.g. array shapes, string literals) by writing `@phan-ignore-reference` on the same line as an `@param` annotation.
+
+### @phan-ignore-reference
+
+Phan supports ignoring the impact of references on the caller.
+This may be useful for preserving array shape types, subclasses, or literal string types.
+
+```php
+/**
+ * @param string &$fmt @phan-ignore-reference
+ */
+function prepend_format_string(string &$fmt) {
+    $fmt = 'INFO: ' . $fmt;
+}
+$fmt = 'Hello, %s!';
+prepend_format_string($fmt, $fmt2);
+// Will properly warn about argument count in PrintfCheckerPlugin
+printf($fmt, 'Hello', 'World');
+```
 
 # Doc Blocks
 
