@@ -44,7 +44,7 @@ Currently, there are clients of Daemon mode/Language Server Protocol for the fol
 
    [![VS Code example, including error tolerance](https://raw.githubusercontent.com/TysonAndre/LanguageServer-phan-neovim/master/images/tolerant_parsing.png)](https://github.com/tysonandre/LanguageServer-phan-neovim)
 
-2. Vim: (Using Phan daemon) Run `phan_client` on save in Vim, show the results: https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim
+3. Vim: (Using Phan daemon) Run `phan_client` on save in Vim, show the results: https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim
 
    This depends on the daemon being started in the background.
 
@@ -62,6 +62,50 @@ Currently, there are clients of Daemon mode/Language Server Protocol for the fol
    [![Emacs flycheck example for Phan](https://cloud.githubusercontent.com/assets/1904430/23347092/85da0322-fc54-11e6-8fae-48b7a30d623b.png)](https://github.com/TysonAndre/flycheck-phanclient)
 
    For language server support (Adds "go to definition"), there is a WIP plugin at https://github.com/TysonAndre/lsp-phan
+
+5. Sublime Text 3 (Using [Sublime LSP](https://github.com/tomv564/LSP))
+
+   You need to have `phan` installed globally: `composer global require phan/phan` for this to work. You also need to make sure you have run `phan --init` in your project.
+   Then you need the following config added to the LSP Settings page:
+
+   ```
+     // ... the LSP settings page
+     "clients":
+	{
+                // you probably have some other clients in here
+                "phan":
+		{
+			"command":
+			[
+				"phan",
+				"--quick",
+				"--allow-polyfill-parser",
+				"--language-server-on-stdin",
+				"--language-server-enable-hover",
+				"--language-server-enable-completion",
+				"--language-server-enable-go-to-definition",
+			],
+			"enabled": true,
+			"initializationOptions":
+			{
+				"storagePath": "/tmp/phan"
+			},
+			"languageId": "php",
+			"scopes":
+			[
+				"source.php",
+				"embedding.php"
+			],
+			"syntaxes":
+			[
+				"Packages/PHP/PHP.sublime-syntax"
+			]
+		},
+   ```
+
+   That should be enough. The server should start without issues.
+
+   ![Sublime Text 3 phan LSP](https://i.imgur.com/u2b44ug.png)
 
 Adding support for other editors
 --------------------------------
