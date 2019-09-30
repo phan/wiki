@@ -1,4 +1,4 @@
-There are several options for getting Phan up and running on your code base.
+There are several options for getting Phan up and running on your codebase.
 
 To get started, choose [a method for getting Phan running on your system](https://github.com/phan/phan/wiki/Getting-Started#installing-phan) and then [create a config file](https://github.com/phan/phan/wiki/Getting-Started#creating-a-config-file) so that Phan knows where to look for code and how to analyze it. Take a look at [Installing Phan Dependencies](https://github.com/phan/phan/wiki/Getting-Started#installing-dependencies) for some help getting Phan's dependencies running.
 
@@ -44,7 +44,7 @@ composer require --dev "phan/phan:2.x"
 
 [For a full list of releases, check out https://packagist.org/packages/phan/phan](https://packagist.org/packages/phan/phan).
 
-With the Phan dependency installed, you can do an analysis by running the following (once you create a configuration file).
+With the Phan dependency installed, you can do analysis by running the following (once you create a configuration file).
 
 ```sh
 ./vendor/bin/phan
@@ -69,7 +69,7 @@ You should now be able to run `./test` to make sure Phan is working correctly, a
 To run Phan from a Phar package, you can download the Phar and run it.
 
 ```sh
-curl -L https://github.com/phan/phan/releases/download/2.0.0/phan.phar -o phan.phar;
+curl -L https://github.com/phan/phan/releases/download/2.0.0/phan.phar -o phan.phar
 ```
 
 You'll now be able to run Phan via
@@ -98,14 +98,14 @@ See [[Getting Started With Homebrew]] (useful for Mac OS)
 
 # Creating a Config File
 
-You'll want to create a configuration file within your code base at `.phan/config.php` so that Phan knows what to look at. The following config file will let Phan know that your source is in the `src/` with some dependency code in the `vendor/symfony/console` directory, and that anything under `vendor/` should be parsed, but not analyzed.
+You'll want to create a configuration file within your codebase at `.phan/config.php` so that Phan knows what to look at. The following config file will let Phan know that your source is in the `src/` with some dependency code in the `vendor/symfony/console` directory and that anything under `vendor/` should be parsed, but not analyzed.
 
 ```php
 <?php
 
 /**
  * This configuration will be read and overlaid on top of the
- * default configuration. Command line arguments will be applied
+ * default configuration. Command-line arguments will be applied
  * after this file is read.
  */
 return [
