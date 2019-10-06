@@ -367,6 +367,16 @@ This is ignored if [`enable_include_path_checks`](#enable_include_path_checks) i
 
 (Default: `["."]`)
 
+## infer_default_properties_in_construct
+
+When enabled, infer that the types of the properties of `$this` are equal to their default values at the start of `__construct()`.
+This will have some false positives due to Phan not checking for setters and initializing helpers.
+This does not affect inherited properties.
+
+Set to true to enable.
+
+(Default: `false`)
+
 ## inherit_phpdoc_types
 
 If enabled, inherit any missing phpdoc for types from
@@ -568,7 +578,10 @@ When this is true, this slows down analysis slightly.
 E.g. rewrites `if ($a = value() && $a > 0) {...}`
 into `$a = value(); if ($a) { if ($a > 0) {...}}`
 
-(Default: `true`)
+Defaults to false as of Phan 2.2.13-dev.
+Phan's analysis has improved enough that this should no longer be necessary.
+
+(Default: `false`)
 
 ## warn_about_relative_include_statement
 
@@ -697,6 +710,13 @@ is definitely not an object,
 or if **any** type in an invoked expression is not a callable.
 Setting this to true will introduce numerous false positives
 (and reveal some bugs).
+
+(Default: `false`)
+
+## strict_object_checking
+
+If enabled, Phan will warn if **any** type of the object expression for a property access
+does not contain that property.
 
 (Default: `false`)
 
