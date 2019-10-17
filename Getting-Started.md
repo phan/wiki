@@ -32,7 +32,7 @@ Check `php --ini` to see where it is looking.
 If `phpize` is unavailable on your system, you may need to install the PHP developer
 packages which are often available with names such as `php-dev`.
 
-Windows users can grab `ast.dll` directly from [PECL snaps](http://windows.php.net/downloads/pecl/snaps/ast/)
+Windows users can grab `ast.dll` directly from [PECL snaps](http://windows.php.net/downloads/pecl/snaps/ast/) (for PHP 7.4) or [PECL releases](https://windows.php.net/downloads/pecl/releases/ast/) (for PHP 7.1-7.3).
 
 ## Composer
 
