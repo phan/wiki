@@ -869,6 +869,22 @@ Unused result of an isset(expr) check
 
 e.g. [this issue](https://github.com/phan/phan/tree/2.2.13/tests/misc/fallback_test/expected/011_isset_intrinsic_expression5.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.2.13/tests/misc/fallback_test/src/011_isset_intrinsic_expression5.php#L2).
 
+## PhanNoopNew
+
+```
+Unused result of new object creation expression in {CODE} (this may be called for the side effects of the non-empty constructor or destructor)
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/master/tests/files/expected/0803_noop_new.php.expected#L3) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/master/tests/files/src/0803_noop_new.php#L4).
+
+## PhanNoopNewNoSideEffects
+
+```
+Unused result of new object creation expression in {CODE} (this is likely free of side effects - there is no known non-empty constructor or destructor)
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/master/tests/files/expected/0270_deprecated_trait.php.expected#L2) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/master/tests/files/src/0270_deprecated_trait.php#L7).
+
 ## PhanNoopNumericLiteral
 
 ```
@@ -979,6 +995,14 @@ Short arrow function shadows variable ${VARIABLE} from the outer scope
 ```
 
 e.g. [this issue](https://github.com/phan/phan/tree/2.2.13/tests/php74_files/expected/004_arrow_func_shadow.php.expected#L2) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.2.13/tests/php74_files/src/004_arrow_func_shadow.php#L7).
+
+## PhanSuspiciousBinaryAddLists
+
+```
+Addition of {TYPE} + {TYPE} {CODE} is a suspicious way to add two lists. Some of the array fields from the left hand side will be part of the result, replacing the fields with the same key from the right hand side (this operator does not concatenate the lists)
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/master/tests/files/expected/0797_useless_array_addition.php.expected#L4) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/master/tests/files/src/0797_useless_array_addition.php#L14).
 
 ## PhanUnreachableCatch
 
@@ -1246,6 +1270,14 @@ Parameter ${PARAMETER} is never used
 
 e.g. [this issue](https://github.com/phan/phan/tree/2.2.13/tests/plugin_test/expected/047_crash.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.2.13/tests/plugin_test/src/047_crash.php#L6).
 
+## PhanUnusedReturnBranchWithoutSideEffects
+
+```
+Possibly useless branch in a function where the return value must be used - all branches return values equivalent to {CODE} (previous return is at line {LINE})
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/master/tests/plugin_test/expected/160_useless_return.php.expected#L2) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/master/tests/plugin_test/src/160_useless_return.php#L12).
+
 ## PhanUnusedVariable
 
 Phan has various checks (See the `unused_variable_detection` config)
@@ -1338,6 +1370,14 @@ The use statement for class/namespace {CLASS} in the global namespace has no eff
 ```
 
 e.g. [this issue](https://github.com/phan/phan/tree/2.2.13/tests/files/expected/0564_global_namespace_functions_constants.php.expected#L2) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.2.13/tests/files/src/0564_global_namespace_functions_constants.php#L4).
+
+## PhanUselessBinaryAddRight
+
+```
+Addition of {TYPE} + {TYPE} {CODE} is probably unnecessary. Array fields from the left hand side will be used instead of each of the fields from the right hand side
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/master/tests/files/expected/0146_array_concat.php.expected#L2) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/master/tests/files/src/0146_array_concat.php#L5).
 
 ## PhanVariableDefinitionCouldBeConstant
 
@@ -3128,6 +3168,14 @@ This issue is emitted from the following code
 function f(int $p = false) {}
 ```
 
+## PhanTypeMismatchPropertyByRef
+
+```
+{TYPE} may end up assigned to property {PROPERTY} of type {TYPE} by reference at {FILE}:{LINE}
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/master/tests/php74_files/expected/016_typed_property_by_reference.php.expected#L9) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/master/tests/php74_files/src/016_typed_property_by_reference.php#L33).
+
 ## PhanTypeMismatchPropertyReal
 
 ```
@@ -3135,6 +3183,14 @@ Assigning {TYPE} to property but {PROPERTY} is {TYPE}
 ```
 
 e.g. [this issue](https://github.com/phan/phan/tree/2.2.13/tests/php70_files/expected/012_typed_properties_errors.php.expected#L11) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.2.13/tests/php70_files/src/012_typed_properties_errors.php#L20).
+
+## PhanTypeMismatchPropertyRealByRef
+
+```
+{TYPE} may end up assigned to property {PROPERTY} of type {TYPE} by reference at {FILE}:{LINE}
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/master/tests/php74_files/expected/016_typed_property_by_reference.php.expected#L3) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/master/tests/php74_files/src/016_typed_property_by_reference.php#L25).
 
 ## PhanTypeMismatchReturn
 
@@ -4236,6 +4292,14 @@ Saw a warning while parsing: {DETAILS}
 
 e.g. [this issue](https://github.com/phan/phan/tree/2.2.13/tests/plugin_test/expected/157_polyfill_compilation_warning.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.2.13/tests/plugin_test/src/157_polyfill_compilation_warning.php#L77).
 
+## PhanSyntaxEmptyListArrayDestructuring
+
+```
+Cannot use an empty list in the left hand side of an array destructuring operation
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/master/tests/files/expected/0799_array_destructuring_failures.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/master/tests/files/src/0799_array_destructuring_failures.php#L3).
+
 ## PhanSyntaxError
 
 This emits warnings for unparsable PHP files (detected by `php-ast`).
@@ -4244,3 +4308,11 @@ Note: This is not the same thing as running `php -l` on a file - PhanSyntaxError
 Note: If the native parser is used, the reported column is a guess. Phan will use the column of the error reported by the **polyfill** if the errors are on the same line.
 
 e.g. [this issue](https://github.com/phan/phan/tree/2.2.13/tests/plugin_test/expected/136_unexpected_bracket.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/2.2.13/tests/plugin_test/src/136_unexpected_bracket.php#L2).
+
+## PhanSyntaxMixedKeyNoKeyArrayDestructuring
+
+```
+Cannot mix keyed and unkeyed array entries in array destructuring assignments
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/master/tests/files/expected/0799_array_destructuring_failures.php.expected#L2) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/master/tests/files/src/0799_array_destructuring_failures.php#L4).
