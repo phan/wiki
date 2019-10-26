@@ -13,9 +13,15 @@ All of the following are valid union types;
 
 Phan also supports these union types, both internally and in phpdoc annotations (These are not part of the phpdoc2 standard):
 
-* `array<string,stdClass>` (an array with string keys and stdClass values)
+* `array<string,stdClass>` (an array with string keys and stdClass values.)
 * `array<mixed,float>` (equivalent to `array<int|string,float>` and `float[]`)
+* `non-empty-array<mixed,float>` (an array of floats, with at least one element)
+* `list<object>` (a list of objects, with consecutive integer keys starting from 0. `list`s cannot cast to/from `associative-array` or `array<string,X>`)
+* `non-empty-list<object>` (a non-empty list of objects, with consecutive integer keys starting from 0)
+* `associative-array<int, stdClass>` (a map from integer keys to objects)
+* `non-empty-associative-array<mixed, float>` (a map from integer or string keys to floats, with at least one element)
 * `array{0:string,1:bool}` (The inferred type for an expression such as `['str', rand(0,2) > 0]`)
+  In Phan, this can also be written as `array{string,bool}` (which is currently analyzed the same way).
 * `array{key:value}` (The inferred type for an expression such as `['key'=>$myValue]`)
 * `array{key?:value}` (E.g. `@param array{key?:value} $options`, to indicate that a field with key `'key'` may or may not be defined)
 * `callable(ParamUnionType):ReturnUnionType` can optionally be used in phpdoc to describe the parameter and return types expected for a callable
