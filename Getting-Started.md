@@ -176,3 +176,11 @@ Many Continuous integration tools can be used to detect that exit code (And/or p
 - Appveyor (Windows): Example configurations: [Phan's own configuration](https://github.com/phan/phan/blob/2.0.0/.appveyor.yml#L99-L100)
 
 - Jenkins (Enterprise): Similar to other build tools. I've found that the pylint output formatter works well with Jenkins for generating a Violations view (see [issue #184](https://github.com/phan/phan/issues/184)).
+
+# Online Demo
+
+You can run Phan (and PHP snippets) entirely in your browser with [our WebAssembly demo](https://phan.github.io/demo/) (experimental).
+
+This works best on desktop Firefox or Chrome.
+
+[![Phan demo](https://raw.githubusercontent.com/phan/demo/master/static/preview.png)](https://phan.github.io/demo/)
