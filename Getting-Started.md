@@ -15,14 +15,14 @@ Maintainers should be able to respond fairly quickly before/after US east coast 
 ## Installing Dependencies
 
 The Phan 2.x releases depend on [PHP](http://php.net/) version 7.1 or greater and [php-ast](https://github.com/nikic/php-ast) 1.0.1+ by [Nikita Popov](https://github.com/nikic).
-php-ast 1.0.3+ is recommended for compatibility with future Phan releases.
+php-ast 1.0.4+ is recommended for compatibility with future Phan releases.
 
 If you don't have a version of PHP 7 installed, you can grab a php7dev Vagrant image or one of the many Docker builds out there.
 
 To compile [php-ast](https://github.com/nikic/php-ast): Something along these lines should do it ([Alternate instructions](https://github.com/nikic/php-ast#installation)):
 
 ```sh
-pecl install ast-1.0.3
+pecl install ast-1.0.4
 ```
 
 And add `extension=ast.so` to your `php.ini` file. Check that it is there with `php -m`.
