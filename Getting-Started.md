@@ -78,7 +78,7 @@ You'll now be able to run Phan via
 php phan.phar
 ```
 
-When this was last updated, [2.3.0](https://github.com/phan/phan/releases/tag/2.3.0) was the latest release. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if that's still the latest, as I'll probably forget to update this page with subsequent releases.
+When this was last updated, [2.4.3](https://github.com/phan/phan/releases/tag/2.4.3) was the latest release. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if that's still the latest, as I'll probably forget to update this page with subsequent releases.
 
 According to packagist, the latest stable version is [![the Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
 
