@@ -1,6 +1,6 @@
 The following suggestions may help speed up Phan analysis on your project:
 
-1. [Make sure nothing is slowing down the PHP interpreter.](#1-php-configuration-options) (e.g. xdebug)
+1. [Make sure nothing is slowing down the PHP interpreter.](#1-php-configuration-options) (e.g. Xdebug)
 
 2. [Avoid using known slow Phan configuration operations for CI for large projects](#2-avoid-using-slow-phan-configuration-options) (and projects with large vendor directories). You can periodically run dead code checks, etc. manually.
 
@@ -14,14 +14,14 @@ The following suggestions may help speed up Phan analysis on your project:
 
 ## 1. PHP Interpreter Configuration Settings
 
-1. Disable xdebug before running Phan.
-   Phan disables XDebug automatically by default, but makes Phan take longer to start up.
+1. Disable Xdebug before running Phan.
+   Phan disables Xdebug automatically by default, but makes Phan take longer to start up.
 
-   The output of `php -m` will mention XDebug if XDebug is still enabled.
+   The output of `php -m` will mention `Xdebug` if Xdebug is still enabled.
 
-   XDebug may be disabled in various ways, e.g. by setting the environment variable `PHPRC` to the absolute path to a folder containing a copy of php.ini without XDebug.
+   Xdebug may be disabled in various ways, e.g. by setting the environment variable `PHPRC` to the absolute path to a folder containing a copy of php.ini without Xdebug.
 
-   (XDebug is only suggested if you're investigating a crash, or a test failure in Phan's test suite, or an uncaught error in Phan, and shouldn't be used in normal usage.)
+   (Xdebug is only suggested if you're investigating a crash, or a test failure in Phan's test suite, or an uncaught error in Phan, and shouldn't be used in normal usage.)
 2. Run `php --version`. Normally, you should see (NTS), not (ZTS DEBUG) or (NTS DEBUG), but if you build PHP yourself (e.g. for PECL module development), the version you're currently using may have been built with `--enable-debug` (DEBUG).
    php built with `--enable-debug` (DEBUG) is around 2 times slower.
 
