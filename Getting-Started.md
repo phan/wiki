@@ -22,7 +22,7 @@ If you don't have a version of PHP 7 installed, you can grab a php7dev Vagrant i
 To compile [php-ast](https://github.com/nikic/php-ast): Something along these lines should do it ([Alternate instructions](https://github.com/nikic/php-ast#installation)):
 
 ```sh
-pecl install ast-1.0.4
+pecl install ast-1.0.5
 ```
 
 And add `extension=ast.so` to your `php.ini` file. Check that it is there with `php -m`.
@@ -32,7 +32,7 @@ Check `php --ini` to see where it is looking.
 If `phpize` is unavailable on your system, you may need to install the PHP developer
 packages which are often available with names such as `php-dev`.
 
-Windows users can grab `ast.dll` directly from [PECL releases](https://windows.php.net/downloads/pecl/releases/ast/) (for PHP 7.1-7.3) or [PECL snaps](http://windows.php.net/downloads/pecl/snaps/ast/) (for PHP 7.4).
+Windows users can grab `ast.dll` directly from [PECL releases](https://windows.php.net/downloads/pecl/releases/ast/) (for PHP 7.1-7.4)
 
 ## Composer
 
@@ -69,7 +69,7 @@ You should now be able to run `./test` to make sure Phan is working correctly, a
 To run Phan from a Phar package, you can download the Phar and run it.
 
 ```sh
-curl -L https://github.com/phan/phan/releases/download/2.3.0/phan.phar -o phan.phar
+curl -L https://github.com/phan/phan/releases/download/2.4.6/phan.phar -o phan.phar
 ```
 
 You'll now be able to run Phan via
