@@ -205,6 +205,11 @@ return [
         'PhanDeprecatedFunctionInternal',  // Warns about a few functions deprecated in 7.0 and later.
         'PhanUndeclaredFunction',  // Check for removed functions such as split() that were deprecated in php 5.x and removed in php 7.0.
     ],
+    // Check that 'php --syntax-check' passes for the files being analyzed by Phan.
+    'plugins' => ['InvokePHPNativeSyntaxCheckPlugin'],
+    // You may wish to add paths both to the older php binary and the newer php binary
+    // in 'plugin_config' => ['php_native_syntax_check_binaries' => [...]] to avoid syntax errors
+    // while the migration is in progress, unless another tool already does that.
 ];
 ```
 
