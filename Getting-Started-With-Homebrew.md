@@ -15,7 +15,7 @@ brew uninstall php; # or brew uninstall php72 if you had that before
 
 ---
 
-Then, to install PHP 7.3 and php-ast, run the following commands ([let me know if they do or don't work](https://github.com/phan/phan/issues/1637)):
+Then, to install PHP 7.4 and php-ast, run the following commands ([let me know if they do or don't work](https://github.com/phan/phan/issues/1637)):
 
 **Note: If you are already using homebrew-php for other applications, upgrading homebrew (and removing the homebrew/php TAP) may cause other issues.** For example, you may need to install other missing extensions and applications)
 
@@ -24,13 +24,14 @@ brew upgrade; # make sure all the other libs are up to date
 brew cleanup; # cleanup old files
 brew prune; # cleanup old symlinks
 brew install autoconf; # Required by pecl
-brew install php; # or php@7.1, or php@7.2
+brew install php; # or php@7.2, or php@7.3, or php@7.4
 pecl channel-update pecl.php.net;
 # the below command should not echo ast. If it does, then it is already installed,
 # and you don't need to run pecl install ast
 php --modules | grep 'ast';
 # Install other pecl modules that you are still missing in a similar fashion
-pecl install ast-1.0.1;
+# This may become out of date, see Phan's README for the recommended php-ast version.
+pecl install ast-1.0.6;
 php --modules | grep 'ast'; # should echo ast
 # Note: If the project being analyzed had other dependencies such as APCu,
 # you may wish to install those with pecl or look at
