@@ -1,23 +1,9 @@
 To get Phan running on a Mac with Homebrew, ensure that Homebrew is installed (see [http://brew.sh](http://brew.sh)) and then run the following:
 
-Note: as of [Homebrew 1.5.0, the homebrew/php TAP was removed](https://brew.sh/2018/01/19/homebrew-1.5.0/) (and replaced with [`php` in core](https://formulae.brew.sh/formula/php)), so the installation instructions are more complicated
-
-If you had the homebrew/php tap installed, or are upgrading from Homebrew < 1.5.0, then first run the following commands:
-
-```sh
-brew update; # updates local brew metadata
-# removes old homebrew php TAP, now php is in homebrew core
-brew untap homebrew/php;
-brew list | grep 'php'; # check for all php related installs
-# php72-ast never existed, I think, so leave out brew uninstall php72-ast
-brew uninstall php; # or brew uninstall php72 if you had that before
-```
-
----
+If you had installed the outdated homebrew/php tap, you will need to [uninstall the tap before installing the core php module](#uninstalling-the-old-homebrewphp-tap).
 
 Then, to install PHP 7.4 and php-ast, run the following commands ([let me know if they do or don't work](https://github.com/phan/phan/issues/1637)):
 
-**Note: If you are already using homebrew-php for other applications, upgrading homebrew (and removing the homebrew/php TAP) may cause other issues.** For example, you may need to install other missing extensions and applications)
 
 ```sh
 brew upgrade; # make sure all the other libs are up to date
@@ -54,3 +40,20 @@ You can create an alias or symlink to phan for convenience (e.g. add an alias in
 # alias phan=/path/to/phan.phar
 # alias phan=/path/to/phan-git-checkout/phan
 ```
+
+## Uninstalling the old homebrew/php tap
+
+Note: as of [Homebrew 1.5.0, the `homebrew/php` tap was removed](https://brew.sh/2018/01/19/homebrew-1.5.0/) (and replaced with [`php` in core](https://formulae.brew.sh/formula/php)), so the installation instructions are more complicated
+
+If you had the `homebrew/php` tap installed, or are upgrading from Homebrew < 1.5.0, then run the following commands before installing the latest php version:
+
+```sh
+brew update; # updates local brew metadata
+# removes old homebrew php TAP, now php is in homebrew core
+brew untap homebrew/php;
+brew list | grep 'php'; # check for all php related installs
+# php72-ast never existed, I think, so leave out brew uninstall php72-ast
+brew uninstall php; # or brew uninstall php72 if you had that before
+```
+
+**Note: If you are already using homebrew-php for other applications, upgrading homebrew (and removing the homebrew/php TAP) may cause other issues.** For example, you may need to install other missing extensions and applications)
