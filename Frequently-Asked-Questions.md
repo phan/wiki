@@ -7,7 +7,7 @@
 - [PHP 7.1 features such as nullable types aren't being parsed](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#php-71-features-such-as-nullable-types-arent-being-parsed)
 - [Phan is warning about the code using PHP 7.1/7.2 features](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#phan-is-warning-about-the-codebase-using-syntax-that-is-incompatible-with-php-707172)
 - [A variadic function with phpdoc has unexpected types](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#a-variadic-function-with-phpdoc-has-unexpected-types)
-- [What should I do about PhanRedefinedClassReference issues emitted in vendor or third party code?](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#what-should-i-do-about-phanredefinedclassreference-issues-emitted-in-vendor-or-third-party-code)
+- [What should I do about `PhanRedefinedClassReference` issues emitted in vendor or third party code?](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#what-should-i-do-about-phanredefinedclassreference-issues-emitted-in-vendor-or-third-party-code)
 - [I upgraded php-ast to 1.x and Phan no longer works](https://github.com/phan/phan/wiki/Frequently-Asked-Questions#i-upgraded-php-ast-to-100-and-phan-no-longer-works)
 
 - There are [[Different Issue Sets On Different Numbers of CPUs]]
@@ -77,16 +77,16 @@ See [the phpdocumentor2 implementation](https://github.com/phpDocumentor/Reflect
 
 `@phan-param` can be used if you must use a different standard for documenting variadic `$args` with `@param`.
 
-### What should I do about PhanRedefinedClassReference issues emitted in vendor or third party code?
+### What should I do about `PhanRedefinedClassReference` issues emitted in vendor or third party code?
 
-PhanRedefinedClassReference is meant to draw attention to the fact duplicate class definitions in vendor, frameworks, etc are a common cause of confusing Phan errors in a project, e.g. failing to infer that ancestor class methods exist because Phan's using the first definition of a class/trait/interface it parses, which refers to a missing ancestor.
+`PhanRedefinedClassReference` is meant to draw attention to the fact duplicate class definitions in vendor, frameworks, etc are a common cause of confusing Phan errors in a project. 
 
-Possible solutions to PhanRedefinedClassReference:
+Possible solutions to `PhanRedefinedClassReference`:
 
 1. I'd suggest just suppressing the issue entirely in your project in `suppress_issue_list` or affected locations if it isn't useful to you (e.g. you don't see mysterious issues involving that class)
 2. Alternately, you could add the file declaring the class to exclude_file_list and add a stub file with just one of the class definitions to your file_list or directory_list. Keep in mind that this approach may cause false negatives/positives if the actual class definition changes in future releases.
 
-This issue type was added to Phan because it can save a lot of time debugging for experienced or new Phan users in the code **outside of vendor** encountering the false positives after using the redefined class. (e.g. confusing warnings about incompatible types, missing methods/properties/class constants, etc.)
+This issue type was added to Phan because it can save a lot of time debugging for experienced or new Phan users for false positives in the code **outside of vendor** caused by the redefined class. (e.g. confusing warnings about incompatible types, missing methods/properties/class constants, failing to infer that ancestor class methods exist because Phan's using the first definition of a class/trait/interface it parses, which refers to a missing ancestor, etc.)
 
 ### I upgraded php-ast to 1.x and Phan no longer works.
 
