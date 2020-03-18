@@ -123,7 +123,8 @@ These settings can be used to control what issues show up in Phan's output.
 ## baseline_path
 
 This is the path to a file containing a list of pre-existing issues to ignore, on a per-file basis.
-It's recommended to set this with --load-baseline=path/to/baseline.php
+It's recommended to set this with `--load-baseline=path/to/baseline.php`.
+A baseline file can be created or updated with `--save-baseline=path/to/baseline.php`.
 
 (Default: `null`)
 
@@ -191,6 +192,15 @@ they are first seen. If false, we'll report an
 error message if there is an attempt to write
 to a class property that wasn't explicitly
 defined.
+
+(Default: `false`)
+
+## allow_overriding_vague_return_types
+
+Allow adding types to vague return types such as @return object, @return ?mixed in function/method/closure union types.
+Normally, Phan only adds inferred returned types when there is no `@return` type or real return type signature..
+
+Disabled by default. This is more useful with `--analyze-twice`.
 
 (Default: `false`)
 
@@ -307,6 +317,7 @@ Phan is slightly faster when these are disabled.
 ## enable_include_path_checks
 
 Enable this to enable checks of require/include statements referring to valid paths.
+The settings [`include_paths`](#include_paths) and [`warn_about_relative_include_statement`](#warn_about_relative_include_statement) affect the checks.
 
 (Default: `false`)
 
@@ -317,6 +328,14 @@ Set this to false to disable the plugins that Phan uses to infer more accurate r
 Phan is slightly faster when these are disabled.
 
 (Default: `true`)
+
+## error_prone_truthy_condition_detection
+
+Set to true in order to attempt to detect error-prone truthiness/falsiness checks.
+
+This is not suitable for all codebases.
+
+(Default: `false`)
 
 ## exception_classes_with_optional_throws_phpdoc
 
