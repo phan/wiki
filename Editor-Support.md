@@ -24,6 +24,8 @@ An alternative approach to editor support is to run Phan on the entire project w
 This is noticeably slow on large projects because it has to parse thousands of files in the project directory.
 This can be sped up with `--quick`. Alternate approaches are also discussed in [Using Phan Daemon Mode](https://github.com/phan/phan/wiki/Using-Phan-Daemon-Mode)
 
+Phan also supports dumping a [ctags `tags` file (that can be used by various editors)](https://en.wikipedia.org/wiki/Ctags) of all of the PHP files it parses, when run with `phan --dump-ctags=basic`.
+
 Editors with Phan support
 -------------------------
 
