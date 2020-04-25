@@ -66,10 +66,10 @@ You should now be able to run `./test` to make sure Phan is working correctly, a
 
 ## From Phan.phar
 
-To run Phan from a Phar package, you can download the Phar and run it.
+To run Phan from a Phar package, you can download the latest Phar and run it.
 
 ```sh
-curl -L https://github.com/phan/phan/releases/download/2.5.0/phan.phar -o phan.phar
+curl -L https://github.com/phan/phan/releases/latest/download/phan.phar -o phan.phar
 ```
 
 You'll now be able to run Phan via
@@ -77,10 +77,6 @@ You'll now be able to run Phan via
 ```sh
 php phan.phar
 ```
-
-When this was last updated, [2.5.0](https://github.com/phan/phan/releases/tag/2.4.6) was the latest release. You may wish to check [the list of releases](https://github.com/phan/phan/releases) to see if that's still the latest, as I'll probably forget to update this page with subsequent releases.
-
-According to packagist, the latest stable version is [![the Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
 
 ## From a Docker Image
 
