@@ -2,7 +2,7 @@ The original plugin types will work in all known versions of Phan,
 and must be used for Phan <= 0.8.4, but won't be as efficient as V2 plugins.
 
 Support for v1 plugins was removed in Phan 1.0.0.
-v2 plugins were deprecated in Phan 2.0.0 in favor of v3.
+v2 plugins were deprecated in Phan 2.0.0 in favor of PluginV3.
 
 ## Creating a Plugin (Legacy)
 

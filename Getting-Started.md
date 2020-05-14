@@ -14,7 +14,7 @@ Maintainers should be able to respond fairly quickly before/after US east coast 
 
 ## Installing Dependencies
 
-The Phan 2.x releases depend on [PHP](http://php.net/) version 7.1 or greater and [php-ast](https://github.com/nikic/php-ast) 1.0.1+ by [Nikita Popov](https://github.com/nikic).
+The Phan 3.x releases depend on [PHP](http://php.net/) version 7.2 or greater and [php-ast](https://github.com/nikic/php-ast) 1.0.1+ by [Nikita Popov](https://github.com/nikic).
 php-ast 1.0.6+ is recommended for compatibility with future Phan releases.
 
 If you don't have a version of PHP 7 installed, you can grab a php7dev Vagrant image or one of the many Docker builds out there.
@@ -32,14 +32,14 @@ Check `php --ini` to see where it is looking.
 If `phpize` is unavailable on your system, you may need to install the PHP developer
 packages which are often available with names such as `php-dev`.
 
-Windows users can grab `ast.dll` directly from [PECL releases](https://windows.php.net/downloads/pecl/releases/ast/) (for PHP 7.1-7.4)
+Windows users can grab `ast.dll` directly from [PECL releases](https://windows.php.net/downloads/pecl/releases/ast/).
 
 ## Composer
 
 If you're managing dependencies via [Composer](https://getcomposer.org/), you can add Phan to your project by running the following.
 
 ```sh
-composer require --dev "phan/phan:2.x"
+composer require --dev "phan/phan:3.x"
 ```
 
 [For a full list of releases, check out https://packagist.org/packages/phan/phan](https://packagist.org/packages/phan/phan).

@@ -19,7 +19,7 @@ The process of starting analysis looks like
 
 The first step is to get Phan running. Take a look at [Getting Started](https://github.com/phan/phan/wiki/Getting-Started) for help getting PHP7, the php-ast module and Phan installed.
 
-If you have PHP version 7 installed with the [php-ast](https://github.com/nikic/php-ast) module and your project uses composer, you can just run `composer require --dev "phan/phan:2.x"` to add Phan to your project with the binary available in `vendor/bin/phan`.
+If you have PHP version 7 installed with the [php-ast](https://github.com/nikic/php-ast) module and your project uses composer, you can just run `composer require --dev "phan/phan:3.x"` to add Phan to your project with the binary available in `vendor/bin/phan`.
 
 ## Set Up Your Environment
 
