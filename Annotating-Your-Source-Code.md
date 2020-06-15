@@ -527,6 +527,8 @@ This is much less commonly useful (e.g. could be used for building up objects to
 `@phan-side-effect-free` can be used to indicate that a function, method, or closure does not have any side effects, and should have its return value be used.
 This was formerly known as `@phan-pure`, but was renamed to avoid confusion.
 
+**Note that `UseReturnValuePlugin` must be enabled for Phan to warn about misusing methods with these declarations.**
+
 ```php
 /** @phan-side-effect-free */
 function debug_trace(string $value) {
@@ -554,6 +556,8 @@ and that methods of the class are free of external side effects. (#3182)
 - Almost all instance methods are treated as `@phan-side-effect-free` - their return values must be used.
   (excluding a few magic methods such as `__wakeup`, `__set`, etc.)
   This does not imply that they are deterministic (e.g. `rand()`, `file_get_contents()`, and `microtime()` are allowed)
+
+  Note that `UseReturnValuePlugin` must be enabled for Phan to warn about calling methods without using their return value.
 
 ## @phan-output-reference
 
