@@ -20,7 +20,7 @@ Phan supports the following doc block annotations.
 * [`@phan-param`, `@phan-return`, and other aliases of PHPDoc tags.](https://github.com/phan/phan/wiki/Annotating-Your-Source-Code/#aliases-of-phpdoc-annotations)
 * [`@phan-closure-scope <fqsen>`](#phan-closure-scope)
 * [`@phan-read-only` and `@phan-write-only`](#phan-read-only-and-phan-write-only)
-* [`@phan-pure`](#phan-pure)
+* [`@phan-side-effect-free`](#phan-side-effect-free)
 * [`@param <union_type> <param_name> @phan-output-reference`](#phan-output-reference)
 
 
@@ -510,19 +510,25 @@ $invoker(2);
 
 ## @phan-read-only and @phan-write-only
 
-`@phan-read-only` can be used on properties (not yet on classes) to make Phan warn if it detects writes to a property outside of the constructor.
+`@phan-read-only` can be used on properties and classes to make Phan warn if it detects writes to a property outside of the constructor.
 This is useful when indicating to callers that an object should be immutable,
 or to indicate that a public instance/static property should not be modified.
+
+- `@phan-immutable` is an alias of `@phan-read-only`
+- Phan does not check if object fields of those immutable properties will change. (e.g. `$this->foo->prop = 'x';` is allowed)
+- On classes, this annotation does not imply that methods have no side effects (e.g. I/O, modifying global state)
+- On classes, this annotation does not imply that methods have deterministic return values or that methods' results should be used.
 
 `@phan-write-only` can be used on properties (not yet on classes) to make Phan warn if it detects reads from a property.
 This is much less commonly useful (e.g. could be used for building up objects to be serialized or json encoded).
 
-## @phan-pure
+## @phan-side-effect-free
 
-`@phan-pure` can be used to indicate that a function, method, or closure does not have any side effects, and should have its return value be used.
+`@phan-side-effect-free` can be used to indicate that a function, method, or closure does not have any side effects, and should have its return value be used.
+This was formerly known as `@phan-pure`, but was renamed to avoid confusion.
 
 ```php
-/** @phan-pure */
+/** @phan-side-effect-free */
 function debug_trace(string $value) {
     if (getenv('DEBUG')) {
         echo "Processing '$value'\n";
@@ -537,6 +543,17 @@ Trivial pure functions/methods can be automatically identified with `UseReturnVa
 
 - They are in the list of files to be analyzed.
 - There are no overrides of/by the method
+
+### @phan-side-effect-free on classes
+
+The `@phan-side-effect-free` annotation can also be used on class doc comments,
+to indicate that all instances of the class are `@phan-immutable`
+and that methods of the class are free of external side effects. (#3182)
+
+- All instance properties are treated as read-only.
+- Almost all instance methods are treated as `@phan-side-effect-free` - their return values must be used.
+  (excluding a few magic methods such as `__wakeup`, `__set`, etc.)
+  This does not imply that they are deterministic (e.g. `rand()`, `file_get_contents()`, and `microtime()` are allowed)
 
 ## @phan-output-reference
 
