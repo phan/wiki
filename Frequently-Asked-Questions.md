@@ -19,9 +19,13 @@
 
 For the best results, run Phan with the same extensions (and same extension versions) installed and enabled as you would in the project being enabled.
 
+- This allows Phan to catch issues where you're using functionality that's not available in that project's target environment.
+
 Phan supports [internal stubs](https://github.com/phan/phan/wiki/How-To-Use-Stubs#internal-stubs). [Regular stubs](https://github.com/phan/phan/wiki/How-To-Use-Stubs#stubs) are another option for older Phan releases.
 
 Phan automatically disables xdebug for performance reasons. If your project uses xdebug, enable the corresponding [internal stubs](https://github.com/phan/phan/wiki/How-To-Use-Stubs#internal-stubs) in your project's `.phan/config.php`.
+
+For historic reasons, Phan doesn't warn about global functions it has signatures for. [`ignore_undeclared_functions_with_known_signatures`](https://github.com/phan/phan/wiki/Phan-Config-Settings#ignore_undeclared_functions_with_known_signatures) is `true` by default, but can be set to `false` to also warn about undeclared global functions with known signatures.
 
 ### Phan says that a composer dependency of my project(a class, constant, or function) is undeclared
 
