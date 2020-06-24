@@ -15,7 +15,7 @@
 
 ## Common Questions
 
-<a id="undeclared_element"></a>
+<a name="undeclared_element"></a>
 ### Phan says that an internal class, constant, or function (e.g. xdebug_is_enabled, Soap, Memcached, etc.) is undeclared
 
 For the best results, run Phan with the same extensions (and same extension versions) installed and enabled as you would in the project being enabled.
