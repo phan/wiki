@@ -172,6 +172,18 @@ If you're in the process of migrating from PHP5 to PHP7, you may wish to only sc
 
 The following configuration will ignore all issue types but backward compatibility issues.
 
+If you are migrating from PHP 5 to PHP 7,
+you should also look into using
+[php7cc (no longer maintained)](https://github.com/sstalle/php7cc)
+and [php7mar](https://github.com/Alexia/php7mar),
+which have different backwards compatibility checks.
+
+If you are still using versions of php older than 5.6,
+`PHP53CompatibilityPlugin` may be worth looking into if you are not running
+syntax checks for php 5.3 through another method such as
+`InvokePHPNativeSyntaxCheckPlugin` or `phan --native-syntax-check php53`
+(see .phan/plugins/README.md).
+
 ```php
 <?php
 
@@ -184,13 +196,28 @@ The following configuration will ignore all issue types but backward compatibili
  * See Config for all configurable options.
  */
 return [
-    // Backwards Compatibility Checking. This is very slow
+    // Backwards Compatibility Checking. This is slow
     // and expensive, but you should consider running
-    // it before upgrading your version of PHP from 5.x to 7.0,
-    // due to the backward compatibility breaks of parsing in PHP 7.0
+    // it before upgrading your version of PHP to a
+    // new version that has backward compatibility
+    // breaks.
+    //
+    // If you are migrating from PHP 5 to PHP 7,
+    // you should also look into using
+    // [php7cc (no longer maintained)](https://github.com/sstalle/php7cc)
+    // and [php7mar](https://github.com/Alexia/php7mar),
+    // which have different backwards compatibility checks.
+    //
+    // If you are still using versions of php older than 5.6,
+    // `PHP53CompatibilityPlugin` may be worth looking into if you are not running
+    // syntax checks for php 5.3 through another method such as
+    // `InvokePHPNativeSyntaxCheckPlugin` (see .phan/plugins/README.md).
+    //
+    // You may wish to disable 'redundant_condition_detection'
+    // until your project drops php 5 support.
     'backward_compatibility_checks' => true,
 
-    // Added in 0.10.0. Set this to false to emit
+    // Set this to false to emit
     // PhanUndeclaredFunction issues for internal functions
     // that Phan has signatures for,
     // but aren't available in the codebase or the
