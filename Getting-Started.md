@@ -82,10 +82,8 @@ php phan.phar
 
 Several docker images exist for Phan that include its dependencies (PHP version 7, php-ast). I haven't tried any of them myself, but you could check out these projects.
 
-* https://github.com/cloudflare/docker-phan
-* https://github.com/mre/docker-php-phan
-* https://github.com/madmuffin1/phan-docker
 * https://github.com/jakzal/phpqa
+* https://github.com/cloudflare/docker-phan hasn't been updated recently, but can be used as a basis for minimal alpine images.
 * [Others that show up now and then](https://www.google.com/webhp#q=phan%20docker)
 
 ## From Homebrew
