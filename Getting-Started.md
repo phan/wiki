@@ -86,6 +86,8 @@ Several docker images exist for Phan that include its dependencies (PHP version 
 * https://github.com/cloudflare/docker-phan hasn't been updated recently, but can be used as a basis for minimal alpine images.
 * [Others that show up now and then](https://www.google.com/webhp#q=phan%20docker)
 
+(Contact Phan's maintainers via [the issue tracker](https://github.com/phan/phan/issues) to request addition to this list.)
+
 ## From Homebrew
 
 See [[Getting Started With Homebrew]] (useful for Mac OS)
