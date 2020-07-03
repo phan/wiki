@@ -80,13 +80,14 @@ php phan.phar
 
 ## From a Docker Image
 
-Several docker images exist for Phan that include its dependencies (PHP version 7, php-ast). I haven't tried any of them myself, but you could check out these projects.
+Several docker images exist for Phan that include its dependencies (PHP version 7, php-ast). 
+
+* https://github.com/phan/docker is a new minimal docker image created by one of Phan's maintainers.
+
+I haven't tried any of them myself, but you could check out these projects.
 
 * https://github.com/jakzal/phpqa
-* https://github.com/cloudflare/docker-phan hasn't been updated recently, but can be used as a basis for minimal alpine images.
 * [Others that show up now and then](https://www.google.com/webhp#q=phan%20docker)
-
-(Contact Phan's maintainers via [the issue tracker](https://github.com/phan/phan/issues) to request addition to this list.)
 
 ## From Homebrew
 
