@@ -27,3 +27,7 @@
 - **[[Frequently Asked Questions]]**<br/>
 - **[[Different Issue Sets On Different Numbers of CPUs]]**<br/>
 - **[[What Static Analysis Lets You Do]]**<br/>
+
+### Editing the Wiki
+
+- [github.com/phan/wiki](https://github.com/phan/wiki)
