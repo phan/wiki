@@ -69,3 +69,7 @@ A guide to writing one-off plugins for Phan.
 
 **[[How To Create a Phan Release]]**<br />
 Follow this checklist when creating a new release of Phan.
+
+# Editing the Wiki
+
+Changes can be suggested at https://github.com/phan/wiki
