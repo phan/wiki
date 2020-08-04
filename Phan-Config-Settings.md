@@ -128,6 +128,15 @@ A baseline file can be created or updated with `--save-baseline=path/to/baseline
 
 (Default: `null`)
 
+## baseline_summary_type
+
+This is the type of summary comment that will be generated when `--save-baseline=path/to/baseline.php` is used.
+Supported values: 'ordered_by_count' (default), 'ordered_by_type', 'none'.
+(The first type makes it easier to see uncommon issues when reading the code but is more prone to merge conflicts in version control)
+(Does not affect analysis)
+
+(Default: `"ordered_by_count"`)
+
 ## disable_file_based_suppression
 
 Set to true in order to ignore file-based issue suppressions.
@@ -415,6 +424,21 @@ To refer to the project root directory, use \Phan\Config::getProjectRootDirector
 This is ignored if [`enable_include_path_checks`](#enable_include_path_checks) is not `true`.
 
 (Default: `["."]`)
+
+## included_extension_subset
+
+This can be set to a list of extensions to limit Phan to using the reflection information of.
+If this is a list, then Phan will not use the reflection information of extensions outside of this list.
+
+Note that this will only prevent Phan from loading reflection information for extensions outside of this set.
+If you want to add stubs, see [`autoload_internal_extension_signatures`](#autoload_internal_extension_signatures).
+
+If this is used, 'core', 'date', 'pcre', 'reflection', 'spl', and 'standard' will be automatically added.
+
+When this is an array, [`ignore_undeclared_functions_with_known_signatures`](#ignore_undeclared_functions_with_known_signatures) will always be set to false.
+(because many of those functions will be outside of the configured list)
+
+(Default: `null`)
 
 ## infer_default_properties_in_construct
 
@@ -939,6 +963,12 @@ If true, then hide the issue's column in plaintext and pylint output printers.
 Note that phan only knows the column for a tiny subset of issues.
 
 (Default: `false`)
+
+## max_verbose_snippet_length
+
+In `--output-mode=verbose`, refuse to print lines of context that exceed this limit.
+
+(Default: `1000`)
 
 ## skip_missing_tokenizer_warning
 
