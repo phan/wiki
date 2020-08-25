@@ -171,14 +171,14 @@ sloppy mature code base.
 ## suppress_issue_types
 
 Add any issue types (such as `'PhanUndeclaredMethod'`)
-to this black-list to inhibit them from being reported.
+to this list to inhibit them from being reported.
 
 (Default: `[]`)
 
 ## whitelist_issue_types
 
-If empty, no filter against issues types will be applied.
-If this white-list is non-empty, only issues within the list
+If this list is empty, no filter against issues types will be applied.
+If this list is non-empty, only issues within the list
 will be emitted by Phan.
 
 See https://github.com/phan/phan/wiki/Issue-Types-Caught-by-Phan
@@ -429,6 +429,7 @@ This is ignored if [`enable_include_path_checks`](#enable_include_path_checks) i
 
 This can be set to a list of extensions to limit Phan to using the reflection information of.
 If this is a list, then Phan will not use the reflection information of extensions outside of this list.
+The extensions loaded for a given php installation can be seen with `php -m` or `get_loaded_extensions(true)`.
 
 Note that this will only prevent Phan from loading reflection information for extensions outside of this set.
 If you want to add stubs, see [`autoload_internal_extension_signatures`](#autoload_internal_extension_signatures).
@@ -437,6 +438,8 @@ If this is used, 'core', 'date', 'pcre', 'reflection', 'spl', and 'standard' wil
 
 When this is an array, [`ignore_undeclared_functions_with_known_signatures`](#ignore_undeclared_functions_with_known_signatures) will always be set to false.
 (because many of those functions will be outside of the configured list)
+
+Also see [`ignore_undeclared_functions_with_known_signatures`](#ignore_undeclared_functions_with_known_signatures) to warn about using unknown functions.
 
 (Default: `null`)
 
@@ -698,6 +701,17 @@ If this is overridden to be null, this will be inferred from `target_php_version
 
 (Default: `false`)
 
+## minimum_target_php_version
+
+The PHP version that will be used for feature/syntax compatibility warnings.
+
+Supported values: `'5.6'`, `'7.0'`, `'7.1'`, `'7.2'`, `'7.3'`, `'7.4'`, `null`.
+If this is set to `null`, Phan will first attempt to infer the value from
+the project's composer.json's `{"require": {"php": "version range"}}` if possible.
+If that could not be determined, then Phan assumes `target_php_version`.
+
+(Default: `null`)
+
 ## polyfill_parse_all_element_doc_comments
 
 Make the tolerant-php-parser polyfill generate doc comments
@@ -716,6 +730,11 @@ NOTE: Currently, this only affects `Closure::fromCallable()`
 (Default: `true`)
 
 ## target_php_version
+
+The PHP version that the codebase will be checked for compatibility against.
+For best results, the PHP binary used to run Phan should have the same PHP version.
+(Phan relies on Reflection for some types, param counts,
+and checks for undefined classes/methods/functions)
 
 Supported values: `'5.6'`, `'7.0'`, `'7.1'`, `'7.2'`, `'7.3'`, `'7.4'`, `null`.
 If this is set to `null`,
