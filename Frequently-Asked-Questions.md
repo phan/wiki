@@ -40,30 +40,27 @@ This is a common cause of PhanUndeclaredClassMethod, PhanUndeclaredClass, PhanUn
 
 See https://github.com/phan/phan/wiki/Annotating-Your-Source-Code#doc-blocks (Common issues: Phan does not support inline doc comments, doc comments must begin with `/**`, etc)
 
+You can enable [`PHPDocInWrongCommentPlugin`](https://github.com/phan/phan/tree/master/.phan/plugins#phpdocinwrongcommentplugin) to automatically warn about using block comments with annotations instead of doc comments.
+
 ### One of Phan's function or method signatures have incorrect parameter types or return types
 
 Double check the documentation and examples provided on php.net (or for the latest stable version of that extension).
 
 If Phan is inconsistent with the documentation, create a PR modifying the related functions/methods in https://github.com/phan/phan/blob/master/src/Phan/Language/Internal/FunctionSignatureMap.php (or file an issue).
 
-### PHP 7.1 features such as nullable types aren't being parsed
+### Phan is warning about the codebase using syntax that is incompatible with php 7.0 – 8.0
 
-Make sure that Phan is being invoked with php 7.1 (or newer). For best results, the PHP version should be close to the version of the project being analyzed.
-
-The PHP version used to invoke Phan must be 7.1 or newer to parse php 7.1 code with `php-ast` (As well as for getting the real function and method signatures, etc.). `php-ast` uses the current PHP version's internal parse tree.
-
-The CLI options `--force-polyfill-parser` and/or `--use-fallback-parser` may also be used, but the pure PHP parser implementation has bugs in a few edge cases. (and they're slower)
-
-### Phan is warning about the codebase using syntax that is incompatible with php 7.0 – 7.4
-
-This can be solved by setting the `target_php_version` in your `.phan/config.php` to `'7.1'`/`'7.2'`/`'7.3'`/`'7.4'` (if that is the oldest php version your project supports), or by changing the code to stop using newer syntax. You may also suppress that issue in .phan/config.php, and various other ways.
+This can be solved by setting the `minimum_target_php_version` and `target_php_version` in your `.phan/config.php` to `'7.1'`/`'7.2'`/`'7.3'`/`'7.4'`/`'8.0'` (if that is the oldest php version your project supports), or by changing the code to stop using newer syntax. You may also suppress that issue in .phan/config.php, and various other ways.
 
 + `CompatibleNullableTypePHP70`, `CompatibleShortArrayAssignPHP70`, `CompatibleKeyedArrayAssignPHP70`,
-  `CompatibleKeyedArrayAssignPHP70`, and `CompatibleIterableTypePHP70`
-  are emitted when the `target_php_version` is less than '7.1'.
-+ `CompatibleObjectTypePHP71` is emitted for the `object` typehint when the `target_php_version`
+  `CompatibleKeyedArrayAssignPHP70`, and `CompatibleIterableTypePHP70` (etc.)
+  are emitted when the `minimum_target_php_version` is less than '7.1'.
+  (In older Phan releases, `target_php_version` was used)
++ `CompatibleObjectTypePHP71` (etc.) are emitted for the `object` typehint when the `minimum_target_php_version`
   is less than 7.2.
 
+Phan's latest releases attempt to automatically infer the `minimum_target_php_version` from the PHP version supported by your project's `composer.json`.
+If Phan is warning, it's possible that your project may actually be used with a php version that's too old to support that functionality.
 
 ### A variadic function with phpdoc has unexpected types
 
@@ -97,7 +94,7 @@ This issue type was added to Phan because it can save a lot of time debugging fo
 
 Check the Phan version in your composer.json (or the method you're using to install Phan), e.g. with `/path/to/phan --version`.
 
-You're likely still using Phan 0.12.x or 1.x or 2.x. You should upgrade to Phan 3.0.0+, php 7.2+, and php-ast 1.0.6+. (If you still need to use PHP 7.0 to execute Phan, upgrade to Phan 1.1.0+ and you'll be able to use php-ast 1.0.0+. If you need to use PHP 7.1, use Phan 2.x.).
+You're likely still using Phan 0.12.x or 1.x or 2.x. You should upgrade to Phan 3.0.0+, php 7.2+, and php-ast 1.0.10+. (If you still need to use PHP 7.0 to execute Phan, upgrade to Phan 1.1.0+ and you'll be able to use php-ast 1.0.0+. If you need to use PHP 7.1, use Phan 2.x.).
 
 The latest stable version of Phan is [![the Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
 
