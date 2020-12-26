@@ -121,7 +121,7 @@ return [
 
 This configuration sets up the weakest possible analysis to get you started. With this configuration we allow undefined properties to be written to, allow things of type `null` to be cast to any type, and only emit the most severe issues.
 
-You can take a look at [Phan's config](https://github.com/phan/phan/blob/master/.phan/config.php) for an example.
+You can take a look at [Phan's config](https://github.com/phan/phan/blob/v4/.phan/config.php) for an example.
 
 You should add any third-party code paths to the `exclude_analysis_directory_list` array to avoid having to deal with sloppiness in code that you don't want to fix.
 

@@ -16,7 +16,7 @@ Three things need to be done to use Phan from an editor (with low latency).
 1. Use an editor with Phan support, or modify a plugin or config to show Phan issues alongside of PHP syntax errors.
 2. Manually start the Phan daemon/Phan Language Server for the project you are working on. These are two incompatible methods of running Phan in the background.
 
-   1. The Phan daemon, which uses a custom Phan-specific protocol and was implemented first. The only client is `https://github.com/phan/phan/blob/master/phan_client`, which emulates the output of `php -l`. Setup instructions are included in [[Using Phan Daemon Mode]]
+   1. The Phan daemon, which uses a custom Phan-specific protocol and was implemented first. The only client is `https://github.com/phan/phan/blob/v4/phan_client`, which emulates the output of `php -l`. Setup instructions are included in [[Using Phan Daemon Mode]]
    2. The Phan Language server, which uses an open standard (The [Language Server Protocol](https://github.com/Microsoft/language-server-protocol))
 3. Verify that `phan_client` (or the language server client) is working properly.
 
@@ -40,19 +40,19 @@ Currently, there are clients of Daemon mode/Language Server Protocol for the fol
 2. Vim 8.1+ and Neovim (Using the Phan language server. This is new )
 
    If needed, A newer version of vim can be installed with the instructions found at https://www.vim.org/download.php
-   Alternately, you can use the [simpler snippet](https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim) along with the Phan daemon.
+   Alternately, you can use the [simpler snippet](https://github.com/phan/phan/blob/v4/plugins/vim/phansnippet.vim) along with the Phan daemon.
 
    Unlike the editor Plugins using the daemon, this plugin will automatically start the Phan language server.
 
    [![VS Code example, including error tolerance](https://raw.githubusercontent.com/TysonAndre/LanguageServer-phan-neovim/master/images/tolerant_parsing.png)](https://github.com/tysonandre/LanguageServer-phan-neovim)
 
-3. Vim: (Using Phan daemon) Run `phan_client` on save in Vim, show the results: https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim
+3. Vim: (Using Phan daemon) Run `phan_client` on save in Vim, show the results: https://github.com/phan/phan/blob/v4/plugins/vim/phansnippet.vim
 
    This depends on the daemon being started in the background.
 
    This should work with Vim 7 and newer.
 
-   [![Vim integration example](https://cloud.githubusercontent.com/assets/1904430/23336381/4210f212-fb83-11e6-9c55-79e0995307b1.png)](https://github.com/phan/phan/blob/master/plugins/vim/phansnippet.vim)
+   [![Vim integration example](https://cloud.githubusercontent.com/assets/1904430/23336381/4210f212-fb83-11e6-9c55-79e0995307b1.png)](https://github.com/phan/phan/blob/v4/plugins/vim/phansnippet.vim)
 
 4. Emacs: (Using Phan daemon) Run `phan_client` while the file is being edited in Emacs. (Alternately, it can be configured to run only when saving a file):
 

@@ -14,15 +14,15 @@ Maintainers should be able to respond fairly quickly before/after US east coast 
 
 ## Installing Dependencies
 
-The Phan 3.x releases depend on [PHP](http://php.net/) version 7.2 or greater and [php-ast](https://github.com/nikic/php-ast) 1.0.1+ by [Nikita Popov](https://github.com/nikic).
-php-ast 1.0.6+ is recommended for compatibility with future Phan releases.
+The Phan 4.x releases depend on [PHP](http://php.net/) version 7.2 or greater and [php-ast](https://github.com/nikic/php-ast) 1.0.1+ by [Nikita Popov](https://github.com/nikic).
+php-ast 1.0.7+ is recommended for compatibility with future Phan releases.
 
 If you don't have a version of PHP 7 installed, you can grab a php7dev Vagrant image or one of the many Docker builds out there.
 
 To compile [php-ast](https://github.com/nikic/php-ast): Something along these lines should do it ([Alternate instructions](https://github.com/nikic/php-ast#installation)):
 
 ```sh
-pecl install ast-1.0.6
+pecl install ast-1.0.10
 ```
 
 And add `extension=ast.so` to your `php.ini` file. Check that it is there with `php -m`.
@@ -39,7 +39,7 @@ Windows users can grab `ast.dll` directly from [PECL releases](https://windows.p
 If you're managing dependencies via [Composer](https://getcomposer.org/), you can add Phan to your project by running the following.
 
 ```sh
-composer require --dev "phan/phan:3.x"
+composer require --dev "phan/phan:4.x"
 ```
 
 [For a full list of releases, check out https://packagist.org/packages/phan/phan](https://packagist.org/packages/phan/phan).
@@ -62,7 +62,7 @@ cd phan
 composer install
 ```
 
-You should now be able to run `./test` to make sure Phan is working correctly, and run `./phan` to run Phan on itself (using its own [`.phan/config.php`](https://github.com/phan/phan/blob/master/.phan/config.php) configuration).
+You should now be able to run `./test` to make sure Phan is working correctly, and run `./phan` to run Phan on itself (using its own [`.phan/config.php`](https://github.com/phan/phan/blob/v4/.phan/config.php) configuration).
 
 ## From Phan.phar
 
@@ -80,7 +80,7 @@ php phan.phar
 
 ## From a Docker Image
 
-Several docker images exist for Phan that include its dependencies (PHP version 7, php-ast). 
+Several docker images exist for Phan that include its dependencies (PHP version 7, php-ast).
 
 * https://github.com/phan/docker is a new minimal docker image created by one of Phan's maintainers.
 
@@ -159,7 +159,7 @@ Take a look at [[Incrementally Strengthening Analysis]] for some tips on how to 
 
 A list of configuration options and their default values can be found at the page [[Phan Config Settings]].
 
-Also, see Phan's own [`.phan/config.php`](https://github.com/phan/phan/blob/master/.phan/config.php) for the (fairly strict) config Phan uses to analyze itself.
+Also, see Phan's own [`.phan/config.php`](https://github.com/phan/phan/blob/v4/.phan/config.php) for the (fairly strict) config Phan uses to analyze itself.
 
 # Running Phan in Continuous Integration
 
@@ -169,7 +169,7 @@ Phan will exit with a non-zero exit code if 1 or more errors are detected (or if
 
 Many Continuous integration tools can be used to detect that exit code (And/or parse the generated report file) and cause the build to fail. A list of several examples is below:
 
-- Travis: Example configurations: [for tolerant-php-parser-to-php-ast (simple)](https://github.com/TysonAndre/tolerant-php-parser-to-php-ast/blob/master/.travis.yml), [for phan/phan (Runs self test as part of a shell script)](https://github.com/phan/phan/blob/master/.travis.yml)
+- Travis: Example configurations: [for tolerant-php-parser-to-php-ast (simple)](https://github.com/TysonAndre/tolerant-php-parser-to-php-ast/blob/master/.travis.yml), [for phan/phan (Runs self test as part of a shell script)](https://github.com/phan/phan/blob/v4/.travis.yml)
 
 - Appveyor (Windows): Example configurations: [Phan's own configuration](https://github.com/phan/phan/blob/2.0.0/.appveyor.yml#L99-L100)
 

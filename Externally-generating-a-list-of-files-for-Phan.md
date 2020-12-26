@@ -2,7 +2,7 @@ Some uses of Phan may involve passing it a list of files instead of using `.phan
 
 You can pass the files to be analyzed to Phan on the command-line, but with a large code base, you'll want to create a file that lists all files and filters out junk to make your life easier.
 
-One way to generate this file list would be to create a file `.phan/bin/mkfilelist` (like [Phan's](https://github.com/phan/phan/blob/master/.phan/bin/mkfilelist)) with the following contents.
+One way to generate this file list would be to create a file `.phan/bin/mkfilelist` (like [Phan's](https://github.com/phan/phan/blob/v4/.phan/bin/mkfilelist)) with the following contents.
 
 ```sh
 #!/bin/bash
@@ -33,7 +33,7 @@ cat $JUNK | \
 rm $JUNK
 ```
 
-You can then run `./.phan/bin/mkfilelist > files`. Take a look at [Phan's file list generator](https://github.com/phan/phan/blob/master/.phan/bin/mkfilelist) to see an example.
+You can then run `./.phan/bin/mkfilelist > files`. Take a look at [Phan's file list generator](https://github.com/phan/phan/blob/v4/.phan/bin/mkfilelist) to see an example.
 
 With this, you can now run `phan -f files` to run an analysis of your code base.
 (If `.phan/config.php` exists in the working directory, `phan -f files` will use configuration settings from that file, but the files from that list)
