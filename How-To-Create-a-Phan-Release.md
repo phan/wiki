@@ -1,8 +1,8 @@
 We create releases for Phan whenever we want to get new bug fixes or features out to folks that choose to use stable releases.
 
-As of this writing, we're supporting one active version: 2.x.y for PHP 7.0 – 7.4 syntax.
+As of this writing, we're supporting one active version: 4.x.y for PHP 7.0 – 8.0 syntax.
 
-- Support for versions predating 2.0.0 has been dropped
+- Support for versions predating 4.0.0 has been dropped
 
 # Release Checklist
 
@@ -20,5 +20,5 @@ After creating the new release, check [packagist.org/packages/phan/phan](https:/
 
 Additional post-release tasks:
 
-- [ ] Create PRs to change Phan version in NEWS.md and CLI.php to 2.x.(y+1)-dev
+- [ ] Create PRs to change Phan version in NEWS.md and CLI.php to 4.x.(y+1)-dev
 - [ ] Update the most recent Phan version in the wiki (optional for patch releases)

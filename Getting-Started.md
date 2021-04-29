@@ -107,7 +107,7 @@ You'll want to create a configuration file within your codebase at `.phan/config
  */
 return [
     // Supported values: `'5.6'`, `'7.0'`, `'7.1'`, `'7.2'`, `'7.3'`,
-    // `'7.4'`, `null`.
+    // `'7.4'`, `'8.0'`, `null`.
     // If this is set to `null`,
     // then Phan assumes the PHP version which is closest to the minor version
     // of the php executable used to execute Phan.
