@@ -14,10 +14,10 @@ Maintainers should be able to respond fairly quickly before/after US east coast 
 
 ## Installing Dependencies
 
-The Phan 4.x releases depend on [PHP](http://php.net/) version 7.2 or greater and [php-ast](https://github.com/nikic/php-ast) 1.0.1+ by [Nikita Popov](https://github.com/nikic).
-php-ast 1.0.7+ is recommended for compatibility with future Phan releases.
+The Phan 4.x releases depend on [PHP](http://php.net/) version 7.2 or greater and [php-ast](https://github.com/nikic/php-ast) 1.0.7+ by [Nikita Popov](https://github.com/nikic).
+php-ast 1.0.10+ is recommended for compatibility with future Phan releases.
 
-If you don't have a version of PHP 7 installed, you can grab a php7dev Vagrant image or one of the many Docker builds out there.
+If you don't have a version of PHP 7 or 8 installed, you can grab a php7dev Vagrant image or one of the many Docker builds out there.
 
 To compile [php-ast](https://github.com/nikic/php-ast): Something along these lines should do it ([Alternate instructions](https://github.com/nikic/php-ast#installation)):
 

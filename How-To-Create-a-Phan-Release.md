@@ -1,6 +1,6 @@
 We create releases for Phan whenever we want to get new bug fixes or features out to folks that choose to use stable releases.
 
-As of this writing, we're supporting one active version: 4.x.y for PHP 7.0 – 8.0 syntax.
+As of this writing, we're supporting one active version: 4.x.y for the analysis of PHP 7.0 – 8.0 syntax.
 
 - Support for versions predating 4.0.0 has been dropped
 
