@@ -183,7 +183,28 @@ Some common sources of false-positives include
 * Sloppy annotations that don't accurately name the type being returned such as `@return Thing` when `Thing` isn't in any known namespace
 * Third party code that wasn't included in the analysis but whose classes and methods are still being used.
 
-Fixing all of this stuff isn't going to be fun. Go get a cup of coffee, clear your schedule and get cozy. Perhaps this is a good time to work from home for a few days in isolation.
+Fixing all of this stuff isn't going to be fun.
+
+- If you want to fix all of it quickly: Go get a cup of coffee, clear your schedule and get cozy. Perhaps this is a good time to work from home for a few days in isolation.
+- If you want to fix it later: Set up a phan baseline
+
+### Setting up a phan baseline
+
+1. Run `phan --save-baseline=.phan/baseline.php`.
+
+   If you run phan in Continuous Integration with a specific php version, extensions, or `--processes N`, it would be useful to a similar environment when generating that baseline.
+
+2. Check `.phan/baseline.php` into source control (git, etc)
+
+3. When running Phan in Continuous Integration, add `--load-baseline=.phan/baseline.php` to the list of CLI arguments so that known issues will not cause build failures or show up in error logs.
+
+4. Periodically, update the version of `.phan/baseline.php` used as issues get fixed.
+
+Miscellaneous notes:
+
+1. You can use different baselines for different use cases, e.g. different baselines for php 7 warnings and php 8 warnings, or a different baseline when stricter analysis options or custom plugins are used.
+
+2. While it's recommended against, you can set the baseline path for use everywhere (e.g. IDEs) by adding it to `.phan/config.php` in [`baseline_path`](https://github.com/phan/phan/wiki/Phan-Config-Settings#baseline_path)
 
 ## Enforce clean analysis for your team
 
