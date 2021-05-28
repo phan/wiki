@@ -1,6 +1,6 @@
 A large mature PHP code base is very unlikely to pass analysis cleanly. This tutorial is meant to provide some guidance on how to get started analyzing your code and get to a place where static analysis is actually useful.
 
-Edits to this page are very welcome. Feel free to get in touch if you have any questions.
+[Edits to this page](https://github.com/phan/wiki) are very welcome. Feel free to get in touch if you have any questions.
 
 [![Gitter](https://badges.gitter.im/phan/phan.svg)](https://gitter.im/phan/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
