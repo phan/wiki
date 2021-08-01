@@ -2,7 +2,7 @@
 <!-- The copy distributed with Phan is in the internal folder because it may be removed or moved elsewhere -->
 <!-- This is regenerated from the comments and defaults in src/Phan/Config.php by the script internal/update_wiki_config_types.php -->
 
-See [`\Phan\Config`](https://github.com/phan/phan/blob/v4/src/Phan/Config.php) for the most up to date list of configuration settings.
+See [`\Phan\Config`](https://github.com/phan/phan/blob/v5/src/Phan/Config.php) for the most up to date list of configuration settings.
 
 Table of Contents
 =================
@@ -527,7 +527,7 @@ A list of plugin files to execute.
 
 Plugins which are bundled with Phan can be added here by providing their name (e.g. `'AlwaysReturnPlugin'`)
 
-Documentation about available bundled plugins can be found [here](https://github.com/phan/phan/tree/v4/.phan/plugins).
+Documentation about available bundled plugins can be found [here](https://github.com/phan/phan/tree/v5/.phan/plugins).
 
 Alternately, you can pass in the full path to a PHP file with the plugin's implementation (e.g. `'vendor/phan/phan/.phan/plugins/AlwaysReturnPlugin.php'`)
 
@@ -665,6 +665,12 @@ into `$a = value(); if ($a) { if ($a > 0) {...}}`
 
 Defaults to true as of Phan 3.0.3.
 This still helps with some edge cases such as assignments in compound conditions.
+
+(Default: `true`)
+
+## use_tentative_return_type
+
+If enabled, Phan will use the php 8.1+ tentative return types available for PHP and extensions.
 
 (Default: `true`)
 
@@ -899,6 +905,15 @@ actually dead).
 In other words, the graph of references will have
 too many edges rather than too few edges when guesses
 have to be made about what references what.
+
+(Default: `true`)
+
+## dead_code_detection_treat_never_type_as_unreachable
+
+When this is true, treat a phpdoc or real type
+of 'never' as unreachable.
+
+Disabling this may avoid some false positives.
 
 (Default: `true`)
 

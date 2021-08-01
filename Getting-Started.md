@@ -62,7 +62,7 @@ cd phan
 composer install
 ```
 
-You should now be able to run `./test` to make sure Phan is working correctly, and run `./phan` to run Phan on itself (using its own [`.phan/config.php`](https://github.com/phan/phan/blob/v4/.phan/config.php) configuration).
+You should now be able to run `./test` to make sure Phan is working correctly, and run `./phan` to run Phan on itself (using its own [`.phan/config.php`](https://github.com/phan/phan/blob/v5/.phan/config.php) configuration).
 
 ## From Phan.phar
 
@@ -159,7 +159,7 @@ Take a look at [[Incrementally Strengthening Analysis]] for some tips on how to 
 
 A list of configuration options and their default values can be found at the page [[Phan Config Settings]].
 
-Also, see Phan's own [`.phan/config.php`](https://github.com/phan/phan/blob/v4/.phan/config.php) for the (fairly strict) config Phan uses to analyze itself.
+Also, see Phan's own [`.phan/config.php`](https://github.com/phan/phan/blob/v5/.phan/config.php) for the (fairly strict) config Phan uses to analyze itself.
 
 # Running Phan in Continuous Integration
 
@@ -169,7 +169,7 @@ Phan will exit with a non-zero exit code if 1 or more errors are detected (or if
 
 Many Continuous integration tools can be used to detect that exit code (And/or parse the generated report file) and cause the build to fail. A list of several examples is below:
 
-- Travis: Example configurations: [for tolerant-php-parser-to-php-ast (simple)](https://github.com/TysonAndre/tolerant-php-parser-to-php-ast/blob/master/.travis.yml), [for phan/phan (Runs self test as part of a shell script)](https://github.com/phan/phan/blob/v4/.travis.yml)
+- Travis: Example configurations: [for tolerant-php-parser-to-php-ast (simple)](https://github.com/TysonAndre/tolerant-php-parser-to-php-ast/blob/master/.travis.yml), [for phan/phan (Runs self test as part of a shell script)](https://github.com/phan/phan/blob/v5/.travis.yml)
 
 - Appveyor (Windows): Example configurations: [Phan's own configuration](https://github.com/phan/phan/blob/2.0.0/.appveyor.yml#L99-L100)
 

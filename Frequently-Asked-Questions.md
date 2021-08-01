@@ -40,17 +40,17 @@ This is a common cause of PhanUndeclaredClassMethod, PhanUndeclaredClass, PhanUn
 
 See https://github.com/phan/phan/wiki/Annotating-Your-Source-Code#doc-blocks (Common issues: Phan does not support inline doc comments, doc comments must begin with `/**`, etc)
 
-You can enable [`PHPDocInWrongCommentPlugin`](https://github.com/phan/phan/tree/v4/.phan/plugins#phpdocinwrongcommentplugin) to automatically warn about using block comments with annotations instead of doc comments.
+You can enable [`PHPDocInWrongCommentPlugin`](https://github.com/phan/phan/tree/v5/.phan/plugins#phpdocinwrongcommentplugin) to automatically warn about using block comments with annotations instead of doc comments.
 
 ### One of Phan's function or method signatures have incorrect parameter types or return types
 
 Double check the documentation and examples provided on php.net (or for the latest stable version of that extension).
 
-If Phan is inconsistent with the documentation, create a PR modifying the related functions/methods in https://github.com/phan/phan/blob/v4/src/Phan/Language/Internal/FunctionSignatureMap.php (or file an issue).
+If Phan is inconsistent with the documentation, create a PR modifying the related functions/methods in https://github.com/phan/phan/blob/v5/src/Phan/Language/Internal/FunctionSignatureMap.php (or file an issue).
 
-### Phan is warning about the codebase using syntax that is incompatible with php 7.0 – 8.0
+### Phan is warning about the codebase using syntax that is incompatible with php 7.0 – 8.1
 
-This can be solved by setting the `minimum_target_php_version` and `target_php_version` in your `.phan/config.php` to `'7.1'`/`'7.2'`/`'7.3'`/`'7.4'`/`'8.0'` (if that is the oldest php version your project supports), or by changing the code to stop using newer syntax. You may also suppress that issue in .phan/config.php, and various other ways.
+This can be solved by setting the `minimum_target_php_version` and `target_php_version` in your `.phan/config.php` to `'7.1'`/`'7.2'`/`'7.3'`/`'7.4'`/`'8.0'`/`'8.1'` (if that is the oldest php version your project supports), or by changing the code to stop using newer syntax. You may also suppress that issue in .phan/config.php, and various other ways.
 
 + `CompatibleNullableTypePHP70`, `CompatibleShortArrayAssignPHP70`, `CompatibleKeyedArrayAssignPHP70`,
   `CompatibleKeyedArrayAssignPHP70`, and `CompatibleIterableTypePHP70` (etc.)
@@ -94,7 +94,7 @@ This issue type was added to Phan because it can save a lot of time debugging fo
 
 Check the Phan version in your composer.json (or the method you're using to install Phan), e.g. with `/path/to/phan --version`.
 
-You're likely still using Phan 0.12.x or 1.x or 2.x. You should upgrade to Phan 4.0.0+, php 7.2+, and php-ast 1.0.10+. (If you still need to use PHP 7.0 to execute Phan, upgrade to Phan 1.1.0+ and you'll be able to use php-ast 1.0.0+. If you need to use PHP 7.1, use Phan 2.x.).
+You're likely still using Phan 0.12.x or 1.x or 2.x. You should upgrade to Phan 5.0.0+, php 7.2+, and php-ast 1.0.11+. (If you still need to use PHP 7.0 to execute Phan, upgrade to Phan 1.1.0+ and you'll be able to use php-ast 1.0.0+. If you need to use PHP 7.1, use Phan 2.x.).
 
 The latest stable version of Phan is [![the Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
 
@@ -104,9 +104,9 @@ See [[Different Issue Sets On Different Numbers of CPUs]]
 
 ### How to file a bug report for a crash, error, or incorrect analysis
 
-Install the latest stable version (`dev-v4`) of Phan (e.g. from composer) and see if the issue still occurs. It may have been fixed recently.
+Install the latest stable version (`dev-v5`) of Phan (e.g. from composer) and see if the issue still occurs. It may have been fixed recently.
 
-If the issue continues to happen on `dev-v4`, then:
+If the issue continues to happen on `dev-v5`, then:
 
 1. Check for similar issues. If there is anything new to add, add that.
 2. If there are no similar issues, then file a new issue with any of the relevant information:

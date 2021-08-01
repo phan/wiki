@@ -1,5 +1,5 @@
-[![Build Status](https://dev.azure.com/tysonandre775/phan/_apis/build/status/phan.phan?branchName=v4)](https://dev.azure.com/tysonandre775/phan/_build/latest?definitionId=3&branchName=v4)
-[![Build Status (Windows)](https://ci.appveyor.com/api/projects/status/github/phan/phan?branch=v4&svg=true)](https://ci.appveyor.com/project/TysonAndre/phan/branch/v4)
+[![Build Status](https://dev.azure.com/tysonandre775/phan/_apis/build/status/phan.phan?branchName=v5)](https://dev.azure.com/tysonandre775/phan/_build/latest?definitionId=3&branchName=v5)
+[![Build Status (Windows)](https://ci.appveyor.com/api/projects/status/github/phan/phan?branch=v5&svg=true)](https://ci.appveyor.com/project/TysonAndre/phan/branch/v5)
 [![Gitter](https://badges.gitter.im/phan/phan.svg)](https://gitter.im/phan/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## Table of Contents
@@ -28,7 +28,7 @@ Phan has 2 passes. On the first pass it reads every file, gets the AST and recur
 looking only for functions, methods and classes in order to populate a bunch of
 global hashes which will hold all of them. It also loads up definitions for all internal
 functions and classes.
-The type info for these come from a big file called [FunctionSignatureMap. (and its deltas)](https://github.com/phan/phan/tree/v4/src/Phan/Language/Internal).
+The type info for these come from a big file called [FunctionSignatureMap. (and its deltas)](https://github.com/phan/phan/tree/v5/src/Phan/Language/Internal).
 
 The real complexity hits you hard in the second pass. Here some things are done recursively depth-first
 and others not.
@@ -45,7 +45,7 @@ undefined variables and also type-checked on a `return $var`.
 
 ## Submitting Patches
 
-See [the Contribution Guidelines](https://github.com/phan/phan/blob/v4/.github/CONTRIBUTING.md) for some guidance on making great issues and pull requests.
+See [the Contribution Guidelines](https://github.com/phan/phan/blob/v5/.github/CONTRIBUTING.md) for some guidance on making great issues and pull requests.
 
 
 ## Core Concepts
@@ -54,7 +54,7 @@ There are a few concepts that are important to understand when looking at the Ph
 
 ### FQSEN
 
-An [FQSEN](https://github.com/phan/phan/blob/v4/src/Phan/Language/FQSEN.php) is a Fully Qualified Structural Element Name.
+An [FQSEN](https://github.com/phan/phan/blob/v5/src/Phan/Language/FQSEN.php) is a Fully Qualified Structural Element Name.
 Any element in PHP that can be accessed from elsewhere has an FQSEN that Phan uses to look it up.
 For example, in the following code:
 
@@ -95,13 +95,13 @@ we have the following FQSENs.
 
 Phan will use the **first occurrence** of an FQSEN (either the declaration or a usage) to render it elsewhere. Internally, it maps the normalized stringified FQSEN to an FQSEN instance with the original casing (e.g. converting namespace and class names and global function names to lowercase).  We'll likely make an option for enforcing casing in function and class names in future releases of Phan.
 
-An FQSEN for an element will inherit from the abstract class [\Phan\Language\FQSEN](https://github.com/phan/phan/blob/v4/src/Phan/Language/FQSEN.php). The actual FQSEN for each element (classes, methods, constants, properties, functions) will be defined by classes in the [\Phan\Language\FQSEN](https://github.com/phan/phan/tree/v4/src/Phan/Language/FQSEN) namespace.
+An FQSEN for an element will inherit from the abstract class [\Phan\Language\FQSEN](https://github.com/phan/phan/blob/v5/src/Phan/Language/FQSEN.php). The actual FQSEN for each element (classes, methods, constants, properties, functions) will be defined by classes in the [\Phan\Language\FQSEN](https://github.com/phan/phan/tree/v5/src/Phan/Language/FQSEN) namespace.
 
 ### Type and UnionType
 
-A [Type](https://github.com/phan/phan/blob/v4/src/Phan/Language/Type.php) is what you'd expect and can be a native type like `int`, `float`, `string`, `bool`, `array` or a non-native type for a class such as `\Phan\Language\Type`. Types can also be a generic array such as `int[]`, `string[]`, `\Phan\Language\Type[]`, etc. which denote an array of type `int`, `string` and `\Phan\Language\Type` respectively.
+A [Type](https://github.com/phan/phan/blob/v5/src/Phan/Language/Type.php) is what you'd expect and can be a native type like `int`, `float`, `string`, `bool`, `array` or a non-native type for a class such as `\Phan\Language\Type`. Types can also be a generic array such as `int[]`, `string[]`, `\Phan\Language\Type[]`, etc. which denote an array of type `int`, `string` and `\Phan\Language\Type` respectively.
 
-A [UnionType](https://github.com/phan/phan/blob/v4/src/Phan/Language/UnionType.php) denotes a set of types for which an element can be any of them. A UnionType could be something like `int|string` to denote that something can be an `int` or a `string`.  See [[About Union Types]] for more details.
+A [UnionType](https://github.com/phan/phan/blob/v5/src/Phan/Language/UnionType.php) denotes a set of types for which an element can be any of them. A UnionType could be something like `int|string` to denote that something can be an `int` or a `string`.  See [[About Union Types]] for more details.
 
 ```php
 /** @param bool|array $a */
@@ -115,9 +115,9 @@ In the code above, the parameter `$a` is defined to be either a `bool` or an `ar
 
 ### Code Base
 
-The [CodeBase](https://github.com/phan/phan/blob/v4/src/Phan/CodeBase.php) in Phan is an object that maps FQSENs to a representation of the object for both scanned code and internal PHP elements.
+The [CodeBase](https://github.com/phan/phan/blob/v5/src/Phan/CodeBase.php) in Phan is an object that maps FQSENs to a representation of the object for both scanned code and internal PHP elements.
 
-Classes, for instance are stored and looked up from the [Class Map](https://github.com/phan/phan/blob/v4/src/Phan/CodeBase/ClassMap.php) whereby a class can be fetched via the class `getClassByFQSEN`.
+Classes, for instance are stored and looked up from the [Class Map](https://github.com/phan/phan/blob/v5/src/Phan/CodeBase/ClassMap.php) whereby a class can be fetched via the class `getClassByFQSEN`.
 
 ```php
 $class = $code_base->getClassByFQSEN(
@@ -129,7 +129,7 @@ The CodeBase maps FQSENs of classes, methods, constants, properties and function
 
 ### Context
 
-The [Context](https://github.com/phan/phan/blob/v4/src/Phan/Language/Context.php) represents the state of the world at any point during parsing or analysis. It stores the following information:
+The [Context](https://github.com/phan/phan/blob/v5/src/Phan/Language/Context.php) represents the state of the world at any point during parsing or analysis. It stores the following information:
 
 * The file we're looking at (available via `getFile()`)
 * The line number we're on (available via `getLine()`)
@@ -148,26 +148,26 @@ The Context is used to map non-fully-qualified names to fully-qualified names (F
 
 ### Scope
 
-The [Scope](https://github.com/phan/phan/blob/v4/src/Phan/Language/Scope.php) maps variable names to [variables](https://github.com/phan/phan/blob/v4/src/Phan/Language/Element/Variable.php) and is housed within the [Context](https://github.com/phan/phan/blob/v4/src/Phan/Language/Context.php). The Scope will be able to map both locally defined variables and globally available variables.
+The [Scope](https://github.com/phan/phan/blob/v5/src/Phan/Language/Scope.php) maps variable names to [variables](https://github.com/phan/phan/blob/v5/src/Phan/Language/Element/Variable.php) and is housed within the [Context](https://github.com/phan/phan/blob/v5/src/Phan/Language/Context.php). The Scope will be able to map both locally defined variables and globally available variables.
 
 ### Structural Elements
 
-The universe of structural element types are defined in the [`\Phan\Language\Element`](https://github.com/phan/phan/tree/v4/src/Phan/Language/Element) namespace and limited to
+The universe of structural element types are defined in the [`\Phan\Language\Element`](https://github.com/phan/phan/tree/v5/src/Phan/Language/Element) namespace and limited to
 
-* [**Clazz**](https://github.com/phan/phan/tree/v4/src/Phan/Language/Element/Clazz.php) is any class, interface or trait. It provides access to constants, properties or methods.
-* [**Method**](https://github.com/phan/phan/tree/v4/src/Phan/Language/Element/Method.php) is a method, function or closure.
-* [**Parameter**](https://github.com/phan/phan/tree/v4/src/Phan/Language/Element/Parameter.php) is a parameter to a function, method or closure.
-* [**Variable**](https://github.com/phan/phan/tree/v4/src/Phan/Language/Element/Variable.php) is any global or local variable.
-* [**Constant**](https://github.com/phan/phan/tree/v4/src/Phan/Language/Element/Constant.php) is either a global or class constant.
-* [**Comment**](https://github.com/phan/phan/tree/v4/src/Phan/Language/Element/Comment.php) is a representation of a comment in code. These are stored only for classes, functions, methods, constants and properties.
-* [**Property**](https://github.com/phan/phan/tree/v4/src/Phan/Language/Element/Property.php) is any property on a class, trait or interface.
+* [**Clazz**](https://github.com/phan/phan/tree/v5/src/Phan/Language/Element/Clazz.php) is any class, interface or trait. It provides access to constants, properties or methods.
+* [**Method**](https://github.com/phan/phan/tree/v5/src/Phan/Language/Element/Method.php) is a method, function or closure.
+* [**Parameter**](https://github.com/phan/phan/tree/v5/src/Phan/Language/Element/Parameter.php) is a parameter to a function, method or closure.
+* [**Variable**](https://github.com/phan/phan/tree/v5/src/Phan/Language/Element/Variable.php) is any global or local variable.
+* [**Constant**](https://github.com/phan/phan/tree/v5/src/Phan/Language/Element/Constant.php) is either a global or class constant.
+* [**Comment**](https://github.com/phan/phan/tree/v5/src/Phan/Language/Element/Comment.php) is a representation of a comment in code. These are stored only for classes, functions, methods, constants and properties.
+* [**Property**](https://github.com/phan/phan/tree/v5/src/Phan/Language/Element/Property.php) is any property on a class, trait or interface.
 
 ## Parsing and Analysis
 
 Phan runs in three phases;
 
 1. **Parsing**
-   All code is parsed in order to build maps from FQSENs to elements (such as classes or methods). During this phase the AST is read for each file and any addressable objects are created and stored in a map within the code base. A good place to start for understanding parsing is [\Phan\Parse\ParseVisitor](https://github.com/phan/phan/blob/v4/src/Phan/Parse/ParseVisitor.php).
+   All code is parsed in order to build maps from FQSENs to elements (such as classes or methods). During this phase the AST is read for each file and any addressable objects are created and stored in a map within the code base. A good place to start for understanding parsing is [\Phan\Parse\ParseVisitor](https://github.com/phan/phan/blob/v5/src/Phan/Parse/ParseVisitor.php).
 
 2. **Class and Type Expansion**
    Before analysis can begin we take a pass over all elements (classes, methods, functions, etc.) and expand them with any information that was needed from the entire code base. Classes, for instance, get all constants, properties and methods from parents, interfaces and traits imported. The types of all classes are expanded to include the types of their parent classes, interfaces and traits.
@@ -175,11 +175,11 @@ Phan runs in three phases;
 3. **Analysis**
    Now that we know about all elements throughout the code base, we can start doing analysis.
    During analysis, we take another pass at reading the AST for all files so that we can start doing proofs on types and stuff.
-   To understand analysis, take a look at [\Phan\Analysis\PreOrderAnalysisVisitor](https://github.com/phan/phan/blob/v4/src/Phan/Analysis/PreOrderAnalysisVisitor.php) and [\Phan\Analysis\PostOrderAnalysisVisitor](https://github.com/phan/phan/blob/v4/src/Phan/Analysis/PostOrderAnalysisVisitor.php).
+   To understand analysis, take a look at [\Phan\Analysis\PreOrderAnalysisVisitor](https://github.com/phan/phan/blob/v5/src/Phan/Analysis/PreOrderAnalysisVisitor.php) and [\Phan\Analysis\PostOrderAnalysisVisitor](https://github.com/phan/phan/blob/v5/src/Phan/Analysis/PostOrderAnalysisVisitor.php).
 
-A great place to start to understand how parsing and analysis happens is in [\Phan\Phan](https://github.com/phan/phan/blob/v4/src/Phan/Phan.php) where each step is explained.
+A great place to start to understand how parsing and analysis happens is in [\Phan\Phan](https://github.com/phan/phan/blob/v5/src/Phan/Phan.php) where each step is explained.
 
-Take a look at the [\Phan\Analysis](https://github.com/phan/phan/tree/v4/src/Phan/Analysis) namespace to see the various bits of analysis being done.
+Take a look at the [\Phan\Analysis](https://github.com/phan/phan/tree/v5/src/Phan/Analysis) namespace to see the various bits of analysis being done.
 
 ## Logging Issues
 
@@ -215,28 +215,28 @@ class A {
 During the parsing phase, we'd
 
 * Create an AST in [\Phan\Phan::parseFile](https://github.com/phan/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Phan.php#L140-L146)
-* Create a [ParseVisitor](https://github.com/phan/phan/blob/v4/src/Phan/Analysis/ParseVisitor.php) for the root node in [\Phan\Phan::parseNodeInContext](https://github.com/phan/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Phan.php#L200-L206)
+* Create a [ParseVisitor](https://github.com/phan/phan/blob/v5/src/Phan/Analysis/ParseVisitor.php) for the root node in [\Phan\Phan::parseNodeInContext](https://github.com/phan/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Phan.php#L200-L206)
 * Visit the class node via [ParseVisitor::visitClass](https://github.com/phan/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Analysis/ParseVisitor.php#L77)
 * Visit the method node via [ParseVisitor::visitMethod](https://github.com/phan/phan/blob/567e427af2f82434b086780fce63c3b8ba48035f/src/Phan/Analysis/ParseVisitor.php#L239)
 
 Other node visitors include
 
-* [\Phan\Analysis\PreOrderAnalysisVisitor](https://github.com/phan/phan/blob/v4/src/Phan/Analysis/PreOrderAnalysisVisitor.php) where we do part of the analysis during the analysis phase.
-* [\Phan\Analysis\PostOrderAnalysisVisitor](https://github.com/phan/phan/blob/v4/src/Phan/Analysis/PostOrderAnalysisVisitor.php) where we do another part of the analysis during the analysis phase.
-* [\Phan\AST\UnionTypeVisitor](https://github.com/phan/phan/blob/v4/src/Phan/AST/UnionTypeVisitor.php) where we do much of the work figuring out the types of things throughout analysis.
+* [\Phan\Analysis\PreOrderAnalysisVisitor](https://github.com/phan/phan/blob/v5/src/Phan/Analysis/PreOrderAnalysisVisitor.php) where we do part of the analysis during the analysis phase.
+* [\Phan\Analysis\PostOrderAnalysisVisitor](https://github.com/phan/phan/blob/v5/src/Phan/Analysis/PostOrderAnalysisVisitor.php) where we do another part of the analysis during the analysis phase.
+* [\Phan\AST\UnionTypeVisitor](https://github.com/phan/phan/blob/v5/src/Phan/AST/UnionTypeVisitor.php) where we do much of the work figuring out the types of things throughout analysis.
 
 ### Miscellaneous Advice
 
 `\Phan\Debug` is a collection of utilities that may be useful to you when working on Phan patches or plugins.
 For example, `\Phan\Debug::printNode(\ast\Node $node)` will print a compact representation of an AST node (and it's kind and flags) to stdout.
 
-- [`Element::VISIT_LOOKUP_TABLE`](https://github.com/phan/phan/blob/v4/src/Phan/AST/Visitor/Element.php) tells you what visitor methods are called for a given `\ast\Node->kind`.
+- [`Element::VISIT_LOOKUP_TABLE`](https://github.com/phan/phan/blob/v5/src/Phan/AST/Visitor/Element.php) tells you what visitor methods are called for a given `\ast\Node->kind`.
 - `php internal/dump_fallback_ast.php --php-ast '2 xor 3;'` can be used if you want to quickly see what AST kind and flags a given expression (or php file's contents) would have.
 
 When adding new functionality, it often helps to check if there is any existing functionality or issues that is similar to what you want to implement, and search for references (a good place to start looking is where the corresponding issue types are emitted. e.g. to find out where `PhanTypeInvalidMethodName` is emitted, search the codebase for `TypeInvalidMethodName`).
 
-A [`\Phan\AST\ContextNode`](https://github.com/phan/phan/blob/v4/src/Phan/AST/ContextNode.php) contains a lot of useful functionality, such as locating the definition(s) of an element from a referencing node (class, function-like, property, etc) in a Context.
+A [`\Phan\AST\ContextNode`](https://github.com/phan/phan/blob/v5/src/Phan/AST/ContextNode.php) contains a lot of useful functionality, such as locating the definition(s) of an element from a referencing node (class, function-like, property, etc) in a Context.
 
 ### Testing your changes
 
-See [tests/README.md](https://github.com/phan/phan/tree/v4/tests#scripts) for how to run tests and what Phan's various tests do.
+See [tests/README.md](https://github.com/phan/phan/tree/v5/tests#scripts) for how to run tests and what Phan's various tests do.

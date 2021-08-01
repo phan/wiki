@@ -14,4 +14,4 @@ Code of Conduct
 ---------------
 
 We are committed to fostering a welcoming community. Any participant and
-contributor is required to adhere to our [Code of Conduct](https://github.com/phan/phan/blob/v4/CODE_OF_CONDUCT.md).
+contributor is required to adhere to our [Code of Conduct](https://github.com/phan/phan/blob/v5/CODE_OF_CONDUCT.md).

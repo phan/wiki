@@ -6,7 +6,7 @@ Phan has a core philosophy of measuring its success by its ability to enable com
 
 You can configure Phan's analysis via various command-line options and via the [config file](https://github.com/phan/phan/wiki/Phan-Config-Settings) `.phan/config.php` which Phan will look for from the directory in which it's run or in the directory passed in via the `--directory <BASE_DIRECTORY>` CLI option.
 
-Take a look at Phan's own very strict configuration for analyzing itself at [`.phan/config.php`](https://github.com/phan/phan/blob/v4/.phan/config.php) to see how configs work and to see what can be tuned. You can also take a look at [the default configuration](https://github.com/phan/phan/blob/v4/src/Phan/Config.php) to see what an analysis without configuration looks like.
+Take a look at Phan's own very strict configuration for analyzing itself at [`.phan/config.php`](https://github.com/phan/phan/blob/v5/.phan/config.php) to see how configs work and to see what can be tuned. You can also take a look at [the default configuration](https://github.com/phan/phan/blob/v5/src/Phan/Config.php) to see what an analysis without configuration looks like.
 
 ## Relaxed Analysis
 
@@ -26,7 +26,7 @@ In a project set up to use the composer autoloader (including for its own subdir
  */
 return [
     // Supported values: `'5.6'`, `'7.0'`, `'7.1'`, `'7.2'`, `'7.3'`,
-    // `'7.4'`, `'8.0'`, `null`.
+    // `'7.4'`, `'8.0'`, `'8.1'`, `null`.
     // If this is set to `null`,
     // then Phan assumes the PHP version which is closest to the minor version
     // of the php executable used to execute Phan.

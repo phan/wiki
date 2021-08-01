@@ -9,7 +9,7 @@ These are regular PHP files for Phan to parse but not analyze. They can be used 
 
 Creating stubs that Phan has access to is pretty straightforward.
 
-1. Create a directory `.phan/stubs` ([like Phan's](https://github.com/phan/phan/tree/v4/.phan/stubs)).
+1. Create a directory `.phan/stubs` ([like Phan's](https://github.com/phan/phan/tree/v5/.phan/stubs)).
 2. Put code in there that stubs the constants/classes/properties/methods/functions of interest.
 3. Reference the `.phan/stubs` directory from within `.phan/config.php` under `directory_list` ([like Phan's](https://github.com/phan/phan/blob/0655d1ed47e776ab281b91fd3ad0a9835e03b75a/.phan/config.php#L221)).
 
@@ -44,7 +44,7 @@ vendor/phan/phan/tool/make_stubs -e $EXTENSION_NAME | tee $EXTENSION_NAME.phan_p
 
 ### Downloading Internal Stubs
 
-Phan is bundled with some internal stubs, but *only for extensions it uses for self-analysis*. See [.phan/internal_stubs/](https://github.com/phan/phan/tree/v4/.phan/internal_stubs)
+Phan is bundled with some internal stubs, but *only for extensions it uses for self-analysis*. See [.phan/internal_stubs/](https://github.com/phan/phan/tree/v5/.phan/internal_stubs)
 
 https://github.com/TysonAndre/phan_stubs/tree/master/stubs contains various stubs for extensions (for php 7.1, most should work with 7.0) that are internal or external to php.
 This may increase in the future.
