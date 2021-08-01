@@ -153,4 +153,4 @@ There are two ways to do this.
 
 ### 6. Run the Latest Release of Phan
 
-The latest release (for analysis of target php versions of 7.0 – 8.0) is [![the Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)
+The latest release (for analysis of target php versions of 7.0 – 8.1) is [![the Latest Stable Version](https://img.shields.io/packagist/v/phan/phan.svg)](https://packagist.org/packages/phan/phan)

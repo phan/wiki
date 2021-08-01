@@ -14,7 +14,7 @@ Maintainers should be able to respond fairly quickly before/after US east coast 
 
 ## Installing Dependencies
 
-The Phan 4.x releases depend on [PHP](http://php.net/) version 7.2 or greater and [php-ast](https://github.com/nikic/php-ast) 1.0.7+ by [Nikita Popov](https://github.com/nikic).
+The Phan 5.x releases depend on [PHP](http://php.net/) version 7.2 or greater and [php-ast](https://github.com/nikic/php-ast) 1.0.11+ by [Nikita Popov](https://github.com/nikic).
 php-ast 1.0.10+ is recommended for compatibility with future Phan releases.
 
 If you don't have a version of PHP 7 or 8 installed, you can grab a php7dev Vagrant image or one of the many Docker builds out there.
@@ -22,7 +22,7 @@ If you don't have a version of PHP 7 or 8 installed, you can grab a php7dev Vagr
 To compile [php-ast](https://github.com/nikic/php-ast): Something along these lines should do it ([Alternate instructions](https://github.com/nikic/php-ast#installation)):
 
 ```sh
-pecl install ast-1.0.10
+pecl install ast-1.0.14
 ```
 
 And add `extension=ast.so` to your `php.ini` file. Check that it is there with `php -m`.
@@ -39,7 +39,7 @@ Windows users can grab `ast.dll` directly from [PECL releases](https://windows.p
 If you're managing dependencies via [Composer](https://getcomposer.org/), you can add Phan to your project by running the following.
 
 ```sh
-composer require --dev "phan/phan:4.x"
+composer require --dev "phan/phan:5.x"
 ```
 
 [For a full list of releases, check out https://packagist.org/packages/phan/phan](https://packagist.org/packages/phan/phan).
@@ -52,7 +52,7 @@ With the Phan dependency installed, you can do analysis by running the following
 
 ## From Source
 
-Before you begin, you'll want to make sure you have PHP version 7+ with the [php-ast module](https://github.com/nikic/php-ast) installed.
+Before you begin, you'll want to make sure you have PHP version 7.2+ with the [php-ast module](https://github.com/nikic/php-ast) installed.
 
 From there, you can clone the Phan source and use composer to install its dependencies.
 
@@ -107,7 +107,7 @@ You'll want to create a configuration file within your codebase at `.phan/config
  */
 return [
     // Supported values: `'5.6'`, `'7.0'`, `'7.1'`, `'7.2'`, `'7.3'`,
-    // `'7.4'`, `'8.0'`, `null`.
+    // `'7.4'`, `'8.0'`, `'8.1'`, `null`.
     // If this is set to `null`,
     // then Phan assumes the PHP version which is closest to the minor version
     // of the php executable used to execute Phan.

@@ -20,5 +20,5 @@ After creating the new release, check [packagist.org/packages/phan/phan](https:/
 
 Additional post-release tasks:
 
-- [ ] Create PRs to change Phan version in NEWS.md and CLI.php to 4.x.(y+1)-dev
+- [ ] Create PRs to change Phan version in NEWS.md and CLI.php to 5.x.(y+1)-dev
 - [ ] Update the most recent Phan version in the wiki (optional for patch releases)
