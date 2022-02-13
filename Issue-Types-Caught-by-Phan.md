@@ -421,6 +421,14 @@ Unable to determine the method(s) which {METHOD} overrides, but Phan inferred th
 
 This category of issue is emitted when there are compatibility issues. They will be thrown if there is an expression that may be treated differently in PHP7 than it was in previous major versions of the PHP runtime. Take a look at the [PHP7 Migration Manual](http://php.net/manual/en/migration70.incompatible.php) to understand changes in behavior.
 
+## PhanCompatibleAbstractPrivateMethodInTrait
+
+```
+Trait {TRAIT} declares abstract private function {FUNCTION} which is only allowed in 8.0+
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/php74_files/expected/034_trait_private_method.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/v5/tests/php74_files/src/034_trait_private_method.php#L2).
+
 ## PhanCompatibleAccessMethodOnTraitDefinition
 
 ```
@@ -923,6 +931,22 @@ Using a deprecated interface {INTERFACE} defined at {FILE}:{LINE}{DETAILS}
 ```
 
 e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/files/expected/0269_deprecated_interface.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/v5/tests/files/src/0269_deprecated_interface.php#L5).
+
+## PhanDeprecatedPartiallySupportedCallable
+
+```
+Saw deprecated partially supported callable {METHOD}. This was deprecated in PHP 8.2 and behaves inconsistently and can be called with call_user_func but not $callable() and the referenced class depends on context at call time. In some cases, [{CLASS}::class, {METHOD}] can be used instead.
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/files/expected/0370_callable_edge_cases.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/v5/tests/files/src/0370_callable_edge_cases.php#L5).
+
+## PhanDeprecatedPartiallySupportedCallableAlternateScope
+
+```
+Saw partially supported callable [{CODE}, {METHOD}]. This was deprecated in PHP 8.2. Invoking methods with alternative scopes can be done with ReflectionMethod::invoke or Closure::bindTo instead.
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/files/expected/0972_alternate_method_callable.php.expected#L2) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/v5/tests/files/src/0972_alternate_method_callable.php#L16).
 
 ## PhanDeprecatedProperty
 
@@ -1845,6 +1869,22 @@ Missing named argument for {PARAMETER} in call to {METHOD}
 
 e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/php80_files/expected/024_named_arg_missing.php.expected#L25) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/v5/tests/php80_files/src/024_named_arg_missing.php#L14).
 
+## PhanNoNamedArgument
+
+```
+Saw named argument for {PARAMETER} in call to {METHOD} declared with {COMMENT} defined at {FILE}:{LINE}
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/php80_files/expected/045_named_argument.php.expected#L6) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/v5/tests/php80_files/src/045_named_argument.php#L7).
+
+## PhanNoNamedArgumentVariadic
+
+```
+Saw likely use of named argument for unpacking {PARAMETER} of type {TYPE} in call to {METHOD} declared with {COMMENT} defined at {FILE}:{LINE}
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/files/expected/0970_no_named_arguments.php.expected#L2) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/v5/tests/files/src/0970_no_named_arguments.php#L14).
+
 ## PhanParamMustBeUserDefinedClassname
 
 ```
@@ -2234,6 +2274,22 @@ This will be emitted for the code
 strlen();
 ```
 
+## PhanParamTooFewInternalUnpack
+
+```
+Call with {COUNT} or more arg(s) to {FUNCTIONLIKE} which requires {COUNT} arg(s). This may throw an ArgumentCountError if there are too few args at runtime.
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/files/expected/0802_min_max_explode_edge_case.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/v5/tests/files/src/0802_min_max_explode_edge_case.php#L5).
+
+## PhanParamTooFewUnpack
+
+```
+Call with {COUNT} or more arg(s) to {FUNCTIONLIKE} which requires {COUNT} arg(s) defined at {FILE}:{LINE}. This may throw an ArgumentCountError if there are too few args at runtime.
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/files/expected/0650_unpack_reference.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/v5/tests/files/src/0650_unpack_reference.php#L19).
+
 ## PhanParamTooMany
 
 This issue is emitted when you're passing more than the number of required and optional parameters than are defined for a method or function.
@@ -2318,6 +2374,14 @@ Passing named argument {CODE} to the variadic parameter of the internal function
 ```
 
 e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/php80_files/expected/036_named_variadic.php.expected#L4) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/v5/tests/php80_files/src/036_named_variadic.php#L6).
+
+## PhanSuspiciousNamedArgumentVariadicInternalUnpack
+
+```
+Saw likely use of named arguments in argument unpacking for {PARAMETER} of type {TYPE} passed to an internal function {FUNCTION}. Except for a few internal methods that call methods/constructors dynamically, this is usually not supported by internal functions.
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/php80_files/expected/047_named_argument_variadic_internal_error.php.expected#L3) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/v5/tests/php80_files/src/047_named_argument_variadic_internal_error.php#L5).
 
 ## PhanUndeclaredNamedArgument
 
@@ -2636,6 +2700,14 @@ Enum {ENUM} is not allowed to declare instance or static properties but it conta
 ```
 
 e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/php81_files/expected/011_enum_error_cases.php.expected#L10) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/v5/tests/php81_files/src/011_enum_error_cases.php#L17).
+
+## PhanEnumCannotImplement
+
+```
+Classlike {CLASSLIKE} cannot implement {INTERFACE} in php 8.1+
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/php81_files/expected/023_enum_interface.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/v5/tests/php81_files/src/023_enum_interface.php#L12).
 
 ## PhanEnumForbiddenMagicMethod
 
@@ -4958,6 +5030,20 @@ Saw an @param annotation for ${PARAMETER}, but it was not found in the param lis
 
 e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/files/expected/0373_reject_bad_type_narrowing.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/v5/tests/files/src/0373_reject_bad_type_narrowing.php#L4).
 
+## PhanCommentUnextractableTypeAlias
+
+```
+Saw a line {COMMENT} with a type alias that could not be extracted
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/files/expected/0966_phan_type_alias_incorrect.php.expected#L1) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/v5/tests/files/src/0966_phan_type_alias_incorrect.php#L13).
+
+## PhanCommentUnsupportedUnionType
+
+```
+Saw a union type {TYPE} with more than 1 type in a location that does not support union types
+```
+
 ## PhanCommentVarInsteadOfParam
 
 ```
@@ -5021,6 +5107,22 @@ e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/plugin_test/expecte
 ```
 
 e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/plugin_test/expected/085_throw_type_mismatch.php.expected#L6) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/v5/tests/plugin_test/src/085_throw_type_mismatch.php#L23).
+
+## PhanTypeAliasInternalTypeConflict
+
+```
+Saw attempt to use {TYPE} as a type alias for {TYPE} but internal types cannot be redefined.
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/files/expected/0966_phan_type_alias_incorrect.php.expected#L5) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/v5/tests/files/src/0966_phan_type_alias_incorrect.php#L18).
+
+## PhanTypeAliasUsedOutsideComment
+
+```
+Saw a type alias {TYPE} used outside of a comment - this will refer to a class name instead of {TYPE}
+```
+
+e.g. [this issue](https://github.com/phan/phan/tree/v5/tests/files/expected/0964_phan_type_alias_inline_string.php.expected#L3) is emitted when analyzing [this PHP file](https://github.com/phan/phan/tree/v5/tests/files/src/0964_phan_type_alias_inline_string.php#L19).
 
 ## PhanUnextractableAnnotation
 
