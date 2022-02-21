@@ -181,7 +181,7 @@ If this list is empty, no filter against issues types will be applied.
 If this list is non-empty, only issues within the list
 will be emitted by Phan.
 
-See https://github.com/phan/phan/wiki/Issue-Types-Caught-by-Phan
+See https://github.com/phan/phan/blob/v5/internal/Issue-Types-Caught-by-Phan.md
 for the full list of issues that Phan detects.
 
 Phan is capable of detecting hundreds of types of issues.

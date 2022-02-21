@@ -10,7 +10,7 @@
 ### Improving Phan Analysis
 
 - **[[Incrementally Strengthening Analysis]]**<br />
-- **[[Issue Types Caught by Phan]]**<br />
+- **[Issue Types Caught by Phan](https://github.com/phan/phan/blob/v5/internal/Issue-Types-Caught-by-Phan.md)**<br />
 - **[[Phan Config Settings]]**<br />
 - **[[Typing Parameters]]**<br />
 - **[[How To Use Stubs]]**<br />

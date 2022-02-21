@@ -21,7 +21,7 @@ A guide to how Phan can be configured to slowly increase the strength of the ana
 
 - [Adding Phan plugins to your project](https://github.com/phan/phan#features-provided-by-plugins) can strengthen analysis in other ways.
 
-**[[Issue Types Caught by Phan]]**<br />
+**[Issue Types Caught by Phan](https://github.com/phan/phan/blob/v5/internal/Issue-Types-Caught-by-Phan.md)**<br />
 An enumeration of error types, examples that cause them and tips on how to resolve the issues
 
 **[[Phan Config Settings]]**<br />
