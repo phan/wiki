@@ -473,6 +473,33 @@ my_assert_string($x);
 
 See [this example file](https://github.com/phan/phan/blob/2.0.0/tests/plugin_test/src/072_custom_assertions.php) for even more examples of how to use these annotations.
 
+### Templates in assertions
+
+Phan supports templates in the `@phan-assert` annotation. For example, this can be used to assert that an argument $mixed is an instance of the class/interface `$className`
+
+```php
+<?php
+/**
+ * Assert that $mixed is an instance of the class/interface $className
+ *
+ * @template TClassName
+ * @param class-string<TClassName> $className
+ * @param mixed $mixed the value we're making the assertion on
+ * @phan-assert TClassName $mixed
+ * @throws InvalidArgumentException
+ */
+function my_assert_instance(string $className, $mixed): void {
+    if (!$mixed instanceof $className) {
+        throw new InvalidArgumentException("expected to find instance of $className but failed");
+    }
+}
+
+$var = json_decode($argv[2]);
+my_assert_instance(stdClass::class, $var);
+// Phan now asserts $var is an stdClass
+```
+
+
 ## Aliases of PHPDoc annotations
 
 Phan supports `@phan-var`, `@phan-param`, `@phan-return`, `@phan-property`, and `@phan-method` as aliases of the respective PHPDoc annotations for `@var`, `@param`, `@return`, `@property`, and `@method`.
