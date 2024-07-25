@@ -8,7 +8,7 @@ As of this writing, we're supporting one active version: 5.x.y for the analysis 
 
 When creating a new release, make sure you do the following.
 
-- [ ] Update version number and date of [NEWS.md](https://github.com/phan/phan/blob/v5/NEWS.md).
+- [ ] Update version number and date of [NEWS.md](https://github.com/phan/phan/blob/v5/NEWS.md). [Example](https://github.com/phan/phan/commit/100677e9a898b55ccf73cf40f2273479ed1dc8e0).
 - [ ] Update version number under `CLI::PHAN_VERSION` in [\Phan\CLI](https://github.com/phan/phan/blob/v5/src/Phan/CLI.php#L59).
 - [ ] Build Phar by running `internal/make_phar` and getting the output under `build/phan.phar`. See https://github.com/phan/phan/issues/880
 - [ ] Generate a phar signature with `gpg -u identity@domain --detach-sign --output build/phan.phar.asc build/phan.phar` (See [#1759](https://github.com/phan/phan/issues/1759)). If this is a new key, mention the id and signature there.
@@ -20,5 +20,5 @@ After creating the new release, check [packagist.org/packages/phan/phan](https:/
 
 Additional post-release tasks:
 
-- [ ] Create PRs to change Phan version in NEWS.md and CLI.php to 5.x.(y+1)-dev
+- [ ] Create PRs to change Phan version in NEWS.md and CLI.php to 5.x.(y+1)-dev. [Example](https://github.com/phan/phan/commit/790e4f76301bc084c1024d3febd211c5ce01460c).
 - [ ] Update the most recent Phan version in the wiki (optional for patch releases)
