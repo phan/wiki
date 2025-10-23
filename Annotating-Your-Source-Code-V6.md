@@ -19,27 +19,56 @@ This guide covers how to annotate your PHP source code for Phan V6, including al
 
 ## Basic Annotations
 
-### Variable Type Annotations (@var)
+### Property and Constant Type Annotations (@var)
 
-Use `@var` to specify variable types, especially when the type cannot be inferred:
+The `@var` annotation specifies types for **class properties and constants**. It cannot be used on local variables.
 
 ```php
-/** @var array<string,User> $userMap */
-$userMap = getUserMapping();
-
-/** @var int|null */
-$count = getCount();
-
 class Example {
     /** @var string */
     private $name;
 
     /** @var array<int,string> */
     private $items = [];
+
+    /** @var int */
+    const MAX_SIZE = 100;
+
+    /** @var DateTime|null */
+    public $timestamp = null;
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAM4AuWAlgHYDmANAKrECmWAfEgCQCuLWAshjBJ4saDz6DhAXiQ1mpJqylhqNABQBKANzQ4iVJhzVSAHyrcANpZFjOAYwD23KqSSz5pAMLPXW3dD2lhjExEgAogAeGAC2YJbMSADe0EhpSAjI6NhIZJS0tqnpYJSYpImcVLHMAekZBtk4eITAJnR5ahyiRWklFGUVFOUxYbIA2gC6ugC+QA&php=84&phan=v6-dev&ast=1.1.3)**
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAUQB6ILZngFM0BvaNCtAegCoa0ABAN0QCc1kAXVgSwDsA5mhpVylMLxadiAEj55CAbmhiKteszZo2rRAE9g-TgBouvQQD5hoymgk8psntNzoAvGgDaAXWWrqdIws7EbW-rAA9nxcaACyAIIAGgD6AMoAkgBaGGgeAIwADAV+tupBWgAiiNIAKjy4hAA+fACu8PBhtmAtAEbwPLBoMpz1hFx4YLlore3KAL5AA&php=84&phan=v6-dev&ast=1.1.3)**
+
+### Inline Variable Type Annotations (@phan-var)
+
+For **local variables**, use inline type annotations with string literals (`'@phan-var UnionType $varName'`). These must appear as standalone statement expressions after the variable is assigned.
+
+```php
+function processData() {
+    $result = fetchComplexData();
+    '@phan-var array<int,User> $result';
+    // Phan now knows $result is array<int,User>
+
+    foreach ($result as $id => $user) {
+        echo "$id: {$user->getName()}\n";
+    }
+
+    // Use @phan-var-force to create variable if it doesn't exist
+    '@phan-var-force int $counter';
+    $counter = 0;
+
+    // Heredoc syntax also works
+    list($status, $data) = fetchResponse();
+    <<<'PHAN'
+    @phan-var bool $status
+    @phan-var array{id:int,name:string} $data
+    PHAN;
+}
+```
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQBmCuA7AxgFwJYHtEAIwCdNkBTAZ1IBEBDVKgCgEocBvaHdnAEnzPgBtUOALw5YxVMggBhTAFswfYgA9qtRgG42HAOQABSFUQBaAG5V8Oc-ioBPYOkSoANAFVSxfAD4uPUv1Tamhw4APQhOAAKEIY4iJgA7jgA1nHxpD68Ajjo6Va29o6u7l7QWuywmDxUkjh03JmCVOmc6AAmwt6c8MVMrMHBxJKYOABELa0AXCxdxUaeAObiAHJUssSMAL4AOogjQRwbpcFhOG7EOPrRxmb4RhX4JDiow8hVqOc36FQARorZsNlBK1MGRENpBMocqgyjg9AZruY7pVHg5BJxkJgkO98IEYejMY4PMIcAAGTQwk4ACQ8xGByBwpBsjioSksfFIw3ilSSpBhfChdVItFQ3ScXFaNCoTBEYgkEAASmQwNh3BoYcANdoIpSAIJLbQwy6GUzmHDfTCYPhcIU0bqG+Emix5GzMNoTVFORCrYgTIX4BzzDbiyUw7V6zQbIA&php=84&phan=v6-dev&ast=1.1.3)**
 
 ### Parameter Annotations (@param)
 
@@ -637,38 +666,49 @@ Phan V6 introduces several utility types for more precise type annotations.
 
 ### key-of and value-of
 
-Extract key or value types from arrays and array shapes:
+Extract key or value types from array type expressions:
 
 ```php
-/** @var array{name:string,age:int,active:bool} $userShape */
-$userShape = ['name' => 'John', 'age' => 30, 'active' => true];
-
 /**
- * @param key-of<$userShape> $key Must be 'name', 'age', or 'active'
- * @return value-of<$userShape> Returns string|int|bool
+ * @return key-of<array{foo:int,bar:string}> Returns 'foo'|'bar'
  */
-function getUserField($key) {
-    global $userShape;
-    return $userShape[$key];
+function getValidKey() {
+    return 'foo'; // OK
 }
 
-getUserField('name'); // OK
-getUserField('email'); // Phan error: 'email' is not a valid key
-
-/** @var array<string,int> $scores */
-$scores = ['alice' => 100, 'bob' => 95];
+/**
+ * @return value-of<array{foo:int,bar:string}> Returns int|string
+ */
+function getValidValue() {
+    return 42; // OK - int is valid
+}
 
 /**
- * @param key-of<$scores> $name Must be a string
- * @return value-of<$scores> Returns int
+ * @param key-of<array<string,int>> $key String type
+ * @param value-of<array<string,int>> $value Int type
  */
-function getScore($name) {
-    global $scores;
-    return $scores[$name];
+function processMapping($key, $value) {
+    // $key is string, $value is int
+}
+
+// Invalid examples that Phan will catch:
+
+/**
+ * @return key-of<array{foo:int,bar:string}>
+ */
+function invalidKey() {
+    return 'baz'; // Error: 'baz' is not a valid key
+}
+
+/**
+ * @return value-of<array{foo:int,bar:string}>
+ */
+function invalidValue() {
+    return false; // Error: bool is not a valid value type
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAngN4B2GAtgKYBcAzgC5YCWJA5gDQas0v2cDG9JmhoAjAPbiANgF8kAEgCutSlgDKEDGEpJ4saEpXrN2pAF4kAbQDkZKtfMA+JNYBS4iCWvsXXSg7NnAGYABh9rDEFhfyckRkVKAF0Abmg4RGhdVDBsCiQAa0oCAFpxADNgQ1UNLUpneUKCJABZZXokUR1bCn9wv28kcRwIqJFrTOQULEp6RSwSJEwpBNKKquNa5wAlGbmSWiQGZjYAH14TiWkJ-TLFEijxBe56AFUjADEmSikAEwAKBpFACUSCImSQENYUnEogwUgUymqJkoqQhEOms3mCKMNW0lkBBBS0BkaWeb1Un2+-269iBySQsFgSAA8gBpaBkj5fX5-ayUcgYJhSax0hlMgAKmgWqiwQ2oLn5guFSCYBxI4naGEWcKYPwKRTSCEmmBweEIwCOLA4vHqtH4Q0oBz0BjtDoOFhsOv4MUCSAAjCEwi4JKIAs4AJwAViJ6XgE2yuXI+pK5UqrumtHqdh0rQYHR0WstbHjU12WKWK1T8nTju2Zf2KpI9Gu0Fu9yEjyQzzU9umAOzILBaK70Nh8OrvcdqLRGL2ChrtHx2aJMiAA&php=84&phan=v6-dev&ast=1.1.3)**
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCmAXArpgHbIDW2AngLQD2AZsAIaaaMUDedNNAXAJZFcAGgBGzHgGdcmAQHMAvgD5kAJTyEiE5AHIuNbQB9tYzNpTxY0OviIBjXHxolZeAGqMANnwAmAaUoAFACUyOwoyBE4BMQ6etoA3MiwsMgA8r7Q8tBwiOYYURrIAG6e+Ni0DMysHHr8gqLiUjJECspq0ZrIArgGTXLmltZ2Dk7ILrjuXt6TZcGh4ZHqMQAsAEyJyWm+yFRdgl1aJVOZ2QhIqBhgzIwAtmSUFUwsbMB9LULdisoAJOQUyABlaRyZC4ChgbB5dBXVh3I5lR5VF5vWQfQRfZDfeHYZAASX2YIhAysNnsjhIYEwNFs2AkEgAsowwGA5AFfpQhJjsSEwhEIpt2f8+FoUZysaUccK9rgTnAUvijj5kNgAB63MAeWmgiCMXDIAAKOpIAHc+B4PMhbLrbBAeKdchcsEsSH9Ec8atw6sITJJgS0lMShmTRgJFX5AjyFsgCjFjIwAF4JJIpACiLBomB4OjEiYOyCIND1jGKniVf1lZyhMZI2Ld1U4nu6DUzKIDqEGpJGJFDpemErmvL51eQdE8EmwG1T6czyBE3AtUoLRZLUxXZVB4Mh8iAA&php=84&phan=v6-dev&ast=1.1.3)**
 
 ### int-range
 
