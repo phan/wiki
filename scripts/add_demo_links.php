@@ -340,6 +340,12 @@ class LZString
 // ============================================================================
 
 function generatePhanURL($code, $php = '84', $phan = 'v6-dev', $ast = '1.1.3') {
+    // Ensure code starts with <?php
+    $code = trim($code);
+    if (!preg_match('/^<\?php/', $code)) {
+        $code = "<?php\n" . $code;
+    }
+
     $compressed = LZString::compressToEncodedURIComponent($code);
     return "https://phan.github.io/demo/?c={$compressed}&php={$php}&phan={$phan}&ast={$ast}";
 }
