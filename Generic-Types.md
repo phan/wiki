@@ -1,5 +1,7 @@
 Phan has primordial support for generic (templated) classes via type the annotations `@template` and `@inherits` and via a type syntax of the form `MyClass<T>` that may be referenced within doc-block annotations.
 
+For the v6 implementation see [[v6-Generic-Types]]
+
 For details on possible language-level support for generics, take a look at the draft RFC for [Generic Types and Functions](https://wiki.php.net/rfc/generics).
 
 The current implementation is very incomplete. You'll likely end up being annoyed that we don't yet allow for generic interfaces or defining constraints on types. There are also very likely to be significant bugs with the current implementation.
