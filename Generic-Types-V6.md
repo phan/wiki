@@ -18,7 +18,8 @@ Phan v6 significantly expands support for generic (templated) classes, interface
 5. [Variance Annotations](#variance-annotations)
 6. [Function Templates](#function-templates)
 7. [Utility Types](#utility-types)
-8. [Rules and Limitations](#rules-and-limitations)
+8. [Built-in Generic Types](#built-in-generic-types)
+9. [Rules and Limitations](#rules-and-limitations)
 
 ## Basic Generic Classes
 
@@ -445,13 +446,6 @@ class InvalidShelter extends Shelter {}
 
 **[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAQQHYEsC2i8aA3tGuWmAK4BG8OsaAZlVrAC44D2WaBA1gFMAyl1YATABQBKAFxpk7AE44sAcxJkK2pYPZUlvAETIueQQrFZxRgNxbyAX2jO4SVGgAiXDYIAe7ILW6Nj4hJra1HQMzKwc3LwCIlZScgrKqhqk2jp6BsYA7lxcTHYOaM6uCCjoAMKI7Gj+gcGYuARE2RRR9IwsbJw8fIhCohIy8ooq6hE55Lr6hmhG5lwFZdqV0NAA9ABUe2R7aAACgXhgSIFoACpoJW1h8Ec7bjVowhCC8IFKs+T7Y4nABuiD+dz2r0iKlB1wAJLpkDhxEF2PZyoDTmAwYg8Lc0HDEO1wpDyj0Yv14kMAPrU2A8KZUDiSQnE+DSf45OHsCA4ZAAWgAfIjkai0ABeAlEp72TbbbSYk4LfL40mRWi9WIDBJoNR6ABKgiRKKw7BknNyi143N5AuFRtFptlFFc6uifTig14XzBY2sE3S0yy5QVOzQAAUIES0PwsGt0AiHSbGlH0Ek-ak+HoIFxxCGKMqlja+UKRcmhemUjJnU4XNsdmGAPIAaXk3l8ASC4hCbN2ByOp2aXfQn2+v2A7cFLzeHnbo5+gj+Q9a89+JFcDbQAFF9frG-rJhkZuIuEa0HHGsvxI8On3DmggVeR18F0pgFNMlOH69qh4AJJYKC9DiKui5NJ2K4vmuxCOEAA&php=84&phan=v6-dev&ast=1.1.3)**
 
-**Test this example:**
-```bash
-~/phan/phan -n example.php
-# Expected error on InvalidShelter:
-# PhanTemplateTypeConstraintViolation Template type T of \Shelter must be compatible with \Animal, but string was provided
-```
-
 ### Constraints with Interfaces
 
 ```php
@@ -510,12 +504,6 @@ $str = cloneAnimal("not an animal");
 ```
 
 **[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyA9gGbICCAdgJa5EEprphEBORu5ZABIizVu1QYe2TAFceDch1jRqshgGNMTSoo0Fd2RizYAKEWLYBKZAG8UyR9LkLk+w8NEmCAbmgBfaGghABNKAHNkAF5kBmwAd2QAEQjTKz8hdziQlMiYrKNLAnMw8PTHWFhkAAUIUWQAawZKeIBnZEwIJnbu5IigyuQAUQAlEYB5EYAuZFbMHiYGSN7mzGR643FguZ5otwM4zbMAIlX1xS9xY-SgA&php=84&phan=v6-dev&ast=1.1.3)**
-
-**Test this example:**
-```bash
-~/phan/phan -n example.php
-# Expected error: PhanTemplateTypeConstraintViolation
-```
 
 ### Union Type Constraints
 
@@ -611,12 +599,6 @@ class ReadOnlyBox {
 
 **[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY4C0AxgPYBuRATgJZEB2myAKivLNA69nQBmRctmQAFOpQAmAV1F1kAbxTI1CNOjrZMsusw6oeatWFkAjAg3LJBs5uUwNKBsFLmiAFAEoA3NABfaDhELgwcfGIyKlpGFjZOI2hyYgBnVOQAJWwiaQB5ZgIATwAhSgAPZVV1RAxYw25q5DcGWhxkABJaAllsfyaNDDB6IlxDLqIesUaTZosrGzsHJxdkAH01qmZUzDp5TE8Jqe8q2dmOzAgGVNIAPm7e5ABeToe+pqCB2q0dPQN2JKzMyWay2eyOZwGADmOh8pzOam0un0nUu1zub38s0+s1gsGQAFFMpk8pkAFzIGL0JisZARQgkMR8ZojXA6ATNSipBgrZhfTTDOijcZvQEmYELMHLSHIVKwo69bwU6iUBjSeEIi5XG73SaPF4K97YwJAA&php=84&phan=v6-dev&ast=1.1.3)**
 
-**Test this example:**
-```bash
-~/phan/phan -n example.php
-# Expected error: PhanTemplateTypeVarianceViolation
-```
-
 Covariant templates enable safe subtyping:
 ```php
 // With Producer<T> being covariant:
@@ -657,12 +639,6 @@ class Sink {
 ```
 
 **[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY4C0AxgPYB2mATkQG5F0CWRtyAKivLNK1rY6AMyLlsyAMI0AzgFdcw5AG8UyDQjTowLIrm7IAJMwLzJfdRrDyARgVblkI+dXKZWNZFWoKlAChMiM2wASgAuZEZKVgATAG5oAF9oOEReDBx8YjIfeiYWdk4eVH5yYllZZABlQQBrVStkLQxdBgMuY1NzUqabe0dnV3dPamRxCTBMQO6wyOi4xo1l5dhYZAAFOkoJSqjg8yaUprXkAFEAJQuAeQvIvIZmNg5MZCzCEklBZDpsTHk6GMwJRZKwPDQTogML9-oDDJYVv0HE4XG5wUDtrF5BJ-KElitlpgINsAO7IajYMlnAAek3R-gARFIONRKK8wJjsdgGaFEisUkkgA&php=84&phan=v6-dev&ast=1.1.3)**
-
-**Test this example:**
-```bash
-~/phan/phan -n example.php
-# Expected error: PhanTemplateTypeVarianceViolation
-```
 
 Contravariant templates enable safe subtyping in the opposite direction:
 ```php
@@ -865,12 +841,6 @@ processKey('qux');  // ERROR: 'qux' is not a valid key
 
 **[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBrAUwE8BaAewDNhc8yBvGqqgLmQEsA7AFwA0yAEa5OAZz45eAcyGiAXp2FsANgF8AfMgAkpMinixoNAK48Axny5UeyMDioWS48QGlyACknSeM3foAlJwAblRcACbITCjIcbCwAeTIFlh2tqpkIiTIAOSsVLlCuaI4RchUOHmKubFxJBYQVElkANzQ6tDQDk4u7l75bLmBrfGJAPJu3Y7Orh5kniW4w6PICciT071zAwCOpgAeK2PIAKIASufj55y5+0fc4sg8VHzIWMghWKqRxORAA&php=84&phan=v6-dev&ast=1.1.3)**
 
-**Test this example:**
-```bash
-~/phan/phan -n example.php
-# Expected error: PhanTypeMismatchArgumentProbablyReal
-```
-
 With generic arrays:
 ```php
 /**
@@ -905,12 +875,6 @@ processValue(true);    // ERROR: bool is not int|string
 
 **[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkA3LAGwFcBTAWgHsAzYXPATwG8sBzSgLmQEsAdgBcANMkEFeyAM7CcQzgF8AfMgAkJCpRTxY0euUEBjYf1qDkYHLWOUZMgGpkqACk0vKASj5Fa-ABNkNhRkMNhYDS0qZGMsSwAjSgERZFocWXlFaCVoaGtbeydPVwAWACYvAG4w2uQI5AB5AGl8mzsHZ21XACIAKVoIQR7q8MiWtsLOkvkqUdqGgFEAJWXG5b4E2lpSARkJWmEU4QAfOQVBTiA&php=84&phan=v6-dev&ast=1.1.3)**
 
-**Test this example:**
-```bash
-~/phan/phan -n example.php
-# Expected error: PhanTypeMismatchArgument
-```
-
 ### `int-range<min, max>`
 
 Define an integer range with inclusive bounds:
@@ -930,12 +894,6 @@ setOpacity(150);  // ERROR: 150 exceeds maximum
 ```
 
 **[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBLAOwBcBaPEgcwFNgBGAGmUYAZ2A+ZAEjDo4AxnXJZ6KeLGgAzAK4khZIgHsSyAM50yAeWxCiZAJ4AKUmT4DhosuLoBKAFzIAbiqIATZAG8Uyf3RCECrIAER6WAbGzvyCImL0AKShANzQAL7Q0Fq6+oamAKzs9in+yLCwyDoA0tnaEVGmHMWl5ZU1dbmR+SYtZW3IAKIASsM6w87sxBrIAEZ0ADYqAO7I+KRE+HL4nQ09jEUl-hVDo+POB1N0AB4idB4z+FjXm9tAA&php=84&phan=v6-dev&ast=1.1.3)**
-
-**Test this example:**
-```bash
-~/phan/phan -n example.php
-# Expected errors: PhanTypeMismatchArgument for out-of-range values
-```
 
 Ranges work with literal values:
 ```php
@@ -984,11 +942,266 @@ recordDebt(50);    // ERROR: 50 is not negative
 
 **[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkwB7AZwEsAXcgNwFMBacgO0uQBIBjYgV1ZXixoAMz6dqxZsk446WSnQCSC-KQAULNl16sAlAC5kuPAE9kAbxTJrsWB2582+HqTYAjOsgB8yAAxXrWUoeHCljLBMAfWFyABtYtV8AGnsdShTmHnjdAG5oAF9oaBk5BWU6VTUAVlzrZFtkAHkAaWLZeSUVdV9amzsAUQAlQcbBw19kclJkZmI2EgpqejbSzor1BgBGXoahkbHkLcnp2fmyKlo6IoQkVAxsPEJmOgBzeUumVg4AEzo3SgEQlEzHE5EkyFk3Bw3wAIn9KBovuxfv8DMgaMRyN8LAF6nZkfDkM5XMgPMhgH5cXROBBiMgAERw-6GAn-el5QrQSHEaFMhFbXw9HJ9Jqtbm8+GJXp1XbDUbjY4zOYzV7vZbi2GSqpCup45B7eXIbWK04qt5LOhAA&php=84&phan=v6-dev&ast=1.1.3)**
 
-**Test this example:**
-```bash
-~/phan/phan -n example.php
-# Expected errors for invalid values
+## Built-in Generic Types
+
+Phan v6 includes generic type annotations for many built-in SPL classes and standard library functions, providing better type safety when working with PHP's standard library.
+
+### SplObjectStorage
+
+`SplObjectStorage` is a generic class that maps objects to data, with full type safety for both the object type and the associated data type.
+
+**Template Parameters:**
+- `TObject of object` - The type of objects to store (must extend `object`)
+- `TValue` - The type of data associated with each object
+
+```php
+class User {
+    public function __construct(
+        public string $name,
+        public int $age
+    ) {}
+}
+
+/**
+ * Cache user session data
+ * @extends SplObjectStorage<User, array{lastAccess:int,loginCount:int}>
+ */
+class UserSessionCache extends SplObjectStorage {
+}
+
+$cache = new UserSessionCache();
+$user1 = new User('Alice', 30);
+$user2 = new User('Bob', 25);
+
+// Attach users with their session data
+$cache->attach($user1, ['lastAccess' => time(), 'loginCount' => 5]);
+$cache->attach($user2, ['lastAccess' => time() - 3600, 'loginCount' => 2]);
+
+// Iterate with full type safety
+foreach ($cache as $user) {
+    $sessionData = $cache->getInfo();
+    // Phan knows $user is User
+    // Phan knows $sessionData is array{lastAccess:int,loginCount:int}
+    echo "{$user->name} logged in {$sessionData['loginCount']} times\n";
+}
 ```
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0wBXAI3gEtY0AzcgO1gBcaB7ZtAfV9jdkbXOXYAKYqWkVqdNMNw1mAczQASZogC22ADRTpJWbXrK2GxCuyG0ASkIBfaM+gB6AFQfiHtAGFEWAhsNHIcfBxULh4AE0Q2RB80AAFsAA82bGYY9ABlMHgAeUoAK2x2XLZOXCtsYCw8PTREXBqATwIkYQBBWFhsVAAucz14ThVlP04WNmHmNkcAPh83OC70BtxcgeRogKCQ9MzsvILisoqqmutCF2hodVhA4LQAXjRmbAB3THDtqO4+2C4jsAG4HmE8ABGN4fb6-PDiADk3VM2CRTQAzAAGMEQ8IAJlhnx+m2RACFOJQMWgCQBWPHuNxobpsBJBULhdBfGhsCBoPnYGgRHbRNBxBIPJ4HAC0i3i7Ig4nUkNwUKaAG0kV02L1+qgkW9FgKaLoQU1teNJtN5obXsa6QBdPGPZ7YOUK57K1UEzXalC6vo7O3GjhmhwytCYgBs2OxFrGE2YUxmIdpzvBTLQAElMjVMmgeXzGOR4PABW0wCFkIgGNg2G1oAxqthnmhldKXigNKqHERpOpIrtuAAReKIWGu2WLaxsbPMZsg8HSNzMgAKEEQPAA1sxOF90CrwmgaBtwrZV2gN1u0Lv94eh9ExwkT+gWu1OgG9Ts5mxRlbkxtWZzGcaRyggTg0AAIgII88DlLRdEcNBE2sGITx4WDH1HcctUTa1U0dZCwwGAAdZgoPBRwgA&php=84&phan=v6-dev&ast=1.1.3)**
+
+### WeakMap
+
+`WeakMap` provides a generic way to associate data with objects without preventing garbage collection. When the object is destroyed, the WeakMap entry is automatically removed.
+
+**Template Parameters:**
+- `TKey of object` - The object type to use as keys
+- `TValue` - The type of values to store
+
+```php
+class Product {
+    public function __construct(
+        public string $name,
+        public float $price
+    ) {}
+}
+
+// Track product statistics without preventing garbage collection
+/** @var WeakMap<Product, array{views:int,purchases:int}> $productStats */
+$productStats = new WeakMap();
+
+$laptop = new Product('Laptop', 999.99);
+$mouse = new Product('Mouse', 29.99);
+
+$productStats[$laptop] = ['views' => 150, 'purchases' => 5];
+$productStats[$mouse] = ['views' => 300, 'purchases' => 25];
+
+// Access with full type safety
+if (isset($productStats[$laptop])) {
+    $stats = $productStats[$laptop];
+    // Phan knows $stats is array{views:int,purchases:int}
+    echo "Laptop: {$stats['views']} views, {$stats['purchases']} purchases\n";
+}
+
+// When product is unset, the WeakMap entry is automatically removed
+unset($mouse);  // $productStats[$mouse] is now gone
+```
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBABQE4HsAmArrAC5oDe0aVaYBARvAJaxoBmBAdiYzh2gPr9YvZMSxFiACkrVZtBszSisjDgHM0AEg6IAtgFMANDNlV5TFq3g5EpTWBWx9JtAEpyAX2hfoAel9oACpYiLAA1jS4hCRKxLaMoszoAO6MxBA4BKQO+gBu+hzEqhpqiFh0iGr6aMLw8PrcvH4AVM1oAAK5ZWgA6vqIYQCyiGDA2PgShmhlIQCeZLmM+snIAFyqxIa0WLAQKPprGx4AfFoOEyQAynHE6M2+0PZREte26AC8aBzLvf1DI5JXABuaCPJBgYg4MBoT7fZKYZ4kSQAcgAMiNIWBkVMAJx4gB0eOBj10mWQ1VhP3G0SkyMGZP02LQACYcYSccTHucaa9bgBtTTgzEAXRhaD5yMWy2QyJhpwAjABWAAMU2R212+xlcrQiuFIKeF2IvOQAtJBHJos+EqlK1l71OAGZlaq0OqCDs9uTtQ6WXqQX4AgBBWBOVBoVLpNgEOpoYizMDVZCIVj6ePQRisNCSBLkqSGnk3U2CjFQ4WudwUWSaURvMUFl5FgVCssg2T+TB7PhhDg4FZaWu3NAJaZYOYLJYrdaFLYezXe6fELyyBoZNAAInREKhq3INabksnMuFHjQtuQUzI+7eEo1XoOyJPNDn9+QAB0OOuQT4Oz0IAVIiNYd0E4PMpnSao+gGYZoQKMRZmA6YshwXR4lgRA6gQrB9FJfI8GgUC00kTRzXJYEqA7BsribEiGVFEde3hNReH0IA&php=84&phan=v6-dev&ast=1.1.3)**
+
+### Generic Array Functions
+
+Phan v6 provides generic type annotations for many standard array functions, allowing type information to flow through transformations.
+
+#### array_filter
+
+Preserves both key and value types when filtering arrays:
+
+```php
+class User {
+    public function __construct(
+        public string $name,
+        public bool $active
+    ) {}
+}
+
+/** @var array<string, User> $users */
+$users = [
+    'alice' => new User('Alice', true),
+    'bob' => new User('Bob', false),
+    'carol' => new User('Carol', true)
+];
+
+$activeUsers = array_filter($users, fn(User $u) => $u->active);
+// Phan knows $activeUsers is array<string, User>
+
+foreach ($activeUsers as $username => $user) {
+    // Both $username (string) and $user (User) are correctly typed
+    echo "$username: {$user->name} is active\n";
+}
+```
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0wBXAI3gEtY0AzcgO1gBcaB7ZtAfV9jdkbXOXYAKYqWkVqdNMNw1mAczQASZogC22ADRTpJWbXqVOneBsTsaAN2yG0ASkIBfaB+gB6AFS+0AAE7RHxQ3EQAT2BFZRU9TBxcAD4NciT0X29odXS8dABeNABtJwByRFNsMrQC1OZsAHdEvHEygEEqsoSRcmxnA2ky80oaurQG5qxWsoAhTlGEhkqcAfLYUMsx+qaW3DaAYU34brRe-ugAXQBuaBybDgdp3EK0cKjeBhp4NlbcjKWzHEzzSrnGuQAtMkHvZ+rdvN40AAFCCIHgAa2YnEa6HUMKeGTQNHQ72isVUCWeyTuDE4uGwNggaHEeNsBPyb1xeVwWl0tVS-zwriI0gRaHmbCZgp5OmwzPJKlcaIAJmkksznkr6WhBLh6ex4JEzpEwNhlU5sLAIJw0AAiaW87AALkI0qhjrcRJJbOwAB1mLbbm4gA&php=84&phan=v6-dev&ast=1.1.3)**
+
+#### array_map
+
+Transforms value types while preserving array structure:
+
+```php
+/** @var array<int, User> $users */
+$users = [
+    new User('Alice', true),
+    new User('Bob', false)
+];
+
+$names = array_map(fn(User $u) => $u->name, $users);
+// Phan infers array<string> - transformed from User to string
+
+foreach ($names as $name) {
+    // Phan knows $name is string
+    echo "Name: $name\n";
+}
+```
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAJYB2ALgDRICqAzgKZYB8SAJAK6NZ1LyzRO3XgF4kAbWhJpSUgwDutbgAoA5AEEANsQDGDVdXJYODAJSUpMuYvpM1AIQD2AIwNIAZhk2NT0ALoA3NCCpBgAtgyiuFj4BAD6YRhgyu6kyrY4nKZIIqycALTMoRHUQkx0pkGwsEgAChAYpEhk7uXRscB0RmQA5qz5SEaNdO6OWBEAJh5YjmFKTIOOSF1YvcGjWAwYOhBIymzFkbi8B+FmSADeltLVdQ1NANakjvInh828K2sySAw7SwAiAByZwAXOxDgAdUgAoIAXyAA&php=84&phan=v6-dev&ast=1.1.3)**
+
+#### array_reduce
+
+Supports custom accumulator types:
+
+```php
+/** @var array<int> $numbers */
+$numbers = [1, 2, 3, 4, 5];
+
+// Reduce to int
+$sum = array_reduce(
+    $numbers,
+    fn(int $carry, int $n) => $carry + $n,
+    0
+);
+// Phan knows $sum is int
+
+// Reduce to string
+$concatenated = array_reduce(
+    $numbers,
+    fn(string $carry, int $n) => $carry . (string)$n,
+    ""
+);
+// Phan knows $concatenated is string
+```
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAJYB2ALgHxIAkpArgLYBGAplgM5LyzR1NtOSALxIA2gEYANEgBMMgMwyALDICsAXQDc0OLCQAlVgBN6AY1ZJyAeyRlyfDkxG4s+AgH0sJ86wAU0EhBtAws7BxSgcEAZqR+9rRmeAQyCXQAlCLUNEluBEgA1CGRwUgADNDpOrD6AAoQGKRIANak1gDuXDROjHZc9ro1hj4WVrYc5FhkAOZ8ZtakSeSspBjLxi54hF4j-lFB-GGcJTFxE1Ok04nJqRQhmcLZuVj5AHRIfucz6XQnQQBE-0q1TqDSarQ6XXmizWK1hG2IXC+lyAA&php=84&phan=v6-dev&ast=1.1.3)**
+
+#### array_find (PHP 8.4+)
+
+Returns the first value matching a predicate, preserving type:
+
+```php
+class User {
+    public function __construct(
+        public string $name,
+        public int $age,
+        public bool $active
+    ) {}
+}
+
+/** @var array<int, User> $users */
+$users = [
+    new User('Alice', 30, true),
+    new User('Bob', 25, false),
+    new User('Carol', 35, true)
+];
+
+$firstInactive = array_find($users, fn(User $u) => !$u->active);
+// Phan knows $firstInactive is User|null
+
+if ($firstInactive !== null) {
+    echo "First inactive: {$firstInactive->name}\n";
+}
+```
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0wBXAI3gEtY0AzcgO1gBcaB7ZtAfV9jdkbXOXYAKYqWkVqdNMNw1mAczQASZogC22ADRTpJWbXrK2GxCv2GjJ+ZU6d4l9jQBu2WwEpCAX2gA6AB6ACpQtAABd0R8WNxEAE9gcz1MHFwAPg1yDPRQ4Oh1XLx0AF40AG1bZmwAd3S8cQByAEFTbGa0gGYABjSRcmxvA2lahqwm5oAhTkoutAAmAFY0hkR4HBGa+sbcFoBhWOcF7tW0QeHoAF0AbmgihhpcYQBJLTdPNAr4pN4n5gAE3ExTya2Y4km+GKvjK2QAhMUALSZRCfYb3YLBNAABQgiB4AGtmJw6uh1E8Xmx3miOF8aOgoQAfZjkeDwB40BhoEGUt4fOnYNDwsoVVns3xEaTYWAQThoABEADFnsI0MpaR5sAAuQgU1XUgValFaXR+AA6zAV9z8QA&php=84&phan=v6-dev&ast=1.1.3)**
+
+#### array_find_key (PHP 8.4+)
+
+Returns the first key matching a predicate, preserving key type:
+
+```php
+/** @var array<string, int> $scores */
+$scores = ['alice' => 95, 'bob' => 72, 'carol' => 88];
+
+$topScorer = array_find_key($scores, fn(int $score) => $score > 90);
+// Phan knows $topScorer is string|null
+
+if ($topScorer !== null) {
+    echo "Top scorer: $topScorer with score {$scores[$topScorer]}\n";
+}
+```
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAM4AuWAlgHYDmANEtaQHxIAkxAxgPZYCmxJPFjQOPfoIC8SANoByDABsKnPnKSTWATgCsDOQCNuB9ZqQB2AEz7O2botOsAHE4C6AbmijS3MAGVxPhxpPEIAfQAzagATMIBrPgIACjFeAQYIqiSmdi40gEoNVlT+JG0ABnzPWFgkAAUIDCokOKpuAHdBNh9-QJwKQTJKWgAfKgBXRUUvCgikFJ6AtJwAQklpCanCgG9oJH2kPk4IbiQAIgAVXyQ8-iwALnZFvqR2ilIIG8CkbZKBGW6viWd1cAF8ADpUM6eUFAA&php=84&phan=v6-dev&ast=1.1.3)**
+
+#### array_any and array_all (PHP 8.4+)
+
+Check if any or all elements match a predicate:
+
+```php
+/** @var array<int, User> $users */
+$users = [
+    new User('Alice', 30, true),
+    new User('Bob', 25, false),
+    new User('Carol', 35, true)
+];
+
+$hasInactive = array_any($users, fn(User $u) => !$u->active);
+// Returns bool: true if any user is inactive
+
+$allActive = array_all($users, fn(User $u) => $u->active);
+// Returns bool: true if all users are active
+```
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAJYB2ALgDRICqAzgKZYB8SAJAK6NZ1LyzRO3XgF4kAbWhJpSUgwDutbgAoA5AEEANsQDGDVdQDMABmrksHBgEpKUmXMX0magEIB7AEYGkAJgCs1ABmGJqMNnbSDkrOqgDC2G6a3oYBSOaWVtAAugDc0IIQGHQAkqQYOuTEaAxIYniEAPoYpATKQkx0QaTKTjicVrWsAIScALTM5ZXVVnmwsEgASgzkHFikvB5uiQBcaRY1xIG4LUhcTEjEvGSTVQz5bCGa6hW3tbhY+ARNmpptZzxdHrcdgcAYiVhjCYvaazeZLFZrDZbTS7dIHI6PU7Cd41G7VIA&php=84&phan=v6-dev&ast=1.1.3)**
+
+### Other Generic Array Functions
+
+Phan also provides generic support for:
+
+- `array_keys()` - Returns `list<TKey>` from `array<TKey, TValue>`
+- `array_values()` - Returns `list<TValue>` from `array<TKey, TValue>`
+- `array_flip()` - Returns `array<TValue, TKey>` from `array<TKey, TValue>`
+
+```php
+/** @var array<string, int> $ages */
+$ages = ['alice' => 30, 'bob' => 25];
+
+$names = array_keys($ages);
+// Phan knows $names is list<string>
+
+$agesList = array_values($ages);
+// Phan knows $agesList is list<int>
+
+$reversed = array_flip($ages);
+// Phan knows $reversed is array<int, string>
+```
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAM4AuWAlgHYDmANEtaQHxIAkGNApsUvLNA7deAXiQBtAOQYANhQDGXSUhGsAzAAYGkgEYB7HctVIATAFYAugG5ogqhgC2PFbiz4CAfQDWXAsQAUQjwAlDawsEgAChAYVEheVHoA7rxs9k68FLxyZCTk1DTMtkHEADJZpC54hB6YMgCuPIGcIWER0bHxiSnsLWUVjNkVwExFglhcaFxYxFwAJlVuNQBmcmDNwqFw7TFxCcmpE1Mz84Ou7iNUpAxklLTMQA&php=84&phan=v6-dev&ast=1.1.3)**
 
 ## Rules and Limitations
 
