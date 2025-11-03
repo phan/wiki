@@ -2,6 +2,97 @@
 
 Phan v6 significantly expands support for generic (templated) classes, interfaces, traits, and functions using PHPDoc annotations with `@template` and related tags. This allows you to write type-safe, reusable code that works with multiple types while maintaining strong static analysis.
 
+## What Are Generics?
+
+Generics (also called "templates" or "parametric polymorphism") allow you to write code that works with multiple types while preserving type safety. Instead of writing separate `IntList`, `StringList`, `UserList` classes, you write one `List<T>` class that works with any type.
+
+**The Problem Without Generics:**
+```php
+// Without generics, you lose type information
+class Container {
+    private $value;
+
+    public function __construct($value) {
+        $this->value = $value;
+    }
+
+    public function get() {
+        return $this->value;  // Phan can't know what type this is!
+    }
+}
+
+$box = new Container("hello");
+$value = $box->get();  // Phan thinks $value is mixed
+```
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0sAIDqBLALhA9gVzQg5gKYB2hATigMYDOANAgJ44IA2m1hCaDYnKxAM0xkAtgEM0KTMWiUWY6tQQBhaWjH9yCAN7QE+hGAoA3CZwAkpltkIBuaHoNhsAIxZUEA7MUqTpCAH0AymlqNDJsXwAKSzFrQgBKHUcDA3MMFGoAWgA+KxsEAF4EWPj7VIBfB1TnNw8vHz9iAkI0KKTdVNSyVuwyZvSITNz8u314BAAFCDFmylmAcjwAa2JMAHcEdZm8bl4uIaVMgEIUhCqq6HMXTAAPIoRSTdVidU0yKIAiCEIWNk+EvZSgVitc7rkiG1AeNENNZgd+MslMC+EoRChboQACZAA&php=84&phan=v6-dev&ast=1.1.3)**
+
+**With Generics:**
+```php
+/**
+ * @template T
+ */
+class Container {
+    /** @var T */
+    private $value;
+
+    /** @param T $value */
+    public function __construct($value) {
+        $this->value = $value;
+    }
+
+    /** @return T */
+    public function get() {
+        return $this->value;
+    }
+}
+
+$box = new Container("hello");  // Phan infers Container<string>
+$value = $box->get();  // Phan knows $value is string!
+```
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IDCA9gHaZECW72ATsgDeKZGIRp0ANyKCyqamLFh+3GaQAkMggFdsAbmijxiDGFlFc5ZFqK7sC48jA6ARgW41kAMx3samNwcyAD6ITQc9Jj8OgEAFLb2AJTCTko2mBDc9AC0AHzaesgAvDaFBk4AvkbpEhj82Jg6-OzWVE4u7p4+fgFBrQDmjXEpIunpDU0tGVm5BXZ6hunV1dAarqwAHiXIfADuLBxcvAJxAEQQ2AQErGdJ+uKwyAAKEEStvN4CTGycPHz8YBRVTsAZ5NblHbrLb5IaYEYPZCwJ6vd7IADW7FYeyYiSK2WQwN4AwAhEA&php=84&phan=v6-dev&ast=1.1.3)**
+
+**Benefits:**
+- **Type Safety**: Catch type errors at analysis time
+- **Code Reuse**: Write once, use with many types
+- **Better IDE Support**: Autocomplete knows exact types
+- **Self-Documenting**: Generic signatures show type relationships
+- **Refactoring Safety**: Type changes propagate correctly
+
+## Why Generics in PHP?
+
+PHP is dynamically typed and supports union types (`int|string`), intersection types (`Countable&ArrayAccess`), and even DNF types - so why do we need generics?
+
+**The fundamental problem:** PHP's native type system cannot express *relationships* between types. Consider a simple container class:
+
+```php
+class Container {
+    public function __construct(
+        private object $value
+    ) {}
+
+    public function get(): object {
+        return $this->value;
+    }
+}
+
+$userContainer = new Container(new User());
+$user = $userContainer->get();  // Returns 'object', not 'User'!
+```
+
+You can't write `function get(): typeof($this->value)` in PHP - there's no way to say "the return type is whatever type was passed to the constructor." Union types don't help here because `User|Product|Article|...` quickly becomes unmaintainable.
+
+**Why this matters in PHP specifically:**
+
+1. **Array transformations**: PHP's `array_map()`, `array_filter()`, etc. lose type information without generics
+2. **Collections and data structures**: SPL classes like `SplObjectStorage` work with `mixed` types
+3. **Repository patterns**: Common in PHP frameworks, need type safety across different entity types
+4. **Factory patterns**: Can't express "this factory creates instances of type T" with native types
+5. **Functional programming**: Closures and callbacks need type preservation through transformations
+
+Generics in Phan annotations solve this by allowing static analysis to track these type relationships, even though PHP's runtime doesn't enforce them. This gives you IDE autocomplete, refactoring safety, and early error detection without runtime overhead.
+
 **What's New in v6:**
 - Generic interfaces with `@implements` / `@phan-implements`
 - Generic traits with `@use` / `@phan-use`
@@ -126,10 +217,187 @@ class GenericBox extends Box {
 
 **[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IBCA9gB7IDeKyfCadADciAJ3KpqfPmFGscNHABNkAEhEEArtgDc0Xv0QYwYorgnqiW7JIPIwmgEYEAljWQAzTQDtFL1t7IAPpBNAH0mKKaigAUltYAlNx20mqYEC70ALQAfBrayAC8avm6dgC+0JVwsMgAwgE0otikmACeYDYmomYt2KJwiJQY2Ow43kpMbOzALt6YOZTUdESMyACS89PIo+OTLBzJqQ7Obp4+fgHBoeGR0Zgxc5glVtpJPKnHYtjzAFy-ITC3giUVi8TeelSlWqsFqAAVVvQ5gBzZA4fDEVoQOSaZEQQZIVAYdGEEg2MgAJmG6F2P3202AlMWthWawA4j9+m5trSJlNDh9pAJjKZzJSXtZbMcnK53F5fJh-IFAbdQQ9wdh3ilpN0fph-irgXcwaUEpDpNCgA&php=84&phan=v6-dev&ast=1.1.3)**
 
+### Template Type Inference
+
+One of the most powerful features of generics in Phan is automatic template type inference. You often don't need to explicitly specify template arguments - Phan can infer them from the values you pass.
+
+**How It Works:**
+
+Phan analyzes constructor arguments, function parameters, and return types to automatically determine template type arguments. This makes generics convenient to use while maintaining full type safety.
+
+**Inference from Constructor:**
+
+```php
+/**
+ * @template T
+ */
+class Box {
+    /** @var T */
+    private $value;
+
+    /** @param T $value */
+    public function __construct($value) {
+        $this->value = $value;
+    }
+
+    /** @return T */
+    public function get() {
+        return $this->value;
+    }
+}
+
+// Phan infers Box<string> from the argument
+$stringBox = new Box("hello");
+$str = $stringBox->get();  // Phan knows this is string
+
+// Phan infers Box<User> from the argument
+$userBox = new Box(new User('Alice'));
+$user = $userBox->get();  // Phan knows this is User
+```
+
+**Inference from Function Parameters:**
+
+```php
+/**
+ * @template T
+ * @param list<T> $items
+ * @return T|null
+ */
+function firstOrNull(array $items) {
+    return $items[0] ?? null;
+}
+
+$numbers = [1, 2, 3];
+$firstNum = firstOrNull($numbers);  // Phan infers T = int
+// $firstNum is int|null
+
+$users = [new User('Alice'), new User('Bob')];
+$firstUser = firstOrNull($users);  // Phan infers T = User
+// $firstUser is User|null
+```
+
+**Inference Through Method Chains:**
+
+```php
+/**
+ * @template T
+ */
+class Collection {
+    /** @var list<T> */
+    private array $items;
+
+    /** @param list<T> $items */
+    public function __construct(array $items) {
+        $this->items = $items;
+    }
+
+    /**
+     * @template U
+     * @param callable(T): U $mapper
+     * @return Collection<U>
+     */
+    public function map(callable $mapper) {
+        return new Collection(array_map($mapper, $this->items));
+    }
+
+    /** @return list<T> */
+    public function toArray(): array {
+        return $this->items;
+    }
+}
+
+$products = new Collection([
+    new Product('Laptop', 999.99),
+    new Product('Mouse', 29.99),
+]);
+// Phan infers Collection<Product>
+
+$names = $products->map(fn($p) => $p->name);
+// Phan infers Collection<string> from the lambda
+
+$nameArray = $names->toArray();
+// Phan knows this is list<string>
+```
+
+**Inference from Closure Return Types:**
+
+```php
+/**
+ * @template T
+ * @param callable(): T $factory
+ * @return T
+ */
+function lazy(callable $factory) {
+    return $factory();
+}
+
+// Phan infers T = User from the return type annotation
+$user = lazy(function(): User {
+    return new User('Lazy');
+});
+// $user is User
+
+// Phan infers T = int
+$number = lazy(fn(): int => 42);
+// $number is int
+```
+
+**When Inference Isn't Enough:**
+
+Sometimes Phan can't infer the type, or you want to be explicit. You can always use `@var` annotations:
+
+```php
+/**
+ * @template T
+ */
+class Stack {
+    /** @var list<T> */
+    private array $items = [];
+
+    /** @param T $item */
+    public function push($item): void {
+        $this->items[] = $item;
+    }
+}
+
+// Inferred from first push (but might not be what you want)
+$stack1 = new Stack();
+$stack1->push(1);
+
+// Explicit - ensures type safety from the start
+/** @var Stack<int> $stack2 */
+$stack2 = new Stack();
+$stack2->push(1);
+```
+
+**Why Inference Matters:**
+
+1. **Less Verbose**: No need to write `new Box<string>("hello")` like in other languages
+2. **Refactoring Friendly**: Change a type in one place, inference propagates automatically
+3. **IDE Support**: Your IDE can autocomplete based on inferred types
+4. **Gradual Typing**: Add type specificity where it matters most
 
 ## Generic Interfaces
 
 **New in v6:** Phan now supports generic interfaces using the `@implements` annotation.
+
+### Why Generic Interfaces?
+
+Interfaces define contracts - what methods a class must implement. Generic interfaces extend this by allowing the contract to be parameterized by types. This is incredibly powerful for creating reusable patterns.
+
+**Common patterns that benefit from generic interfaces:**
+- Repository pattern: `Repository<T>` ensures type-safe data access
+- Factory pattern: `Factory<T>` guarantees what type it produces
+- Iterator pattern: `Iterator<T>` knows what type it iterates over
+- Command pattern: `Handler<TCommand>` knows what command it handles
+
+```mermaid
+graph LR
+    A["Interface Repository&lt;T&gt;"] -->|"@implements Repository&lt;User&gt;"| B[UserRepository]
+    A -->|"@implements Repository&lt;Product&gt;"| C[ProductRepository]
+    B -->|"find(): User"| D[Type Safe!]
+    C -->|"find(): Product"| E[Type Safe!]
+```
 
 ### Declaring Generic Interfaces
 
@@ -272,6 +540,31 @@ class GenericRepository implements Repository {
 
 **New in v6:** Phan now supports generic traits using the `@use` annotation.
 
+### Why Generic Traits?
+
+Traits provide code reuse through horizontal composition - you can add common functionality to multiple unrelated classes. Generic traits take this further by making that shared functionality type-safe.
+
+**When to use generic traits:**
+- **Cross-cutting concerns**: Logging, caching, timestamps that work with any entity type
+- **Mixins**: Add functionality like `Comparable<T>` or `Serializable<T>` to multiple classes
+- **Implementation sharing**: Share common logic across different entity types
+- **Avoiding inheritance**: Add behavior without creating deep inheritance hierarchies
+
+**Key advantage over inheritance:** A class can use multiple traits with different type parameters, but can only extend one parent class.
+
+```mermaid
+graph TD
+    T["Trait Timestampable&lt;T&gt;"]
+    T -->|"@use Timestampable&lt;int&gt;"| A[UnixTimestampEntity]
+    T -->|"@use Timestampable&lt;DateTime&gt;"| B[DateTimeEntity]
+    T -->|"@use Timestampable&lt;string&gt;"| C[ISO8601Entity]
+
+    style T fill:#e1f5ff
+    style A fill:#c8e6c9
+    style B fill:#c8e6c9
+    style C fill:#c8e6c9
+```
+
 ### Declaring Generic Traits
 
 ```php
@@ -385,9 +678,27 @@ class Service {
 
 **New in v6:** Template parameters can be constrained to specific types using `@template T of SomeClass`.
 
+### What Are Template Constraints?
+
+Without constraints, a generic class can be instantiated with *any* type. This means Phan cannot assume anything about the template parameter - you can't call methods on it or access properties. Template constraints solve this by specifying that a template parameter must be a specific type or its subtype.
+
+**Why use constraints?**
+- **Type Safety**: Prevent invalid type arguments at analysis time
+- **Method Access**: Call methods/access properties that are guaranteed to exist
+- **Documentation**: Make the requirements of your generic code explicit
+- **Better IDE Support**: Autocomplete works because the constraint defines available methods
+
+```mermaid
+graph TD
+    A[Template T] -->|No Constraint| B[Can be ANY type]
+    A -->|"@template T of Animal"| C[Must be Animal or subclass]
+    B -->|Problem| D[Cannot call any methods safely]
+    C -->|Benefit| E[Can call Animal methods like makeSound]
+```
+
 ### Basic Constraints
 
-Constraints ensure that template arguments satisfy a specific type bound:
+Let's see how constraints enable type-safe generic code:
 
 ```php
 class Animal {
@@ -555,13 +866,208 @@ class Processor {
 
 **[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQCWB2AXApgJwGYEMDGyAEAymrJgDawBemARqfgN7R7N5gCuts2e6b82iWAHt4eAM7EylZAAoAlAC5xiVAgDmAbmgBfaHCRosuPADUpAE0yIadPIxasO5br36CReAG4WrsxXmohIVItXWgAegAqSKZIvAABFABbMFJfPAAVPCF0QklyKlpkADIzcktrItjw6Gw0sTE8AAVUIVwGoVQ7JhYouPiwTFRMJMy8ABJYZLxImod2Thc+AWFRMFb2sRlJ5P8xFXVuhwdYXO2p5CSAWgA+b3LfeTkj49fUZEQ2VFEdy9uJVRSCh+LSvZi6MF4d6fb54ADkcNBLF02iAA&php=84&phan=v6-dev&ast=1.1.3)**
 
+### Class String Constraints
+
+One of the most powerful patterns in PHP is using `class-string<T>` to create type-safe factories, repositories, and dependency injection containers. This pattern is heavily used in Laravel, Symfony, and other modern frameworks.
+
+**The Problem:** When you pass class names as strings to create instances, PHP and static analyzers lose all type information:
+
+```php
+function createInstance(string $className): object {
+    return new $className();
+}
+
+$user = createInstance(User::class);  // Returns 'object', not 'User'!
+```
+
+**The Solution:** Use `class-string<T>` to preserve the type relationship:
+
+```php
+/**
+ * @template T of object
+ * @param class-string<T> $className
+ * @return T
+ */
+function createInstance(string $className): object {
+    return new $className();
+}
+
+$user = createInstance(User::class);  // Phan knows this is User!
+```
+
+**Real-World Example: Generic Repository Pattern**
+
+This is the foundation of repository patterns in frameworks like Laravel and Doctrine:
+
+```php
+abstract class Entity {
+    abstract public function getId(): int;
+}
+
+class User extends Entity {
+    public function __construct(
+        private int $id,
+        public string $name,
+        public string $email
+    ) {}
+
+    public function getId(): int {
+        return $this->id;
+    }
+}
+
+/**
+ * @template T of Entity
+ */
+class Repository {
+    /** @var class-string<T> */
+    private string $entityClass;
+
+    /** @var array<int, T> */
+    private array $storage = [];
+
+    /**
+     * @param class-string<T> $entityClass
+     */
+    public function __construct(string $entityClass) {
+        $this->entityClass = $entityClass;
+    }
+
+    /**
+     * @param T $entity
+     */
+    public function save($entity): void {
+        $this->storage[$entity->getId()] = $entity;
+    }
+
+    /**
+     * @return T|null
+     */
+    public function find(int $id) {
+        return $this->storage[$id] ?? null;
+    }
+
+    /**
+     * @return list<T>
+     */
+    public function findAll(): array {
+        return array_values($this->storage);
+    }
+}
+
+// Type-safe repositories!
+/** @var Repository<User> $userRepo */
+$userRepo = new Repository(User::class);
+$user = new User(1, 'Alice', 'alice@example.com');
+$userRepo->save($user);
+
+$foundUser = $userRepo->find(1);
+// Phan knows $foundUser is User|null, not Entity|null!
+```
+
+**Real-World Example: Generic Factory Pattern**
+
+Factories in dependency injection containers use this pattern:
+
+```php
+/**
+ * @template T of object
+ */
+class Factory {
+    /** @var class-string<T> */
+    private string $className;
+
+    /**
+     * @param class-string<T> $className
+     */
+    public function __construct(string $className) {
+        $this->className = $className;
+    }
+
+    /**
+     * @param list<mixed> $args
+     * @return T
+     */
+    public function create(array $args = []): object {
+        $reflection = new ReflectionClass($this->className);
+        return $reflection->newInstanceArgs($args);
+    }
+}
+
+/** @var Factory<User> $userFactory */
+$userFactory = new Factory(User::class);
+$newUser = $userFactory->create([2, 'Bob', 'bob@example.com']);
+// Phan knows $newUser is User, not object!
+```
+
+**Why This Matters in PHP:**
+
+1. **Framework Integration**: Laravel's `Model::class`, Symfony's service containers, Doctrine's repositories all use this pattern
+2. **Type-Safe DI Containers**: Register and resolve services without losing type information
+3. **Dynamic Class Loading**: Safe runtime class instantiation with compile-time type checking
+4. **Testability**: Mock factories and repositories while maintaining type safety
+
 ## Variance Annotations
 
 **New in v6:** Phan supports variance annotations to enforce proper template usage in read/write positions.
 
+### Understanding Variance
+
+Variance describes how subtyping relationships between types relate to subtyping relationships between generic types. It's one of the most subtle concepts in type systems, but crucial for type safety.
+
+**The Core Problem:**
+
+If `Dog` is a subtype of `Animal`, should `Container<Dog>` be a subtype of `Container<Animal>`? The answer depends on how `Container` uses its type parameter.
+
+**Three Types of Variance:**
+
+1. **Covariant** (`@template-covariant T`): If Dog ⊆ Animal, then Container<Dog> ⊆ Container<Animal>
+   - Safe when T only appears in "output" positions (return types, readonly properties)
+   - Think: "Producers of T"
+
+2. **Contravariant** (`@template-contravariant T`): If Dog ⊆ Animal, then Container<Animal> ⊆ Container<Dog>
+   - Safe when T only appears in "input" positions (parameters)
+   - Think: "Consumers of T"
+
+3. **Invariant** (default): Container<Dog> and Container<Animal> are unrelated
+   - Required when T appears in both input and output positions
+   - Think: "Storage of T"
+
+```mermaid
+graph TD
+    subgraph "Type Hierarchy"
+    A[Animal] --> D[Dog]
+    A --> C[Cat]
+    end
+
+    subgraph "Covariant: Producer Hierarchy Follows"
+    PA["Producer&lt;Animal&gt;"] --> PD["Producer&lt;Dog&gt;"]
+    PA --> PC["Producer&lt;Cat&gt;"]
+    end
+
+    subgraph "Contravariant: Consumer Hierarchy Reverses"
+    CD["Consumer&lt;Dog&gt;"] --> CA["Consumer&lt;Animal&gt;"]
+    CC["Consumer&lt;Cat&gt;"] --> CA
+    end
+
+    subgraph "Invariant: Box Types Unrelated"
+    BA["Box&lt;Animal&gt;"]
+    BD["Box&lt;Dog&gt;"]
+    BC["Box&lt;Cat&gt;"]
+    end
+```
+
 ### Covariant Templates
 
-Use `@template-covariant T` when the template type is only used in "output" positions (return types, readonly properties):
+**When to use:** Your class/interface only *produces* (returns) values of type T, never consumes them.
+
+**Why it's safe:** If you have a `Producer<Dog>` and treat it as a `Producer<Animal>`, you're asking for an Animal and getting a Dog - which is always safe because Dog IS-AN Animal.
+
+**Common use cases:**
+- Read-only collections
+- Iterators
+- Factory interfaces
+- Query result sets
 
 ```php
 /**
@@ -610,7 +1116,18 @@ Covariant templates enable safe subtyping:
 
 ### Contravariant Templates
 
-Use `@template-contravariant T` when the template type is only used in "input" positions (parameters):
+**When to use:** Your class/interface only *consumes* (accepts as parameters) values of type T, never produces them.
+
+**Why it's safe:** If you have a `Consumer<Animal>` and treat it as a `Consumer<Dog>`, you're passing a Dog to something expecting an Animal - which is always safe because Dog IS-AN Animal.
+
+**The key insight:** If a function can handle any Animal, it can certainly handle Dogs specifically. So `Consumer<Animal>` is a subtype of `Consumer<Dog>` - the relationship reverses!
+
+**Common use cases:**
+- Event handlers
+- Comparators
+- Validators
+- Serializers
+- Logging interfaces
 
 ```php
 /**
@@ -817,6 +1334,156 @@ $article = create(Article::class);  // Phan knows this is Article
 
 **[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6YRATkbsgMbEDOrAtK5rQJYB2Ac2BkAfMgAkLIuwByDbJQy1smAK61+5SrGgAzNfyaZeAey1MVJbAApufIZOlyFASmQBvFMh8r1m5H5sAHcnNlZ5XFtXAG5oAF9oaAk1VmxaZABeZiscGwBVNNoALmLnVlifKuRYWGQABQgiLQBrflNg1mRMCF4uvuRC9OS6ExZsLJzsaxsAQVoxgmxS8sqausbm5DaOrp6BgfnF7CA&php=84&phan=v6-dev&ast=1.1.3)**
 
+### Generators
+
+PHP's `Generator` type can be annotated with generics to provide type safety for lazy iteration. This is especially powerful for memory-efficient data processing.
+
+**Generator Type Parameters:**
+
+The full `Generator` type has four template parameters:
+
+```
+Generator<TKey, TValue, TSend, TReturn>
+```
+
+- **TKey**: The type of keys yielded
+- **TValue**: The type of values yielded
+- **TSend**: The type of values that can be sent to the generator via `send()`
+- **TReturn**: The type returned when the generator completes
+
+Most commonly, you'll only specify the first two (key and value types).
+
+**Basic Generator Example:**
+
+```php
+/**
+ * Read file lines lazily
+ * @return Generator<int, string>
+ */
+function readLines(string $filename): Generator {
+    $file = fopen($filename, 'r');
+    $lineNumber = 0;
+    while (($line = fgets($file)) !== false) {
+        yield $lineNumber => trim($line);
+        $lineNumber++;
+    }
+    fclose($file);
+}
+
+// Phan knows this yields int => string
+foreach (readLines('file.txt') as $lineNum => $content) {
+    // $lineNum is int, $content is string
+    echo "$lineNum: $content\n";
+}
+```
+
+**Generic Lazy Collections:**
+
+This pattern is used in Laravel Collections and similar libraries:
+
+```php
+/**
+ * @template T
+ */
+class LazyCollection {
+    /** @var list<T> */
+    private array $items;
+
+    /** @param list<T> $items */
+    public function __construct(array $items) {
+        $this->items = $items;
+    }
+
+    /**
+     * @return Generator<int, T>
+     */
+    public function getIterator(): Generator {
+        foreach ($this->items as $index => $item) {
+            yield $index => $item;
+        }
+    }
+
+    /**
+     * @template U
+     * @param callable(T): U $mapper
+     * @return Generator<int, U>
+     */
+    public function map(callable $mapper): Generator {
+        foreach ($this->items as $index => $item) {
+            yield $index => $mapper($item);
+        }
+    }
+
+    /**
+     * @param callable(T): bool $predicate
+     * @return Generator<int, T>
+     */
+    public function filter(callable $predicate): Generator {
+        $newIndex = 0;
+        foreach ($this->items as $item) {
+            if ($predicate($item)) {
+                yield $newIndex => $item;
+                $newIndex++;
+            }
+        }
+    }
+}
+
+/** @var LazyCollection<User> $users */
+$users = new LazyCollection([
+    new User(1, 'Alice'),
+    new User(2, 'Bob'),
+]);
+
+// Phan knows this yields string values
+foreach ($users->map(fn($u) => $u->name) as $name) {
+    echo strtoupper($name) . "\n";
+}
+
+// Phan knows this yields User objects
+foreach ($users->filter(fn($u) => $u->id > 1) as $user) {
+    echo $user->name . "\n";
+}
+```
+
+**Infinite Sequences:**
+
+Generators are perfect for infinite sequences with type safety:
+
+```php
+/**
+ * Generate Fibonacci numbers infinitely
+ * @return Generator<int, int>
+ */
+function fibonacci(): Generator {
+    $a = 0;
+    $b = 1;
+    $index = 0;
+
+    while (true) {
+        yield $index => $a;
+        $temp = $a + $b;
+        $a = $b;
+        $b = $temp;
+        $index++;
+    }
+}
+
+// Take first 10 numbers
+$count = 0;
+foreach (fibonacci() as $index => $value) {
+    echo "F($index) = $value\n";
+    if (++$count >= 10) break;
+}
+```
+
+**Why Generators with Generics Matter in PHP:**
+
+1. **Memory Efficiency**: Process large datasets without loading everything into memory
+2. **Lazy Evaluation**: Only compute values when needed, improving performance
+3. **Type Safety**: Maintain type information through transformation chains
+4. **Framework Integration**: Laravel, Symfony, and other frameworks use this pattern extensively
+
 ## Utility Types
 
 **New in v6:** Phan supports several utility types for more precise type definitions.
@@ -945,6 +1612,31 @@ recordDebt(50);    // ERROR: 50 is not negative
 ## Built-in Generic Types
 
 Phan v6 includes generic type annotations for many built-in SPL classes and standard library functions, providing better type safety when working with PHP's standard library.
+
+### Why Built-in Generics Matter
+
+PHP's standard library has always been dynamically typed. Functions like `array_map()` or classes like `SplObjectStorage` work with `mixed` types, meaning you lose type information when using them. Phan's generic annotations solve this by tracking types through these operations.
+
+**Before generics:**
+```php
+$users = [new User('Alice'), new User('Bob')];
+$names = array_map(fn($u) => $u->name, $users);
+// Phan thinks $names is array<mixed> - lost type info!
+```
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQAkCuBnApgJ0QAgLwYNoDtkB3DAVRVQAoByAQQBsBLAY2WoEoAaDQk8tGgCEA9gCMOAXQDccfAEMAtskw45qVHICeAfQVywlAGb5KCdtgB8GBAFoL8pdwQVE7GQHp3GAAoQ5+DAAXCEZ8AGtMWAdlDEZMNQ1NYAVGAA9kABMrGwx6YURAoM0wZFj8Q2EAQiA&php=84&phan=v6-dev&ast=1.1.3)**
+
+**With generics:**
+```php
+/** @var array<User> $users */
+$users = [new User('Alice'), new User('Bob')];
+$names = array_map(fn(User $u) => $u->name, $users);
+// Phan knows $names is array<string> - type preserved!
+```
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAKoDOAplgHxIAkArhVqUvLNA0ywLxIDaAO3IB3JGUoAKAOQBBADYBLAMbkpASgA0SIaPFZpAIQD2AI3UBdANwcBGALbkeuLPgIB9OxjASAZgIl6dPRqSNw0DAC0VLYOWpyUpGrWsLBIAAoQGAJIANYCRsIstDGOSAoseITApAAuWAoCAOY0EUg1BGDkSGBYjpRo5AAmAIRAA&php=84&phan=v6-dev&ast=1.1.3)**
+
+This section covers the most commonly used generic built-in types. For a complete list, see the stub files in `.phan/internal_stubs/`.
 
 ### SplObjectStorage
 
