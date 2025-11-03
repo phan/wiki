@@ -150,9 +150,9 @@ $str = $strBox->get();  // Phan knows this is a string
 **[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IILIOYFMB2OATgJYDGyARgPYAeyALhAIb3IRUA2AJgM7JPIAbkw4BXHMioAzBgE8wEgCoo0AAXo4AtmA4slK2NFK6efAEK1kAbxTI7CNcMLJFqQ3btgSwjcgAkwmI4ANzQtvaIyKpgTIRMmi7+geJu4chgohQcZMhSonik9MRUeMgA+mWkJTz0hKKFABQBIuIAlNZpHv6MxDwAtAB8yRIAvEktIWkAvmFdDlGEOPSihKWu8O4eGVk5eQVFJdhLDe02XV2Ly6vdEL2Dw6FdMzNwsMgACsylxHhSROa0YA-egDXKEKgJRgSKp4Gp1QpUZyxLCiTT4ejQPzAix0MYEADuyBxDQALAAmVqhZocZBjLF4eg4wa4egnYL2N6fJilADWeCo+L4PT4vX43wZYVgnK+yB+f0IAJowDhPywoKk4MhEGh1Vq9XoiP4hBRaIlfjhONpyAJRNoDQARNqOBwqPbKZi4VbzbUmQMWWyOR8ZXyBULbiK+AIVXgsEA&php=84&phan=v6-dev&ast=1.1.3)**
 
 
-### Constructor Must Define All Template Types
+### Template Types and Constructors
 
-All template types must be filled in with concrete types via the constructor. This allows Phan to infer the generic type from constructor arguments.
+**Best Practice:** Template types should be used in constructor parameters to enable type inference. This allows Phan to automatically determine the generic type from constructor arguments.
 
 ```php
 /**
@@ -167,12 +167,51 @@ class Container {
         $this->item = $item;
     }
 }
+
+$stringContainer = new Container("hello");
+// Phan infers Container<string> from the argument
 ```
 
 **[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IDCA9gHaZECW72ATsgDeKZGIRp0ANyKCyqamLFh+rHDRwATZABJuOXAG5oo8YgxhZRXOV368C08jABXAEYFuNZADMX7DW4OZAB9EJoOekx+Fw0ACj0DAEphJyVdTAhuegBaAD57GwBeOwNjdIBfaAqgA&php=84&phan=v6-dev&ast=1.1.3)**
 
+**What if template types aren't in the constructor?**
 
-If template types aren't specified as constructor parameters, Phan will emit `PhanGenericConstructorTypes`.
+If template types aren't used as constructor parameters, Phan will:
+1. Emit a `PhanGenericConstructorTypes` warning
+2. Default the template type to `mixed`, losing type safety
+
+```php
+/**
+ * @template T
+ */
+class Box {
+    /** @var T */
+    private $value;
+
+    public function __construct() {
+        // T is not used - Phan can't infer it!
+    }
+
+    /** @param T $value */
+    public function set($value): void {
+        $this->value = $value;
+    }
+
+    /** @return T */
+    public function get() {
+        return $this->value;
+    }
+}
+
+$box = new Box();  // Warning: T defaults to mixed
+$box->set("hello");
+$box->set(42);     // No error - T is mixed, not string!
+
+// To get type safety, use an explicit annotation:
+/** @var Box<string> $typedBox */
+$typedBox = new Box();
+$typedBox->set("hello");  // Now T is string
+```
 
 ### Extending Generic Classes
 
