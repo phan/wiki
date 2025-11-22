@@ -38,7 +38,7 @@ A list of suggestions that may help speed up Phan analysis on your project.
 
 ## Using Advanced Features
 
-**[[Generic Types]]** | **[[Generic Types V6|Generic-Types-V6]]**<br/>
+**[[Generic-Types-V6]]**<br/>
 Phan has primordial support for generic (templated) classes via type the annotations `@template` and `@inherits` and via a type syntax of the form `MyClass<T>` that may be referenced within doc-block annotations.
 
 **[[Editor Support]]**<br/>
