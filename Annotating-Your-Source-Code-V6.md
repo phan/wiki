@@ -6,14 +6,16 @@ This guide covers how to annotate your PHP source code for Phan V6, including al
 
 1. [Basic Annotations](#basic-annotations)
 2. [Union Type Syntax](#union-type-syntax)
-3. [Generic Type Annotations (V6)](#generic-type-annotations-v6)
-4. [Template Constraints (V6)](#template-constraints-v6)
-5. [Variance Annotations (V6)](#variance-annotations-v6)
-6. [Utility Types (V6)](#utility-types-v6)
-7. [Property and Method Annotations](#property-and-method-annotations)
-8. [Assertion Annotations](#assertion-annotations)
-9. [Suppression Annotations](#suppression-annotations)
-10. [Advanced Features](#advanced-features)
+3. [Multiline Doc Comments (V6)](#multiline-doc-comments-v6)
+4. [Generic Type Annotations (V6)](#generic-type-annotations-v6)
+5. [Template Constraints (V6)](#template-constraints-v6)
+6. [Variance Annotations (V6)](#variance-annotations-v6)
+7. [Utility Types (V6)](#utility-types-v6)
+8. [PHP 8.4/8.5 Features](#php-844-85-features)
+9. [Property and Method Annotations](#property-and-method-annotations)
+10. [Assertion Annotations](#assertion-annotations)
+11. [Suppression Annotations](#suppression-annotations)
+12. [Advanced Features](#advanced-features)
 
 ---
 
@@ -281,6 +283,81 @@ function complexTypes($mixed, $either, $optionalCallback) {
 ```
 
 **[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBLAOwBcAfAZzJ1IHMLc8BPYGuk+gPgpIFcANoOQASfEQAeAUwAmyAMIB7fGEHTJyfiSJKSKNJlwFkzLG1JkANBwa8zbW1yuXuY6UTIRpOZAHkSaVMcVmQyFjAgpV8sEiUvHwMMbDxCAGMsYSwAI3UACid6AEoALgA3JSJZPiERUSUwMl0STIVMwWysNIBrRXbOnuRo5AFhA1hoADNtNKa9ZDSVNQ0AFQjpKjzxKTkrd09vHD36xubW-q7uouQAbxRkB9hYZAA6N+gAXyA&php=84&phan=v6-dev&ast=1.1.3)**
+
+---
+
+## Multiline Doc Comments (V6)
+
+**New in V6:** Doc comments for `@param`, `@var`, `@return`, and Phan-specific annotations can now span multiple lines. This is useful for complex nested array structures and generic types.
+
+### Basic Multiline Syntax
+
+```php
+/**
+ * @param array{
+ *   user: array{id: int, name: string},
+ *   permissions: array<string>,
+ *   metadata: array{created_at: string, updated_at: string}
+ * } $data Complex nested structure
+ */
+function processData($data) {
+    // $data has complex nested structure with full type checking
+}
+```
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCGAnZeu2AngN4prI4pJ51wCtwALqzgM+kwEsAXXMO1oDdeFkrlyTFi+AGyRGXnMk1ZS1MAFV7YAXwATJFxFI9r2s4qRXQEvOV7mYyRuCJIvEARMwhZANzQNomPIRZMGgBvFGQX6gGx-hVVCJy8YOXV3pAUyrLmltWNzf3+Hs6h0dm5BGOj2BYVjV2lNfXqjAFYW2JH5ZVGjk+zMXgOlVV1BwqLivyYJ1UZ8vH1NyqXVdXZYoMphzLLzxHT5uQXI0EVqHOHmr2v6AKzQ7OPh5+1e6mQ6EFr3K-LiBMhRB8xEj5-9lS7ek3nC0HBM+QyUq6lA=&php=84&phan=v6-dev&ast=1.1.3)**
+
+### Generic Type Multiline Formatting
+
+For complex generic types, you can spread them across lines for readability:
+
+```php
+/**
+ * @template TKey
+ * @template TValue
+ * @param array<
+ *   TKey,
+ *   array{
+ *     id: int,
+ *     value: TValue,
+ *     metadata: array<string, mixed>
+ *   }
+ * > $items
+ * @return array<TKey, TValue>
+ */
+function transformItems($items) {
+    // Process and return transformed data
+}
+```
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCGAnZeu2AngN4prI4pJ51wCtwALqzgM+kwEsAXXMO1oDdeFkrlyTFi+AGyRGXnMk1ZS1MAFV7YAXwATJFxFI9r2s4qRXQEvOV7mYyRuCJIvEARMwhZANzQNomPIRZMGgBvFGQX6gGx-hVVCJy8YOXV3pAUyrLmltWNzf3+Hs6h0dm5BGOj2BYVjV2lNfXqjAFYW2JH5ZVGjk+zMXgOlVV1BwqLivyYJ1UZ8vH1NyqXVdXZYoMphzLLzxHT5uQXI0EVqHOHmr2v6AKzQ7OPh5+1e6mQ6EFr3K-LiBMhRB8xEj5-9lS7ek3nC0HBM+QyUq6lA=&php=84&phan=v6-dev&ast=1.1.3)**
+
+### Phan-Specific Annotations with Multiline
+
+Extended multiline support for Phan-specific annotations:
+
+```php
+/**
+ * @phan-param array{
+ *   users: array<int, User>,
+ *   roles: array<string, Role>
+ * } $config
+ *
+ * @phan-var list<array{
+ *   id: positive-int,
+ *   name: non-empty-string,
+ *   active: bool
+ * }> $result
+ */
+function processUsers($config) {
+    // Multiline Phan annotations provide clearer documentation
+}
+```
+
+This feature helps with:
+- **Readability**: Complex types are easier to understand when formatted nicely
+- **Maintenance**: Changes to nested structures are clearer
+- **Documentation**: Self-documenting code through formatted type definitions
 
 ---
 
@@ -809,6 +886,156 @@ function getConfig($key) {
 ```
 
 **[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIDcCGAnZeu2AngN4prLICuAzgKa60BcBuRxwYA9rQJYAXPpnoBaPgDsBAGgncJo+gFswA4qNoDckgOYA+aRSrJN2AXVYBybAGMhIywB9Lk2-fpPLYehIAmuy0NUYzBtbm01VkkBUSIJHXpgAEZpAFY9IwBfClhoABIbeQAzPh1kAF5kAG0UY0s6RlpLCr1qpJbkSwBBABs+Gw9pZAAmDssAIW4AI0sAXSC603MmsbdhQdqqLzCI4mby1oBmaFmAbmg4RCN0MDxsJWQAa3p1biLgAuLS1rzn4mvcPRzLgJMgcD1qGI3h9ChISvoctAitQJHY+PJkAkBABhL46AAUvxeAEpkORjJietNsD1kJ84aVzhTAcDQfT4VUicQztBMkA&php=84&phan=v6-dev&ast=1.1.3)**
+
+---
+
+## PHP 8.4/8.5 Features
+
+Phan V6 adds full support for PHP 8.4 and 8.5 language features with type annotations.
+
+### #[Deprecated] Attribute
+
+Mark functions, methods, and class constants as deprecated using the attribute:
+
+```php
+#[Deprecated(message: "Use newMethod() instead", since: "2.0.0")]
+public function oldMethod() {
+    return $this->newMethod();
+}
+
+#[Deprecated]
+class LegacyClass {
+    #[Deprecated(message: "Use VALUE_NEW instead")]
+    public const VALUE_OLD = 1;
+}
+```
+
+Phan will emit `PhanDeprecatedFunction`, `PhanDeprecatedMethod`, and `PhanDeprecatedClassConstant` when deprecated items are used.
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCGAnZeu2AngN4prLICuwGYBmAdgJYBOZAJygE5kAXAGQBnKhQBsaARgG1mgYIaDg8BPC8FsNVm0BhMzCAZsFNMNv86zyAMZkGFJFWQBvFMkoA+VEhNm-RIyy+TKmHSCZAAZZBGIeNKG8AO6SCEsVnwsvAC+yBmV2aVlZRVVVQZGxnAJmgBsJM0qDLOQfGyMKlwyOKphfmDkz10ARLYxqhDhKvEqAIzI5HKVHCFZKRVVUJmI4gGOVJ8AIL6FmDQqaggZKJ8X6jnRH2ZKz1klJSnlqcS1V95eKvJk5AAWpqhYxWjZhJwLFm9VzcbqBpXCiRQSvl1PLCVX6tTEknHBbXj9MRV5qUJKRdmVYAr1FqlVIqBHlSo8h+k5N48BVDfmXHl5cHD9bCVA2pGMz+b6oIzHQxYfgSWy65M85f9bZ2qqLrH2RrHfkVfBCvWQSqBYr5AOVZjJCPQKfZ1U0gfAhG1m+VZDaQPblmRnZxI0Yc03B4h06jxYKjMyDJPvplMzpvB-TAkXvXGlZlN+RX5lfn1+dWVMsJqBOl1Nldu7Tl3YJKhHvvfgO52Fw3j+nKkwZdYcJ+zl+XnsR4PW50A&php=84&phan=v6-dev&ast=1.1.3)**
+
+### Typed Class Constants (PHP 8.3)
+
+Declare types for class constants with full inheritance checking:
+
+```php
+interface Config {
+    public const int PORT = 8080;
+    public const string HOST = 'localhost';
+}
+
+class ApiConfig implements Config {
+    public const int PORT = 3000;  // OK: compatible type
+    public const string HOST = '0.0.0.0';  // OK: compatible type
+}
+
+class BadConfig implements Config {
+    public const string PORT = '3000';  // Error: type mismatch
+}
+```
+
+Phan validates:
+- Type compatibility in inheritance (`PhanConstantTypeMismatchInheritance`)
+- Assignment types (`PhanTypeMismatchDeclaredConstant`)
+- Never type violations (`PhanTypeMismatchDeclaredConstantNever`)
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCGAnZeu2AngN4prI4pJ51wCtwALqzgM+kwEsAXXMO1oDdeFkrlyTFi+AGyRGXnMk1ZS1MAFV7YAXwATJFxFI9r2s4qRXQEvOV7mYyRuCJIvEARMwhZANzQNomPIRZMGgBvFGQX6gGx-hVVCJy8YOXV3pAUyrLmltWNzf3+Hs6h0dm5BGOj2BYVjV2lNfXqjAFYW2JH5ZVGjk+zMXgOlVV1BwqLivyYJ1UZ8vH1NyqXVdXZYoMphzLLzxHT5uQXI0EVqHOHmr2v6AKzQ7OPh5+1e6mQ6EFr3K-LiBMhRB8xEj5-9lS7ek3nC0HBM+QyUq6lA=&php=84&phan=v6-dev&ast=1.1.3)**
+
+### Property Hooks (PHP 8.4)
+
+Full support for property hooks with type validation:
+
+```php
+class User {
+    /**
+     * @var non-empty-string
+     */
+    public string $username {
+        set {
+            if (strlen($value) === 0) {
+                throw new ValueError("Username cannot be empty");
+            }
+            $this->username = $value;
+        }
+    }
+
+    /**
+     * @var positive-int
+     */
+    public int $age {
+        get {
+            return $this->age;
+        }
+        set {
+            if ($value < 0) {
+                throw new ValueError("Age must be positive");
+            }
+            $this->age = $value;
+        }
+    }
+}
+```
+
+Phan detects:
+- Hook parameter type mismatches (`PhanPropertyHookIncompatibleParamType`)
+- Return type incompatibilities (`PhanPropertyHookIncompatibleReturnType`)
+- Set hooks on readonly properties (`PhanReadonlyPropertyHasSetHook`)
+- Default values on hooked properties (`PhanPropertyHookWithDefaultValue`)
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0B6AKguNLQrQAEA3RfAOwHs2BabAWzAAXAJ7dkg3AEs2AcxqkKZeWjABXAEbxJsNOKmy0AElU5cbRH2yFltHIOu1HpSQDM0ACj3xsbd4ZbwqtgAlGgAvBFoAAyhRE7xpIIQuBwA7mhs2OkAaoiB2ACiuCm47gBEWHjmlmiwiGyc9upW-ELCZcEA3DbxAL49ToZJksjcAHwmVRZWYUYBQd0J-bT9ypTUjvTMrCocyJKCkkzY3NKCNorKapraaGdGiDJWcfF2DgnObn7zVsCzMe8Po4kil0pkcnkgkUSuUAIJPNB8ExNKxgPYHI7YDqLIFoZa4oYQEbjR4zOaQ7A4pz4kj9XpAA&php=84&phan=v6-dev&ast=1.1.3)**
+
+### #[NoDiscard] Attribute (PHP 8.5)
+
+Mark return values that shouldn't be ignored:
+
+```php
+#[NoDiscard]
+function generateId(): string {
+    return uniqid('id_');
+}
+
+#[NoDiscard(message: "The transaction was not committed")]
+function startTransaction(): Transaction {
+    return new Transaction();
+}
+
+// Using (void) cast to suppress the warning
+(void) generateId();  // OK - explicit discard
+
+$id = generateId();  // OK - value is used
+
+generateId();  // Error: PhanNoDiscardReturnValueIgnored
+```
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0B6AKguNLQrQAEA3RfAOwHs2BabAWzAAXAJ7dkg3AEs2AcxqkKZeWjABXAEbxJsNOKmy0AElU5cbRH2yFltHIOu1HpSQDM0ACj3xsbd4ZbwqtgAlGgAvBFoAAyhRE7xpIIQuBwA7mhs2OkAaoiB2ACiuCm47gBEWHjmlmiwiGyc9upW-ELCZcEA3DbxAL49ToZJksjcAHwmVRZWYUYBQd0J-bT9ypTUjvTMrCocyJKCkkzY3NKCNorKapraaGdGiDJWcfF2DgnObn7zVsCzMe8Po4kil0pkcnkgkUSuUAIJPNB8ExNKxgPYHI7YDqLIFoZa4oYQEbjR4zOaQ7A4pz4kj9XpAA&php=84&phan=v6-dev&ast=1.1.3)**
+
+### Pipe Operator (PHP 8.5)
+
+Full type inference through pipe operator chains:
+
+```php
+/**
+ * @param positive-int $value
+ * @return positive-int
+ */
+function double($value) {
+    return $value * 2;
+}
+
+/**
+ * @param int $value
+ * @return string
+ */
+function stringify($value) {
+    return (string) $value;
+}
+
+// Phan understands the full type chain
+$result = 5 |> double(...) |> stringify(...);
+// $result is string
+```
+
+**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtl8BLADwFMATZAEgDcsAbAV3JTXR3IBdmcA7ZACMA9iMbsMkLPwC0WAM4LyObrO45WsgMYj+lYt2J7kCjcX4BzWgxZtUsaADNm-bUZPEFAZXNWAFPRMrACUyADeKMjRXLwCyF4A+mY4FpaBtqEA3NAAvtDOru7GghAylIzkgZRY3FhhkdHRxE7I-l6+qQE0NXUhDVFNTbCwyAAKZYIA1vwiAO4KtL1YCYspacgQKvZDTeTaECKmGpX81bX1OUP5uUA&php=84&phan=v6-dev&ast=1.1.3)**
 
 ---
 
