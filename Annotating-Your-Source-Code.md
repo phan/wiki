@@ -1,3 +1,5 @@
+> **This page documents Phan v5.** For the current version, see **[[Annotating Your Source Code V6|Annotating-Your-Source-Code-V6]]**, which covers variance annotations, utility types, PHP 8.4/8.5 features, and includes interactive runnable examples.
+
 There are plenty of issues that Phan can find if you don't have type annotations in your code, but Phan can do a lot more for you if you tell it about your expectations.
 
 Phan supports the following doc block annotations.

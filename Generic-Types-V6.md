@@ -1,5 +1,7 @@
 # Generic Types in Phan v6
 
+> This is the current documentation for Phan v6 (the latest stable release).
+
 Phan v6 significantly expands support for generic (templated) classes, interfaces, traits, and functions using PHPDoc annotations with `@template` and related tags. This allows you to write type-safe, reusable code that works with multiple types while maintaining strong static analysis.
 
 ## What Are Generics?

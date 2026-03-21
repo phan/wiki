@@ -316,6 +316,66 @@ phan --minimum-target-php-version 8.0
 
 ---
 
+## Project Initialization
+
+### `--init`
+
+Generate a `.phan/config.php` interactively, based on your project's `composer.json` and directory structure.
+
+```bash
+./vendor/bin/phan --init
+```
+
+Related flags for non-interactive initialization:
+
+| Flag | Description |
+|------|-------------|
+| `--init-level <1-5>` | Strictness level: 1 = most lenient, 5 = strictest. Default: 3 |
+| `--init-analyze-dir <DIR>` | Directory to analyze (in addition to those from `composer.json`) |
+| `--init-analyze-file <FILE>` | Individual file to analyze |
+| `--init-no-composer` | Don't use `composer.json` to detect directories |
+| `--init-overwrite` | Overwrite an existing `.phan/config.php` |
+
+Example for a project without Composer:
+
+```bash
+phan --init --init-no-composer --init-analyze-dir src --init-level 3
+```
+
+---
+
+## Automatic Fixes
+
+### `--automatic-fix`
+
+Automatically apply fixes for issues that support it. Currently supported by several built-in plugins including `PHPDocRedundantPlugin`, `PHPDocToRealTypesPlugin`, and `WhitespacePlugin`.
+
+```bash
+phan --automatic-fix --force-polyfill-parser
+```
+
+Requires `--force-polyfill-parser` (or `--force-polyfill-parser-with-original-tokens`) because the polyfill parser provides the token-level source location information needed to compute byte offsets for edits.
+
+> **Note:** Make a backup or commit your code before running `--automatic-fix`. Review the changes with `git diff` before committing.
+
+### `--force-polyfill-parser`
+
+Force use of the `microsoft/tolerant-php-parser` fallback instead of the `php-ast` extension. Required for `--automatic-fix`.
+
+```bash
+phan --force-polyfill-parser --automatic-fix
+```
+
+### `--force-polyfill-parser-with-original-tokens`
+
+Like `--force-polyfill-parser`, but also preserves original token stream for more precise source location. Required by some `--automatic-fix` plugins.
+
+### `--allow-polyfill-parser`
+
+Use the polyfill parser only if the `php-ast` extension is not available. Useful for environments where `php-ast` may or may not be installed.
+
+---
+
 ## Plugin Management
 
 ### `--load-plugins <PLUGINS>`

@@ -1044,3 +1044,197 @@ A lower value such as 50 works for suggesting misspelled classes/constants in na
 but won't give you suggestions for globally namespaced functions.
 
 (Default: `1000`)
+
+---
+
+## Additional Analysis Options
+
+## incremental_analysis
+
+Controls whether incremental analysis is enabled. When enabled, Phan only re-analyzes files that changed since the last run (and their dependents), using a manifest file to track file state.
+
+- `null` (default) — auto-detect: enabled when running from the CLI, disabled in daemon/language server mode
+- `true` — always enable incremental analysis
+- `false` — always disable (full analysis every run)
+
+See also [[Incremental Analysis|Incremental-Analysis]] for details and the `--incremental` / `--no-incremental` CLI flags.
+
+(Default: `null`)
+
+## use_polyfill_parser
+
+Use the `microsoft/tolerant-php-parser` fallback instead of the `php-ast` extension for parsing. Slower than `php-ast` and may produce different or missing error messages for invalid PHP. Required for `--automatic-fix` support (use `--force-polyfill-parser-with-original-tokens` for that).
+
+Set via `--force-polyfill-parser` or `--allow-polyfill-parser` CLI flags rather than in config.
+
+(Default: `false`)
+
+## strict_array_checking
+
+When `true`, Phan warns about possibly invalid array offsets in union types that combine both an array shape (`array{key: type}`) and a generic mixed array (`array`). When `false` (the default), Phan is more lenient in these cases to avoid false positives.
+
+(Default: `false`)
+
+## track_all_inferred_types
+
+When `true`, Phan accumulates all concrete types it infers during analysis alongside the declared types, rather than just updating to the most recently inferred type. This enables more accurate return type overrides and is most useful when combined with `--analyze-twice` or when using `PhoundPlugin` for call graph analysis.
+
+(Default: `false`)
+
+## warn_about_undocumented_exceptions_thrown_by_invoked_functions
+
+When `true`, Phan warns if a function you call has `@throws` declarations that are not documented in your own function's `@throws` annotations. This is a stricter companion to `warn_about_undocumented_throw_statements`.
+
+(Default: `false`)
+
+---
+
+## AST Trimming (Memory Optimization)
+
+## ast_trim_max_elements_per_level
+
+Maximum number of elements allowed per level of a nested literal array before Phan summarizes it into a generic type. This limits memory usage when analyzing files with large array literals (e.g. configuration files, translation tables).
+
+Set lower to reduce memory usage; set higher for more precise analysis of large arrays. Also configurable via `--ast-trim-max-elements-per-level <N>`.
+
+(Default: `256`)
+
+## ast_trim_max_total_elements
+
+Maximum total number of entries in a nested literal array across all levels before Phan summarizes it. Works together with `ast_trim_max_elements_per_level`.
+
+Also configurable via `--ast-trim-max-total-elements <N>`.
+
+(Default: `512`)
+
+## max_union_type_set_size
+
+Maximum number of distinct types allowed in a union type before Phan summarizes the union to a more generic representation (e.g. `array` or `mixed`) to conserve memory. Increase this if Phan is losing type precision on complex generics; decrease it on large codebases with memory pressure.
+
+Also configurable via `--max-union-type-set-size <N>`.
+
+(Default: `1024`)
+
+---
+
+## Additional Output Options
+
+## color_issue_messages
+
+Force colored output for the `text` output mode. `null` (the default) auto-detects terminal support. Prefer `color_issue_messages_if_supported` for config file use; reserve this option for cases where auto-detection fails.
+
+- `null` — auto-detect (default)
+- `true` — always colorize
+- `false` — never colorize
+
+(Default: `null`)
+
+## markdown_issue_messages
+
+When `true`, emit issue messages with Markdown formatting (backtick-quoted identifiers, etc.). Useful when piping Phan output into a tool that renders Markdown.
+
+Also configurable via `--markdown-issue-messages`.
+
+(Default: `false`)
+
+## absolute_path_issue_messages
+
+When `true`, use absolute file paths in issue messages instead of paths relative to the project root. Useful when running Phan in environments where the working directory may differ from the project root.
+
+Also configurable via `--absolute-path-issue-messages`.
+
+(Default: `false`)
+
+---
+
+## Language Server and Daemon Configuration
+
+Most of these options are set via CLI flags rather than in `config.php`. They are documented here for completeness.
+
+## daemonize_socket
+
+Unix socket path for daemon mode. Example: `'/var/run/phan.sock'`. Mutually exclusive with `daemonize_tcp`. Set via `--daemonize-socket <path>` CLI flag rather than in config.
+
+(Default: `false` — daemon mode disabled)
+
+## daemonize_tcp
+
+When `true`, listen on TCP for daemon mode requests. Mutually exclusive with `daemonize_socket`. Set via `--daemonize-tcp` CLI flag.
+
+(Default: `false`)
+
+## daemonize_tcp_host
+
+Host address for TCP daemon mode.
+
+(Default: `'127.0.0.1'`)
+
+## daemonize_tcp_port
+
+Port number for TCP daemon mode. Must be between 1024 and 65535.
+
+(Default: `4846`)
+
+## language_server_config
+
+Internal configuration for the language server communication channel. Set automatically by CLI flags — do not set this in `config.php`. One of:
+- `['stdin' => true]` — communicate over stdin/stdout
+- `['tcp-server' => 'host:port']` — listen on TCP
+- `['tcp' => 'host:port']` — connect to TCP
+
+## language_server_analyze_only_on_save
+
+When `true`, the language server only re-analyzes a file when it is saved, not on every change. Reduces CPU usage in editors that send frequent change notifications.
+
+Set via `--language-server-analyze-only-on-save` CLI flag.
+
+(Default: `false`)
+
+## language_server_enable_go_to_definition
+
+When `true` (the default), the language server handles "go to definition" and "go to type definition" LSP requests.
+
+Disable via `--language-server-disable-go-to-definition` CLI flag.
+
+(Default: `true`)
+
+## language_server_enable_hover
+
+When `true` (the default), the language server handles "hover" LSP requests (showing type information when hovering over a symbol).
+
+Disable via `--language-server-disable-hover` CLI flag.
+
+(Default: `true`)
+
+## language_server_enable_completion
+
+When `true` (the default), the language server handles "completion" LSP requests.
+
+Disable via `--language-server-disable-completion` CLI flag.
+
+(Default: `true`)
+
+## language_server_disable_output_filter
+
+When `true`, the language server emits all detected issues from all files, not just issues in currently open files. Very verbose and produces many more false positives. Useful for debugging the language server itself.
+
+(Default: `false`)
+
+## language_server_hide_category_of_issues
+
+When `true`, hide the issue category name from language server diagnostic messages. Enable via `--language-server-hide-category` CLI flag.
+
+(Default: `false`)
+
+## language_server_use_pcntl_fallback
+
+When `true`, use a manual state backup/restore mechanism as a fallback when `pcntl_fork()` is unavailable. Set via CLI flag rather than config.
+
+(Default: `false`)
+
+## language_server_debug_level
+
+Set to `'info'` to enable verbose debug logging for the language server. Useful when developing editor integrations or debugging LSP communication issues. Set via `--language-server-verbose` CLI flag.
+
+(Default: `null`)
+

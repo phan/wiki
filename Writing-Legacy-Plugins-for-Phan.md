@@ -1,3 +1,5 @@
+> **This page documents deprecated plugin APIs.** V1 plugins were removed in Phan 1.0.0. V2 plugins were deprecated in Phan 2.0.0. For current plugin development, see **[[Writing Plugins for Phan]]**.
+
 The original plugin types will work in all known versions of Phan,
 and must be used for Phan <= 0.8.4, but won't be as efficient as V2 plugins.
 

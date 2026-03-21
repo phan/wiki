@@ -1,51 +1,65 @@
 [![Gitter](https://badges.gitter.im/phan/phan.svg)](https://gitter.im/phan/phan?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-### Getting Started (Phan V6)
+### Getting Started
 
-- **[[Getting Started]]**<br />
-- **[[Annotating Your Source Code V6|Annotating-Your-Source-Code-V6]]**<br />
-- **[[About Union Types]]**<br />
-- **[[Tutorial for Analyzing a Large Sloppy Code Base]]**<br/>
+- **[[Getting Started]]**
+- **[[Annotating Your Source Code V6|Annotating-Your-Source-Code-V6]]**
+- **[[About Union Types]]**
+- **[[Tutorial for Analyzing a Large Sloppy Code Base]]**
 
-### Improving Phan Analysis
+### Type System
 
-- **[[Incrementally Strengthening Analysis]]**<br />
-- **[[Issue Types Reference|Issue-Types-Reference]]**<br />
-- **[[Phan Config Settings]]**<br />
-- **[[Typing Parameters]]**<br />
-- **[[How To Use Stubs]]**<br />
+- **[[Generic Types V6|Generic-Types-V6]]**
+- **[[Advanced Type System in V6|Advanced-Type-System-V6]]**
+- **[[Typing Parameters]]**
 
-### Advanced Type System (V6)
+### Configuration & CLI
 
-- **[[Generic Types V6|Generic-Types-V6]]**<br/>
-- **[[Advanced Type System in V6|Advanced-Type-System-V6]]**<br/>
+- **[[Phan Config Settings]]**
+- **[[Using Phan From the Command Line|Using-Phan-From-Command-Line]]**
+- **[[How To Use Stubs]]**
+- **[[Externally Generating a File List|Externally-generating-a-list-of-files-for-Phan]]**
 
-### Using Advanced Features
+### Plugins
 
-- **[[Editor Support]]**<br/>
-- **[[Using Phan Daemon Mode]]**<br/>
+- **[[Built-in Plugins|Built-in-Plugins]]**
+- **[[Writing Plugins for Phan]]**
 
-### Phan V6 Features & Performance
+### Analysis & Issues
 
-- **[[Migrating to Phan V6|Migrating-to-Phan-V6]]**<br/>
-- **[[PHP 8.4 and 8.5 Support|PHP-8.4-8.5-Support]]**<br/>
-- **[[Using Phan From the Command Line|Using-Phan-From-Command-Line]]**<br/>
-- **[[Incremental Analysis|Incremental-Analysis]]**<br/>
-- **[[Memory and Performance Optimizations|Memory-and-Performance-Optimizations]]**<br/>
-- **[[Phan Helpers Extension|Phan-Helpers-Extension]]**<br/>
-- **[[Tooling and Suppression Baselines|Tooling-and-Suppression-Baseline]]**<br/>
+- **[[Incrementally Strengthening Analysis]]**
+- **[[Issue Types Reference|Issue-Types-Reference]]**
+- **[[Tooling and Suppression Baselines|Tooling-and-Suppression-Baseline]]**
 
-### Frequently Asked Questions
+### Performance
 
-- **[[Frequently Asked Questions]]**<br/>
-- **[[Different Issue Sets On Different Numbers of CPUs]]**<br/>
-- **[[What Static Analysis Lets You Do]]**<br/>
+- **[[Incremental Analysis|Incremental-Analysis]]**
+- **[[Speeding up Phan Analysis]]**
+- **[[Memory and Performance Optimizations|Memory-and-Performance-Optimizations]]**
+- **[[Phan Helpers Extension|Phan-Helpers-Extension]]**
+- **[[Different Issue Sets on Different CPUs|Different-Issue-Sets-On-Different-Numbers-of-CPUs]]**
 
-### Developers
+### Editor & IDE
 
-- **[[Developer's Guide To Phan]]**<br />
-- **[[Writing Plugins for Phan]]**<br />
-- **[[How To Create a Phan Release]]**<br />
+- **[[Editor Support]]**
+- **[[Using Phan Daemon Mode]]**
+
+### PHP Version Support
+
+- **[[PHP 8.4 and 8.5 Support|PHP-8.4-8.5-Support]]**
+- **[[Migrating to Phan V6|Migrating-to-Phan-V6]]**
+
+### FAQ & Developers
+
+- **[[Frequently Asked Questions]]**
+- **[[What Static Analysis Lets You Do]]**
+- **[[Developer's Guide To Phan]]**
+- **[[Writing Plugins for Phan]]**
+- **[[How To Create a Phan Release]]**
+
+### Archived (Phan V5)
+
+- **[[Phan V5 Documentation|Phan-V5-Documentation]]**
 
 ### Editing the Wiki
 

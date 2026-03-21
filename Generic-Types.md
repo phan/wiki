@@ -1,3 +1,5 @@
+> **This page documents Phan v5.** For the current version, see **[[Generic Types V6|Generic-Types-V6]]**, which covers generic interfaces, generic traits, template constraints, variance annotations, and utility types (`key-of<T>`, `value-of<T>`, `int-range`, and more).
+
 Phan has primordial support for generic (templated) classes via type the annotations `@template` and `@inherits` and via a type syntax of the form `MyClass<T>` that may be referenced within doc-block annotations.
 
 For details on possible language-level support for generics, take a look at the draft RFC for [Generic Types and Functions](https://wiki.php.net/rfc/generics).

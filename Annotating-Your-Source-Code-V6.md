@@ -1,5 +1,7 @@
 # Annotating Your Source Code (Phan V6)
 
+> This is the current documentation for Phan v6 (the latest stable release).
+
 This guide covers how to annotate your PHP source code for Phan V6, including all union type syntax, PHPDoc annotations, and new V6 features like generic types, variance annotations, and utility types.
 
 ## Table of Contents
@@ -1267,6 +1269,38 @@ class HelperClass {
 ```
 
 **[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAKQIYDsC0AZgJYA2ApngM4CuYYATmZZcgAoS4CqOjBZjOAMZkAJgGESWZijSYO+YuSq0GTFuy48yfAcJGtqAIxJFBAWTIAXCAHsRM2NDixkAQRIlkgycybJcIsgAtla2IixEOMjWRCyKZMgA7jY4AOSW0fREAObZ-NEQTAmxNEzQ3lIsABJkJGD8EpXIAN4oyO1gRiaCyATUQpZEKciFdfwW1nYAFACULW3ti8iwLgB06wvIAL7QW0A&php=84&phan=v6-dev&ast=1.1.3)**
+
+---
+
+## Debugging Type Inference
+
+### @phan-debug-var
+
+When Phan infers an unexpected type for a variable, you can ask it to print the inferred type by adding an inline string expression statement containing `@phan-debug-var`:
+
+```php
+function example(array $items): void {
+    $first = $items[0] ?? null;
+    '@phan-debug-var $first';
+    // Phan emits: PhanDebugAnnotation - $first has union type mixed
+}
+```
+
+This must be a string **expression statement** — not a comment — because php-ast does not expose comments to Phan. Phan emits a `PhanDebugAnnotation` diagnostic with the inferred union type.
+
+You can debug multiple variables at once, including array elements and properties:
+
+```php
+'@phan-debug-var $arr[\'key\'], $obj->prop, $result';
+```
+
+This is useful when:
+
+- Investigating why Phan reports a type mismatch you don't expect
+- Verifying that type narrowing in a conditional branch works correctly
+- Understanding how a complex union type is flowing through your code
+
+> **Note:** Remove `@phan-debug-var` statements before committing — they intentionally emit diagnostics every time Phan runs.
 
 ---
 
