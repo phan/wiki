@@ -42,7 +42,7 @@ class Example {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAUQB6ILZngFM0BvaNCtAegCoa0ABAN0QCc1kAXVgSwDsA5mhpVylMLxadiAEj55CAbmhiKteszZo2rRAE9g-TgBouvQQD5hoymgk8psntNzoAvGgDaAXWWrqdIws7EbW-rAA9nxcaACyAIIAGgD6AMoAkgBaGGgeAIwADAV+tupBWgAiiNIAKjy4hAA+fACu8PBhtmAtAEbwPLBoMpz1hFx4YLlore3KAL5AA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAUQB6ILZngFM0BvaNCtAegCoa0ABAN0QCc1kAXVgSwDsA5mhpVylMLxadiAEj55CAbmhiKteszZo2rRAE9g-TgBouvQQD5hoymgk8psntNzoAvGgDaAXWWrqdIws7EbW-rAA9nxcaACyAIIAGgD6AMoAkgBaGGgeAIwADAV+tupBWgAiiNIAKjy4hAA+fACu8PBhtmAtAEbwPLBoMpz1hFx4YLlore3KAL5AA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Inline Variable Type Annotations (@phan-var)
 
@@ -71,7 +71,7 @@ function processData() {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQBmCuA7AxgFwJYHtEAIwCdNkBTAZ1IBEBDVKgCgEocBvaHdnAEnzPgBtUOALw5YxVMggBhTAFswfYgA9qtRgG42HAOQABSFUQBaAG5V8Oc-ioBPYOkSoANAFVSxfAD4uPUv1Tamhw4APQhOAAKEIY4iJgA7jgA1nHxpD68Ajjo6Va29o6u7l7QWuywmDxUkjh03JmCVOmc6AAmwt6c8MVMrMHBxJKYOABELa0AXCxdxUaeAObiAHJUssSMAL4AOogjQRwbpcFhOG7EOPrRxmb4RhX4JDiow8hVqOc36FQARorZsNlBK1MGRENpBMocqgyjg9AZruY7pVHg5BJxkJgkO98IEYejMY4PMIcAAGTQwk4ACQ8xGByBwpBsjioSksfFIw3ilSSpBhfChdVItFQ3ScXFaNCoTBEYgkEAASmQwNh3BoYcANdoIpSAIJLbQwy6GUzmHDfTCYPhcIU0bqG+Emix5GzMNoTVFORCrYgTIX4BzzDbiyUw7V6zQbIA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQBmCuA7AxgFwJYHtEAIwCdNkBTAZ1IBEBDVKgCgEocBvaHdnAEnzPgBtUOALw5YxVMggBhTAFswfYgA9qtRgG42HAOQABSFUQBaAG5V8Oc-ioBPYOkSoANAFVSxfAD4uPUv1Tamhw4APQhOAAKEIY4iJgA7jgA1nHxpD68Ajjo6Va29o6u7l7QWuywmDxUkjh03JmCVOmc6AAmwt6c8MVMrMHBxJKYOABELa0AXCxdxUaeAObiAHJUssSMAL4AOogjQRwbpcFhOG7EOPrRxmb4RhX4JDiow8hVqOc36FQARorZsNlBK1MGRENpBMocqgyjg9AZruY7pVHg5BJxkJgkO98IEYejMY4PMIcAAGTQwk4ACQ8xGByBwpBsjioSksfFIw3ilSSpBhfChdVItFQ3ScXFaNCoTBEYgkEAASmQwNh3BoYcANdoIpSAIJLbQwy6GUzmHDfTCYPhcIU0bqG+Emix5GzMNoTVFORCrYgTIX4BzzDbiyUw7V6zQbIA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Parameter Annotations (@param)
 
@@ -89,7 +89,7 @@ function createUser($name, $age, array $tags) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBnAFxwEsA7Ac2QBJKCBTZAVSKZwHIjkAzAK4AbIckb4mKNJlwFkVEvSzUW7Tj2TKWVZAE8muIlIzY8hXHl3BSFGgD56JZbwAy5UsgD2fZE+pHUDBwmEgEcSjYOHClYaEFKAGMSck8IhOCsEiY1HAAKBmYAGiUVYossXUdnAEpkAG8UZCbg0PCxJgB3SM588SZiui0BvyJqgG5oAF8gA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBnAFxwEsA7Ac2QBJKCBTZAVSKZwHIjkAzAK4AbIckb4mKNJlwFkVEvSzUW7Tj2TKWVZAE8muIlIzY8hXHl3BSFGgD56JZbwAy5UsgD2fZE+pHUDBwmEgEcSjYOHClYaEFKAGMSck8IhOCsEiY1HAAKBmYAGiUVYossXUdnAEpkAG8UZCbg0PCxJgB3SM588SZiui0BvyJqgG5oAF8gA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Return Type Annotations (@return)
 
@@ -118,7 +118,7 @@ function logMessage($message) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCmAXArpgHbICWRuAPkfgDa3IBKehRAzsvm9psgJIARZAHteNemQBmyIsNzJJw-EQAmKeLGiTlAY1ylhJSeRUBVbpj4qAFABJsAWwCGpWgEpkAbxTJfOAsTItrgQpGwAtAB8KgBGUQCO+DwAntYARADKAKIAMlkAwgAqZCrIAGKMAPIAspwWHADqABJZjFnIji4MALzIIGkANMgA2vbOrgC6bgDc0AC+0HCI6hj+rDLYAG48yIWhHNpEegYkRFs7a8Qc1iGYwgDuHKIdAB6kuGxu6pqHx4bIECcqlo2DKTlwTloWUwd0wdgc2DYbCcAHNsB5vL5fLcHht7kxlPoEVkXjpsGB9IZ4YjkWiZvNFggkKhVixApthKQ1KgfrpKSRaMIUdUaajsNSkWKMT5fDxYQB9QUoiW09GzOZAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCmAXArpgHbICWRuAPkfgDa3IBKehRAzsvm9psgJIARZAHteNemQBmyIsNzJJw-EQAmKeLGiTlAY1ylhJSeRUBVbpj4qAFABJsAWwCGpWgEpkAbxTJfOAsTItrgQpGwAtAB8KgBGUQCO+DwAntYARADKAKIAMlkAwgAqZCrIAGKMAPIAspwWHADqABJZjFnIji4MALzIIGkANMgA2vbOrgC6bgDc0AC+0HCI6hj+rDLYAG48yIWhHNpEegYkRFs7a8Qc1iGYwgDuHKIdAB6kuGxu6pqHx4bIECcqlo2DKTlwTloWUwd0wdgc2DYbCcAHNsB5vL5fLcHht7kxlPoEVkXjpsGB9IZ4YjkWiZvNFggkKhVixApthKQ1KgfrpKSRaMIUdUaajsNSkWKMT5fDxYQB9QUoiW09GzOZAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Property Type Annotations (@property)
 
@@ -144,7 +144,7 @@ class User {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgE4HswFMsAXAT2QGcisBLAOwHNkASWgQwFt8U1NcDiydIs1b0uqDNjyFSAWiz5WAEwpU6jJtRUAlRUtk5aAGzJT+pbpL4ySsgO40i+VTQbMwrcuTs4sKgOqO+AbGptYC3LDQAMZGnuTIAKrkhMgA3ijIWdjUAG6sTsxKBazIALzIANoAugDc0JnZAK4ARkbU0cgAZk200UTUhsgA+sNiRAAUTADW+CQAlOmNWSsKRE1YtMxEENTksgB8xUSslTNz1cggIMi0TUZG9SvIAL4Nz2Ct7Z09fQNDoxSk3OJAANMx8kYmvhFhlns8mDs9odjqcQZcKkxIdCnis3i8gA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgE4HswFMsAXAT2QGcisBLAOwHNkASWgQwFt8U1NcDiydIs1b0uqDNjyFSAWiz5WAEwpU6jJtRUAlRUtk5aAGzJT+pbpL4ySsgO40i+VTQbMwrcuTs4sKgOqO+AbGptYC3LDQAMZGnuTIAKrkhMgA3ijIWdjUAG6sTsxKBazIALzIANoAugDc0JnZAK4ARkbU0cgAZk200UTUhsgA+sNiRAAUTADW+CQAlOmNWSsKRE1YtMxEENTksgB8xUSslTNz1cggIMi0TUZG9SvIAL4Nz2Ct7Z09fQNDoxSk3OJAANMx8kYmvhFhlns8mDs9odjqcQZcKkxIdCnis3i8gA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ---
 
@@ -165,7 +165,7 @@ function process($value, $number) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBLAOwBcAfAZzJ1IHNkASANywBsBXAU2QGEsJZACNeg4uW71uOZAHtZNOiXoo0mXAQmUAZuzlZKJTu3bNj+UbIFDRyLMgtX5s46bUYc3Mpxy25cuwUuHgAnmqw0DqcJADGZERyQmA4crHcVFQAFKwcPAA05pyWMgCUyADeKMg1Xj5+xFQA+koMOWxc3OUgyADauZ0AusgAXMi0PADc0AC+QA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBLAOwBcAfAZzJ1IHNkASANywBsBXAU2QGEsJZACNeg4uW71uOZAHtZNOiXoo0mXAQmUAZuzlZKJTu3bNj+UbIFDRyLMgtX5s46bUYc3Mpxy25cuwUuHgAnmqw0DqcJADGZERyQmA4crHcVFQAFKwcPAA05pyWMgCUyADeKMg1Xj5+xFQA+koMOWxc3OUgyADauZ0AusgAXMi0PADc0AC+QA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Array Types
 
@@ -182,7 +182,7 @@ function processArrays($map, $list, $strings, $users) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtlc8BPYASwDsAXAGgGdqcqBzAPmQBJ8sxkBBHKWQB3ctQjIq1ZAGsApiXpFKAE2SNmlFsgBuWADYBXefRRpMuAkSFYym1h04HyjAbZKjxkh9r2GTZQAKLEpPBSUASnMMbDxCXxYAbQBdLkTlAFEARyNyfQN5GmRqAHsbUgoaBiZHGMt45EpSygBaeXwwahJW4jtgAFV6eRwnI2GcZQA5FvbO7oq7ZFKAM2QhkeWAIwAreQBjajNUDBx5aiMcSkX7Wu1afHIAD3lVNnNYaBWjSkPyFuQYBwpX2pnoglI9CC3F4tC4LkYcM4GSR4xG9EiyAA3ihkHizhcrsgkgByM70IwGagk5AAXicPDAKQA3NAAL5AA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtlc8BPYASwDsAXAGgGdqcqBzAPmQBJ8sxkBBHKWQB3ctQjIq1ZAGsApiXpFKAE2SNmlFsgBuWADYBXefRRpMuAkSFYym1h04HyjAbZKjxkh9r2GTZQAKLEpPBSUASnMMbDxCXxYAbQBdLkTlAFEARyNyfQN5GmRqAHsbUgoaBiZHGMt45EpSygBaeXwwahJW4jtgAFV6eRwnI2GcZQA5FvbO7oq7ZFKAM2QhkeWAIwAreQBjajNUDBx5aiMcSkX7Wu1afHIAD3lVNnNYaBWjSkPyFuQYBwpX2pnoglI9CC3F4tC4LkYcM4GSR4xG9EiyAA3ihkHizhcrsgkgByM70IwGagk5AAXicPDAKQA3NAAL5AA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Array Shapes
 
@@ -199,7 +199,7 @@ function validateUser($person, $user) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtlc8BPAbwDsCBTALgGcAXHASwoHMAaLdutxgL7IAJGGo56AewrIAogA8sAY0ZEcpZExwBXFdpzUUaTLgJrSZFgBNa-TtXxYWAGwbM2XZYxYA3aiFoAI0lJZyFhbXpxZAB5MG9pLGdkAHIvX2oU5ABrahIjDANGfRliLHJ6XSVqenogkOdOfBr6HjotDwEjWGgAM20KFRZpZB8k6yxGagBVKJwAClFxKQpOEUjxAEpkMhRkfaKS5ABtFMqlatqsgF4APmRmbWo1lObatpv7lIA1casUgC6AG5oAIgA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtlc8BPAbwDsCBTALgGcAXHASwoHMAaLdutxgL7IAJGGo56AewrIAogA8sAY0ZEcpZExwBXFdpzUUaTLgJrSZFgBNa-TtXxYWAGwbM2XZYxYA3aiFoAI0lJZyFhbXpxZAB5MG9pLGdkAHIvX2oU5ABrahIjDANGfRliLHJ6XSVqenogkOdOfBr6HjotDwEjWGgAM20KFRZpZB8k6yxGagBVKJwAClFxKQpOEUjxAEpkMhRkfaKS5ABtFMqlatqsgF4APmRmbWo1lObatpv7lIA1casUgC6AG5oAIgA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Callable Types
 
@@ -216,7 +216,7 @@ function runCallbacks($callback, $noArgs, $transform) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBjLAG1KwCNSBTACgEsA7AFwBoBnFnZgcwEoAXJQD2I0sgAkJcpSxEA1sgAqWBTQ7JmLZFiYATZFx5NebZDhosArjiabR4lGky4CxMhWr0hANxEMhpJMIgCCOLyaAHIiuhHW+DSsHOYhFla2TMi+ZNY0zhjYeIQyXrR0AKocNDhCuHgAnsDGfAB8Utx6HABmIjiEVTXILLEtpnGNzrDQ3dZMRCwMIlk4cwDCnnKKHHTSm-IK5sFhESkdePa9-fzIAN4oyI97sgd0ACwATOYARCwaLN9+ABuB5PELhSJ0YGg85dK74OhMGgAd2QgxwUOhAF8gA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBjLAG1KwCNSBTACgEsA7AFwBoBnFnZgcwEoAXJQD2I0sgAkJcpSxEA1sgAqWBTQ7JmLZFiYATZFx5NebZDhosArjiabR4lGky4CxMhWr0hANxEMhpJMIgCCOLyaAHIiuhHW+DSsHOYhFla2TMi+ZNY0zhjYeIQyXrR0AKocNDhCuHgAnsDGfAB8Utx6HABmIjiEVTXILLEtpnGNzrDQ3dZMRCwMIlk4cwDCnnKKHHTSm-IK5sFhESkdePa9-fzIAN4oyI97sgd0ACwATOYARCwaLN9+ABuB5PELhSJ0YGg85dK74OhMGgAd2QgxwUOhAF8gA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Class String Types
 
@@ -239,7 +239,7 @@ function loadClasses($anyClass, $exceptionClass) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6YRATkbsgMbEDOrAtK5rQJYB2Ac2BkAfMgAkLIuwByDbMnm5FAewBmyIszatKGWtkwBXWv3LIAkv25F+TNZswQSOmXtSxo64-cy9VcwFbfn8SbAAKKV1lbABKZABvFGRUwxMzZH5sAHdJaTkFCLiAbmgAX2g4RH1qOgY3di4eAUFJOwBPAGFdZABBfg7G1iyFWpp6RgLObj4hYABRAA8HMH9A8QlsFew1gP4e92QAeX4CIe3V9fNp0ZUPeC8fP33kAlUiABND9mxWKM6P1YABpJJddtcgQlkqlUrBYMgAHTIipAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6YRATkbsgMbEDOrAtK5rQJYB2Ac2BkAfMgAkLIuwByDbMnm5FAewBmyIszatKGWtkwBXWv3LIAkv25F+TNZswQSOmXtSxo64-cy9VcwFbfn8SbAAKKV1lbABKZABvFGRUwxMzZH5sAHdJaTkFCLiAbmgAX2g4RH1qOgY3di4eAUFJOwBPAGFdZABBfg7G1iyFWpp6RgLObj4hYABRAA8HMH9A8QlsFew1gP4e92QAeX4CIe3V9fNp0ZUPeC8fP33kAlUiABND9mxWKM6P1YABpJJddtcgQlkqlUrBYMgAHTIipAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Literal Types
 
@@ -254,7 +254,7 @@ function checkPermission($permission, $level) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkByHAUywBMiAfIgdxwEsAXUmo0gD1IGMBXVkWQASMKRz5GAZymMA9gDtkAZTE9GAM0Y9kU5kwUBzZADcsAGz6kpyReYCeKNJlwFkARmoAmagGYR5qQmpOYqaprayIwKrIbiphZWNnaOqBhkzHw4SvpWyACC5nRY9jYZWQo2uaTIABQKcszIAFZ8esgARnJy5gCUTrDQGnwKPMzySjwQvADWAArikjITtaKL0rKKADQBQSG9yADeKMin5dnI1QDc0AC+QA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkByHAUywBMiAfIgdxwEsAXUmo0gD1IGMBXVkWQASMKRz5GAZymMA9gDtkAZTE9GAM0Y9kU5kwUBzZADcsAGz6kpyReYCeKNJlwFkARmoAmagGYR5qQmpOYqaprayIwKrIbiphZWNnaOqBhkzHw4SvpWyACC5nRY9jYZWQo2uaTIABQKcszIAFZ8esgARnJy5gCUTrDQGnwKPMzySjwQvADWAArikjITtaKL0rKKADQBQSG9yADeKMin5dnI1QDc0AC+QA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Object-like Arrays
 
@@ -268,7 +268,7 @@ function createRecord($person) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkB7AIwCsBTAYwBcBvAOwIoC4BnGnASwYHMAaLL1Y8aAX2QASMBRxsiDZAHly1GsgDuXGhGRsZVLgDMuVZGBxEZOGlwpsUadDgo0ArjkWlKtOlwAmLKL8VC5YNBT+APrh7Jw8vGKOsNBGbgy0XArIoRThFABK1EQ4-gAU0rLyDACUyHQoyE0u7p7IZd5qNQDaAOQBvcgAvAB8yACM-Mi9ufnR4YOjyP75Zb0AmgC0+Jv+vTUAugDc0GJAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkB7AIwCsBTAYwBcBvAOwIoC4BnGnASwYHMAaLL1Y8aAX2QASMBRxsiDZAHly1GsgDuXGhGRsZVLgDMuVZGBxEZOGlwpsUadDgo0ArjkWlKtOlwAmLKL8VC5YNBT+APrh7Jw8vGKOsNBGbgy0XArIoRThFABK1EQ4-gAU0rLyDACUyHQoyE0u7p7IZd5qNQDaAOQBvcgAvAB8yACM-Mi9ufnR4YOjyP75Zb0AmgC0+Jv+vTUAugDc0GJAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Advanced Union Type Combinations
 
@@ -283,7 +283,7 @@ function complexTypes($mixed, $either, $optionalCallback) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBLAOwBcAfAZzJ1IHMLc8BPYGuk+gPgpIFcANoOQASfEQAeAUwAmyAMIB7fGEHTJyfiSJKSKNJlwFkzLG1JkANBwa8zbW1yuXuY6UTIRpOZAHkSaVMcVmQyFjAgpV8sEiUvHwMMbDxCAGMsYSwAI3UACid6AEoALgA3JSJZPiERUSUwMl0STIVMwWysNIBrRXbOnuRo5AFhA1hoADNtNKa9ZDSVNQ0AFQjpKjzxKTkrd09vHD36xubW-q7uouQAbxRkB9hYZAA6N+gAXyA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBLAOwBcAfAZzJ1IHMLc8BPYGuk+gPgpIFcANoOQASfEQAeAUwAmyAMIB7fGEHTJyfiSJKSKNJlwFkzLG1JkANBwa8zbW1yuXuY6UTIRpOZAHkSaVMcVmQyFjAgpV8sEiUvHwMMbDxCAGMsYSwAI3UACid6AEoALgA3JSJZPiERUSUwMl0STIVMwWysNIBrRXbOnuRo5AFhA1hoADNtNKa9ZDSVNQ0AFQjpKjzxKTkrd09vHD36xubW-q7uouQAbxRkB9hYZAA6N+gAXyA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ---
 
@@ -306,7 +306,7 @@ function processData($data) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCGAnZeu2AngN4prI4pJ51wCtwALqzgM+kwEsAXXMO1oDdeFkrlyTFi+AGyRGXnMk1ZS1MAFV7YAXwATJFxFI9r2s4qRXQEvOV7mYyRuCJIvEARMwhZANzQNomPIRZMGgBvFGQX6gGx-hVVCJy8YOXV3pAUyrLmltWNzf3+Hs6h0dm5BGOj2BYVjV2lNfXqjAFYW2JH5ZVGjk+zMXgOlVV1BwqLivyYJ1UZ8vH1NyqXVdXZYoMphzLLzxHT5uQXI0EVqHOHmr2v6AKzQ7OPh5+1e6mQ6EFr3K-LiBMhRB8xEj5-9lS7ek3nC0HBM+QyUq6lA=&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCGAnZeu2AngN4prI4pJ51wCtwALqzgM+kwEsAXXMO1oDdeFkrlyTFi+AGyRGXnMk1ZS1MAFV7YAXwATJFxFI9r2s4qRXQEvOV7mYyRuCJIvEARMwhZANzQNomPIRZMGgBvFGQX6gGx-hVVCJy8YOXV3pAUyrLmltWNzf3+Hs6h0dm5BGOj2BYVjV2lNfXqjAFYW2JH5ZVGjk+zMXgOlVV1BwqLivyYJ1UZ8vH1NyqXVdXZYoMphzLLzxHT5uQXI0EVqHOHmr2v6AKzQ7OPh5+1e6mQ6EFr3K-LiBMhRB8xEj5-9lS7ek3nC0HBM+QyUq6lA=&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Generic Type Multiline Formatting
 
@@ -331,7 +331,7 @@ function transformItems($items) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCGAnZeu2AngN4prI4pJ51wCtwALqzgM+kwEsAXXMO1oDdeFkrlyTFi+AGyRGXnMk1ZS1MAFV7YAXwATJFxFI9r2s4qRXQEvOV7mYyRuCJIvEARMwhZANzQNomPIRZMGgBvFGQX6gGx-hVVCJy8YOXV3pAUyrLmltWNzf3+Hs6h0dm5BGOj2BYVjV2lNfXqjAFYW2JH5ZVGjk+zMXgOlVV1BwqLivyYJ1UZ8vH1NyqXVdXZYoMphzLLzxHT5uQXI0EVqHOHmr2v6AKzQ7OPh5+1e6mQ6EFr3K-LiBMhRB8xEj5-9lS7ek3nC0HBM+QyUq6lA=&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCGAnZeu2AngN4prI4pJ51wCtwALqzgM+kwEsAXXMO1oDdeFkrlyTFi+AGyRGXnMk1ZS1MAFV7YAXwATJFxFI9r2s4qRXQEvOV7mYyRuCJIvEARMwhZANzQNomPIRZMGgBvFGQX6gGx-hVVCJy8YOXV3pAUyrLmltWNzf3+Hs6h0dm5BGOj2BYVjV2lNfXqjAFYW2JH5ZVGjk+zMXgOlVV1BwqLivyYJ1UZ8vH1NyqXVdXZYoMphzLLzxHT5uQXI0EVqHOHmr2v6AKzQ7OPh5+1e6mQ6EFr3K-LiBMhRB8xEj5-9lS7ek3nC0HBM+QyUq6lA=&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Phan-Specific Annotations with Multiline
 
@@ -394,7 +394,7 @@ class Container {
 $stringContainer = new Container("hello");
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IDCA9gHaZECW72ATsgDeKZGIRp0ANyKCyqamLFh+3GaQAkMggFdsAbmijxiDGFlFc5ZFqK7sC48jA6ARgW41kAMx3samNwcyAD6ITQc9Jj8OgEAFLb2AJTCTko2mBDc9AC0AHzaesgAvDaFBk4AvkbpEhj82Jg6-OzWVE4u7p4+fgFBrQDmjXEpIunpDU0tGVm5BXZ6hunV1XCwyACq9ERDcKbSsiwcXLwCwFGq7AN5Nhe8A2ycPHyC7Rp3V48nLyXIfADuRyep34cQARBBsAQCKwwUl9EA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IDCA9gHaZECW72ATsgDeKZGIRp0ANyKCyqamLFh+3GaQAkMggFdsAbmijxiDGFlFc5ZFqK7sC48jA6ARgW41kAMx3samNwcyAD6ITQc9Jj8OgEAFLb2AJTCTko2mBDc9AC0AHzaesgAvDaFBk4AvkbpEhj82Jg6-OzWVE4u7p4+fgFBrQDmjXEpIunpDU0tGVm5BXZ6hunV1XCwyACq9ERDcKbSsiwcXLwCwFGq7AN5Nhe8A2ycPHyC7Rp3V48nLyXIfADuRyep34cQARBBsAQCKwwUl9EA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Generic Interfaces (V6)
 
@@ -429,7 +429,7 @@ class UserRepository implements Repository {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AlgHY4BOAZkQMbbIBK2YA9gGcamPowCeyAN4pkshGnRgijIrmT1MyACQ0AJqmqy5iDI2yYArozrkAPnQsECBmbLAWARgRptkzC3RsmDR8Nsz0ugAUOroAlADc0K7I8hhKKmpk2tgMwhJUye5ePn4BQSE2AkQAbtjROcGYYgnQAL5J8pQYNPgEeA0C3LyCwqJiwACqAtiMAHyU1GzEAoNTMzz8QiLi6r39DIMbI9sS0kbIRd6+-oHBoX4R0XqxUsnnsLBDltar04z2jgIbyMZm+Ni0mAgNAEAFpZroPHDwnRdGtGE84olzu1Cp4rqVbhVkFVavVck0XmdzkYPtlyRJocg0cDZBCobD4YjZiTsGiyY1mlijO1WkA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AlgHY4BOAZkQMbbIBK2YA9gGcamPowCeyAN4pkshGnRgijIrmT1MyACQ0AJqmqy5iDI2yYArozrkAPnQsECBmbLAWARgRptkzC3RsmDR8Nsz0ugAUOroAlADc0K7I8hhKKmpk2tgMwhJUye5ePn4BQSE2AkQAbtjROcGYYgnQAL5J8pQYNPgEeA0C3LyCwqJiwACqAtiMAHyU1GzEAoNTMzz8QiLi6r39DIMbI9sS0kbIRd6+-oHBoX4R0XqxUsnnsLBDltar04z2jgIbyMZm+Ni0mAgNAEAFpZroPHDwnRdGtGE84olzu1Cp4rqVbhVkFVavVck0XmdzkYPtlyRJocg0cDZBCobD4YjZiTsGiyY1mlijO1WkA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Generic Traits (V6)
 
@@ -469,7 +469,7 @@ class DateTimeEntity {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0mATkQJabkO7YDOmR+RARgdmQBvFMjEI06AG5Fa5VNTFiwtBjNIASTKw5d8AbmijxiDGFnd5WnQuPIwAV34MAxsgBmDgHYvtAey9kdmxMMh1ObjAACms2AEphOyVkLQgGdgBaAD5tNgj8ZABeFNzsQ2SAXyNkiQxaEIdaQLJbZMdnN08ff0CAcxCwvL1ohJFk5PrMRsDU9OzS-LBypSqquERKDAdgliHIvgFgBi9MLMpqF2J2dmQAVS8GAA9B3UjsABMAUROmAE9E5LbQQvRYHMrQNYSTboIG7V48fjYYAAERI2BeZ1slyI12QqJwL2+2kw-zGSlhIOGYMMFSAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0mATkQJabkO7YDOmR+RARgdmQBvFMjEI06AG5Fa5VNTFiwtBjNIASTKw5d8AbmijxiDGFnd5WnQuPIwAV34MAxsgBmDgHYvtAey9kdmxMMh1ObjAACms2AEphOyVkLQgGdgBaAD5tNgj8ZABeFNzsQ2SAXyNkiQxaEIdaQLJbZMdnN08ff0CAcxCwvL1ohJFk5PrMRsDU9OzS-LBypSqquERKDAdgliHIvgFgBi9MLMpqF2J2dmQAVS8GAA9B3UjsABMAUROmAE9E5LbQQvRYHMrQNYSTboIG7V48fjYYAAERI2BeZ1slyI12QqJwL2+2kw-zGSlhIOGYMMFSAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Multiple Template Parameters
 
@@ -500,7 +500,7 @@ class Map {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqA0tgJ4ppZ6EnbkBqRBArtnbNAMbEAzkOQBZImGQBvFMnkJ6ANyIAnZGtVFqwSjQA0Zdl2wA+VH3nywqgJYrSAEls5cogLzIA2gF0A3NByCohB8vRgakS45FTUyI4A1jShqBgRWtFGHNzxKiYp8JZWYJwARgS2-MgAZpwAdvyYtgD2dchC2JgAFIkGudnYAJQyKVaOmBC2QgC0pi54Ql691D7Ino553AFWyAC+gTuKBWmRmbHxSbQ7qeiqnZyqbVkmAD51nAQEBUXWZRVVtQaTVayAA5p0epdhrJrlY7pgHm1xpMZnNXItlqsQCBkO9PtsrPtdkA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqA0tgJ4ppZ6EnbkBqRBArtnbNAMbEAzkOQBZImGQBvFMnkJ6ANyIAnZGtVFqwSjQA0Zdl2wA+VH3nywqgJYrSAEls5cogLzIA2gF0A3NByCohB8vRgakS45FTUyI4A1jShqBgRWtFGHNzxKiYp8JZWYJwARgS2-MgAZpwAdvyYtgD2dchC2JgAFIkGudnYAJQyKVaOmBC2QgC0pi54Ql691D7Ino553AFWyAC+gTuKBWmRmbHxSbQ7qeiqnZyqbVkmAD51nAQEBUXWZRVVtQaTVayAA5p0epdhrJrlY7pgHm1xpMZnNXItlqsQCBkO9PtsrPtdkA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Generic Function Templates
 
@@ -527,7 +527,7 @@ function map(array $items, callable $mapper) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6YRATkbsnfQJ7BkB8yAJAJY64AzpQw16jAMZECxAEYFsACjIBKAFyyA9poI8wtbABNeUnCPQHMAV1oA7JrVbsOlWNABmV2xMy9N9914CHFpFZiIWHn48QQAaZCkZInlsPQNjU2wVZABvFGQCyxt7cJYAfUDg7FC+ATi0oxMSLIBuaABfaDhEcwFCZvIASVtevH7SMgB5K0xzMQYHJzJhrlqYuboFxLkFZWH1KZmeXCIwMGrzIrtFiPZpzBdUN09vX39kE7AwxwiouvjtskFMdTudaNk8gVCthrNdSmVPopuJ8wfE1kIVG12kA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6YRATkbsnfQJ7BkB8yAJAJY64AzpQw16jAMZECxAEYFsACjIBKAFyyA9poI8wtbABNeUnCPQHMAV1oA7JrVbsOlWNABmV2xMy9N9914CHFpFZiIWHn48QQAaZCkZInlsPQNjU2wVZABvFGQCyxt7cJYAfUDg7FC+ATi0oxMSLIBuaABfaDhEcwFCZvIASVtevH7SMgB5K0xzMQYHJzJhrlqYuboFxLkFZWH1KZmeXCIwMGrzIrtFiPZpzBdUN09vX39kE7AwxwiouvjtskFMdTudaNk8gVCthrNdSmVPopuJ8wfE1kIVG12kA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ---
 
@@ -561,7 +561,7 @@ $dogShelter = new AnimalShelter(); // Dog extends Animal
 $carShelter = new AnimalShelter(); // Car does not extend Animal
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyA9gGbICCAdgJa5EEryzQDGxAzn3rNWBAMoRsBHACdkAbxTIlCNOgBuRWZulEAnsDIA+VFyVKw0phtIASIsLaCAvMgDaAXQDc0RcsQYwTSJccmQ7BwITX2QwAFcAIwImbmRqWIZuTCZKBmQiABN8gApwljYASnloszDMCCY+AFpDezKCPg9kF1KRbxqanrZm6mxsYvLPZFhYZFEiEYAuPIJIxjbBCCI1bFTR8eiAX2gjuBmANTYmfORYviIAc2w4f3VNITbxSRlgABFKe+MNny-0+Umwsk40CBIIkYNkLgY2AA7u8RKCZEUJlMZn97shsAAPHAMfKCNYiHzTZAASQYGiS11uDx2jWQAAVNrkkUwVshpNgwJRpJg8rlwdIhc9VBpZOS2OjwcAAMKaQHcTQKiFcGzq6SarrIREouViWEYrFUlWyYHYQQMSgiwnE64moA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyA9gGbICCAdgJa5EEryzQDGxAzn3rNWBAMoRsBHACdkAbxTIlCNOgBuRWZulEAnsDIA+VFyVKw0phtIASIsLaCAvMgDaAXQDc0RcsQYwTSJccmQ7BwITX2QwAFcAIwImbmRqWIZuTCZKBmQiABN8gApwljYASnloszDMCCY+AFpDezKCPg9kF1KRbxqanrZm6mxsYvLPZFhYZFEiEYAuPIJIxjbBCCI1bFTR8eiAX2gjuBmANTYmfORYviIAc2w4f3VNITbxSRlgABFKe+MNny-0+Umwsk40CBIIkYNkLgY2AA7u8RKCZEUJlMZn97shsAAPHAMfKCNYiHzTZAASQYGiS11uDx2jWQAAVNrkkUwVshpNgwJRpJg8rlwdIhc9VBpZOS2OjwcAAMKaQHcTQKiFcGzq6SarrIREouViWEYrFUlWyYHYQQMSgiwnE64moA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Interface Constraints
 
@@ -584,7 +584,7 @@ class JsonCollection {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyA9gGbIBSAzpQHYDK2ATgJZEFcBeRAEYFsKeLGgBjYgwb0mzAMKUCoqZi4tkAbxTIDCNOgBuRDsnMciAT2BkAfKkkGDYbmdIASLjlwMAbmh9Q0QMMHMiXEsOaztHZB8-eQkQ5DAAVxEuKWRqDOYNLWZkAH1SqRYGTA4MjQAKK1tE3zwGAEpdNNdEzAguBgBaB1b-ZABeFuSgnoBfYJ7M7Nz8ws1tTEpGFnrOvR6ejmxMDI4SgCtFUuxCygATbHqvPoHh0Y6A5FhYZFYiamwAC5LGpkO8YtgFCx2NxeAJhKI0vNZkA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyA9gGbIBSAzpQHYDK2ATgJZEFcBeRAEYFsKeLGgBjYgwb0mzAMKUCoqZi4tkAbxTIDCNOgBuRDsnMciAT2BkAfKkkGDYbmdIASLjlwMAbmh9Q0QMMHMiXEsOaztHZB8-eQkQ5DAAVxEuKWRqDOYNLWZkAH1SqRYGTA4MjQAKK1tE3zwGAEpdNNdEzAguBgBaB1b-ZABeFuSgnoBfYJ7M7Nz8ws1tTEpGFnrOvR6ejmxMDI4SgCtFUuxCygATbHqvPoHh0Y6A5FhYZFYiamwAC5LGpkO8YtgFCx2NxeAJhKI0vNZkA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Multiple Constraints
 
@@ -611,7 +611,7 @@ class CollectionWrapper {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyA9gGbICCATg0QJ50DG72AztwGQBhSgFcAdpiIAjAthTxY0dsV7IhBGe0wBLSqIDqzMGGwNkAbxTIrCNOgBuRUxXmWrYBloekAJO0rrsTR1RAG5oV2QbDDBHIlxyZF9-DW1dVAUrN2FpLXZkajEgtIB9Yr9RbkwGYU0ACiSAotEASnMIzMTMCC1uAFoAPj9G1NFkAF5EoZTgsI6AX3COsGyCXPzCkeQegFF8TBZa1osOjoZsTGEGUb8xTHqunoGpwJHWsffkAAYQyNhkAGUiNRsAAuBI9VQicRSGQRBYRZY5PIFURNfJaBiVQ5tE6ZM4XK6dbp9QbJF7BADanwAuj9YH9AcCwRQIYxmGxODxuHDoHMgA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyA9gGbICCATg0QJ50DG72AztwGQBhSgFcAdpiIAjAthTxY0dsV7IhBGe0wBLSqIDqzMGGwNkAbxTIrCNOgBuRUxXmWrYBloekAJO0rrsTR1RAG5oV2QbDDBHIlxyZF9-DW1dVAUrN2FpLXZkajEgtIB9Yr9RbkwGYU0ACiSAotEASnMIzMTMCC1uAFoAPj9G1NFkAF5EoZTgsI6AX3COsGyCXPzCkeQegFF8TBZa1osOjoZsTGEGUb8xTHqunoGpwJHWsffkAAYQyNhkAGUiNRsAAuBI9VQicRSGQRBYRZY5PIFURNfJaBiVQ5tE6ZM4XK6dbp9QbJF7BADanwAuj9YH9AcCwRQIYxmGxODxuHDoHMgA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ---
 
@@ -659,7 +659,7 @@ function acceptProducer($producer) {
 acceptProducer(new DogProducer()); // OK with covariance
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY4C0AxgPYBuRATgJZEB2myAKivLNA69nQBmRctmQAFOpQAmAV1F1kAbxTI1CNOjrZMsusw6oeatWFkAjAg3LJBs5uUwNKBsFLmiAFAEoA3NABfaDhELgwGfAI8bFYAZwl3eQFgAEFmCKICAD4uHnJiWPi0jIJJGSTFCMJouITyhWVVUwsrGzsHJxdkN3rsH0aTQeRtXX1kZmwAd2Ri3Eyff0GgoJCkVHDImsx4so9kgBFKAHMco2h8okLkQ6PdiuQqqNwY7bq9xRVBs0trW3tHZyuRJebwDIZqEZ6AwTaY3BbIWCwa7HB7xWIWTAATzAYkoghm6TmBCayGWwURyAAapkGNIAFzI27AgSo5Do8xYnHIPFvCqpQmZHIaDBgehEXC8hT8kpZZAAEh67zO7QBXREojAmDuCk8CuZdFBnxMcpYJWQAF55YqKqQstaQf4VursJrtQJPDDGW66D4-AikQB5ADSyEmDEwEGQVFojBYoiAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY4C0AxgPYBuRATgJZEB2myAKivLNA69nQBmRctmQAFOpQAmAV1F1kAbxTI1CNOjrZMsusw6oeatWFkAjAg3LJBs5uUwNKBsFLmiAFAEoA3NABfaDhELgwGfAI8bFYAZwl3eQFgAEFmCKICAD4uHnJiWPi0jIJJGSTFCMJouITyhWVVUwsrGzsHJxdkN3rsH0aTQeRtXX1kZmwAd2Ri3Eyff0GgoJCkVHDImsx4so9kgBFKAHMco2h8okLkQ6PdiuQqqNwY7bq9xRVBs0trW3tHZyuRJebwDIZqEZ6AwTaY3BbIWCwa7HB7xWIWTAATzAYkoghm6TmBCayGWwURyAAapkGNIAFzI27AgSo5Do8xYnHIPFvCqpQmZHIaDBgehEXC8hT8kpZZAAEh67zO7QBXREojAmDuCk8CuZdFBnxMcpYJWQAF55YqKqQstaQf4VursJrtQJPDDGW66D4-AikQB5ADSyEmDEwEGQVFojBYoiAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Contravariant Templates
 
@@ -701,7 +701,7 @@ function processDogs($consumer) {
 processDogs(new AnimalConsumer()); // OK with contravariance
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY4C0AxgPYB2mATkQG5F0CWRtyAKivLNK1rY6AMyLlsyAMI0AzgFdcw5AG8UyDQjTowLIrm7IAJKxwG+6jWHkAjAq3LIR86uUysayKtQVKAFCZmAJQA3NAAvtBwiLwYrPgEeNi0stJyisLAAILU8UQEAHy8-OTEsqk5eQQyPhl0yPGESSlptUr1ahpWtvaOzq7unt6+2AGmeEGqll0agXikBSLY2AAmfqHTkZHRSKhxCc2YqTUjdMAAIpQA5kWoJWWpl1cndQ0HSi0v7VMz1nYOThcbg81C86X8c1wk06My6kIWNhYAGt1mEZlsorBYMgAGr5VgrABcyEquHyX2U5A4YLakieqT8pPyqSpoOGGWQHAAnsgFDZMFywNggjsMLoGAYKWcngVjOzvhZ+sDPGA6JQJOV6QF5cJodMjDq6AsdX5qNgAO7IJ7rDbbVXq7Ca66yU0Wkm5MnVcHCG0hZBY5AAeQA0shzaYIDT6EwWOxXNggA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY4C0AxgPYB2mATkQG5F0CWRtyAKivLNK1rY6AMyLlsyAMI0AzgFdcw5AG8UyDQjTowLIrm7IAJKxwG+6jWHkAjAq3LIR86uUysayKtQVKAFCZmAJQA3NAAvtBwiLwYrPgEeNi0stJyisLAAILU8UQEAHy8-OTEsqk5eQQyPhl0yPGESSlptUr1ahpWtvaOzq7unt6+2AGmeEGqll0agXikBSLY2AAmfqHTkZHRSKhxCc2YqTUjdMAAIpQA5kWoJWWpl1cndQ0HSi0v7VMz1nYOThcbg81C86X8c1wk06My6kIWNhYAGt1mEZlsorBYMgAGr5VgrABcyEquHyX2U5A4YLakieqT8pPyqSpoOGGWQHAAnsgFDZMFywNggjsMLoGAYKWcngVjOzvhZ+sDPGA6JQJOV6QF5cJodMjDq6AsdX5qNgAO7IJ7rDbbVXq7Ca66yU0Wkm5MnVcHCG0hZBY5AAeQA0shzaYIDT6EwWOxXNggA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Invariant Templates (Default)
 
@@ -734,7 +734,7 @@ function useBox($box) {
 useBox(new Box()); // Must be exactly Box<Animal>, not Box<Dog>
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyAFAJYB2AbkQE7VG2bIBGAnsgCbYAZkQCuBTAEoU8WNADGxAM6LkAIQD2AD2QBvFMgMI06Rk3KpZBg2BaNSAEmo5cAbmj7DiDGGZFc5x2cLD2QwEU4CajlkQRFaOUxqdVpkRWxMSkC8CV0Qq2R7TAhqRQBaAD4nPGQAXgKq1xCAX3d8owwmdJEmFIoZELCIqJi4hKSUgHN0yhy9fPzOzG6UwuKyyuc3fJaWuC90HyY-NS1gAEFaalwiAnKCzi1g2PjE5OQRNI1NTIfNWZDYLBkAA6UHQXYfbBfSi0bAAdxO3wkEhcyEByAAsh8OJxsMhsJoiAkCLwvudLtdbgAaZC0dQcMkAEXUE3KQA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyAFAJYB2AbkQE7VG2bIBGAnsgCbYAZkQCuBTAEoU8WNADGxAM6LkAIQD2AD2QBvFMgMI06Rk3KpZBg2BaNSAEmo5cAbmj7DiDGGZFc5x2cLD2QwEU4CajlkQRFaOUxqdVpkRWxMSkC8CV0Qq2R7TAhqRQBaAD4nPGQAXgKq1xCAX3d8owwmdJEmFIoZELCIqJi4hKSUgHN0yhy9fPzOzG6UwuKyyuc3fJaWuC90HyY-NS1gAEFaalwiAnKCzi1g2PjE5OQRNI1NTIfNWZDYLBkAA6UHQXYfbBfSi0bAAdxO3wkEhcyEByAAsh8OJxsMhsJoiAkCLwvudLtdbgAaZC0dQcMkAEXUE3KQA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ---
 
@@ -786,7 +786,7 @@ function invalidValue() {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCmAXArpgHbIDW2AngLQD2AZsAIaaaMUDedNNAXAJZFcAGgBGzHgGdcmAQHMAvgD5kAJTyEiE5AHIuNbQB9tYzNpTxY0OviIBjXHxolZeAGqMANnwAmAaUoAFACUyOwoyBE4BMQ6etoA3MiwsMgA8r7Q8tBwiOYYURrIAG6e+Ni0DMysHHr8gqLiUjJECspq0ZrIArgGTXLmltZ2Dk7ILrjuXt6TZcGh4ZHqMQAsAEyJyWm+yFRdgl1aJVOZ2QhIqBhgzIwAtmSUFUwsbMB9LULdisoAJOQUyABlaRyZC4ChgbB5dBXVh3I5lR5VF5vWQfQRfZDfeHYZAASX2YIhAysNnsjhIYEwNFs2AkEgAsowwGA5AFfpQhJjsSEwhEIpt2f8+FoUZysaUccK9rgTnAUvijj5kNgAB63MAeWmgiCMXDIAAKOpIAHc+B4PMhbLrbBAeKdchcsEsSH9Ec8atw6sITJJgS0lMShmTRgJFX5AjyFsgCjFjIwAF4JJIpACiLBomB4OjEiYOyCIND1jGKniVf1lZyhMZI2Ld1U4nu6DUzKIDqEGpJGJFDpemErmvL51eQdE8EmwG1T6czyBE3AtUoLRZLUxXZVB4Mh8iAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCmAXArpgHbIDW2AngLQD2AZsAIaaaMUDedNNAXAJZFcAGgBGzHgGdcmAQHMAvgD5kAJTyEiE5AHIuNbQB9tYzNpTxY0OviIBjXHxolZeAGqMANnwAmAaUoAFACUyOwoyBE4BMQ6etoA3MiwsMgA8r7Q8tBwiOYYURrIAG6e+Ni0DMysHHr8gqLiUjJECspq0ZrIArgGTXLmltZ2Dk7ILrjuXt6TZcGh4ZHqMQAsAEyJyWm+yFRdgl1aJVOZ2QhIqBhgzIwAtmSUFUwsbMB9LULdisoAJOQUyABlaRyZC4ChgbB5dBXVh3I5lR5VF5vWQfQRfZDfeHYZAASX2YIhAysNnsjhIYEwNFs2AkEgAsowwGA5AFfpQhJjsSEwhEIpt2f8+FoUZysaUccK9rgTnAUvijj5kNgAB63MAeWmgiCMXDIAAKOpIAHc+B4PMhbLrbBAeKdchcsEsSH9Ec8atw6sITJJgS0lMShmTRgJFX5AjyFsgCjFjIwAF4JJIpACiLBomB4OjEiYOyCIND1jGKniVf1lZyhMZI2Ld1U4nu6DUzKIDqEGpJGJFDpemErmvL51eQdE8EmwG1T6czyBE3AtUoLRZLUxXZVB4Mh8iAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### int-range
 
@@ -814,7 +814,7 @@ function setOpacity($percentage) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBLAOwBcBaPEgcwFNgBGAGkYCYA+ZAEnwHtyEZAFkBZISQCu+AEZ0cyABSMK7AJQo0mXAWLkqWWgxYBmRl24ATLAE9kAEVvI+AM2T9BSlWY2oM2PEJSSmp6JgBOAAZI5jZGaIsbOlxNDBw6MkkcEmQAZzIcUhpNWGgXSRIAYzIiAWQXPhx8LDJHMjpFXjEIZh5rG17uJNw1ZABvFGQp9MzsvLBC8hdFACIAUkiAFksKDbYdvcsVweGcQY9xQf61AG5oAF9oMsbm1paO9l62AFYvyLZNrdkLBYMgAPIAaWeTRabQ+Ji+v2QbH+gJuwNBAAUIIZkPIcI0AFzIRgmYi5ZySMi5IiWOjIUL0lTsJ4IJB+bSBPQhQxhGLxSIWMDySp0chYeglMoVaq1HK5DJg7CVIhkGydYU4UXi+ijCZTKYgnia7VkCX0ogUmiSHTkOh0SzIMh8ZByZCRVTRB5AA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBLAOwBcBaPEgcwFNgBGAGkYCYA+ZAEnwHtyEZAFkBZISQCu+AEZ0cyABSMK7AJQo0mXAWLkqWWgxYBmRl24ATLAE9kAEVvI+AM2T9BSlWY2oM2PEJSSmp6JgBOAAZI5jZGaIsbOlxNDBw6MkkcEmQAZzIcUhpNWGgXSRIAYzIiAWQXPhx8LDJHMjpFXjEIZh5rG17uJNw1ZABvFGQp9MzsvLBC8hdFACIAUkiAFksKDbYdvcsVweGcQY9xQf61AG5oAF9oMsbm1paO9l62AFYvyLZNrdkLBYMgAPIAaWeTRabQ+Ji+v2QbH+gJuwNBAAUIIZkPIcI0AFzIRgmYi5ZySMi5IiWOjIUL0lTsJ4IJB+bSBPQhQxhGLxSIWMDySp0chYeglMoVaq1HK5DJg7CVIhkGydYU4UXi+ijCZTKYgnia7VkCX0ogUmiSHTkOh0SzIMh8ZByZCRVTRB5AA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### positive-int and negative-int
 
@@ -842,7 +842,7 @@ recordDebt(-100); // OK
 recordDebt(100); // Phan error: 100 is not negative
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkwB7AZwEsAXcgNwFMBacgO0uQBIBjYgV1eQCyPUmwBGdZAD5kABhRp0OOpR45myXHgCewFpUnzY0AGZ9O1YuoDmdZnTyU6AZToBHHrc50AFF16sASmQAbxRkcKUVNWQ8ZhtvAEYAGg5uPkoAgG5oAF9oaBs7B2c3D2YvbwBWLORYWGQAeQBpAtt7LEcXd08fGRq65AAFCCx1exxiHAAuWWRyUmRmYjYSCmp6VqKOku7ynwYE-vrh0eRxyZmDuYWllbIqWjp8hCRUDGw8QjsrDsemfnYABM6KI2ABBfD+NjEADudEByG831+9GQNCwABsPAFDCYzBZ1EpuDhAQAREGUXzA0FBULhcIDIEU67IKw8XCjRzw5CUYjIcTIYCyXL5ImTMkU7wHGR9TK1erNaBiknk0GJGVHIYjMY4CbTZAJGUs26LOg-dZ0IA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkwB7AZwEsAXcgNwFMBacgO0uQBIBjYgV1eQCyPUmwBGdZAD5kABhRp0OOpR45myXHgCewFpUnzY0AGZ9O1YuoDmdZnTyU6AZToBHHrc50AFF16sASmQAbxRkcKUVNWQ8ZhtvAEYAGg5uPkoAgG5oAF9oaBs7B2c3D2YvbwBWLORYWGQAeQBpAtt7LEcXd08fGRq65AAFCCx1exxiHAAuWWRyUmRmYjYSCmp6VqKOku7ynwYE-vrh0eRxyZmDuYWllbIqWjp8hCRUDGw8QjsrDsemfnYABM6KI2ABBfD+NjEADudEByG831+9GQNCwABsPAFDCYzBZ1EpuDhAQAREGUXzA0FBULhcIDIEU67IKw8XCjRzw5CUYjIcTIYCyXL5ImTMkU7wHGR9TK1erNaBiknk0GJGVHIYjMY4CbTZAJGUs26LOg-dZ0IA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### non-empty-string
 
@@ -858,7 +858,7 @@ greetUser("Alice"); // OK
 greetUser(""); // Phan error: empty string not allowed
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkA7AeyIFoBTfMAFwE9yBnWnASyIHNkASIgysgDCWIqVrIARoOp16yFuy4p4saADMArkQDGtNmWScclSrQCqTSjgAUfAQEpkAbxTJ3lHRBLIARAAlKABsgkgAaXn58SgBCXwBuaABfaGhjUwsrW18AQSC2HUpfB3jkWFhkAHkAaTSTM0trG19i0vLkAAUIUWRrHBIcAC5emgYFVg5ucWQsEJIAd0oAEyA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkA7AeyIFoBTfMAFwE9yBnWnASyIHNkASIgysgDCWIqVrIARoOp16yFuy4p4saADMArkQDGtNmWScclSrQCqTSjgAUfAQEpkAbxTJ3lHRBLIARAAlKABsgkgAaXn58SgBCXwBuaABfaGhjUwsrW18AQSC2HUpfB3jkWFhkAHkAaTSTM0trG19i0vLkAAUIUWRrHBIcAC5emgYFVg5ucWQsEJIAd0oAEyA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Combining Utility Types
 
@@ -886,7 +886,7 @@ function getConfig($key) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIDcCGAnZeu2AngN4prLICuAzgKa60BcBuRxwYA9rQJYAXPpnoBaPgDsBAGgncJo+gFswA4qNoDckgOYA+aRSrJN2AXVYBybAGMhIywB9Lk2-fpPLYehIAmuy0NUYzBtbm01VkkBUSIJHXpgAEZpAFY9IwBfClhoABIbeQAzPh1kAF5kAG0UY0s6RlpLCr1qpJbkSwBBABs+Gw9pZAAmDssAIW4AI0sAXSC603MmsbdhQdqqLzCI4mby1oBmaFmAbmg4RCN0MDxsJWQAa3p1biLgAuLS1rzn4mvcPRzLgJMgcD1qGI3h9ChISvoctAitQJHY+PJkAkBABhL46AAUvxeAEpkORjJietNsD1kJ84aVzhTAcDQfT4VUicQztBMkA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIDcCGAnZeu2AngN4prLICuAzgKa60BcBuRxwYA9rQJYAXPpnoBaPgDsBAGgncJo+gFswA4qNoDckgOYA+aRSrJN2AXVYBybAGMhIywB9Lk2-fpPLYehIAmuy0NUYzBtbm01VkkBUSIJHXpgAEZpAFY9IwBfClhoABIbeQAzPh1kAF5kAG0UY0s6RlpLCr1qpJbkSwBBABs+Gw9pZAAmDssAIW4AI0sAXSC603MmsbdhQdqqLzCI4mby1oBmaFmAbmg4RCN0MDxsJWQAa3p1biLgAuLS1rzn4mvcPRzLgJMgcD1qGI3h9ChISvoctAitQJHY+PJkAkBABhL46AAUvxeAEpkORjJietNsD1kJ84aVzhTAcDQfT4VUicQztBMkA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ---
 
@@ -913,7 +913,7 @@ class LegacyClass {
 
 Phan will emit `PhanDeprecatedFunction`, `PhanDeprecatedMethod`, and `PhanDeprecatedClassConstant` when deprecated items are used.
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCGAnZeu2AngN4prLICuwGYBmAdgJYBOZAJygE5kAXAGQBnKhQBsaARgG1mgYIaDg8BPC8FsNVm0BhMzCAZsFNMNv86zyAMZkGFJFWQBvFMkoA+VEhNm-RIyy+TKmHSCZAAZZBGIeNKG8AO6SCEsVnwsvAC+yBmV2aVlZRVVVQZGxnAJmgBsJM0qDLOQfGyMKlwyOKphfmDkz10ARLYxqhDhKvEqAIzI5HKVHCFZKRVVUJmI4gGOVJ8AIL6FmDQqaggZKJ8X6jnRH2ZKz1klJSnlqcS1V95eKvJk5AAWpqhYxWjZhJwLFm9VzcbqBpXCiRQSvl1PLCVX6tTEknHBbXj9MRV5qUJKRdmVYAr1FqlVIqBHlSo8h+k5N48BVDfmXHl5cHD9bCVA2pGMz+b6oIzHQxYfgSWy65M85f9bZ2qqLrH2RrHfkVfBCvWQSqBYr5AOVZjJCPQKfZ1U0gfAhG1m+VZDaQPblmRnZxI0Yc03B4h06jxYKjMyDJPvplMzpvB-TAkXvXGlZlN+RX5lfn1+dWVMsJqBOl1Nldu7Tl3YJKhHvvfgO52Fw3j+nKkwZdYcJ+zl+XnsR4PW50A&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCGAnZeu2AngN4prLICuwGYBmAdgJYBOZAJygE5kAXAGQBnKhQBsaARgG1mgYIaDg8BPC8FsNVm0BhMzCAZsFNMNv86zyAMZkGFJFWQBvFMkoA+VEhNm-RIyy+TKmHSCZAAZZBGIeNKG8AO6SCEsVnwsvAC+yBmV2aVlZRVVVQZGxnAJmgBsJM0qDLOQfGyMKlwyOKphfmDkz10ARLYxqhDhKvEqAIzI5HKVHCFZKRVVUJmI4gGOVJ8AIL6FmDQqaggZKJ8X6jnRH2ZKz1klJSnlqcS1V95eKvJk5AAWpqhYxWjZhJwLFm9VzcbqBpXCiRQSvl1PLCVX6tTEknHBbXj9MRV5qUJKRdmVYAr1FqlVIqBHlSo8h+k5N48BVDfmXHl5cHD9bCVA2pGMz+b6oIzHQxYfgSWy65M85f9bZ2qqLrH2RrHfkVfBCvWQSqBYr5AOVZjJCPQKfZ1U0gfAhG1m+VZDaQPblmRnZxI0Yc03B4h06jxYKjMyDJPvplMzpvB-TAkXvXGlZlN+RX5lfn1+dWVMsJqBOl1Nldu7Tl3YJKhHvvfgO52Fw3j+nKkwZdYcJ+zl+XnsR4PW50A&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Typed Class Constants (PHP 8.3)
 
@@ -940,7 +940,7 @@ Phan validates:
 - Assignment types (`PhanTypeMismatchDeclaredConstant`)
 - Never type violations (`PhanTypeMismatchDeclaredConstantNever`)
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCGAnZeu2AngN4prI4pJ51wCtwALqzgM+kwEsAXXMO1oDdeFkrlyTFi+AGyRGXnMk1ZS1MAFV7YAXwATJFxFI9r2s4qRXQEvOV7mYyRuCJIvEARMwhZANzQNomPIRZMGgBvFGQX6gGx-hVVCJy8YOXV3pAUyrLmltWNzf3+Hs6h0dm5BGOj2BYVjV2lNfXqjAFYW2JH5ZVGjk+zMXgOlVV1BwqLivyYJ1UZ8vH1NyqXVdXZYoMphzLLzxHT5uQXI0EVqHOHmr2v6AKzQ7OPh5+1e6mQ6EFr3K-LiBMhRB8xEj5-9lS7ek3nC0HBM+QyUq6lA=&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCGAnZeu2AngN4prI4pJ51wCtwALqzgM+kwEsAXXMO1oDdeFkrlyTFi+AGyRGXnMk1ZS1MAFV7YAXwATJFxFI9r2s4qRXQEvOV7mYyRuCJIvEARMwhZANzQNomPIRZMGgBvFGQX6gGx-hVVCJy8YOXV3pAUyrLmltWNzf3+Hs6h0dm5BGOj2BYVjV2lNfXqjAFYW2JH5ZVGjk+zMXgOlVV1BwqLivyYJ1UZ8vH1NyqXVdXZYoMphzLLzxHT5uQXI0EVqHOHmr2v6AKzQ7OPh5+1e6mQ6EFr3K-LiBMhRB8xEj5-9lS7ek3nC0HBM+QyUq6lA=&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Property Hooks (PHP 8.4)
 
@@ -983,7 +983,7 @@ Phan detects:
 - Set hooks on readonly properties (`PhanReadonlyPropertyHasSetHook`)
 - Default values on hooked properties (`PhanPropertyHookWithDefaultValue`)
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0B6AKguNLQrQAEA3RfAOwHs2BabAWzAAXAJ7dkg3AEs2AcxqkKZeWjABXAEbxJsNOKmy0AElU5cbRH2yFltHIOu1HpSQDM0ACj3xsbd4ZbwqtgAlGgAvBFoAAyhRE7xpIIQuBwA7mhs2OkAaoiB2ACiuCm47gBEWHjmlmiwiGyc9upW-ELCZcEA3DbxAL49ToZJksjcAHwmVRZWYUYBQd0J-bT9ypTUjvTMrCocyJKCkkzY3NKCNorKapraaGdGiDJWcfF2DgnObn7zVsCzMe8Po4kil0pkcnkgkUSuUAIJPNB8ExNKxgPYHI7YDqLIFoZa4oYQEbjR4zOaQ7A4pz4kj9XpAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0B6AKguNLQrQAEA3RfAOwHs2BabAWzAAXAJ7dkg3AEs2AcxqkKZeWjABXAEbxJsNOKmy0AElU5cbRH2yFltHIOu1HpSQDM0ACj3xsbd4ZbwqtgAlGgAvBFoAAyhRE7xpIIQuBwA7mhs2OkAaoiB2ACiuCm47gBEWHjmlmiwiGyc9upW-ELCZcEA3DbxAL49ToZJksjcAHwmVRZWYUYBQd0J-bT9ypTUjvTMrCocyJKCkkzY3NKCNorKapraaGdGiDJWcfF2DgnObn7zVsCzMe8Po4kil0pkcnkgkUSuUAIJPNB8ExNKxgPYHI7YDqLIFoZa4oYQEbjR4zOaQ7A4pz4kj9XpAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### #[NoDiscard] Attribute (PHP 8.5)
 
@@ -1008,7 +1008,7 @@ $id = generateId();  // OK - value is used
 generateId();  // Error: PhanNoDiscardReturnValueIgnored
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0B6AKguNLQrQAEA3RfAOwHs2BabAWzAAXAJ7dkg3AEs2AcxqkKZeWjABXAEbxJsNOKmy0AElU5cbRH2yFltHIOu1HpSQDM0ACj3xsbd4ZbwqtgAlGgAvBFoAAyhRE7xpIIQuBwA7mhs2OkAaoiB2ACiuCm47gBEWHjmlmiwiGyc9upW-ELCZcEA3DbxAL49ToZJksjcAHwmVRZWYUYBQd0J-bT9ypTUjvTMrCocyJKCkkzY3NKCNorKapraaGdGiDJWcfF2DgnObn7zVsCzMe8Po4kil0pkcnkgkUSuUAIJPNB8ExNKxgPYHI7YDqLIFoZa4oYQEbjR4zOaQ7A4pz4kj9XpAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0B6AKguNLQrQAEA3RfAOwHs2BabAWzAAXAJ7dkg3AEs2AcxqkKZeWjABXAEbxJsNOKmy0AElU5cbRH2yFltHIOu1HpSQDM0ACj3xsbd4ZbwqtgAlGgAvBFoAAyhRE7xpIIQuBwA7mhs2OkAaoiB2ACiuCm47gBEWHjmlmiwiGyc9upW-ELCZcEA3DbxAL49ToZJksjcAHwmVRZWYUYBQd0J-bT9ypTUjvTMrCocyJKCkkzY3NKCNorKapraaGdGiDJWcfF2DgnObn7zVsCzMe8Po4kil0pkcnkgkUSuUAIJPNB8ExNKxgPYHI7YDqLIFoZa4oYQEbjR4zOaQ7A4pz4kj9XpAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Pipe Operator (PHP 8.5)
 
@@ -1036,7 +1036,7 @@ $result = 5 |> double(...) |> stringify(...);
 // $result is string
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtl8BLADwFMATZAEgDcsAbAV3JTXR3IBdmcA7ZACMA9iMbsMkLPwC0WAM4LyObrO45WsgMYj+lYt2J7kCjcX4BzWgxZtUsaADNm-bUZPEFAZXNWAFPRMrACUyADeKMjRXLwCyF4A+mY4FpaBtqEA3NAAvtDOru7GghAylIzkgZRY3FhhkdHRxE7I-l6+qQE0NXUhDVFNTbCwyAAKZYIA1vwiAO4KtL1YCYspacgQKvZDTeTaECKmGpX81bX1OUP5uUA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtl8BLADwFMATZAEgDcsAbAV3JTXR3IBdmcA7ZACMA9iMbsMkLPwC0WAM4LyObrO45WsgMYj+lYt2J7kCjcX4BzWgxZtUsaADNm-bUZPEFAZXNWAFPRMrACUyADeKMjRXLwCyF4A+mY4FpaBtqEA3NAAvtDOru7GghAylIzkgZRY3FhhkdHRxE7I-l6+qQE0NXUhDVFNTbCwyAAKZYIA1vwiAO4KtL1YCYspacgQKvZDTeTaECKmGpX81bX1OUP5uUA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ---
 
@@ -1070,7 +1070,7 @@ $user->setName("Alice"); // Phan knows this method exists
 $name = $user->getName(); // Phan knows this returns string
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIFsCmAXCA9gCbIDOuATgJYB2A5snXgHICGOAFAJTIDieyfNmQBXUtgoByUshrtsKNFjyESANwJUS43G07lq9ZABI5OHgGUBQ0eKkyzC1Bhz5iZXK1xUAxsgCqdsg+FNhe2BysFBSsAJ4mRF6sPADCoeHIrLLYAO62EoouKu60uAA+NCIANlXIAGa0RACSRABCsQCimKxUVRwGtAzG2N29XIqw0D5VrKQygRLIAN4oyGtg1GoZxl6UVABGIrjYMgC8yADaALoA3NCr6yL7Vb71IjQ+3gQ0yAD6vz5WDUOMZXKoADQmKJ0Ug8FZrBEI2CwZAAWVYdFeYPcEFYNCIL3oD2QAF97oiwE8Xn5yF5XnV3p8qN8-gCgVULJ5vD4QdiiJCdhQYXDiYjkchOXS-N1MdLiiRcfjCXRiWSydBjGJFucaLkAnZuHdNXYALQAPh0egiACIAILU7DWrg3ZDigAKiuQAGsaAQcjJ8FQZHzkNgAB5B3CkDWOZDnY0Sc1MXTyQ2ulEevHe33+wQQIPIUK4EQUGgyAb0IA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIFsCmAXCA9gCbIDOuATgJYB2A5snXgHICGOAFAJTIDieyfNmQBXUtgoByUshrtsKNFjyESANwJUS43G07lq9ZABI5OHgGUBQ0eKkyzC1Bhz5iZXK1xUAxsgCqdsg+FNhe2BysFBSsAJ4mRF6sPADCoeHIrLLYAO62EoouKu60uAA+NCIANlXIAGa0RACSRABCsQCimKxUVRwGtAzG2N29XIqw0D5VrKQygRLIAN4oyGtg1GoZxl6UVABGIrjYMgC8yADaALoA3NCr6yL7Vb71IjQ+3gQ0yAD6vz5WDUOMZXKoADQmKJ0Ug8FZrBEI2CwZAAWVYdFeYPcEFYNCIL3oD2QAF97oiwE8Xn5yF5XnV3p8qN8-gCgVULJ5vD4QdiiJCdhQYXDiYjkchOXS-N1MdLiiRcfjCXRiWSydBjGJFucaLkAnZuHdNXYALQAPh0egiACIAILU7DWrg3ZDigAKiuQAGsaAQcjJ8FQZHzkNgAB5B3CkDWOZDnY0Sc1MXTyQ2ulEevHe33+wQQIPIUK4EQUGgyAb0IA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Property Hooks (PHP 8.4 / V6)
 
@@ -1104,7 +1104,7 @@ class User {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0B6AKguNLQrQAEA3RfAOwHs2BabAWzAAXAJ7dkg3AEs2AcxqkKZeWjABXAEbxJsNOKmy0AElU5cbRH2yFltHIOu1HpSQDM0ACj3xsbd4ZbwqtgAlGgAvBFoAAyhRE7xpIIQuBwA7mhs2OkAaoiB2ACiuCm47gBEWHjmlmiwiGyc9upW-ELCZcEA3DbxAL49ToZJksjcAHwmVRZWYUYBQd0J-bT9ypTUjvTMrCocyJKCkkzY3NKCNorKapraaGdGiDJWcfF2DgnObn7zVsCzMe8Po4kil0pkcnkgkUSuUAIJPNB8ExNKxgPYHI7YDqLIFoZa4oYQEbjR4zOaQ7A4pz4kj9XpAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0B6AKguNLQrQAEA3RfAOwHs2BabAWzAAXAJ7dkg3AEs2AcxqkKZeWjABXAEbxJsNOKmy0AElU5cbRH2yFltHIOu1HpSQDM0ACj3xsbd4ZbwqtgAlGgAvBFoAAyhRE7xpIIQuBwA7mhs2OkAaoiB2ACiuCm47gBEWHjmlmiwiGyc9upW-ELCZcEA3DbxAL49ToZJksjcAHwmVRZWYUYBQd0J-bT9ypTUjvTMrCocyJKCkkzY3NKCNorKapraaGdGiDJWcfF2DgnObn7zVsCzMe8Po4kil0pkcnkgkUSuUAIJPNB8ExNKxgPYHI7YDqLIFoZa4oYQEbjR4zOaQ7A4pz4kj9XpAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Readonly Properties
 
@@ -1122,7 +1122,7 @@ class User {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0B6AKguNLQrQAEA3RfAOwHs2BabAWzAAXAJ7dkg3AEs2Acxql6DXNkQATLvGHySFMtrABXAEbxJsNOKmy0AEkmqA3NH3HT5gGYG2sQZK5oAfQDYLksDHwAKS2kZW3sASkJtWhtBCElkbgA+ezQAXjjHbQBfaGKgA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0B6AKguNLQrQAEA3RfAOwHs2BabAWzAAXAJ7dkg3AEs2Acxql6DXNkQATLvGHySFMtrABXAEbxJsNOKmy0AEkmqA3NH3HT5gGYG2sQZK5oAfQDYLksDHwAKS2kZW3sASkJtWhtBCElkbgA+ezQAXjjHbQBfaGKgA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ---
 
@@ -1152,7 +1152,7 @@ function process($input) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtl8BLADwFMATZAEgDcsAbAV3JTUwiwDsBaLAM4DyOAC7IBonMW4BzWgxZtUsaADNm3AMajiAe27JBwsQGUpM2QAp6TVgEpkAbxTI3xNcisBCYgID6ktJyNooOji5uUVGiEDh6AO7I3ORJACoAnmDkAKI48ThWAEQ5pNk6VBIWckX2ANyubgC+0C3qmjr6hmDxWuRCNjJgzKIRjUZCIqLmwdY0QyP147CwyAAKXIbcicgA1tsJArQL4n5GVbPj5FoQeheM5NyD3MOjDU1AA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtl8BLADwFMATZAEgDcsAbAV3JTUwiwDsBaLAM4DyOAC7IBonMW4BzWgxZtUsaADNm3AMajiAe27JBwsQGUpM2QAp6TVgEpkAbxTI3xNcisBCYgID6ktJyNooOji5uUVGiEDh6AO7I3ORJACoAnmDkAKI48ThWAEQ5pNk6VBIWckX2ANyubgC+0C3qmjr6hmDxWuRCNjJgzKIRjUZCIqLmwdY0QyP147CwyAAKXIbcicgA1tsJArQL4n5GVbPj5FoQeheM5NyD3MOjDU1AA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### @phan-assert-true-condition and @phan-assert-false-condition
 
@@ -1174,7 +1174,7 @@ function handle($data) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtl8BLADwFMATZAEgDcsAbAV3JTXR3IBdmcA7ZACMA9iMbsMkLPwC0WAM4LyObrO45WsgMYj+lYt2J7kCjcX4BzWgxZtUsaADNm-bUZPEFAZXNWAFPRMrACUyADeKMjRXLwCyF4A+mY4FpaBtqEA3NAAvtDOru7GghAylIzkgZRY3FhhkdHRxE7I-l6+qQE0NXUhDVFNTbCwyAAKZYIA1vwiAO4KtL1YCYspacgQKvZDTeTaECKmGpX81bX1OUP5uUA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtl8BLADwFMATZAEgDcsAbAV3JTXR3IBdmcA7ZACMA9iMbsMkLPwC0WAM4LyObrO45WsgMYj+lYt2J7kCjcX4BzWgxZtUsaADNm-bUZPEFAZXNWAFPRMrACUyADeKMjRXLwCyF4A+mY4FpaBtqEA3NAAvtDOru7GghAylIzkgZRY3FhhkdHRxE7I-l6+qQE0NXUhDVFNTbCwyAAKZYIA1vwiAO4KtL1YCYspacgQKvZDTeTaECKmGpX81bX1OUP5uUA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### @phan-assert with Generics
 
@@ -1200,7 +1200,7 @@ function processUser($input) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6YRATkbsrgJYAe2AJsgCQBuRBAK7ZKGGvUYBjYgGcZAWhmZazAHYBzYGQB8PaUTkA5BiNQZa2TINqryo6hCKr5BmdlqZyPfkNPxY0ABmgqqSmMwA9rau7pgAkqpKTpLYAPKBABR8AsIANHqyMsa42ACUyADeKMg1zIHIGQCE2b7Iakmh2BH13PpGJuVVNcPDmBC0EQDuyKrY02QAnmDYAKK0E7QZAEQrrMthnG2JmMnYyN0FrsXYW6UA3NU1AL6PyBZWNt452A8vQSFhSK2MATFJyACqbk23DUYEEmEGr24gihyAAvMgYh4Eh0UuksrD4flIe4AFykvoye6vWCwZAABUctgA1qopjIeCj3G0OSTaK9sJIIBFOVD5Np1JZrhlqU8gA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6YRATkbsrgJYAe2AJsgCQBuRBAK7ZKGGvUYBjYgGcZAWhmZazAHYBzYGQB8PaUTkA5BiNQZa2TINqryo6hCKr5BmdlqZyPfkNPxY0ABmgqqSmMwA9rau7pgAkqpKTpLYAPKBABR8AsIANHqyMsa42ACUyADeKMg1zIHIGQCE2b7Iakmh2BH13PpGJuVVNcPDmBC0EQDuyKrY02QAnmDYAKK0E7QZAEQrrMthnG2JmMnYyN0FrsXYW6UA3NU1AL6PyBZWNt452A8vQSFhSK2MATFJyACqbk23DUYEEmEGr24gihyAAvMgYh4Eh0UuksrD4flIe4AFykvoye6vWCwZAABUctgA1qopjIeCj3G0OSTaK9sJIIBFOVD5Np1JZrhlqU8gA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ---
 
@@ -1232,7 +1232,7 @@ class Example {
 processValue($wrongType);
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIGcCuYwCcBTTTZABQgEMA7AFQE8xCBJagN0oBsBLAE1oj4A9gHdMzcdQAuhfADNKAY0Ip4saHOzVFU7kOrJ83TAGt6AeSb5Ku-QAoAlMgDeKZO6mDRyaoRHIAUQAPZTBbakcAbmgAX2hoRU5KEkCgygBbME5CFzd3BCR3IrQsXAJiUgoaAFVqIjlZQm1CXjJsACMeRQBZQk8hXjz3NSGwDq7kTW1w5C1sTBbe-t5HXKL15FhYZCWIAeRjA+km8K5OelnqeZahuLi4bdYeX2QcPCISPWo4RAw38pSVTojEI3WM6RsiggAEF8ABzbDpE6odQEITKEgANS42EIdgAJCJhNQ4QwmA5IkA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIGcCuYwCcBTTTZABQgEMA7AFQE8xCBJagN0oBsBLAE1oj4A9gHdMzcdQAuhfADNKAY0Ip4saHOzVFU7kOrJ83TAGt6AeSb5Ku-QAoAlMgDeKZO6mDRyaoRHIAUQAPZTBbakcAbmgAX2hoRU5KEkCgygBbME5CFzd3BCR3IrQsXAJiUgoaAFVqIjlZQm1CXjJsACMeRQBZQk8hXjz3NSGwDq7kTW1w5C1sTBbe-t5HXKL15FhYZCWIAeRjA+km8K5OelnqeZahuLi4bdYeX2QcPCISPWo4RAw38pSVTojEI3WM6RsiggAEF8ABzbDpE6odQEITKEgANS42EIdgAJCJhNQ4QwmA5IkA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### @phan-suppress-next-line
 
@@ -1246,7 +1246,7 @@ processValue($wrongType);
 return $complexValue;
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABSBDAdgWgM4FcwwAnAU11201IA8AXbAGwEtqkAFCLAFQE8xSAWWa4AtujoBjCAEFiAc3yjSmOknixoJAPaTyuAGrpG+UgAoAJAHdi2zPL4CAlAG5ocRKgw4CRMhSpaBhY2Th5+UjlidF4AZXxcMGZJZm0EgBoOLkxHIRFxKQgAJVI6fGJMdU0yMoqkC0ltUTBGWiMTUhcgA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABSBDAdgWgM4FcwwAnAU11201IA8AXbAGwEtqkAFCLAFQE8xSAWWa4AtujoBjCAEFiAc3yjSmOknixoJAPaTyuAGrpG+UgAoAJAHdi2zPL4CAlAG5ocRKgw4CRMhSpaBhY2Th5+UjlidF4AZXxcMGZJZm0EgBoOLkxHIRFxKQgAJVI6fGJMdU0yMoqkC0ltUTBGWiMTUhcgA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### @phan-file-suppress
 
@@ -1267,7 +1267,7 @@ class HelperClass {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAKQIYDsC0AZgJYA2ApngM4CuYYATmZZcgAoS4CqOjBZjOAMZkAJgGESWZijSYO+YuSq0GTFuy48yfAcJGtqAIxJFBAWTIAXCAHsRM2NDixkAQRIlkgycybJcIsgAtla2IixEOMjWRCyKZMgA7jY4AOSW0fREAObZ-NEQTAmxNEzQ3lIsABJkJGD8EpXIAN4oyO1gRiaCyATUQpZEKciFdfwW1nYAFACULW3ti8iwLgB06wvIAL7QW0A&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAKQIYDsC0AZgJYA2ApngM4CuYYATmZZcgAoS4CqOjBZjOAMZkAJgGESWZijSYO+YuSq0GTFuy48yfAcJGtqAIxJFBAWTIAXCAHsRM2NDixkAQRIlkgycybJcIsgAtla2IixEOMjWRCyKZMgA7jY4AOSW0fREAObZ-NEQTAmxNEzQ3lIsABJkJGD8EpXIAN4oyO1gRiaCyATUQpZEKciFdfwW1nYAFACULW3ti8iwLgB06wvIAL7QW0A&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ---
 
@@ -1324,7 +1324,7 @@ class LegacyClass {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBMCmYBO2AxgIYAu2myAqgM7bIB22A7gLLakQD2mAFAJTIAlgxrlimFPFjQAZgFcGhUkK4NkXADaZ2nHgOQBvFMlMFS8vOoAknITQC0APiZsO3PvwDc0AL7Q4RCkMHHwiMgpkACYAOgAGeOQAdSFNTWQAI3oCAFsuADdIkWQAZnj4qRlCTWIaGmQAGWwAc2JCAE8AYRq6oz8gA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBMCmYBO2AxgIYAu2myAqgM7bIB22A7gLLakQD2mAFAJTIAlgxrlimFPFjQAZgFcGhUkK4NkXADaZ2nHgOQBvFMlMFS8vOoAknITQC0APiZsO3PvwDc0AL7Q4RCkMHHwiMgpkACYAOgAGeOQAdSFNTWQAI3oCAFsuADdIkWQAZnj4qRlCTWIaGmQAGWwAc2JCAE8AYRq6oz8gA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### @internal
 
@@ -1347,7 +1347,7 @@ class PublicAPI {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIEsB2AXApgE7YCGANsgCoSYDOyAxmSbfXcgGYD2hyOBxcsgCutfMi7YyATxTxY0Ji3oBJPEVJkAEvjJgiyAN7QAvtEXNWyAArCARmUwMAgtZVGUyLwiRe-aLHVBMk9-BT9kMHtHBk5hbAZcTEk+IM0AWXxcCC4AEwAKAEoPCIjYWGQAOS5cSJJCWq4OSOinZFcVUOQzEyA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIEsB2AXApgE7YCGANsgCoSYDOyAxmSbfXcgGYD2hyOBxcsgCutfMi7YyATxTxY0Ji3oBJPEVJkAEvjJgiyAN7QAvtEXNWyAArCARmUwMAgtZVGUyLwiRe-aLHVBMk9-BT9kMHtHBk5hbAZcTEk+IM0AWXxcCC4AEwAKAEoPCIjYWGQAOS5cSJJCWq4OSOinZFcVUOQzEyA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### @override
 
@@ -1369,7 +1369,7 @@ class Child extends Parent {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBABUQJwKYDsAXNAb2jQrTAFcAjeAS1jQDNr9ZCGB7fK7brFyoAFAEpS5SgF9osuElRoAwhAbwAJmlwAPQgQ3oseIpMpoA9ACorUylbQABbgDdc2bAw247FKxd8aeiZWdk4ePjABIVEJMnNzCws0AHk3Dy9cKhwCYgBbXEIIbg1fWWkgA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBABUQJwKYDsAXNAb2jQrTAFcAjeAS1jQDNr9ZCGB7fK7brFyoAFAEpS5SgF9osuElRoAwhAbwAJmlwAPQgQ3oseIpMpoA9ACorUylbQABbgDdc2bAw247FKxd8aeiZWdk4ePjABIVEJMnNzCws0AHk3Dy9cKhwCYgBbXEIIbg1fWWkgA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### @throws
 
@@ -1393,7 +1393,7 @@ function readFile($filename) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBnAFxwEsA7Ac2QBIAzcgGwFNKDWU10SIcA9gHciyAGItWAOQEkxAgK6UAJgFEAHgGNWYEuQGVkAdQjtkTNsmUDWRSgHISyVuvKluGPoJHIACqxx8NyJ9SgARdnJWNS0dPQNjU0MLVmQ3ByccVixlLAAjNg90LJIFHENSChpuWGgGJU14wyyciTYACkZJDnxWAEpkAG8UZFHyBmR2gEIUgH0XNxIiTpSe-oHh0a2tr2FkSlYhcUkZOUUVDW1dUJXuzj6AbhHRgF9ntInpt1mW3ILWW5sNZ9Dbvba7I4HI7+QLBUIRShRGJXJqA9j3J7bN7bEplZKSWbUVgkWaaAwkdhLNHAp4vIA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBnAFxwEsA7Ac2QBIAzcgGwFNKDWU10SIcA9gHciyAGItWAOQEkxAgK6UAJgFEAHgGNWYEuQGVkAdQjtkTNsmUDWRSgHISyVuvKluGPoJHIACqxx8NyJ9SgARdnJWNS0dPQNjU0MLVmQ3ByccVixlLAAjNg90LJIFHENSChpuWGgGJU14wyyciTYACkZJDnxWAEpkAG8UZFHyBmR2gEIUgH0XNxIiTpSe-oHh0a2tr2FkSlYhcUkZOUUVDW1dUJXuzj6AbhHRgF9ntInpt1mW3ILWW5sNZ9Dbvba7I4HI7+QLBUIRShRGJXJqA9j3J7bN7bEplZKSWbUVgkWaaAwkdhLNHAp4vIA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### @mixin
 
@@ -1410,7 +1410,7 @@ class Model {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIFsCWAPbAdsgEICu2ANgCYCmATivLNAMYUCGAzp8gLID2tCsgDeKZBNKcayABJcylWnQDc0cRNixkABQjsipAss4AXA1R4ChyfT0XV6yTDVMRBnaAF8gA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIFsCWAPbAdsgEICu2ANgCYCmATivLNAMYUCGAzp8gLID2tCsgDeKZBNKcayABJcylWnQDc0cRNixkABQjsipAss4AXA1R4ChyfT0XV6yTDVMRBnaAF8gA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### @phan-type
 
@@ -1440,7 +1440,7 @@ class UserRepository {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAKQIYDsC0ALgJ5gCmyAqgM6kBOAkgCbIC8yYA9lQJYHcBupPNxwEUaTBFyES5anQAiWAllbIstWliIBvbowBc8howA0OLAFtSBnB3ylLYYnioFaIgOanHWbgBsDNw8cTwBfcQxsfGIyShpaAGEOf39SAGM+ezUNLSJgYyZTYyUVAD5xWGh0-ywqKni6ACVSTh4CDloiZB0UZH6EJH7hiTANK0aTZAASfT6RjFpSAgBXWhxJ0qwAHxwV1Pn++Crh9hWAI39udOQAMxWcTO5s25FGAApZxgBKHsPT2CwZAAOlBhwih0G-wkS1W60myVSGSyOGhJ2GYAuVxu90eKLubwAgql3r9eqcAUDQcDwdAwkA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAKQIYDsC0ALgJ5gCmyAqgM6kBOAkgCbIC8yYA9lQJYHcBupPNxwEUaTBFyES5anQAiWAllbIstWliIBvbowBc8howA0OLAFtSBnB3ylLYYnioFaIgOanHWbgBsDNw8cTwBfcQxsfGIyShpaAGEOf39SAGM+ezUNLSJgYyZTYyUVAD5xWGh0-ywqKni6ACVSTh4CDloiZB0UZH6EJH7hiTANK0aTZAASfT6RjFpSAgBXWhxJ0qwAHxwV1Pn++Crh9hWAI39udOQAMxWcTO5s25FGAApZxgBKHsPT2CwZAAOlBhwih0G-wkS1W60myVSGSyOGhJ2GYAuVxu90eKLubwAgql3r9eqcAUDQcDwdAwkA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### @phan-pure
 
@@ -1458,7 +1458,7 @@ function add($a, $b) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAKQIYDsC0YArgE4CmKamWxWAtsgJY4AuyAJFhRmNXYy+wBGXdGWYkc-ZhVjQAZoRwBjZgwD2krABMtACg4AaIQEpkAbxTIrYieyzIA1EIDc0AL5A&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAKQIYDsC0YArgE4CmKamWxWAtsgJY4AuyAJFhRmNXYy+wBGXdGWYkc-ZhVjQAZoRwBjZgwD2krABMtACg4AaIQEpkAbxTIrYieyzIA1EIDc0AL5A&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### @phan-immutable
 
@@ -1480,7 +1480,7 @@ class Point {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAKQIYDsC0AlgLZECuALlgEYA2ApivLNAMY1YDOHyACgPYEc5ZAG8UyCWFK0CLZADNSOFuQJ8cyAPqaW6juQBOpFQApxEi8iky5BulgAm6mgE9kg4QBIAHgBpzllbSNLLIdo7Obh7Ini4BAJSiAL7QAdYhcorKqurIAO4E5BAAGibRPvEAXMgcdDTyogGWduSkBho4dHk1dfImPr4xRQQceAB8LvEA3AEpSUA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAKQIYDsC0AlgLZECuALlgEYA2ApivLNAMY1YDOHyACgPYEc5ZAG8UyCWFK0CLZADNSOFuQJ8cyAPqaW6juQBOpFQApxEi8iky5BulgAm6mgE9kg4QBIAHgBpzllbSNLLIdo7Obh7Ini4BAJSiAL7QAdYhcorKqurIAO4E5BAAGibRPvEAXMgcdDTyogGWduSkBho4dHk1dfImPr4xRQQceAB8LvEA3AEpSUA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Template Type Aliases with @phan-type
 
@@ -1501,7 +1501,7 @@ class ApiClient {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6kRAdgLSYCeY2yAStgM4CuBmwMgD5kAXmREATpKJMA3rwDGi7lwBcAIwD2WggBoAJiSJqyAH1p992aVslqumSQEtaAcwtWAvpVjRFxFxcyACCYM4AwgTO2LSYyHIoyMkISMnpVDj4xKRknFxgWrRc2EkZGGBSRLjIji7uyAAkPJIEZclUktiYLbQc3HwCedyFxdhC7ah+6chgPBrRisgAZjy0ipjORchu3QAUza0AlAmT6bCwyAB0N+0+XkA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6kRAdgLSYCeY2yAStgM4CuBmwMgD5kAXmREATpKJMA3rwDGi7lwBcAIwD2WggBoAJiSJqyAH1p992aVslqumSQEtaAcwtWAvpVjRFxFxcyACCYM4AwgTO2LSYyHIoyMkISMnpVDj4xKRknFxgWrRc2EkZGGBSRLjIji7uyAAkPJIEZclUktiYLbQc3HwCedyFxdhC7ah+6chgPBrRisgAZjy0ipjORchu3QAUza0AlAmT6bCwyAB0N+0+XkA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ---
 
@@ -1520,7 +1520,7 @@ class ApiClient {
 /** @param non-empty-array<positive-int,User> $users */
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0sAIBCBDAJgLgQFQPa4QHMBTAO2ICcBLAYzgCp6EABMFClAWwXY4E8EAEgCuAZ0qiE9WNDiIA4vkwIAymGI0qAM1oJRAFwrCa+4RWIMmrdlx4V+wKqX0AaAKriKAPiFiJUmTlkYn19SiwAUQA3MgROXHM9dU0dOlhGFjYOblJcUgBaYk4wfT583hQ+YDBcUSp9Khj8p1cPSh8RT0lpIA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0sAIBCBDAJgLgQFQPa4QHMBTAO2ICcBLAYzgCp6EABMFClAWwXY4E8EAEgCuAZ0qiE9WNDiIA4vkwIAymGI0qAM1oJRAFwrCa+4RWIMmrdlx4V+wKqX0AaAKriKAPiFiJUmTlkYn19SiwAUQA3MgROXHM9dU0dOlhGFjYOblJcUgBaYk4wfT583hQ+YDBcUSp9Khj8p1cPSh8RT0lpIA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### 2. Use Template Constraints
 
@@ -1548,7 +1548,7 @@ class Repository {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0sAIBCBDAJgLgQOQPYIGNcA7AZwBcAnFAS2PNLgConoEmEABcgUwFswAGxS8EAFTZNY0AsNKkEAJR5hcpGuVyUAnggDebBEdgsuYFNT7iEAEh70NuqYaNgArgCNBNAggBmbsQE5DQkCKQoAG48ABR2DuTaAJT6Lkbp8SGJALQAfADmPOQAkmgxSQDcCPAIAKpkKH48AIRpAL7QHXCIAOK4uJgIAOoaEIQkFNR0DMys7Fy8AsKiYgi4fggAognaktKyKPJKKmoaWroG6dWmnOaW1pmO7NJX7l4+-oHBocThUbGPRIpS5XDL2LLaPKFEplSrVRAAZUaPCwKEEgi2CRoPAUEH+CGhpXK7U6QA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0sAIBCBDAJgLgQOQPYIGNcA7AZwBcAnFAS2PNLgConoEmEABcgUwFswAGxS8EAFTZNY0AsNKkEAJR5hcpGuVyUAnggDebBEdgsuYFNT7iEAEh70NuqYaNgArgCNBNAggBmbsQE5DQkCKQoAG48ABR2DuTaAJT6Lkbp8SGJALQAfADmPOQAkmgxSQDcCPAIAKpkKH48AIRpAL7QHXCIAOK4uJgIAOoaEIQkFNR0DMys7Fy8AsKiYgi4fggAognaktKyKPJKKmoaWroG6dWmnOaW1pmO7NJX7l4+-oHBocThUbGPRIpS5XDL2LLaPKFEplSrVRAAZUaPCwKEEgi2CRoPAUEH+CGhpXK7U6QA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### 3. Document Complex Return Types
 
@@ -1565,7 +1565,7 @@ function getUserData($id) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCmAXArpgHbICGmmpAngN4prLL4DO2mAXMgKquYA09RsjBsAtgEtmzcQHsizTuUpVgzXJnFEA5gD4BqIaLykAJqVylFFajQDGOc9hMB9c+zUbtffGDO4nrrju6ppaAL6CEaiw0ABm+ES2uLIkWng8bAAi5qQAFAAk4iYAlMh0QsiwsMgAwjKiYAA22AAeyB74SYROyDgExNBhQA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCmAXArpgHbICGmmpAngN4prLL4DO2mAXMgKquYA09RsjBsAtgEtmzcQHsizTuUpVgzXJnFEA5gD4BqIaLykAJqVylFFajQDGOc9hMB9c+zUbtffGDO4nrrju6ppaAL6CEaiw0ABm+ES2uLIkWng8bAAi5qQAFAAk4iYAlMh0QsiwsMgAwjKiYAA22AAeyB74SYROyDgExNBhQA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### 4. Use Variance Appropriately
 
@@ -1589,7 +1589,7 @@ interface Sink {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0sAIAKAnA9gEwK4GMCmKAzgFwJaF4I5oBuAhigJZ0B2ALnAFSfQKcIABNngC2YADZ1hAWmr0mrNggAqvTrGiN2BAGZ18CAMposKAwG9eCa7G6CUeNqZYq+G69bBYARuMY4EHSwWHDZGNBcAc0cACgBKAG5oAF9oOEQAYQjCLBECEjIKKgi2FDp5ZnYuHj5BYTFJGWp2MorFFTUNLWEUPQNDLQBrBEsPBFt+ATAGOhFXABJGercrTx8-AKCQsIiELzYYxfrElKA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0sAIAKAnA9gEwK4GMCmKAzgFwJaF4I5oBuAhigJZ0B2ALnAFSfQKcIABNngC2YADZ1hAWmr0mrNggAqvTrGiN2BAGZ18CAMposKAwG9eCa7G6CUeNqZYq+G69bBYARuMY4EHSwWHDZGNBcAc0cACgBKAG5oAF9oOEQAYQjCLBECEjIKKgi2FDp5ZnYuHj5BYTFJGWp2MorFFTUNLWEUPQNDLQBrBEsPBFt+ATAGOhFXABJGercrTx8-AKCQsIiELzYYxfrElKA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### 5. Combine Utility Types
 
@@ -1606,7 +1606,7 @@ function connectToServer(array $config) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtlc8BPAbxTWWTAHscAXALmQEsA7BgWj3YHMApsACMAGgBsAVkkBmSQD5Rlasgi0Azs2Tta7LgPxgGJLppwc+S1Coat8A2gFctdda1sA3AVw4NlAX2QAEgBjXQAzVj5KWGhwx3YQ211kMPZ2ASSAFVoAZQEcLxwACmIsEmC0yL4ASmQKFWRYWGQskjBvdSxwgVSIqMc8ZPZofyA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtlc8BPAbxTWWTAHscAXALmQEsA7BgWj3YHMApsACMAGgBsAVkkBmSQD5Rlasgi0Azs2Tta7LgPxgGJLppwc+S1Coat8A2gFctdda1sA3AVw4NlAX2QAEgBjXQAzVj5KWGhwx3YQ211kMPZ2ASSAFVoAZQEcLxwACmIsEmC0yL4ASmQKFWRYWGQskjBvdSxwgVSIqMc8ZPZofyA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ---
 
@@ -1642,7 +1642,7 @@ class Builder {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IBCArgJYEAm2ATsgG8UyEQjToAbkX7TeRAJ7B6mXuwB2AcwA0udgA9sXAHypqIkWFVTSAEi4kiyALzIA2gF0A3NGGjEvkXEwaSJcZGVVTWQbAGtseQDUDGC5MN0DLmipAlZsRPFebExWXjVozAh2enyzczBWACMCdhpkADNWNRpMdgB7MvoigApY+K0sohzsAEpBRPMbCqqAWiN7TCJXUfl3Zwmp73Mj5ELi0vLK+kPzAF8fI7F85JCwuiJGZYj1DWAyExs3owAHKhPLHApFEplCjg2oWRrNVodLo9frIBocbgjQH0EG4GZzY7mU5Q5BqbAAd2iOLx2BGS3oq3WRGm1xEdxuQA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IBCArgJYEAm2ATsgG8UyEQjToAbkX7TeRAJ7B6mXuwB2AcwA0udgA9sXAHypqIkWFVTSAEi4kiyALzIA2gF0A3NGGjEvkXEwaSJcZGVVTWQbAGtseQDUDGC5MN0DLmipAlZsRPFebExWXjVozAh2enyzczBWACMCdhpkADNWNRpMdgB7MvoigApY+K0sohzsAEpBRPMbCqqAWiN7TCJXUfl3Zwmp73Mj5ELi0vLK+kPzAF8fI7F85JCwuiJGZYj1DWAyExs3owAHKhPLHApFEplCjg2oWRrNVodLo9frIBocbgjQH0EG4GZzY7mU5Q5BqbAAd2iOLx2BGS3oq3WRGm1xEdxuQA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Repository Pattern with Generics
 
@@ -1686,7 +1686,7 @@ class UserRepository extends AbstractRepository {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyA9gGbICiAdpgJaYCeK8s0RARgM6YATkQDGmZKOL9+yAIIDhYzACVsYSv1aUhbZAG8UyYwiTHzadGCIjcyDVpYA3bAFpmTZABJmAEyMWGELYmACuQgzkAD4MoQQEAcZciXyCIuL2obwEzKLI1KEM4syUkdQevgAUPr4AlADc0ImmiahBIeGRNiJswA6szC7uTAA0ZAB8rcnmyKlKGWBZOXkFRSyl+RVy8ZUNTTMtM21WNkR2FF7YTKwcR9Pmc+kSi9m5+YXFG-xELtVXLOw9gBfJqHSzYAAeOAYvlkCjSyjU-UwOl6AFV+NghJNUNwpEQZMgMVikZptLpkJDobD5IonqTHKiDIkXst3msSmUKtU-LVmUdzLBYMg1GEIrJiUIYnEEjMQSylm9Vp8uTDtgRdvyBcghSKOuLZkIen0yc43B5MCNJTjzPKZqylR91pFvr9LtdAVqBbr3QC9MwJZihIkQUCgA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyA9gGbICiAdpgJaYCeK8s0RARgM6YATkQDGmZKOL9+yAIIDhYzACVsYSv1aUhbZAG8UyYwiTHzadGCIjcyDVpYA3bAFpmTZABJmAEyMWGELYmACuQgzkAD4MoQQEAcZciXyCIuL2obwEzKLI1KEM4syUkdQevgAUPr4AlADc0ImmiahBIeGRNiJswA6szC7uTAA0ZAB8rcnmyKlKGWBZOXkFRSyl+RVy8ZUNTTMtM21WNkR2FF7YTKwcR9Pmc+kSi9m5+YXFG-xELtVXLOw9gBfJqHSzYAAeOAYvlkCjSyjU-UwOl6AFV+NghJNUNwpEQZMgMVikZptLpkJDobD5IonqTHKiDIkXst3msSmUKtU-LVmUdzLBYMg1GEIrJiUIYnEEjMQSylm9Vp8uTDtgRdvyBcghSKOuLZkIen0yc43B5MCNJTjzPKZqylR91pFvr9LtdAVqBbr3QC9MwJZihIkQUCgA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Factory Pattern with Generics
 
@@ -1712,7 +1712,7 @@ class DatabaseFactory implements Factory {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AlgHY4BOAZkQMbbIBi7mA9owCeyAN4pkEhEgky06MEUZFcyRUsHAAzpkb0A5gBpcNAB7YAJgD5kAEjZ86zGnvGyMjbJgCujOuVcSVAFgXgBGBDRsyMxedGyYNA7IbB4k2AAUakTCdg5OegCUANzQAL7QcIiUGDT4BHjYDJrcvAIaACIkRKFEmtiWlNRsxJrNnZjdvdg88W3ItYQNTS2zQqLBYRFRMXEJSSnYaZmM6rb2js4F6zI3yB7evsh02ADuyOOTfem5F4UlN+VSkA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AlgHY4BOAZkQMbbIBi7mA9owCeyAN4pkEhEgky06MEUZFcyRUsHAAzpkb0A5gBpcNAB7YAJgD5kAEjZ86zGnvGyMjbJgCujOuVcSVAFgXgBGBDRsyMxedGyYNA7IbB4k2AAUakTCdg5OegCUANzQAL7QcIiUGDT4BHjYDJrcvAIaACIkRKFEmtiWlNRsxJrNnZjdvdg88W3ItYQNTS2zQqLBYRFRMXEJSSnYaZmM6rb2js4F6zI3yB7evsh02ADuyOOTfem5F4UlN+VSkA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ---
 

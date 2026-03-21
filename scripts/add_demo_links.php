@@ -415,7 +415,7 @@ function processMarkdownFile($inputFile, $outputFile = null) {
                 // Add the new demo link (always with leading empty line)
                 $url = generatePhanURL($codeBlockContent);
                 $output[] = '';
-                $output[] = "**[Try this example in Phan-in-Browser →]({$url})**";
+                $output[] = "[▶]({$url} \"Try this example in Phan-in-Browser\")";
             }
         } elseif ($inCodeBlock) {
             // Inside code block - accumulate content

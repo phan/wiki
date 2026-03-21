@@ -84,7 +84,7 @@ $temp->fahrenheit = 86;
 echo $temp->celsius;     // ~30
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0B6AKguNLQrQAEA3RfAOwHs2BabAWzAAXAJ7dkg3AEs2AcxqkKZeWjABXAEbxJsNOKmy0AElU5cbRH2yFltHIOu1HpSQDM0ACj3xsbd4ZbwqtgAlGgAvBFoAAyhRE7xpIIQuBwA7mhs2OkAaoiB2ACiuCm47gBEWHjmlmiwiGyc9upW-ELCZcEA3DbxAL49ToZJksjcAHwmVRZWYUYBQd0J-bT9ypTUjvTMrCocyJKCkkzY3NKCNorKapraaGdGiDJWcfF2DgnObn7zVsCzMe8Po4kil0pkcnkgkUSuUAIJPNB8ExNKxgPYHI7YDqLIFoZa4oYQEbjR4zOaQ7A4pz4kj9XpAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0B6AKguNLQrQAEA3RfAOwHs2BabAWzAAXAJ7dkg3AEs2AcxqkKZeWjABXAEbxJsNOKmy0AElU5cbRH2yFltHIOu1HpSQDM0ACj3xsbd4ZbwqtgAlGgAvBFoAAyhRE7xpIIQuBwA7mhs2OkAaoiB2ACiuCm47gBEWHjmlmiwiGyc9upW-ELCZcEA3DbxAL49ToZJksjcAHwmVRZWYUYBQd0J-bT9ypTUjvTMrCocyJKCkkzY3NKCNorKapraaGdGiDJWcfF2DgnObn7zVsCzMe8Po4kil0pkcnkgkUSuUAIJPNB8ExNKxgPYHI7YDqLIFoZa4oYQEbjR4zOaQ7A4pz4kj9XpAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### #[Deprecated] Attribute
 
@@ -114,7 +114,7 @@ oldMethod();  // Warning: PhanDeprecatedFunction
 LegacyClass::OLD_VALUE;  // Warning: PhanDeprecatedClassConstant
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCGAnZeu2AngN4prLICuwGYBmAdgJYBOZAJygE5kAXAGQBnKhQBsaARgG1mgYIaDg8BPC8FsNVm0BhMzCAZsFNMNv86zyAMZkGFJFWQBvFMkoA+VEhNm-RIyy+TKmHSCZAAZZBGIeNKG8AO6SCEsVnwsvAC+yBmV2aVlZRVVVQZGxnAJmgBsJM0qDLOQfGyMKlwyOKphfmDkz10ARLYxqhDhKvEqAIzI5HKVHCFZKRVVUJmI4gGOVJ8AIL6FmDQqaggZKJ8X6jnRH2ZKz1klJSnlqcS1V95eKvJk5AAWpqhYxWjZhJwLFm9VzcbqBpXCiRQSvl1PLCVX6tTEknHBbXj9MRV5qUJKRdmVYAr1FqlVIqBHlSo8h+k5N48BVDfmXHl5cHD9bCVA2pGMz+b6oIzHQxYfgSWy65M85f9bZ2qqLrH2RrHfkVfBCvWQSqBYr5AOVZjJCPQKfZ1U0gfAhG1m+VZDaQPblmRnZxI0Yc03B4h06jxYKjMyDJPvplMzpvB-TAkXvXGlZlN+RX5lfn1+dWVMsJqBOl1Nldu7Tl3YJKhHvvfgO52Fw3j+nKkwZdYcJ+zl+XnsR4PW50A&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCGAnZeu2AngN4prLICuwGYBmAdgJYBOZAJygE5kAXAGQBnKhQBsaARgG1mgYIaDg8BPC8FsNVm0BhMzCAZsFNMNv86zyAMZkGFJFWQBvFMkoA+VEhNm-RIyy+TKmHSCZAAZZBGIeNKG8AO6SCEsVnwsvAC+yBmV2aVlZRVVVQZGxnAJmgBsJM0qDLOQfGyMKlwyOKphfmDkz10ARLYxqhDhKvEqAIzI5HKVHCFZKRVVUJmI4gGOVJ8AIL6FmDQqaggZKJ8X6jnRH2ZKz1klJSnlqcS1V95eKvJk5AAWpqhYxWjZhJwLFm9VzcbqBpXCiRQSvl1PLCVX6tTEknHBbXj9MRV5qUJKRdmVYAr1FqlVIqBHlSo8h+k5N48BVDfmXHl5cHD9bCVA2pGMz+b6oIzHQxYfgSWy65M85f9bZ2qqLrH2RrHfkVfBCvWQSqBYr5AOVZjJCPQKfZ1U0gfAhG1m+VZDaQPblmRnZxI0Yc03B4h06jxYKjMyDJPvplMzpvB-TAkXvXGlZlN+RX5lfn1+dWVMsJqBOl1Nldu7Tl3YJKhHvvfgO52Fw3j+nKkwZdYcJ+zl+XnsR4PW50A&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Typed Class Constants
 
@@ -150,7 +150,7 @@ if (MyEnum::STATUS === 'ACTIVE') {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCGAnZeu2AngN4prI4pJ51wCtwALqzgM+kwEsAXXMO1oDdeFkrlyTFi+AGyRGXnMk1ZS1MAFV7YAXwATJFxFI9r2s4qRXQEvOV7mYyRuCJIvEARMwhZANzQNomPIRZMGgBvFGQX6gGx-hVVCJy8YOXV3pAUyrLmltWNzf3+Hs6h0dm5BGOj2BYVjV2lNfXqjAFYW2JH5ZVGjk+zMXgOlVV1BwqLivyYJ1UZ8vH1NyqXVdXZYoMphzLLzxHT5uQXI0EVqHOHmr2v6AKzQ7OPh5+1e6mQ6EFr3K-LiBMhRB8xEj5-9lS7ek3nC0HBM+QyUq6lA=&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCGAnZeu2AngN4prI4pJ51wCtwALqzgM+kwEsAXXMO1oDdeFkrlyTFi+AGyRGXnMk1ZS1MAFV7YAXwATJFxFI9r2s4qRXQEvOV7mYyRuCJIvEARMwhZANzQNomPIRZMGgBvFGQX6gGx-hVVCJy8YOXV3pAUyrLmltWNzf3+Hs6h0dm5BGOj2BYVjV2lNfXqjAFYW2JH5ZVGjk+zMXgOlVV1BwqLivyYJ1UZ8vH1NyqXVdXZYoMphzLLzxHT5uQXI0EVqHOHmr2v6AKzQ7OPh5+1e6mQ6EFr3K-LiBMhRB8xEj5-9lS7ek3nC0HBM+QyUq6lA=&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### New Functions and Methods
 
@@ -242,7 +242,7 @@ function expectsString(string $s): void {}
 5 |> double(...) |> expectsString(...);  // Error: int not assignable to string
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtl8BLADwFMATZAEgDcsAbAV3JTXR3IBdmcA7ZACMA9iMbsMkLPwC0WAM4LyObrO45WsgMYj+lYt2J7kCjcX4BzWgxZtUsaADNm-bUZPEFAZXNWAFPRMrACUyADeKMjRXLwCyF4A+mY4FpaBtqEA3NAAvtDOru7GghAylIzkgZRY3FhhkdHRxE7I-l6+qQE0NXUhDVFNTbCwyAAKZYIA1vwiAO4KtL1YCYspacgQKvZDTeTaECKmGpX81bX1OUP5uUA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtl8BLADwFMATZAEgDcsAbAV3JTXR3IBdmcA7ZACMA9iMbsMkLPwC0WAM4LyObrO45WsgMYj+lYt2J7kCjcX4BzWgxZtUsaADNm-bUZPEFAZXNWAFPRMrACUyADeKMjRXLwCyF4A+mY4FpaBtqEA3NAAvtDOru7GghAylIzkgZRY3FhhkdHRxE7I-l6+qQE0NXUhDVFNTbCwyAAKZYIA1vwiAO4KtL1YCYspacgQKvZDTeTaECKmGpX81bX1OUP5uUA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### #[NoDiscard] Attribute
 
@@ -270,7 +270,7 @@ $id = generateId();  // Value is used
 **Phan detections**:
 - `PhanNoDiscardReturnValueIgnored` - Return value was ignored
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0B6AKguNLQrQAEA3RfAOwHs2BabAWzAAXAJ7dkg3AEs2AcxqkKZeWjABXAEbxJsNOKmy0AElU5cbRH2yFltHIOu1HpSQDM0ACj3xsbd4ZbwqtgAlGgAvBFoAAyhRE7xpIIQuBwA7mhs2OkAaoiB2ACiuCm47gBEWHjmlmiwiGyc9upW-ELCZcEA3DbxAL49ToZJksjcAHwmVRZWYUYBQd0J-bT9ypTUjvTMrCocyJKCkkzY3NKCNorKapraaGdGiDJWcfF2DgnObn7zVsCzMe8Po4kil0pkcnkgkUSuUAIJPNB8ExNKxgPYHI7YDqLIFoZa4oYQEbjR4zOaQ7A4pz4kj9XpAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0B6AKguNLQrQAEA3RfAOwHs2BabAWzAAXAJ7dkg3AEs2AcxqkKZeWjABXAEbxJsNOKmy0AElU5cbRH2yFltHIOu1HpSQDM0ACj3xsbd4ZbwqtgAlGgAvBFoAAyhRE7xpIIQuBwA7mhs2OkAaoiB2ACiuCm47gBEWHjmlmiwiGyc9upW-ELCZcEA3DbxAL49ToZJksjcAHwmVRZWYUYBQd0J-bT9ypTUjvTMrCocyJKCkkzY3NKCNorKapraaGdGiDJWcfF2DgnObn7zVsCzMe8Po4kil0pkcnkgkUSuUAIJPNB8ExNKxgPYHI7YDqLIFoZa4oYQEbjR4zOaQ7A4pz4kj9XpAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### (void) Cast
 

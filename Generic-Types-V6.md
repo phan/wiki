@@ -26,7 +26,7 @@ $box = new Container("hello");
 $value = $box->get();  // Phan thinks $value is mixed
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0sAIDqBLALhA9gVzQg5gKYB2hATigMYDOANAgJ44IA2m1hCaDYnKxAM0xkAtgEM0KTMWiUWY6tQQBhaWjH9yCAN7QE+hGAoA3CZwAkpltkIBuaHoNhsAIxZUEA7MUqTpCAH0AymlqNDJsXwAKSzFrQgBKHUcDA3MMFGoAWgA+KxsEAF4EWPj7VIBfB1TnNw8vHz9iAkI0KKTdVNSyVuwyZvSITNz8u314BAAFCDFmylmAcjwAa2JMAHcEdZm8bl4uIaVMgEIUhCqq6HMXTAAPIoRSTdVidU0yKIAiCEIWNk+EvZSgVitc7rkiG1AeNENNZgd+MslMC+EoRChboQACZAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0sAIDqBLALhA9gVzQg5gKYB2hATigMYDOANAgJ44IA2m1hCaDYnKxAM0xkAtgEM0KTMWiUWY6tQQBhaWjH9yCAN7QE+hGAoA3CZwAkpltkIBuaHoNhsAIxZUEA7MUqTpCAH0AymlqNDJsXwAKSzFrQgBKHUcDA3MMFGoAWgA+KxsEAF4EWPj7VIBfB1TnNw8vHz9iAkI0KKTdVNSyVuwyZvSITNz8u314BAAFCDFmylmAcjwAa2JMAHcEdZm8bl4uIaVMgEIUhCqq6HMXTAAPIoRSTdVidU0yKIAiCEIWNk+EvZSgVitc7rkiG1AeNENNZgd+MslMC+EoRChboQACZAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 **With Generics:**
 ```php
@@ -52,7 +52,7 @@ $box = new Container("hello");  // Phan infers Container<string>
 $value = $box->get();  // Phan knows $value is string!
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IDCA9gHaZECW72ATsgDeKZGIRp0ANyKCyqamLFh+3GaQAkMggFdsAbmijxiDGFlFc5ZFqK7sC48jA6ARgW41kAMx3samNwcyAD6ITQc9Jj8OgEAFLb2AJTCTko2mBDc9AC0AHzaesgAvDaFBk4AvkbpEhj82Jg6-OzWVE4u7p4+fgFBrQDmjXEpIunpDU0tGVm5BXZ6hunV1dAarqwAHiXIfADuLBxcvAJxAEQQ2AQErGdJ+uKwyAAKEEStvN4CTGycPHz8YBRVTsAZ5NblHbrLb5IaYEYPZCwJ6vd7IADW7FYeyYiSK2WQwN4AwAhEA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IDCA9gHaZECW72ATsgDeKZGIRp0ANyKCyqamLFh+3GaQAkMggFdsAbmijxiDGFlFc5ZFqK7sC48jA6ARgW41kAMx3samNwcyAD6ITQc9Jj8OgEAFLb2AJTCTko2mBDc9AC0AHzaesgAvDaFBk4AvkbpEhj82Jg6-OzWVE4u7p4+fgFBrQDmjXEpIunpDU0tGVm5BXZ6hunV1dAarqwAHiXIfADuLBxcvAJxAEQQ2AQErGdJ+uKwyAAKEEStvN4CTGycPHz8YBRVTsAZ5NblHbrLb5IaYEYPZCwJ6vd7IADW7FYeyYiSK2WQwN4AwAhEA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 **Benefits:**
 - **Type Safety**: Catch type errors at analysis time
@@ -148,7 +148,7 @@ $strBox = new Box("hello");
 $str = $strBox->get();  // Phan knows this is a string
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IILIOYFMB2OATgJYDGyARgPYAeyALhAIb3IRUA2AJgM7JPIAbkw4BXHMioAzBgE8wEgCoo0AAXo4AtmA4slK2NFK6efAEK1kAbxTI7CNcMLJFqQ3btgSwjcgAkwmI4ANzQtvaIyKpgTIRMmi7+geJu4chgohQcZMhSonik9MRUeMgA+mWkJTz0hKKFABQBIuIAlNZpHv6MxDwAtAB8yRIAvEktIWkAvmFdDlGEOPSihKWu8O4eGVk5eQVFJdhLDe02XV2Ly6vdEL2Dw6FdMzNwsMgACsylxHhSROa0YA-egDXKEKgJRgSKp4Gp1QpUZyxLCiTT4ejQPzAix0MYEADuyBxDQALAAmVqhZocZBjLF4eg4wa4egnYL2N6fJilADWeCo+L4PT4vX43wZYVgnK+yB+f0IAJowDhPywoKk4MhEGh1Vq9XoiP4hBRaIlfjhONpyAJRNoDQARNqOBwqPbKZi4VbzbUmQMWWyOR8ZXyBULbiK+AIVXgsEA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IILIOYFMB2OATgJYDGyARgPYAeyALhAIb3IRUA2AJgM7JPIAbkw4BXHMioAzBgE8wEgCoo0AAXo4AtmA4slK2NFK6efAEK1kAbxTI7CNcMLJFqQ3btgSwjcgAkwmI4ANzQtvaIyKpgTIRMmi7+geJu4chgohQcZMhSonik9MRUeMgA+mWkJTz0hKKFABQBIuIAlNZpHv6MxDwAtAB8yRIAvEktIWkAvmFdDlGEOPSihKWu8O4eGVk5eQVFJdhLDe02XV2Ly6vdEL2Dw6FdMzNwsMgACsylxHhSROa0YA-egDXKEKgJRgSKp4Gp1QpUZyxLCiTT4ejQPzAix0MYEADuyBxDQALAAmVqhZocZBjLF4eg4wa4egnYL2N6fJilADWeCo+L4PT4vX43wZYVgnK+yB+f0IAJowDhPywoKk4MhEGh1Vq9XoiP4hBRaIlfjhONpyAJRNoDQARNqOBwqPbKZi4VbzbUmQMWWyOR8ZXyBULbiK+AIVXgsEA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 
 ### Template Types and Constructors
@@ -173,7 +173,7 @@ $stringContainer = new Container("hello");
 // Phan infers Container<string> from the argument
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IDCA9gHaZECW72ATsgDeKZGIRp0ANyKCyqamLFh+rHDRwATZABJuOXAG5oo8YgxhZRXOV368C08jABXAEYFuNZADMX7DW4OZAB9EJoOekx+Fw0ACj0DAEphJyVdTAhuegBaAD57GwBeOwNjdIBfaAqgA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IDCA9gHaZECW72ATsgDeKZGIRp0ANyKCyqamLFh+rHDRwATZABJuOXAG5oo8YgxhZRXOV368C08jABXAEYFuNZADMX7DW4OZAB9EJoOekx+Fw0ACj0DAEphJyVdTAhuegBaAD57GwBeOwNjdIBfaAqgA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 **What if template types aren't in the constructor?**
 
@@ -255,7 +255,7 @@ class GenericBox extends Box {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IBCA9gB7IDeKyfCadADciAJ3KpqfPmFGscNHABNkAEhEEArtgDc0Xv0QYwYorgnqiW7JIPIwmgEYEAljWQAzTQDtFL1t7IAPpBNAH0mKKaigAUltYAlNx20mqYEC70ALQAfBrayAC8avm6dgC+0JVwsMgAwgE0otikmACeYDYmomYt2KJwiJQY2Ow43kpMbOzALt6YOZTUdESMyACS89PIo+OTLBzJqQ7Obp4+fgHBoeGR0Zgxc5glVtpJPKnHYtjzAFy-ITC3giUVi8TeelSlWqsFqAAVVvQ5gBzZA4fDEVoQOSaZEQQZIVAYdGEEg2MgAJmG6F2P3202AlMWthWawA4j9+m5trSJlNDh9pAJjKZzJSXtZbMcnK53F5fJh-IFAbdQQ9wdh3ilpN0fph-irgXcwaUEpDpNCgA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IBCA9gB7IDeKyfCadADciAJ3KpqfPmFGscNHABNkAEhEEArtgDc0Xv0QYwYorgnqiW7JIPIwmgEYEAljWQAzTQDtFL1t7IAPpBNAH0mKKaigAUltYAlNx20mqYEC70ALQAfBrayAC8avm6dgC+0JVwsMgAwgE0otikmACeYDYmomYt2KJwiJQY2Ow43kpMbOzALt6YOZTUdESMyACS89PIo+OTLBzJqQ7Obp4+fgHBoeGR0Zgxc5glVtpJPKnHYtjzAFy-ITC3giUVi8TeelSlWqsFqAAVVvQ5gBzZA4fDEVoQOSaZEQQZIVAYdGEEg2MgAJmG6F2P3202AlMWthWawA4j9+m5trSJlNDh9pAJjKZzJSXtZbMcnK53F5fJh-IFAbdQQ9wdh3ilpN0fph-irgXcwaUEpDpNCgA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Template Type Inference
 
@@ -459,7 +459,7 @@ interface Repository {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AlgHY4BOAZkQMbbIBK2YA9gGcamPowCeyAN4pkshElmK06MEUZFcyepmQASGgBMZSjI2yYArozrljsqnbAWARgRptkzC3TaYafG2Z6AwAKbT1DAEoAbmg7eTtUDFV1TTI9bAZhMUSHRWQnV3dPb19-GwEiADdsEN1Mv0wxSIAuZCq+Q1iAXyA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AlgHY4BOAZkQMbbIBK2YA9gGcamPowCeyAN4pkshElmK06MEUZFcyepmQASGgBMZSjI2yYArozrljsqnbAWARgRptkzC3TaYafG2Z6AwAKbT1DAEoAbmg7eTtUDFV1TTI9bAZhMUSHRWQnV3dPb19-GwEiADdsEN1Mv0wxSIAuZCq+Q1iAXyA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Implementing Generic Interfaces
 
@@ -489,7 +489,7 @@ $user = $repo->find(1);
 echo $user->name;  // Phan knows $user is User
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0wBXAI3gEtY1kAXXGgOwHM0ASVxAW2xoAvGgDkogNzQAvtGgB6AFSLiitAAEafMPGwDWjdACVsYAPbIajM7gCewLHgB8q+XCSpMOXCfOXrdmhaOnrYBsamFlY2toTEpBTUdGgAZuSssIw0ZqypbAAmABRsjNw0+QCUAFxeeHGkDWi42IzkuLms2ADutbiFFVINsvEkibT0aRlZOQyIAG7YhVxhWYy21WhzZuX1jSTy8mgAChCIuQDWrGZd6MsGVrE06I64I43YsBBm3CsPALROXgCQakWTDLjNczCNCdHovXxRAK2fpSLjkbzQiGRAEpAqFACMA2gHy+3HReABQOwEn2hxOZzQl2ut3J+CevSAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0wBXAI3gEtY1kAXXGgOwHM0ASVxAW2xoAvGgDkogNzQAvtGgB6AFSLiitAAEafMPGwDWjdACVsYAPbIajM7gCewLHgB8q+XCSpMOXCfOXrdmhaOnrYBsamFlY2toTEpBTUdGgAZuSssIw0ZqypbAAmABRsjNw0+QCUAFxeeHGkDWi42IzkuLms2ADutbiFFVINsvEkibT0aRlZOQyIAG7YhVxhWYy21WhzZuX1jSTy8mgAChCIuQDWrGZd6MsGVrE06I64I43YsBBm3CsPALROXgCQakWTDLjNczCNCdHovXxRAK2fpSLjkbzQiGRAEpAqFACMA2gHy+3HReABQOwEn2hxOZzQl2ut3J+CevSAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 
 ### Multiple Interfaces
@@ -530,7 +530,7 @@ class Collection implements Iterator, ArrayAccess {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqA0tgJ4ppZ6EnbkBqRBArtnRgJb4CebADtMAZ2QBJHACcSAe1nBKNADRsO3AHy90AwsLGSAgrPnUTAYyvZx4lVWoay7Ltl2pY0K8XvIAYQUCIStMPgURZAMhXFEJaTlFWQ0zC2tbfwBvFGQ8hHoANyJZZBKLR3VNd20vXLywWT5i0gASPhxcSQBeZABtAF0Abmh65FhYROx5TCVowSNMEgiRADp1sbBOACMCPitkADNOETCV5CtOc3iACgBKAC5kXD4AD2wAE2Qs5FlsTCuUUu1zEN1amAgfHEAFptB08OI7kNkABfTY7PYHY6ncKRZAAaxo9yeL3eXx+fwBsiihOoYIhUNh8K6SNR6N2+yOJzOeJE2FemGJyEKCj45OQfIF9MhMLhnURyLReQaGM52J5UT+AHc+CIPkKRWLvr87P9pYy5QjWUrlVsOVjubiosU9vrHshtgpgsbKYCCUTwTKmfK7sgAITdXoiTghRWjZXjSZpIiWGx2SQxRbLSLrVbszFcnHnBSHQ7if4AUVeUIkN1Jn2QrRLZf+7s93pyCYTvup0XsZsDFuZ4j6TdL5cwAyRYxtKvthY1yGbE4A4mb618xy3MO6N98xt3-n7B7Lh6Pl-9hjP82rHcXx-8AMrrt4NrcTjR71ou7juw3kg9lRPYMEXPB9J2QXpvy0bARgTWdkDtAt1SdJdwIAVRECc61fTcLx3J5-33LtlRObDgMtLowO3Kc4OVNEUSAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqA0tgJ4ppZ6EnbkBqRBArtnRgJb4CebADtMAZ2QBJHACcSAe1nBKNADRsO3AHy90AwsLGSAgrPnUTAYyvZx4lVWoay7Ltl2pY0K8XvIAYQUCIStMPgURZAMhXFEJaTlFWQ0zC2tbfwBvFGQ8hHoANyJZZBKLR3VNd20vXLywWT5i0gASPhxcSQBeZABtAF0Abmh65FhYROx5TCVowSNMEgiRADp1sbBOACMCPitkADNOETCV5CtOc3iACgBKAC5kXD4AD2wAE2Qs5FlsTCuUUu1zEN1amAgfHEAFptB08OI7kNkABfTY7PYHY6ncKRZAAaxo9yeL3eXx+fwBsiihOoYIhUNh8K6SNR6N2+yOJzOeJE2FemGJyEKCj45OQfIF9MhMLhnURyLReQaGM52J5UT+AHc+CIPkKRWLvr87P9pYy5QjWUrlVsOVjubiosU9vrHshtgpgsbKYCCUTwTKmfK7sgAITdXoiTghRWjZXjSZpIiWGx2SQxRbLSLrVbszFcnHnBSHQ7if4AUVeUIkN1Jn2QrRLZf+7s93pyCYTvup0XsZsDFuZ4j6TdL5cwAyRYxtKvthY1yGbE4A4mb618xy3MO6N98xt3-n7B7Lh6Pl-9hjP82rHcXx-8AMrrt4NrcTjR71ou7juw3kg9lRPYMEXPB9J2QXpvy0bARgTWdkDtAt1SdJdwIAVRECc61fTcLx3J5-33LtlRObDgMtLowO3Kc4OVNEUSAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Nested Generic Types
 
@@ -558,7 +558,7 @@ class UserMapRepository implements Repository {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AlgHY4BOAZkQMbbIBK2YA9gGcamPowCeyAN4pkshGnSNsmAK6M65VNVmywKgEYEabZMxV02mGnw3N6AEwAU9TMgAkNewEoA3NAC+0HCIlBg0+AR42AwC3LyCwqJiwESMjETJApiM9ADmADTIAKoC2IwAfOWU1GzEArElZQCyRGA8-EIi4sjhhFExcR2J3dI6yPIyOgpKqurIqemZ2XmFjRWTslQbeobGpuaW1rYOzgzunl4AXPNpGVIbYzNqGgDaAOQqpYxvyAC85cg6NgAO7FL6OLwAXT8Y0C-iAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AlgHY4BOAZkQMbbIBK2YA9gGcamPowCeyAN4pkshGnSNsmAK6M65VNVmywKgEYEabZMxV02mGnw3N6AEwAU9TMgAkNewEoA3NAC+0HCIlBg0+AR42AwC3LyCwqJiwESMjETJApiM9ADmADTIAKoC2IwAfOWU1GzEArElZQCyRGA8-EIi4sjhhFExcR2J3dI6yPIyOgpKqurIqemZ2XmFjRWTslQbeobGpuaW1rYOzgzunl4AXPNpGVIbYzNqGgDaAOQqpYxvyAC85cg6NgAO7FL6OLwAXT8Y0C-iAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Alternative: `@phan-implements`
 
@@ -574,7 +574,7 @@ class GenericRepository implements Repository {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6kRAdgLQCW+Be2tmAzsgErZgB7To0wCATgE9gZAHyVY0AMbFO3AOLtsYxor6DhoycmaE2HbnqEjxE5AG8UyJ7FjIAkizOYSjAbQB0gdAAvkA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6kRAdgLQCW+Be2tmAzsgErZgB7To0wCATgE9gZAHyVY0AMbFO3AOLtsYxor6DhoycmaE2HbnqEjxE5AG8UyJ7FjIAkizOYSjAbQB0gdAAvkA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ## Generic Traits
 
@@ -631,7 +631,7 @@ trait Repository {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0mATkQJabIBK2YA9gM5Me0CeyAN4pkYhGnQA3IrWQEGXTMDIA+VNTFiwtBjNIASJni7IAvMgDaAXQDc0UeMSOxksLKK5yyIzlwuNFzAAVwAjBQBjZAAzYIA7CMwGDjjkIgATdIAKXzwASgAuZCkOBnThAK0DTAhFAFpVY1wuG3MfJvstZABfBy6JAMlabExg2lSyAB844IICQc0tEPCGKNiEpJSYhlolLLyKrq7h0fGfGvrGvxaABmtkEBBkGbnOrV7uoA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0mATkQJabIBK2YA9gM5Me0CeyAN4pkYhGnQA3IrWQEGXTMDIA+VNTFiwtBjNIASJni7IAvMgDaAXQDc0UeMSOxksLKK5yyIzlwuNFzAAVwAjBQBjZAAzYIA7CMwGDjjkIgATdIAKXzwASgAuZCkOBnThAK0DTAhFAFpVY1wuG3MfJvstZABfBy6JAMlabExg2lSyAB844IICQc0tEPCGKNiEpJSYhlolLLyKrq7h0fGfGvrGvxaABmtkEBBkGbnOrV7uoA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Using Generic Traits
 
@@ -655,7 +655,7 @@ $article = $service->first();  // Phan knows this is Article|null
 echo $article->title;
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAQQE4BcCWCApmgN7RoVpgCuARvAWsjlngHYDmaAJPjvMQC8aAOQiA3NAC+0aAHoAVAvIK0AAWrJiAJUJgA9sjw59WAJ7Bs+IgD4VcuElSZcBAQGVCWAG4FiZSjRNHT1DY1MzSRlobi0fPzRhNkIAdxdrDy9fWEIACgBKSVisvwBaG0QAE0rc5LSrNzz8wpjEVyJEnjjswnKAMzwsZgLxCjk5NAAFCEQ2NABrNn0U9BwIPHQN9MaAHzZqeHhoQlgIfR42jN6bPgFxIA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAQQE4BcCWCApmgN7RoVpgCuARvAWsjlngHYDmaAJPjvMQC8aAOQiA3NAC+0aAHoAVAvIK0AAWrJiAJUJgA9sjw59WAJ7Bs+IgD4VcuElSZcBAQGVCWAG4FiZSjRNHT1DY1MzSRlobi0fPzRhNkIAdxdrDy9fWEIACgBKSVisvwBaG0QAE0rc5LSrNzz8wpjEVyJEnjjswnKAMzwsZgLxCjk5NAAFCEQ2NABrNn0U9BwIPHQN9MaAHzZqeHhoQlgIfR42jN6bPgFxIA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 
 ### Combining Class Templates with Trait Templates
@@ -696,7 +696,7 @@ $container = new Container(42);
 $value = $container->retrieve();  // Phan knows this is an int
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0mATkQJabIDKmA9vQObbIDeKZEIRp0ANyK1yqakKFhaDCaQAkAExJEA3NEHDEGMJKK5pKiQQCuvKnuRhLAIwIMAxsgBmlgHavMDdm9kAGcOWmwACnMiK2wASgAuZDF2BjV+OzlkFUwIBmCAWgA+DUwiZABebItrHSyAX10skQxwzEtaILIZOwdnN08fPwCgtsVsMUi4jKysto6gnLzCks06uUbGuERKDBx8YlIKVAxLYN42TiIeYDIiympXYmDg5ABhQLKGb2wpASyzhcwtdsDo7C10EZ6KZuipvkwGDEelk+i53F5fP5AsgAPo41yBUK0Sx+KLw-wxab-WZCJb5YqhTiROHeBGU9ZCTa6FQE7xfH5SKo-ADu70+jAFEQALAAmOI6aKxSrZXn837FMYMCZTLTCWDIAAKECIQQA1t52MLXrl8shbSa7XygA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0mATkQJabIDKmA9vQObbIDeKZEIRp0ANyK1yqakKFhaDCaQAkAExJEA3NEHDEGMJKK5pKiQQCuvKnuRhLAIwIMAxsgBmlgHavMDdm9kAGcOWmwACnMiK2wASgAuZDF2BjV+OzlkFUwIBmCAWgA+DUwiZABebItrHSyAX10skQxwzEtaILIZOwdnN08fPwCgtsVsMUi4jKysto6gnLzCks06uUbGuERKDBx8YlIKVAxLYN42TiIeYDIiympXYmDg5ABhQLKGb2wpASyzhcwtdsDo7C10EZ6KZuipvkwGDEelk+i53F5fP5AsgAPo41yBUK0Sx+KLw-wxab-WZCJb5YqhTiROHeBGU9ZCTa6FQE7xfH5SKo-ADu70+jAFEQALAAmOI6aKxSrZXn837FMYMCZTLTCWDIAAKECIQQA1t52MLXrl8shbSa7XygA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Alternative: `@phan-use`
 
@@ -712,7 +712,7 @@ class Service {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6kRAdgLQCuAztsgErZgD2zAlpm4AnAJ7AyAPkqxoAY2LNmyAMrYhANz6y2AbxTIDLNpx79BogNzQAvkA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6kRAdgLQCuAztsgErZgD2zAlpm4AnAJ7AyAPkqxoAY2LNmyAMrYhANz6y2AbxTIDLNpx79BogNzQAvkA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ## Template Constraints
 
@@ -795,7 +795,7 @@ class DogShelter extends Shelter {}
 class InvalidShelter extends Shelter {}
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAQQHYEsC2i8aA3tGuWmAK4BG8OsaAZlVrAC44D2WaBA1gFMAyl1YATABQBKAFxpk7AE44sAcxJkK2pYPZUlvAETIueQQrFZxRgNxbyAX2jO4SVGgAiXDYIAe7ILW6Nj4hJra1HQMzKwc3LwCIlZScgrKqhqk2jp6BsYA7lxcTHYOaM6uCCjoAMKI7Gj+gcGYuARE2RRR9IwsbJw8fIhCohIy8ooq6hE55Lr6hmhG5lwFZdqV0NAA9ABUe2R7aAACgXhgSIFoACpoJW1h8Ec7bjVowhCC8IFKs+T7Y4nABuiD+dz2r0iKlB1wAJLpkDhxEF2PZyoDTmAwYg8Lc0HDEO1wpDyj0Yv14kMAPrU2A8KZUDiSQnE+DSf45OHsCA4ZAAWgAfIjkai0ABeAlEp72TbbbSYk4LfL40mRWi9WIDBJoNR6ABKgiRKKw7BknNyi143N5AuFRtFptlFFc6uifTig14XzBY2sE3S0yy5QVOzQAAUIES0PwsGt0AiHSbGlH0Ek-ak+HoIFxxCGKMqlja+UKRcmhemUjJnU4XNsdmGAPIAaXk3l8ASC4hCbN2ByOp2aXfQn2+v2A7cFLzeHnbo5+gj+Q9a89+JFcDbQAFF9frG-rJhkZuIuEa0HHGsvxI8On3DmggVeR18F0pgFNMlOH69qh4AJJYKC9DiKui5NJ2K4vmuxCOEAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAQQHYEsC2i8aA3tGuWmAK4BG8OsaAZlVrAC44D2WaBA1gFMAyl1YATABQBKAFxpk7AE44sAcxJkK2pYPZUlvAETIueQQrFZxRgNxbyAX2jO4SVGgAiXDYIAe7ILW6Nj4hJra1HQMzKwc3LwCIlZScgrKqhqk2jp6BsYA7lxcTHYOaM6uCCjoAMKI7Gj+gcGYuARE2RRR9IwsbJw8fIhCohIy8ooq6hE55Lr6hmhG5lwFZdqV0NAA9ABUe2R7aAACgXhgSIFoACpoJW1h8Ec7bjVowhCC8IFKs+T7Y4nABuiD+dz2r0iKlB1wAJLpkDhxEF2PZyoDTmAwYg8Lc0HDEO1wpDyj0Yv14kMAPrU2A8KZUDiSQnE+DSf45OHsCA4ZAAWgAfIjkai0ABeAlEp72TbbbSYk4LfL40mRWi9WIDBJoNR6ABKgiRKKw7BknNyi143N5AuFRtFptlFFc6uifTig14XzBY2sE3S0yy5QVOzQAAUIES0PwsGt0AiHSbGlH0Ek-ak+HoIFxxCGKMqlja+UKRcmhemUjJnU4XNsdmGAPIAaXk3l8ASC4hCbN2ByOp2aXfQn2+v2A7cFLzeHnbo5+gj+Q9a89+JFcDbQAFF9frG-rJhkZuIuEa0HHGsvxI8On3DmggVeR18F0pgFNMlOH69qh4AJJYKC9DiKui5NJ2K4vmuxCOEAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Constraints with Interfaces
 
@@ -831,7 +831,7 @@ class TimestampedCollection {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQCWB2AXApgJwGYEMDGyAEAKrALbIDOimxYyAJngN7R4t5gCuARgDazZ7p28bIlgB7eHgDmyREVIUqYABQBKAFx4EiANzQAvtGgB6AFSnmpvAAEU1bphSE8Y9IRLlK1OpePRsDmRk7gpeNLQAwmLc3Mgi4pJMrHhmVtYAbpioeLwUwAQAfHimfslgqLCZTgAksHbBALx4ANoAunrMrKk2YFlUzrV2xaWsHDx8AkLxEniYtLTKg8jEGnjpYrD0Scms1YgQsGQAtAV1y2RteE1LxHrJhp0sqY8saaiy7KiSBAA+8OwxF7DF5jXj8QTCUQzGSIACyYgoACU4sgkGpGEDdg4UBQrnh-jE7jsWOgxO8cBA8It9ocTmdiMFMMEbqoMcTibA3ItsZ4rg0mgTuHgfj88DcTjD5J4lOiitUeRQJbIpYpqGpWdt2ez5Y5edd6UStSxDFqTez3ohPpIdTjdC9DPogA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQCWB2AXApgJwGYEMDGyAEAKrALbIDOimxYyAJngN7R4t5gCuARgDazZ7p28bIlgB7eHgDmyREVIUqYABQBKAFx4EiANzQAvtGgB6AFSnmpvAAEU1bphSE8Y9IRLlK1OpePRsDmRk7gpeNLQAwmLc3Mgi4pJMrHhmVtYAbpioeLwUwAQAfHimfslgqLCZTgAksHbBALx4ANoAunrMrKk2YFlUzrV2xaWsHDx8AkLxEniYtLTKg8jEGnjpYrD0Scms1YgQsGQAtAV1y2RteE1LxHrJhp0sqY8saaiy7KiSBAA+8OwxF7DF5jXj8QTCUQzGSIACyYgoACU4sgkGpGEDdg4UBQrnh-jE7jsWOgxO8cBA8It9ocTmdiMFMMEbqoMcTibA3ItsZ4rg0mgTuHgfj88DcTjD5J4lOiitUeRQJbIpYpqGpWdt2ez5Y5edd6UStSxDFqTez3ohPpIdTjdC9DPogA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Constraints on Functions
 
@@ -854,7 +854,7 @@ $clonedDog = cloneAnimal($dog);  // Phan knows this is Dog
 $str = cloneAnimal("not an animal");
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyA9gGbICCAdgJa5EEprphEBORu5ZABIizVu1QYe2TAFceDch1jRqshgGNMTSoo0Fd2RizYAKEWLYBKZAG8UyR9LkLk+w8NEmCAbmgBfaGghABNKAHNkAF5kBmwAd2QAEQjTKz8hdziQlMiYrKNLAnMw8PTHWFhkAAUIUWQAawZKeIBnZEwIJnbu5IigyuQAUQAlEYB5EYAuZFbMHiYGSN7mzGR643FguZ5otwM4zbMAIlX1xS9xY-SgA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyA9gGbICCAdgJa5EEprphEBORu5ZABIizVu1QYe2TAFceDch1jRqshgGNMTSoo0Fd2RizYAKEWLYBKZAG8UyR9LkLk+w8NEmCAbmgBfaGghABNKAHNkAF5kBmwAd2QAEQjTKz8hdziQlMiYrKNLAnMw8PTHWFhkAAUIUWQAawZKeIBnZEwIJnbu5IigyuQAUQAlEYB5EYAuZFbMHiYGSN7mzGR643FguZ5otwM4zbMAIlX1xS9xY-SgA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Union Type Constraints
 
@@ -875,7 +875,7 @@ identity("test");  // OK
 identity(true);    // ERROR: bool is not int|string
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyA9gGbICWAdpgD4DOmATowOYprpgiHIrnLIAJADciBAK7Y+GDtkyyODcn1jRqshgGNMdShroATbEzqYAngAopM+QEpkAbxTIvy1eonS5bABuaABfaGhzSyNbOwAWACZnIK9U5FhYZAB5AGlIiytYgCIcdiLkrwzsvKjC+04XFNSqgFEAJTastoAuZAAjSkoCelZkBkpMeiY2Th4gA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyA9gGbICWAdpgD4DOmATowOYprpgiHIrnLIAJADciBAK7Y+GDtkyyODcn1jRqshgGNMdShroATbEzqYAngAopM+QEpkAbxTIvy1eonS5bABuaABfaGhzSyNbOwAWACZnIK9U5FhYZAB5AGlIiytYgCIcdiLkrwzsvKjC+04XFNSqgFEAJTastoAuZAAjSkoCelZkBkpMeiY2Th4gA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Intersection Type Constraints
 
@@ -904,7 +904,7 @@ class Processor {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQCWB2AXApgJwGYEMDGyAEAymrJgDawBemARqfgN7R7N5gCuts2e6b82iWAHt4eAM7EylZAAoAlAC5xiVAgDmAbmgBfaHCRosuPADUpAE0yIadPIxasO5br36CReAG4WrsxXmohIVItXWgAegAqSKZIvAABFABbMFJfPAAVPCF0QklyKlpkADIzcktrItjw6Gw0sTE8AAVUIVwGoVQ7JhYouPiwTFRMJMy8ABJYZLxImod2Thc+AWFRMFb2sRlJ5P8xFXVuhwdYXO2p5CSAWgA+b3LfeTkj49fUZEQ2VFEdy9uJVRSCh+LSvZi6MF4d6fb54ADkcNBLF02iAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQCWB2AXApgJwGYEMDGyAEAymrJgDawBemARqfgN7R7N5gCuts2e6b82iWAHt4eAM7EylZAAoAlAC5xiVAgDmAbmgBfaHCRosuPADUpAE0yIadPIxasO5br36CReAG4WrsxXmohIVItXWgAegAqSKZIvAABFABbMFJfPAAVPCF0QklyKlpkADIzcktrItjw6Gw0sTE8AAVUIVwGoVQ7JhYouPiwTFRMJMy8ABJYZLxImod2Thc+AWFRMFb2sRlJ5P8xFXVuhwdYXO2p5CSAWgA+b3LfeTkj49fUZEQ2VFEdy9uJVRSCh+LSvZi6MF4d6fb54ADkcNBLF02iAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Class String Constraints
 
@@ -1143,7 +1143,7 @@ class ReadOnlyBox {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY4C0AxgPYBuRATgJZEB2myAKivLNA69nQBmRctmQAFOpQAmAV1F1kAbxTI1CNOjrZMsusw6oeatWFkAjAg3LJBs5uUwNKBsFLmiAFAEoA3NABfaDhELgwcfGIyKlpGFjZOI2hyYgBnVOQAJWwiaQB5ZgIATwAhSgAPZVV1RAxYw25q5DcGWhxkABJaAllsfyaNDDB6IlxDLqIesUaTZosrGzsHJxdkAH01qmZUzDp5TE8Jqe8q2dmOzAgGVNIAPm7e5ABeToe+pqCB2q0dPQN2JKzMyWay2eyOZwGADmOh8pzOam0un0nUu1zub38s0+s1gsGQAFFMpk8pkAFzIGL0JisZARQgkMR8ZojXA6ATNSipBgrZhfTTDOijcZvQEmYELMHLSHIVKwo69bwU6iUBjSeEIi5XG73SaPF4K97YwJAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY4C0AxgPYBuRATgJZEB2myAKivLNA69nQBmRctmQAFOpQAmAV1F1kAbxTI1CNOjrZMsusw6oeatWFkAjAg3LJBs5uUwNKBsFLmiAFAEoA3NABfaDhELgwcfGIyKlpGFjZOI2hyYgBnVOQAJWwiaQB5ZgIATwAhSgAPZVV1RAxYw25q5DcGWhxkABJaAllsfyaNDDB6IlxDLqIesUaTZosrGzsHJxdkAH01qmZUzDp5TE8Jqe8q2dmOzAgGVNIAPm7e5ABeToe+pqCB2q0dPQN2JKzMyWay2eyOZwGADmOh8pzOam0un0nUu1zub38s0+s1gsGQAFFMpk8pkAFzIGL0JisZARQgkMR8ZojXA6ATNSipBgrZhfTTDOijcZvQEmYELMHLSHIVKwo69bwU6iUBjSeEIi5XG73SaPF4K97YwJAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 Covariant templates enable safe subtyping:
 ```php
@@ -1152,7 +1152,7 @@ Covariant templates enable safe subtyping:
 // This is safe because you can only read from it
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0sAIDqBLALhBAFATgewBMBXAYwFMdgAVAPgQCMyUA7AcwRLwDcBDHFHszQAuOIlyFSFYABE8rOigDOCHgiVF6aAJ5gyCPADNs+YuUoBBZigC2PADY0xCKhGUJ3Snof2MSPIiV9bTwiDkEDZnttBBwyHgIEQ3wbDzQgA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0sAIDqBLALhBAFATgewBMBXAYwFMdgAVAPgQCMyUA7AcwRLwDcBDHFHszQAuOIlyFSFYABE8rOigDOCHgiVF6aAJ5gyCPADNs+YuUoBBZigC2PADY0xCKhGUJ3Snof2MSPIiV9bTwiDkEDZnttBBwyHgIEQ3wbDzQgA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Contravariant Templates
 
@@ -1195,7 +1195,7 @@ class Sink {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY4C0AxgPYB2mATkQG5F0CWRtyAKivLNK1rY6AMyLlsyAMI0AzgFdcw5AG8UyDQjTowLIrm7IAJMwLzJfdRrDyARgVblkI+dXKZWNZFWoKlAChMiM2wASgAuZEZKVgATAG5oAF9oOEReDBx8YjIfeiYWdk4eVH5yYllZZABlQQBrVStkLQxdBgMuY1NzUqabe0dnV3dPamRxCTBMQO6wyOi4xo1l5dhYZAAFOkoJSqjg8yaUprXkAFEAJQuAeQvIvIZmNg5MZCzCEklBZDpsTHk6GMwJRZKwPDQTogML9-oDDJYVv0HE4XG5wUDtrF5BJ-KElitlpgINsAO7IajYMlnAAek3R-gARFIONRKK8wJjsdgGaFEisUkkgA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY4C0AxgPYB2mATkQG5F0CWRtyAKivLNK1rY6AMyLlsyAMI0AzgFdcw5AG8UyDQjTowLIrm7IAJMwLzJfdRrDyARgVblkI+dXKZWNZFWoKlAChMiM2wASgAuZEZKVgATAG5oAF9oOEReDBx8YjIfeiYWdk4eVH5yYllZZABlQQBrVStkLQxdBgMuY1NzUqabe0dnV3dPamRxCTBMQO6wyOi4xo1l5dhYZAAFOkoJSqjg8yaUprXkAFEAJQuAeQvIvIZmNg5MZCzCEklBZDpsTHk6GMwJRZKwPDQTogML9-oDDJYVv0HE4XG5wUDtrF5BJ-KElitlpgINsAO7IajYMlnAAek3R-gARFIONRKK8wJjsdgGaFEisUkkgA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 Contravariant templates enable safe subtyping in the opposite direction:
 ```php
@@ -1204,7 +1204,7 @@ Contravariant templates enable safe subtyping in the opposite direction:
 // This is safe because you can only write to it
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0sAIDqBLALhBBhA9gOwGcBXAWwFMAnYAFQD4EAjMlPAcwQGN80KBDAN14UUvPGgBccRLkKlKwAIJ4UJXgBt6KAgl4JiDNAE8wZBDgBm2fMXJUAIjla0pCahC0IPBXudNMOvEQEpoY4RJyiZnhqhggA7sJopmg4nmhAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0sAIDqBLALhBBhA9gOwGcBXAWwFMAnYAFQD4EAjMlPAcwQGN80KBDAN14UUvPGgBccRLkKlKwAIJ4UJXgBt6KAgl4JiDNAE8wZBDgBm2fMXJUAIjla0pCahC0IPBXudNMOvEQEpoY4RJyiZnhqhggA7sJopmg4nmhAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Invariant Templates (Default)
 
@@ -1230,7 +1230,7 @@ class Box {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyyAFAJYB2AbkQE41F2bIBGAnsgCbYAZkQCuBTAEoU8WNADGxAM5LkAIQD2AD2QBvFJWQI06Js3Ko5h5GFZNSAEiYFR2ANzQDlYxjAsiuBZORC7Yll42olwENPLIQqJ08pg0GnTIStiYVMGhkgBcyAwaNPx63rDIAPIA0oXy7MgA7qw4EdYOmBA0SgC0AHzOrsgAvMi5rh7WAL6e1j7ozFmizOkUshFgUTFxCUkpacgA5llUkuVGlbX1jUtE-O2GS5gr6Z3dfYMhkxGz00A&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyyAFAJYB2AbkQE41F2bIBGAnsgCbYAZkQCuBTAEoU8WNADGxAM5LkAIQD2AD2QBvFJWQI06Js3Ko5h5GFZNSAEiYFR2ANzQDlYxjAsiuBZORC7Yll42olwENPLIQqJ08pg0GnTIStiYVMGhkgBcyAwaNPx63rDIAPIA0oXy7MgA7qw4EdYOmBA0SgC0AHzOrsgAvMi5rh7WAL6e1j7ozFmizOkUshFgUTFxCUkpacgA5llUkuVGlbX1jUtE-O2GS5gr6Z3dfYMhkxGz00A&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Variance and Properties
 
@@ -1266,7 +1266,7 @@ class Container {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY4C0AxgPYBuRATgJZEB2myAKivLNOcQM79kAYUqsiDZtjrIA3imSKESRarQB5ANIAuZHWxEAJmIIBPZGDqUw0zOYDuDTBGRVajFmxz5iOBWox3Dn9FbhCwAFcAIwIGcj0DY2YzZAASWgII7ABuaBDlENRkAFEAJVL1Ut1cCMwiGOwLKxs6O2RHZ1caeiZWZG9CEmxCtHQgzlVQnknImLi0mrqGgDUiTJy8yYLJorKKquRsamxmBKMTc3o6IlMhekbJd17MEcD6ZCub4HYAPlf0fTnZKmEbTVSzWLxVJOPD8XIAXyAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY4C0AxgPYBuRATgJZEB2myAKivLNOcQM79kAYUqsiDZtjrIA3imSKESRarQB5ANIAuZHWxEAJmIIBPZGDqUw0zOYDuDTBGRVajFmxz5iOBWox3Dn9FbhCwAFcAIwIGcj0DY2YzZAASWgII7ABuaBDlENRkAFEAJVL1Ut1cCMwiGOwLKxs6O2RHZ1caeiZWZG9CEmxCtHQgzlVQnknImLi0mrqGgDUiTJy8yYLJorKKquRsamxmBKMTc3o6IlMhekbJd17MEcD6ZCub4HYAPlf0fTnZKmEbTVSzWLxVJOPD8XIAXyAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ## Function Templates
 
@@ -1295,7 +1295,7 @@ $numbers = [1, 2, 3];
 $num = first($numbers);  // Phan knows this is an int
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6YRATkbuQNoC6yAJHfQJ6Ua3ZMAV1oA7cnywRaAewDuAZ2QBJUQDciBAJYATAIK0A5kNzZRmAKIAPAMbYwmLTNGVY0AGZDRNx8+TutWgVMAAouIm4OcO4ASmQAbxRkZK13ZBCbGS9QzloeOIBeIuQABjjE5MrKzGl5ZFFsORV1TV0DY1NzazsHJ1EQgCIDHmQtJTwHbgGYgG4k5IBfeeQBYTEV7AVBENz8uaXodiEtoOQC5CYGpoBVE5CYgBp6xuRb7Fp7ljmjk7P-QOCO2O7wUs2SsFgyAAChAiOIANaieRKGpjUZKN60aCHUQmABGIL+TAAjE8AExPADMXxxJj+ASCOVxuAJQTByAh0NhCKRimQqKUaLho3MQA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6YRATkbuQNoC6yAJHfQJ6Ua3ZMAV1oA7cnywRaAewDuAZ2QBJUQDciBAJYATAIK0A5kNzZRmAKIAPAMbYwmLTNGVY0AGZDRNx8+TutWgVMAAouIm4OcO4ASmQAbxRkZK13ZBCbGS9QzloeOIBeIuQABjjE5MrKzGl5ZFFsORV1TV0DY1NzazsHJ1EQgCIDHmQtJTwHbgGYgG4k5IBfeeQBYTEV7AVBENz8uaXodiEtoOQC5CYGpoBVE5CYgBp6xuRb7Fp7ljmjk7P-QOCO2O7wUs2SsFgyAAChAiOIANaieRKGpjUZKN60aCHUQmABGIL+TAAjE8AExPADMXxxJj+ASCOVxuAJQTByAh0NhCKRimQqKUaLho3MQA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Templates from Closure Return Types
 
@@ -1332,7 +1332,7 @@ $objects = generate(
 // Phan infers list<stdClass>
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6YRATkbsgMIED2AzgK63YAUAlgDtMASgBcZZABIAxkQIEARkRkBrShh6Zug5AX7tMwMgD5KsaADNOgmZn6tdAc2yDs9HLxYdu2aXIVlNQAaZCFMf1YbUTFkOnoAT2QAbxRkdKkeLgIIgF5kAG0AXQBuNPTLVlpkXil+ZHyABhLpeuBI6Ja6gGpukRTy9KHM7GzMYob-eSUVVVr+ETKh5ABfQa0daSzOHLK16ClDWiEndkmXNw8+Qetbe0cBYVbxZCOTgeXljdpdACIASRwjDqvyWQxWwUGAFZoIs4LBkAAFCBEXRCSzuM76QzAN6CJxmA6sRQAK2wdjO+Qu7hI12WtzsDkEjwidRehgAJiwiOwzqlPsNiSTJm4AO6vTBc4i83hwgUZIUAWhMQg52AAHpM6mCBd9dFIhTrVpDlgBmWFlWAI5GosKCDG0LEGIyc7m8kxAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6YRATkbsgMIED2AzgK63YAUAlgDtMASgBcZZABIAxkQIEARkRkBrShh6Zug5AX7tMwMgD5KsaADNOgmZn6tdAc2yDs9HLxYdu2aXIVlNQAaZCFMf1YbUTFkOnoAT2QAbxRkdKkeLgIIgF5kAG0AXQBuNPTLVlpkXil+ZHyABhLpeuBI6Ja6gGpukRTy9KHM7GzMYob-eSUVVVr+ETKh5ABfQa0daSzOHLK16ClDWiEndkmXNw8+Qetbe0cBYVbxZCOTgeXljdpdACIASRwjDqvyWQxWwUGAFZoIs4LBkAAFCBEXRCSzuM76QzAN6CJxmA6sRQAK2wdjO+Qu7hI12WtzsDkEjwidRehgAJiwiOwzqlPsNiSTJm4AO6vTBc4i83hwgUZIUAWhMQg52AAHpM6mCBd9dFIhTrVpDlgBmWFlWAI5GosKCDG0LEGIyc7m8kxAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Multiple Template Parameters
 
@@ -1352,7 +1352,7 @@ function toArray(iterable $items): array {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqA0tgJ4ppZ6EnbkBqRBArtnRmEQCciuZAEscQgEYFswSjQA0bDtwB8yACTi8AZ17oB2TJwEA7ZIKHU5VakrLsu2VXVjQAZp1MBjTKID25pj+AIICVgAU2lIymtq4OgCUAFwW4UTUyADeKMh5GoY6nASYyAC8yADaALoA3Ll57v6GRN4QyBFaOAkWOpoA1jTl6hoAbirYidkNebMF2EUllRqD1NXlmuNO9bPIAL4zhsZmmoXFmPV7QA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqA0tgJ4ppZ6EnbkBqRBArtnRmEQCciuZAEscQgEYFswSjQA0bDtwB8yACTi8AZ17oB2TJwEA7ZIKHU5VakrLsu2VXVjQAZp1MBjTKID25pj+AIICVgAU2lIymtq4OgCUAFwW4UTUyADeKMh5GoY6nASYyAC8yADaALoA3Ll57v6GRN4QyBFaOAkWOpoA1jTl6hoAbirYidkNebMF2EUllRqD1NXlmuNO9bPIAL4zhsZmmoXFmPV7QA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### `class-string<T>` Type
 
@@ -1372,7 +1372,7 @@ $user = create(User::class);      // Phan knows this is User
 $article = create(Article::class);  // Phan knows this is Article
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6YRATkbsgMbEDOrAtK5rQJYB2Ac2BkAfMgAkLIuwByDbJQy1smAK61+5SrGgAzNfyaZeAey1MVJbAApufIZOlyFASmQBvFMh8r1m5H5sAHcnNlZ5XFtXAG5oAF9oaAk1VmxaZABeZiscGwBVNNoALmLnVlifKuRYWGQABQgiLQBrflNg1mRMCF4uvuRC9OS6ExZsLJzsaxsAQVoxgmxS8sqausbm5DaOrp6BgfnF7CA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6YRATkbsgMbEDOrAtK5rQJYB2Ac2BkAfMgAkLIuwByDbJQy1smAK61+5SrGgAzNfyaZeAey1MVJbAApufIZOlyFASmQBvFMh8r1m5H5sAHcnNlZ5XFtXAG5oAF9oaAk1VmxaZABeZiscGwBVNNoALmLnVlifKuRYWGQABQgiLQBrflNg1mRMCF4uvuRC9OS6ExZsLJzsaxsAQVoxgmxS8sqausbm5DaOrp6BgfnF7CA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Generators
 
@@ -1546,7 +1546,7 @@ processKey('bar');  // OK
 processKey('qux');  // ERROR: 'qux' is not a valid key
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBrAUwE8BaAewDNhc8yBvGqqgLmQEsA7AFwA0yAEa5OAZz45eAcyGiAXp2FsANgF8AfMgAkpMinixoNAK48Axny5UeyMDioWS48QGlyACknSeM3foAlJwAblRcACbITCjIcbCwAeTIFlh2tqpkIiTIAOSsVLlCuaI4RchUOHmKubFxJBYQVElkANzQ6tDQDk4u7l75bLmBrfGJAPJu3Y7Orh5kniW4w6PICciT071zAwCOpgAeK2PIAKIASufj55y5+0fc4sg8VHzIWMghWKqRxORAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBrAUwE8BaAewDNhc8yBvGqqgLmQEsA7AFwA0yAEa5OAZz45eAcyGiAXp2FsANgF8AfMgAkpMinixoNAK48Axny5UeyMDioWS48QGlyACknSeM3foAlJwAblRcACbITCjIcbCwAeTIFlh2tqpkIiTIAOSsVLlCuaI4RchUOHmKubFxJBYQVElkANzQ6tDQDk4u7l75bLmBrfGJAPJu3Y7Orh5kniW4w6PICciT071zAwCOpgAeK2PIAKIASufj55y5+0fc4sg8VHzIWMghWKqRxORAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 With generic arrays:
 ```php
@@ -1561,7 +1561,7 @@ function getByKey(array $array, $key) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6YRATkbsnfQJ7ADOmtAlgHYDmAGnIA+ZABJmRFpQw16jANbYWAWgD2AM2BS2nHgOFkRY8cpmoMtbJgCutXuUqxom27wDGmbusf8bAEIsANIqABS6ErrCZioAlMgA3ijIqdZ2DlG0rADasSwAugDc0AC+QA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6YRATkbsnfQJ7ADOmtAlgHYDmAGnIA+ZABJmRFpQw16jANbYWAWgD2AM2BS2nHgOFkRY8cpmoMtbJgCutXuUqxom27wDGmbusf8bAEIsANIqABS6ErrCZioAlMgA3ijIqdZ2DlG0rADasSwAugDc0AC+QA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### `value-of<T>`
 
@@ -1580,7 +1580,7 @@ processValue("John");  // OK
 processValue(true);    // ERROR: bool is not int|string
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkA3LAGwFcBTAWgHsAzYXPATwG8sBzSgLmQEsAdgBcANMkEFeyAM7CcQzgF8AfMgAkJCpRTxY0euUEBjYf1qDkYHLWOUZMgGpkqACk0vKASj5Fa-ABNkNhRkMNhYDS0qZGMsSwAjSgERZFocWXlFaCVoaGtbeydPVwAWACYvAG4w2uQI5AB5AGl8mzsHZ21XACIAKVoIQR7q8MiWtsLOkvkqUdqGgFEAJWXG5b4E2lpSARkJWmEU4QAfOQVBTiA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkA3LAGwFcBTAWgHsAzYXPATwG8sBzSgLmQEsAdgBcANMkEFeyAM7CcQzgF8AfMgAkJCpRTxY0euUEBjYf1qDkYHLWOUZMgGpkqACk0vKASj5Fa-ABNkNhRkMNhYDS0qZGMsSwAjSgERZFocWXlFaCVoaGtbeydPVwAWACYvAG4w2uQI5AB5AGl8mzsHZ21XACIAKVoIQR7q8MiWtsLOkvkqUdqGgFEAJWXG5b4E2lpSARkJWmEU4QAfOQVBTiA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### `int-range<min, max>`
 
@@ -1600,7 +1600,7 @@ setOpacity(0);    // ERROR: 0 is below minimum
 setOpacity(150);  // ERROR: 150 exceeds maximum
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBLAOwBcBaPEgcwFNgBGAGmUYAZ2A+ZAEjDo4AxnXJZ6KeLGgAzAK4khZIgHsSyAM50yAeWxCiZAJ4AKUmT4DhosuLoBKAFzIAbiqIATZAG8Uyf3RCECrIAER6WAbGzvyCImL0AKShANzQAL7Q0Fq6+oamAKzs9in+yLCwyDoA0tnaEVGmHMWl5ZU1dbmR+SYtZW3IAKIASsM6w87sxBrIAEZ0ADYqAO7I+KRE+HL4nQ09jEUl-hVDo+POB1N0AB4idB4z+FjXm9tAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBLAOwBcBaPEgcwFNgBGAGmUYAZ2A+ZAEjDo4AxnXJZ6KeLGgAzAK4khZIgHsSyAM50yAeWxCiZAJ4AKUmT4DhosuLoBKAFzIAbiqIATZAG8Uyf3RCECrIAER6WAbGzvyCImL0AKShANzQAL7Q0Fq6+oamAKzs9in+yLCwyDoA0tnaEVGmHMWl5ZU1dbmR+SYtZW3IAKIASsM6w87sxBrIAEZ0ADYqAO7I+KRE+HL4nQ09jEUl-hVDo+POB1N0AB4idB4z+FjXm9tAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 Ranges work with literal values:
 ```php
@@ -1615,7 +1615,7 @@ adjustPosition(-5);   // OK
 adjustPosition(11);   // ERROR
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBLAOwBcBaPEgcwFNgKBGABgBplWA+ZAEgHsAZoIDOdMinixoggK4kAxmSL8SyLABMAVrJFkACvxFFlqgBSkyfIaPEBKAFzIAbvyIbkAbxTJfsWNbCYlZEIsgARuIA7nR0asws6iQerNAAvtDQmjp6hsamJGYUAKx2ANy+yP7IAPIA0lnaugZGJiqFTEzlldUAogBK-TX9QA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBLAOwBcBaPEgcwFNgKBGABgBplWA+ZAEgHsAZoIDOdMinixoggK4kAxmSL8SyLABMAVrJFkACvxFFlqgBSkyfIaPEBKAFzIAbvyIbkAbxTJfsWNbCYlZEIsgARuIA7nR0asws6iQerNAAvtDQmjp6hsamJGYUAKx2ANy+yP7IAPIA0lnaugZGJiqFTEzlldUAogBK-TX9QA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### `positive-int` and `negative-int`
 
@@ -1647,7 +1647,7 @@ recordDebt(0);     // ERROR: 0 is not negative
 recordDebt(50);    // ERROR: 50 is not negative
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkwB7AZwEsAXcgNwFMBacgO0uQBIBjYgV1ZXixoAMz6dqxZsk446WSnQCSC-KQAULNl16sAlAC5kuPAE9kAbxTJrsWB2582+HqTYAjOsgB8yAAxXrWUoeHCljLBMAfWFyABtYtV8AGnsdShTmHnjdAG5oAF9oaBk5BWU6VTUAVlzrZFtkAHkAaWLZeSUVdV9amzsAUQAlQcbBw19kclJkZmI2EgpqejbSzor1BgBGXoahkbHkLcnp2fmyKlo6IoQkVAxsPEJmOgBzeUumVg4AEzo3SgEQlEzHE5EkyFk3Bw3wAIn9KBovuxfv8DMgaMRyN8LAF6nZkfDkM5XMgPMhgH5cXROBBiMgAERw-6GAn-el5QrQSHEaFMhFbXw9HJ9Jqtbm8+GJXp1XbDUbjY4zOYzV7vZbi2GSqpCup45B7eXIbWK04qt5LOhAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkwB7AZwEsAXcgNwFMBacgO0uQBIBjYgV1ZXixoAMz6dqxZsk446WSnQCSC-KQAULNl16sAlAC5kuPAE9kAbxTJrsWB2582+HqTYAjOsgB8yAAxXrWUoeHCljLBMAfWFyABtYtV8AGnsdShTmHnjdAG5oAF9oaBk5BWU6VTUAVlzrZFtkAHkAaWLZeSUVdV9amzsAUQAlQcbBw19kclJkZmI2EgpqejbSzor1BgBGXoahkbHkLcnp2fmyKlo6IoQkVAxsPEJmOgBzeUumVg4AEzo3SgEQlEzHE5EkyFk3Bw3wAIn9KBovuxfv8DMgaMRyN8LAF6nZkfDkM5XMgPMhgH5cXROBBiMgAERw-6GAn-el5QrQSHEaFMhFbXw9HJ9Jqtbm8+GJXp1XbDUbjY4zOYzV7vZbi2GSqpCup45B7eXIbWK04qt5LOhAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ## Built-in Generic Types
 
@@ -1664,7 +1664,7 @@ $names = array_map(fn($u) => $u->name, $users);
 // Phan thinks $names is array<mixed> - lost type info!
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQAkCuBnApgJ0QAgLwYNoDtkB3DAVRVQAoByAQQBsBLAY2WoEoAaDQk8tGgCEA9gCMOAXQDccfAEMAtskw45qVHICeAfQVywlAGb5KCdtgB8GBAFoL8pdwQVE7GQHp3GAAoQ5+DAAXCEZ8AGtMWAdlDEZMNQ1NYAVGAA9kABMrGwx6YURAoM0wZFj8Q2EAQiA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQAkCuBnApgJ0QAgLwYNoDtkB3DAVRVQAoByAQQBsBLAY2WoEoAaDQk8tGgCEA9gCMOAXQDccfAEMAtskw45qVHICeAfQVywlAGb5KCdtgB8GBAFoL8pdwQVE7GQHp3GAAoQ5+DAAXCEZ8AGtMWAdlDEZMNQ1NYAVGAA9kABMrGwx6YURAoM0wZFj8Q2EAQiA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 **With generics:**
 ```php
@@ -1674,7 +1674,7 @@ $names = array_map(fn(User $u) => $u->name, $users);
 // Phan knows $names is array<string> - type preserved!
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAKoDOAplgHxIAkArhVqUvLNA0ywLxIDaAO3IB3JGUoAKAOQBBADYBLAMbkpASgA0SIaPFZpAIQD2AI3UBdANwcBGALbkeuLPgIB9OxjASAZgIl6dPRqSNw0DAC0VLYOWpyUpGrWsLBIAAoQGAJIANYCRsIstDGOSAoseITApAAuWAoCAOY0EUg1BGDkSGBYjpRo5AAmAIRAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAKoDOAplgHxIAkArhVqUvLNA0ywLxIDaAO3IB3JGUoAKAOQBBADYBLAMbkpASgA0SIaPFZpAIQD2AI3UBdANwcBGALbkeuLPgIB9OxjASAZgIl6dPRqSNw0DAC0VLYOWpyUpGrWsLBIAAoQGAJIANYCRsIstDGOSAoseITApAAuWAoCAOY0EUg1BGDkSGBYjpRo5AAmAIRAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 This section covers the most commonly used generic built-in types. For a complete list, see the stub files in `.phan/internal_stubs/`.
 
@@ -1718,7 +1718,7 @@ foreach ($cache as $user) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0wBXAI3gEtY0AzcgO1gBcaB7ZtAfV9jdkbXOXYAKYqWkVqdNMNw1mAczQASZogC22ADRTpJWbXrK2GxCuyG0ASkIBfaM+gB6AFQfiHtAGFEWAhsNHIcfBxULh4AE0Q2RB80AAFsAA82bGYY9ABlMHgAeUoAK2x2XLZOXCtsYCw8PTREXBqATwIkYQBBWFhsVAAucz14ThVlP04WNmHmNkcAPh83OC70BtxcgeRogKCQ9MzsvILisoqqmutCF2hodVhA4LQAXjRmbAB3THDtqO4+2C4jsAG4HmE8ABGN4fb6-PDiADk3VM2CRTQAzAAGMEQ8IAJlhnx+m2RACFOJQMWgCQBWPHuNxobpsBJBULhdBfGhsCBoPnYGgRHbRNBxBIPJ4HAC0i3i7Ig4nUkNwUKaAG0kV02L1+qgkW9FgKaLoQU1teNJtN5obXsa6QBdPGPZ7YOUK57K1UEzXalC6vo7O3GjhmhwytCYgBs2OxFrGE2YUxmIdpzvBTLQAElMjVMmgeXzGOR4PABW0wCFkIgGNg2G1oAxqthnmhldKXigNKqHERpOpIrtuAAReKIWGu2WLaxsbPMZsg8HSNzMgAKEEQPAA1sxOF90CrwmgaBtwrZV2gN1u0Lv94eh9ExwkT+gWu1OgG9Ts5mxRlbkxtWZzGcaRyggTg0AAIgII88DlLRdEcNBE2sGITx4WDH1HcctUTa1U0dZCwwGAAdZgoPBRwgA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0wBXAI3gEtY0AzcgO1gBcaB7ZtAfV9jdkbXOXYAKYqWkVqdNMNw1mAczQASZogC22ADRTpJWbXrK2GxCuyG0ASkIBfaM+gB6AFQfiHtAGFEWAhsNHIcfBxULh4AE0Q2RB80AAFsAA82bGYY9ABlMHgAeUoAK2x2XLZOXCtsYCw8PTREXBqATwIkYQBBWFhsVAAucz14ThVlP04WNmHmNkcAPh83OC70BtxcgeRogKCQ9MzsvILisoqqmutCF2hodVhA4LQAXjRmbAB3THDtqO4+2C4jsAG4HmE8ABGN4fb6-PDiADk3VM2CRTQAzAAGMEQ8IAJlhnx+m2RACFOJQMWgCQBWPHuNxobpsBJBULhdBfGhsCBoPnYGgRHbRNBxBIPJ4HAC0i3i7Ig4nUkNwUKaAG0kV02L1+qgkW9FgKaLoQU1teNJtN5obXsa6QBdPGPZ7YOUK57K1UEzXalC6vo7O3GjhmhwytCYgBs2OxFrGE2YUxmIdpzvBTLQAElMjVMmgeXzGOR4PABW0wCFkIgGNg2G1oAxqthnmhldKXigNKqHERpOpIrtuAAReKIWGu2WLaxsbPMZsg8HSNzMgAKEEQPAA1sxOF90CrwmgaBtwrZV2gN1u0Lv94eh9ExwkT+gWu1OgG9Ts5mxRlbkxtWZzGcaRyggTg0AAIgII88DlLRdEcNBE2sGITx4WDH1HcctUTa1U0dZCwwGAAdZgoPBRwgA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### WeakMap
 
@@ -1757,7 +1757,7 @@ if (isset($productStats[$laptop])) {
 unset($mouse);  // $productStats[$mouse] is now gone
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBABQE4HsAmArrAC5oDe0aVaYBARvAJaxoBmBAdiYzh2gPr9YvZMSxFiACkrVZtBszSisjDgHM0AEg6IAtgFMANDNlV5TFq3g5EpTWBWx9JtAEpyAX2hfoAel9oACpYiLAA1jS4hCRKxLaMoszoAO6MxBA4BKQO+gBu+hzEqhpqiFh0iGr6aMLw8PrcvH4AVM1oAAK5ZWgA6vqIYQCyiGDA2PgShmhlIQCeZLmM+snIAFyqxIa0WLAQKPprGx4AfFoOEyQAynHE6M2+0PZREte26AC8aBzLvf1DI5JXABuaCPJBgYg4MBoT7fZKYZ4kSQAcgAMiNIWBkVMAJx4gB0eOBj10mWQ1VhP3G0SkyMGZP02LQACYcYSccTHucaa9bgBtTTgzEAXRhaD5yMWy2QyJhpwAjABWAAMU2R212+xlcrQiuFIKeF2IvOQAtJBHJos+EqlK1l71OAGZlaq0OqCDs9uTtQ6WXqQX4AgBBWBOVBoVLpNgEOpoYizMDVZCIVj6ePQRisNCSBLkqSGnk3U2CjFQ4WudwUWSaURvMUFl5FgVCssg2T+TB7PhhDg4FZaWu3NAJaZYOYLJYrdaFLYezXe6fELyyBoZNAAInREKhq3INabksnMuFHjQtuQUzI+7eEo1XoOyJPNDn9+QAB0OOuQT4Oz0IAVIiNYd0E4PMpnSao+gGYZoQKMRZmA6YshwXR4lgRA6gQrB9FJfI8GgUC00kTRzXJYEqA7BsribEiGVFEde3hNReH0IA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBABQE4HsAmArrAC5oDe0aVaYBARvAJaxoBmBAdiYzh2gPr9YvZMSxFiACkrVZtBszSisjDgHM0AEg6IAtgFMANDNlV5TFq3g5EpTWBWx9JtAEpyAX2hfoAel9oACpYiLAA1jS4hCRKxLaMoszoAO6MxBA4BKQO+gBu+hzEqhpqiFh0iGr6aMLw8PrcvH4AVM1oAAK5ZWgA6vqIYQCyiGDA2PgShmhlIQCeZLmM+snIAFyqxIa0WLAQKPprGx4AfFoOEyQAynHE6M2+0PZREte26AC8aBzLvf1DI5JXABuaCPJBgYg4MBoT7fZKYZ4kSQAcgAMiNIWBkVMAJx4gB0eOBj10mWQ1VhP3G0SkyMGZP02LQACYcYSccTHucaa9bgBtTTgzEAXRhaD5yMWy2QyJhpwAjABWAAMU2R212+xlcrQiuFIKeF2IvOQAtJBHJos+EqlK1l71OAGZlaq0OqCDs9uTtQ6WXqQX4AgBBWBOVBoVLpNgEOpoYizMDVZCIVj6ePQRisNCSBLkqSGnk3U2CjFQ4WudwUWSaURvMUFl5FgVCssg2T+TB7PhhDg4FZaWu3NAJaZYOYLJYrdaFLYezXe6fELyyBoZNAAInREKhq3INabksnMuFHjQtuQUzI+7eEo1XoOyJPNDn9+QAB0OOuQT4Oz0IAVIiNYd0E4PMpnSao+gGYZoQKMRZmA6YshwXR4lgRA6gQrB9FJfI8GgUC00kTRzXJYEqA7BsribEiGVFEde3hNReH0IA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Generic Array Functions
 
@@ -1791,7 +1791,7 @@ foreach ($activeUsers as $username => $user) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0wBXAI3gEtY0AzcgO1gBcaB7ZtAfV9jdkbXOXYAKYqWkVqdNMNw1mAczQASZogC22ADRTpJWbXqVOneBsTsaAN2yG0ASkIBfaB+gB6AFS+0AAE7RHxQ3EQAT2BFZRU9TBxcAD4NciT0X29odXS8dABeNABtJwByRFNsMrQC1OZsAHdEvHEygEEqsoSRcmxnA2ky80oaurQG5qxWsoAhTlGEhkqcAfLYUMsx+qaW3DaAYU34brRe-ugAXQBuaBybDgdp3EK0cKjeBhp4NlbcjKWzHEzzSrnGuQAtMkHvZ+rdvN40AAFCCIHgAa2YnEa6HUMKeGTQNHQ72isVUCWeyTuDE4uGwNggaHEeNsBPyb1xeVwWl0tVS-zwriI0gRaHmbCZgp5OmwzPJKlcaIAJmkksznkr6WhBLh6ex4JEzpEwNhlU5sLAIJw0AAiaW87AALkI0qhjrcRJJbOwAB1mLbbm4gA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0wBXAI3gEtY0AzcgO1gBcaB7ZtAfV9jdkbXOXYAKYqWkVqdNMNw1mAczQASZogC22ADRTpJWbXqVOneBsTsaAN2yG0ASkIBfaB+gB6AFS+0AAE7RHxQ3EQAT2BFZRU9TBxcAD4NciT0X29odXS8dABeNABtJwByRFNsMrQC1OZsAHdEvHEygEEqsoSRcmxnA2ky80oaurQG5qxWsoAhTlGEhkqcAfLYUMsx+qaW3DaAYU34brRe-ugAXQBuaBybDgdp3EK0cKjeBhp4NlbcjKWzHEzzSrnGuQAtMkHvZ+rdvN40AAFCCIHgAa2YnEa6HUMKeGTQNHQ72isVUCWeyTuDE4uGwNggaHEeNsBPyb1xeVwWl0tVS-zwriI0gRaHmbCZgp5OmwzPJKlcaIAJmkksznkr6WhBLh6ex4JEzpEwNhlU5sLAIJw0AAiaW87AALkI0qhjrcRJJbOwAB1mLbbm4gA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 #### array_map
 
@@ -1813,7 +1813,7 @@ foreach ($names as $name) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAJYB2ALgDRICqAzgKZYB8SAJAK6NZ1LyzRO3XgF4kAbWhJpSUgwDutbgAoA5AEEANsQDGDVdXJYODAJSUpMuYvpM1AIQD2AIwNIAZhk2NT0ALoA3NCCpBgAtgyiuFj4BAD6YRhgyu6kyrY4nKZIIqycALTMoRHUQkx0pkGwsEgAChAYpEhk7uXRscB0RmQA5qz5SEaNdO6OWBEAJh5YjmFKTIOOSF1YvcGjWAwYOhBIymzFkbi8B+FmSADeltLVdQ1NANakjvInh828K2sySAw7SwAiAByZwAXOxDgAdUgAoIAXyAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAJYB2ALgDRICqAzgKZYB8SAJAK6NZ1LyzRO3XgF4kAbWhJpSUgwDutbgAoA5AEEANsQDGDVdXJYODAJSUpMuYvpM1AIQD2AIwNIAZhk2NT0ALoA3NCCpBgAtgyiuFj4BAD6YRhgyu6kyrY4nKZIIqycALTMoRHUQkx0pkGwsEgAChAYpEhk7uXRscB0RmQA5qz5SEaNdO6OWBEAJh5YjmFKTIOOSF1YvcGjWAwYOhBIymzFkbi8B+FmSADeltLVdQ1NANakjvInh828K2sySAw7SwAiAByZwAXOxDgAdUgAoIAXyAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 #### array_reduce
 
@@ -1840,7 +1840,7 @@ $concatenated = array_reduce(
 // Phan knows $concatenated is string
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAJYB2ALgHxIAkpArgLYBGAplgM5LyzR1NtOSALxIA2gEYANEgBMMgMwyALDICsAXQDc0OLCQAlVgBN6AY1ZJyAeyRlyfDkxG4s+AgH0sJ86wAU0EhBtAws7BxSgcEAZqR+9rRmeAQyCXQAlCLUNEluBEgA1CGRwUgADNDpOrD6AAoQGKRIANak1gDuXDROjHZc9ro1hj4WVrYc5FhkAOZ8ZtakSeSspBjLxi54hF4j-lFB-GGcJTFxE1Ok04nJqRQhmcLZuVj5AHRIfucz6XQnQQBE-0q1TqDSarQ6XXmizWK1hG2IXC+lyAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAJYB2ALgHxIAkpArgLYBGAplgM5LyzR1NtOSALxIA2gEYANEgBMMgMwyALDICsAXQDc0OLCQAlVgBN6AY1ZJyAeyRlyfDkxG4s+AgH0sJ86wAU0EhBtAws7BxSgcEAZqR+9rRmeAQyCXQAlCLUNEluBEgA1CGRwUgADNDpOrD6AAoQGKRIANak1gDuXDROjHZc9ro1hj4WVrYc5FhkAOZ8ZtakSeSspBjLxi54hF4j-lFB-GGcJTFxE1Ok04nJqRQhmcLZuVj5AHRIfucz6XQnQQBE-0q1TqDSarQ6XXmizWK1hG2IXC+lyAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 #### array_find (PHP 8.4+)
 
@@ -1870,7 +1870,7 @@ if ($firstInactive !== null) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0wBXAI3gEtY0AzcgO1gBcaB7ZtAfV9jdkbXOXYAKYqWkVqdNMNw1mAczQASZogC22ADRTpJWbXrK2GxCv2GjJ+ZU6d4l9jQBu2WwEpCAX2gA6AB6ACpQtAABd0R8WNxEAE9gcz1MHFwAPg1yDPRQ4Oh1XLx0AF40AG1bZmwAd3S8cQByAEFTbGa0gGYABjSRcmxvA2lahqwm5oAhTkoutAAmAFY0hkR4HBGa+sbcFoBhWOcF7tW0QeHoAF0AbmgihhpcYQBJLTdPNAr4pN4n5gAE3ExTya2Y4km+GKvjK2QAhMUALSZRCfYb3YLBNAABQgiB4AGtmJw6uh1E8Xmx3miOF8aOgoQAfZjkeDwB40BhoEGUt4fOnYNDwsoVVns3xEaTYWAQThoABEADFnsI0MpaR5sAAuQgU1XUgValFaXR+AA6zAV9z8QA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0wBXAI3gEtY0AzcgO1gBcaB7ZtAfV9jdkbXOXYAKYqWkVqdNMNw1mAczQASZogC22ADRTpJWbXrK2GxCv2GjJ+ZU6d4l9jQBu2WwEpCAX2gA6AB6ACpQtAABd0R8WNxEAE9gcz1MHFwAPg1yDPRQ4Oh1XLx0AF40AG1bZmwAd3S8cQByAEFTbGa0gGYABjSRcmxvA2lahqwm5oAhTkoutAAmAFY0hkR4HBGa+sbcFoBhWOcF7tW0QeHoAF0AbmgihhpcYQBJLTdPNAr4pN4n5gAE3ExTya2Y4km+GKvjK2QAhMUALSZRCfYb3YLBNAABQgiB4AGtmJw6uh1E8Xmx3miOF8aOgoQAfZjkeDwB40BhoEGUt4fOnYNDwsoVVns3xEaTYWAQThoABEADFnsI0MpaR5sAAuQgU1XUgValFaXR+AA6zAV9z8QA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 #### array_find_key (PHP 8.4+)
 
@@ -1888,7 +1888,7 @@ if ($topScorer !== null) {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAM4AuWAlgHYDmANEtaQHxIAkxAxgPZYCmxJPFjQOPfoIC8SANoByDABsKnPnKSTWATgCsDOQCNuB9ZqQB2AEz7O2botOsAHE4C6AbmijS3MAGVxPhxpPEIAfQAzagATMIBrPgIACjFeAQYIqiSmdi40gEoNVlT+JG0ABnzPWFgkAAUIDCokOKpuAHdBNh9-QJwKQTJKWgAfKgBXRUUvCgikFJ6AtJwAQklpCanCgG9oJH2kPk4IbiQAIgAVXyQ8-iwALnZFvqR2ilIIG8CkbZKBGW6viWd1cAF8ADpUM6eUFAA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAM4AuWAlgHYDmANEtaQHxIAkxAxgPZYCmxJPFjQOPfoIC8SANoByDABsKnPnKSTWATgCsDOQCNuB9ZqQB2AEz7O2botOsAHE4C6AbmijS3MAGVxPhxpPEIAfQAzagATMIBrPgIACjFeAQYIqiSmdi40gEoNVlT+JG0ABnzPWFgkAAUIDCokOKpuAHdBNh9-QJwKQTJKWgAfKgBXRUUvCgikFJ6AtJwAQklpCanCgG9oJH2kPk4IbiQAIgAVXyQ8-iwALnZFvqR2ilIIG8CkbZKBGW6viWd1cAF8ADpUM6eUFAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 #### array_any and array_all (PHP 8.4+)
 
@@ -1909,7 +1909,7 @@ $allActive = array_all($users, fn(User $u) => $u->active);
 // Returns bool: true if all users are active
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAJYB2ALgDRICqAzgKZYB8SAJAK6NZ1LyzRO3XgF4kAbWhJpSUgwDutbgAoA5AEEANsQDGDVdQDMABmrksHBgEpKUmXMX0magEIB7AEYGkAJgCs1ABmGJqMNnbSDkrOqgDC2G6a3oYBSOaWVtAAugDc0IIQGHQAkqQYOuTEaAxIYniEAPoYpATKQkx0QaTKTjicVrWsAIScALTM5ZXVVnmwsEgASgzkHFikvB5uiQBcaRY1xIG4LUhcTEjEvGSTVQz5bCGa6hW3tbhY+ARNmpptZzxdHrcdgcAYiVhjCYvaazeZLFZrDZbTS7dIHI6PU7Cd41G7VIA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAJYB2ALgDRICqAzgKZYB8SAJAK6NZ1LyzRO3XgF4kAbWhJpSUgwDutbgAoA5AEEANsQDGDVdQDMABmrksHBgEpKUmXMX0magEIB7AEYGkAJgCs1ABmGJqMNnbSDkrOqgDC2G6a3oYBSOaWVtAAugDc0IIQGHQAkqQYOuTEaAxIYniEAPoYpATKQkx0QaTKTjicVrWsAIScALTM5ZXVVnmwsEgASgzkHFikvB5uiQBcaRY1xIG4LUhcTEjEvGSTVQz5bCGa6hW3tbhY+ARNmpptZzxdHrcdgcAYiVhjCYvaazeZLFZrDZbTS7dIHI6PU7Cd41G7VIA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Other Generic Array Functions
 
@@ -1933,7 +1933,7 @@ $reversed = array_flip($ages);
 // Phan knows $reversed is array<int, string>
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAM4AuWAlgHYDmANEtaQHxIAkGNApsUvLNA7deAXiQBtAOQYANhQDGXSUhGsAzAAYGkgEYB7HctVIATAFYAugG5ogqhgC2PFbiz4CAfQDWXAsQAUQjwAlDawsEgAChAYVEheVHoA7rxs9k68FLxyZCTk1DTMtkHEADJZpC54hB6YMgCuPIGcIWER0bHxiSnsLWUVjNkVwExFglhcaFxYxFwAJlVuNQBmcmDNwqFw7TFxCcmpE1Mz84Ou7iNUpAxklLTMQA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABAbgQwE5O1jAnsAM4AuWAlgHYDmANEtaQHxIAkGNApsUvLNA7deAXiQBtAOQYANhQDGXSUhGsAzAAYGkgEYB7HctVIATAFYAugG5ogqhgC2PFbiz4CAfQDWXAsQAUQjwAlDawsEgAChAYVEheVHoA7rxs9k68FLxyZCTk1DTMtkHEADJZpC54hB6YMgCuPIGcIWER0bHxiSnsLWUVjNkVwExFglhcaFxYxFwAJlVuNQBmcmDNwqFw7TFxCcmpE1Mz84Ou7iNUpAxklLTMQA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ## Rules and Limitations
 
@@ -1959,7 +1959,7 @@ class Box {
 $box = new Box(42);  // Inferred as Box<int>
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IBCA9gB7IDeKyfCadADciAJ3KpqfPmFEBLEaQAkIggFdsAbmi9+iDGDFFcElUXXZJu5GDUAjAnJrIAZmoB2NTHNbvkAfX8aX3pMUTUvAAozCwBKbn5YCTkmOXcXbFFRbAATV1FWExiNa2lkJUwIFIBaAD5VDWQAXnKGrWsAX2guuCSAeQBpAC5kAAUIIj8aSeQ0jPEyfMLkYPdQ8K9WcTEAczVcbHdMaCU7Dmbkd2wAdxYOSIAWACZYzUTkAEl0zOy8oiY2OxgGlMLUgA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IBCA9gB7IDeKyfCadADciAJ3KpqfPmFEBLEaQAkIggFdsAbmi9+iDGDFFcElUXXZJu5GDUAjAnJrIAZmoB2NTHNbvkAfX8aX3pMUTUvAAozCwBKbn5YCTkmOXcXbFFRbAATV1FWExiNa2lkJUwIFIBaAD5VDWQAXnKGrWsAX2guuCSAeQBpAC5kAAUIIj8aSeQ0jPEyfMLkYPdQ8K9WcTEAczVcbHdMaCU7Dmbkd2wAdxYOSIAWACZYzUTkAEl0zOy8oiY2OxgGlMLUgA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 If a template cannot be inferred, Phan will emit `PhanGenericConstructorTypes`.
 
@@ -1984,7 +1984,7 @@ class Container {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IDCA9gHaZECW72ATsgDeKZGNixkAUQBKMgPIyAXMnpdM3GsjD9WYAZgCeyGkXbtWmZAFd62ZDnzFSR-eVHjEGAG5FBZVGoxMR1uX1I1Ek1kABIAE2wAMyJrAkwAbmgPZAlpOUUVSI0tXGxMCFY4kzMLK1t7R0ISBsM3CmCcr3R+Mut+dnJA7LBrACMCaKLoxOt2Gg0OZABzMoARJJS0gAoASmFsjp7MPoG7AkSlJXiN1IzsgF9oe6A&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IDCA9gHaZECW72ATsgDeKZGNixkAUQBKMgPIyAXMnpdM3GsjD9WYAZgCeyGkXbtWmZAFd62ZDnzFSR-eVHjEGAG5FBZVGoxMR1uX1I1Ek1kABIAE2wAMyJrAkwAbmgPZAlpOUUVSI0tXGxMCFY4kzMLK1t7R0ISBsM3CmCcr3R+Mut+dnJA7LBrACMCaKLoxOt2Gg0OZABzMoARJJS0gAoASmFsjp7MPoG7AkSlJXiN1IzsgF9oe6A&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 **Workaround:** Use function-level templates on static methods:
 
@@ -2004,7 +2004,7 @@ class Container {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IDCA9gHaZECW72ATsgDeKZGIRIxUtFjyES2ZAFVR0jGCL8iuZcgAkANyIEArtlViZ-bJhP92yi6mpTkYEwCMC3GsnpdMH2QAMxN2GkCOZG4AE2xObkwATwAKQ2MzAEphJylrW3t9I1NsAG4LAF9oCqA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0AxsQM73IDCA9gHaZECW72ATsgDeKZGIRIxUtFjyES2ZAFVR0jGCL8iuZcgAkANyIEArtlViZ-bJhP92yi6mpTkYEwCMC3GsnpdMH2QAMxN2GkCOZG4AE2xObkwATwAKQ2MzAEphJylrW3t9I1NsAG4LAF9oCqA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Template Parameter Count
 
@@ -2038,7 +2038,7 @@ class BadPair2 implements Pair {}
 class GoodPair implements Pair {}
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKaWehJ2yAqpbNAJYB2OATgGZEDG9AApFWXZAG8UyGbFjIAdEugBfaHHkBRAEraA8toBcyALKsAzuY4BzZDnzFSYIlyK5s3OIkoZWDvNic5sgiYsAcmAB8zND8xJbIAEJEACah4n6EAUEhouISahrIOvpG5AD25ci4ROwAnnY0jvTOru7c5l5IqL7+7jnp4ZwANMjmmFw2owBGlQTRqCxxRAnJaXkATMiZBNmYwemShXLIegDSxgDC5Vxc2PyYyOwArrjT2OLlPMitbh4fnQQ3SoOz2BzyQ0wo3Gk3Y1gW8CW8WCAHFKusxNs+oF9rlMQUgA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKaWehJ2yAqpbNAJYB2OATgGZEDG9AApFWXZAG8UyGbFjIAdEugBfaHHkBRAEraA8toBcyALKsAzuY4BzZDnzFSYIlyK5s3OIkoZWDvNic5sgiYsAcmAB8zND8xJbIAEJEACah4n6EAUEhouISahrIOvpG5AD25ci4ROwAnnY0jvTOru7c5l5IqL7+7jnp4ZwANMjmmFw2owBGlQTRqCxxRAnJaXkATMiZBNmYwemShXLIegDSxgDC5Vxc2PyYyOwArrjT2OLlPMitbh4fnQQ3SoOz2BzyQ0wo3Gk3Y1gW8CW8WCAHFKusxNs+oF9rlMQUgA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 Phan will emit warnings for mismatched parameter counts.
 
@@ -2058,7 +2058,7 @@ class AnimalContainer {}
 class SpecificContainer extends AnimalContainer {}
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyA9gGbICCAdgJa5EEryzQDGxAzn3rNWBAMKUGmIkwbYATsgDeAX2hxEHDDnzFSFZLFjkITQRVPIAcgHkK3CX0xzpsgCbJMlISzYcuvIgFkAGUwbG4maiZucUkXeWRsAA8cBldBRh8xCSkZBJUgA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyA9gGbICCAdgJa5EEryzQDGxAzn3rNWBAMKUGmIkwbYATsgDeAX2hxEHDDnzFSFZLFjkITQRVPIAcgHkK3CX0xzpsgCbJMlISzYcuvIgFkAGUwbG4maiZucUkXeWRsAA8cBldBRh8xCSkZBJUgA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 **Workaround:** Explicitly redeclare the constraint:
 
@@ -2069,7 +2069,7 @@ class SpecificContainer extends AnimalContainer {}
 class SpecificContainer extends AnimalContainer {}
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyA9gGbICCAdgJa5EEryzQDGxAzn2QBlMNm5NqTbgGFKDTESYNsAJ2TYAHjgYATQYxZtZ8xcrUBvAL5A&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqyA9gGbICCAdgJa5EEryzQDGxAzn2QBlMNm5NqTbgGFKDTESYNsAJ2TYAHjgYATQYxZtZ8xcrUBvAL5A&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Variance and Nested Structures
 
@@ -2088,7 +2088,7 @@ class Container {
 }
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY4C0AxgPYBuRATgJZEB2myAKivLNOcQM79kAYUqsiDZtjrIA3imSKESRarQBRAEqaA8poBcyenSIBPIfWzJJtRi0wAaZNmrZmyAO4NMEZFVtMrMg4+MQ4CmoYtkZ0JqbA7AB8EYrcKWAArgBGBAzkyAAk3nj8ANzQAL5AA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY4C0AxgPYBuRATgJZEB2myAKivLNOcQM79kAYUqsiDZtjrIA3imSKESRarQBRAEqaA8poBcyenSIBPIfWzJJtRi0wAaZNmrZmyAO4NMEZFVtMrMg4+MQ4CmoYtkZ0JqbA7AB8EYrcKWAArgBGBAzkyAAk3nj8ANzQAL5AA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 This is because arrays are mutable in both directions (read and write).
 
@@ -2209,7 +2209,7 @@ $adults = $users->filter(fn(User $u) => $u->age >= 18);
 // $users->add(new stdClass());  // ERROR: stdClass is not User
 ```
 
-**[Try this example in Phan-in-Browser →](https://phan.github.io/demo/?c=DwfgDgFmBQ0PQCoHQAQJQcQKYDssCcBLAYxWIHsAbSrYgF0PJxQHdC6IU6BPMLMpgGc6+AIaEcdQamRoUAATpYAtmEqilKACopyAM10AjAFa06MuNGLrBglAGEqNeo2YBvVCi+J08gG6i+CiUhMLAWgB8aJZeXmBEAZoAJOwqggDcsLEoPp6xvmCBosrBoXThUSlKytLZ0XkoYACuhiGkek04LkwoAPq9FDjC+E30ABSBYtwoVWkoALwoANoAugCUKB51sUkcoQC0Eak1CzPHGQ0AvlmxuXXoAIIAJk8ooszHXORcEPwU1GZXA05PJCmISjpZspgQgYrFmq0SCgOl0GD1RC8xlC1gAuFB+ciEV5bbYzPaCQ7nVanKGZbLXBp3bLobB0N7UFDnGEKfBYOhNfDMEJhSIwuFxFptZGdbrMUTUMa4t74KabYGxXn8wVkiAHI7VC70m7eJDc1nIwj4YSc6rc+SagXMLQAHxwTWoYoaCKlKNlFqtdEVatJKAd2t2uop+rSSwADCsUCAQCg3dQ6bEGdkmfkUABZURgL5vFNYFgCAGyu3VNQafgAVV0BnIJjMdrBxQclHIggFWDGWlxDaSygLfHwdrDzEcFbROGAdYinuy3qRvtnKBHYDG9i7Pd5M03Y6V0+c65J2ySvJ7lDZizwZZPgKYivT2z05F5omInCx5MpBreOxsWDEMdivd06EODEnixQ8CCxY41jWV86muENJxmcCbxQzNblNe4UAAMUIG8CBtNI2yKEod27Xt+1xQxyCoGZ4iwJ4SFrCc+UdBwnCfOdRXucVGklVcZXXPQSKUfBt13XsWN5djiFrY8+L9c86kvLBr1vEsHzU2cX3VLx30-b8UF-SN-zmUQgMQkDQM5AwsVYpTawQ6okIcxywO0iCoMxbEUJDNDSVC7YMK0nScOgBlrFsuw60EMiNJXdpxNcPoBiEERRkDYyRMRUhhgkABzGYcGKLAABoCrSzlJBmURSqwBoNjca44psRLkvwAARLQAHlvPqtdMv6QZhjysY6tE4qRDKiqqrazZOtgOA4AcT9NFEctT0y-QUCaXrpCSY6CDsO9S14mdXDGJZ7xQJL4IAIgeNosBe6qUAAZljNZvse56ZJegAhZsvpQAAmABWNZ1kyeBNvzQs6G+AbBrsfYUAABQgd4Gr0C6bv2ph516jHFySJ40cumZzqtQ5NzGPQcDGYH6Y2eYoiBimhqxJpDkq5QsCQxGNqIqSyIZrHcfxj4cCJq0Sf48mCCpjEILps6TsOSTSJk1n2d6zmFkqQWIma-gIkWABGAAOZD1s2rReH4QRRCJng8XJVhyHdV4CHwD8kfp3XLcxF6cHINldoZl7kO8TaAFEACVU8G1O8RKnBytCFMY6MUx6FDnWLoCmDHuEJ4dwSxVE5yFP08z7O6Br7rOTsaO2WBoA&php=84&phan=v6-dev&ast=1.1.3)**
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQ0PQCoHQAQJQcQKYDssCcBLAYxWIHsAbSrYgF0PJxQHdC6IU6BPMLMpgGc6+AIaEcdQamRoUAATpYAtmEqilKACopyAM10AjAFa06MuNGLrBglAGEqNeo2YBvVCi+J08gG6i+CiUhMLAWgB8aJZeXmBEAZoAJOwqggDcsLEoPp6xvmCBosrBoXThUSlKytLZ0XkoYACuhiGkek04LkwoAPq9FDjC+E30ABSBYtwoVWkoALwoANoAugCUKB51sUkcoQC0Eak1CzPHGQ0AvlmxuXXoAIIAJk8ooszHXORcEPwU1GZXA05PJCmISjpZspgQgYrFmq0SCgOl0GD1RC8xlC1gAuFB+ciEV5bbYzPaCQ7nVanKGZbLXBp3bLobB0N7UFDnGEKfBYOhNfDMEJhSIwuFxFptZGdbrMUTUMa4t74KabYGxXn8wVkiAHI7VC70m7eJDc1nIwj4YSc6rc+SagXMLQAHxwTWoYoaCKlKNlFqtdEVatJKAd2t2uop+rSSwADCsUCAQCg3dQ6bEGdkmfkUABZURgL5vFNYFgCAGyu3VNQafgAVV0BnIJjMdrBxQclHIggFWDGWlxDaSygLfHwdrDzEcFbROGAdYinuy3qRvtnKBHYDG9i7Pd5M03Y6V0+c65J2ySvJ7lDZizwZZPgKYivT2z05F5omInCx5MpBreOxsWDEMdivd06EODEnixQ8CCxY41jWV86muENJxmcCbxQzNblNe4UAAMUIG8CBtNI2yKEod27Xt+1xQxyCoGZ4iwJ4SFrCc+UdBwnCfOdRXucVGklVcZXXPQSKUfBt13XsWN5djiFrY8+L9c86kvLBr1vEsHzU2cX3VLx30-b8UF-SN-zmUQgMQkDQM5AwsVYpTawQ6okIcxywO0iCoMxbEUJDNDSVC7YMK0nScOgBlrFsuw60EMiNJXdpxNcPoBiEERRkDYyRMRUhhgkABzGYcGKLAABoCrSzlJBmURSqwBoNjca44psRLkvwAARLQAHlvPqtdMv6QZhjysY6tE4qRDKiqqrazZOtgOA4AcT9NFEctT0y-QUCaXrpCSY6CDsO9S14mdXDGJZ7xQJL4IAIgeNosBe6qUAAZljNZvse56ZJegAhZsvpQAAmABWNZ1kyeBNvzQs6G+AbBrsfYUAABQgd4Gr0C6bv2ph516jHFySJ40cumZzqtQ5NzGPQcDGYH6Y2eYoiBimhqxJpDkq5QsCQxGNqIqSyIZrHcfxj4cCJq0Sf48mCCpjEILps6TsOSTSJk1n2d6zmFkqQWIma-gIkWABGAAOZD1s2rReH4QRRCJng8XJVhyHdV4CHwD8kfp3XLcxF6cHINldoZl7kO8TaAFEACVU8G1O8RKnBytCFMY6MUx6FDnWLoCmDHuEJ4dwSxVE5yFP08z7O6Br7rOTsaO2WBoA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 
 ## Further Reading
