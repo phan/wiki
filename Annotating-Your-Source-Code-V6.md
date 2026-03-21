@@ -1,6 +1,5 @@
-# Annotating Your Source Code (Phan V6)
+# Annotating Your Source Code
 
-> This is the current documentation for Phan v6 (the latest stable release).
 
 This guide covers how to annotate your PHP source code for Phan V6, including all union type syntax, PHPDoc annotations, and new V6 features like generic types, variance annotations, and utility types.
 

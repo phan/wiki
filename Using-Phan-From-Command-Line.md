@@ -1,4 +1,4 @@
-# Using Phan From the Command Line (Phan V6)
+# Using Phan From the Command Line
 
 Complete reference for Phan v6 command-line flags, options, and usage patterns.
 

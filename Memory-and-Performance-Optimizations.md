@@ -1,4 +1,4 @@
-# Memory and Performance Optimizations in Phan V6
+# Memory and Performance Optimizations
 
 Phan v6 introduces significant performance improvements and memory optimization features to handle large codebases more efficiently. This guide explains the new optimization mechanisms and how to tune them for your project.
 

@@ -1,4 +1,4 @@
-# PHP 8.4 and 8.5 Language Features Support in Phan V6
+# PHP 8.4 and 8.5 Language Features Support
 
 Phan v6 provides **full support** for all PHP 8.4 and PHP 8.5 language features with complete type checking and error detection.
 

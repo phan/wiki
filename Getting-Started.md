@@ -1,4 +1,4 @@
-# Getting Started with Phan v6
+# Getting Started with Phan
 
 Phan v6 is the current release and is recommended for PHP 8.1+ codebases. This guide covers setting up Phan v6.
 

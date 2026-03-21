@@ -1,4 +1,4 @@
-# Tooling and Suppression Baselines in Phan V6
+# Tooling and Suppression Baselines
 
 Phan v6 introduces powerful tools for managing suppressions and baselines, making it easier to handle legacy code and track analysis progress over time.
 

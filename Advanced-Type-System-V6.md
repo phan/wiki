@@ -1,6 +1,5 @@
-# Advanced Type System Improvements in Phan V6
+# Advanced Type System
 
-> This is the current documentation for Phan v6 (the latest stable release).
 
 Phan v6 introduces significant improvements to type inference and type narrowing, making analysis more accurate and useful for complex code patterns.
 
