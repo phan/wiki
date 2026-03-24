@@ -40,13 +40,13 @@ This is a common cause of PhanUndeclaredClassMethod, PhanUndeclaredClass, PhanUn
 
 See https://github.com/phan/phan/wiki/Annotating-Your-Source-Code#doc-blocks (Common issues: Phan does not support inline doc comments, doc comments must begin with `/**`, etc)
 
-You can enable [`PHPDocInWrongCommentPlugin`](https://github.com/phan/phan/tree/v5/.phan/plugins#phpdocinwrongcommentplugin) to automatically warn about using block comments with annotations instead of doc comments.
+You can enable [`PHPDocInWrongCommentPlugin`](https://github.com/phan/phan/tree/v6/.phan/plugins#phpdocinwrongcommentplugin) to automatically warn about using block comments with annotations instead of doc comments.
 
 ### One of Phan's function or method signatures have incorrect parameter types or return types
 
 Double check the documentation and examples provided on php.net (or for the latest stable version of that extension).
 
-If Phan is inconsistent with the documentation, create a PR modifying the related functions/methods in https://github.com/phan/phan/blob/v5/src/Phan/Language/Internal/FunctionSignatureMap.php (or file an issue).
+If Phan is inconsistent with the documentation, create a PR modifying the related functions/methods in https://github.com/phan/phan/blob/v6/src/Phan/Language/Internal/FunctionSignatureMap.php (or file an issue).
 
 ### Phan is warning about the codebase using syntax that is incompatible with php 7.0 – 8.1
 
@@ -104,9 +104,9 @@ See [[Different Issue Sets On Different Numbers of CPUs]]
 
 ### How to file a bug report for a crash, error, or incorrect analysis
 
-Install the latest stable version (`dev-v5`) of Phan (e.g. from composer) and see if the issue still occurs. It may have been fixed recently.
+Install the latest stable version (`dev-v6`) of Phan (e.g. from composer) and see if the issue still occurs. It may have been fixed recently.
 
-If the issue continues to happen on `dev-v5`, then:
+If the issue continues to happen on `dev-v6`, then:
 
 1. Check for similar issues. If there is anything new to add, add that.
 2. If there are no similar issues, then file a new issue with any of the relevant information:

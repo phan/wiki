@@ -1,1 +1,1 @@
-This page as moved to [https://github.com/phan/phan/blob/v5/internal/Issue-Types-Caught-by-Phan.md](https://github.com/phan/phan/blob/v5/internal/Issue-Types-Caught-by-Phan.md) (This takes too long to render on the wiki).
+This page as moved to [https://github.com/phan/phan/blob/v6/internal/Issue-Types-Caught-by-Phan.md](https://github.com/phan/phan/blob/v6/internal/Issue-Types-Caught-by-Phan.md) (This takes too long to render on the wiki).
