@@ -31,12 +31,12 @@ After creating the new release, check [packagist.org/packages/phan/phan](https:/
 
 When a release includes new features, update the relevant wiki pages so the documentation stays in sync. Common updates:
 
-- **New config options** — Run the config doc auto-generator and copy the result to the wiki:
+- **New config options** — Run the config doc auto-generator and copy the result to the wiki checkout:
   ```bash
   ./vendor/bin/phpunit tests/Phan/Internal/WikiConfigTest.php
   # If the test fails, the internal copy is out of date:
   cp internal/Phan-Config-Settings.md.new internal/Phan-Config-Settings.md
-  cp internal/Phan-Config-Settings.md ~/phan.wiki/Phan-Config-Settings.md
+  cp internal/Phan-Config-Settings.md /path/to/phan.wiki/Phan-Config-Settings.md
   ```
   New settings also need a category entry in `tests/Phan/Internal/ConfigEntry.php` — without one they land in "misc" or are hidden. See [[Phan Config Settings|Phan-Config-Settings]].
 
@@ -50,9 +50,11 @@ When a release includes new features, update the relevant wiki pages so the docu
 
 - **New PHP version support** — Update [[PHP 8.4/8.5 Support|PHP-8.4-8.5-Support]] (or create a new page for the version).
 
-Push wiki changes directly to the `master` branch:
+Push wiki changes directly to the `master` branch of the [wiki repo](https://github.com/phan/phan.wiki):
 ```bash
-cd ~/phan.wiki
+# Clone the wiki repo if you haven't already:
+# git clone https://github.com/phan/phan.wiki.git /path/to/phan.wiki
+cd /path/to/phan.wiki
 git add -A && git commit -m "Update docs for 6.x.y release"
 git push origin master
 ```
