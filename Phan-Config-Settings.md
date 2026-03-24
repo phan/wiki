@@ -2,7 +2,7 @@
 <!-- The copy distributed with Phan is in the internal folder because it may be removed or moved elsewhere -->
 <!-- This is regenerated from the comments and defaults in src/Phan/Config.php by tests/Phan/Internal/WikiConfigTest.php -->
 
-See [`\Phan\Config`](https://github.com/phan/phan/blob/v5/src/Phan/Config.php) for the most up to date list of configuration settings.
+See [`\Phan\Config`](https://github.com/phan/phan/blob/v6/src/Phan/Config.php) for the most up to date list of configuration settings.
 
 Table of Contents
 =================
@@ -181,7 +181,7 @@ If this list is empty, no filter against issues types will be applied.
 If this list is non-empty, only issues within the list
 will be emitted by Phan.
 
-See https://github.com/phan/phan/blob/v5/internal/Issue-Types-Caught-by-Phan.md
+See https://github.com/phan/phan/blob/v6/internal/Issue-Types-Caught-by-Phan.md
 for the full list of issues that Phan detects.
 
 Phan is capable of detecting hundreds of types of issues.
@@ -235,6 +235,19 @@ Currently, this just affects inferring that methods without return statements ha
 
 (Default: `false`)
 
+## ast_trim_max_elements_per_level
+
+Maximum number of literal array elements that ASTSimplifier keeps from a single array level
+before trimming large arrays down to a representative subset.
+
+(Default: `256`)
+
+## ast_trim_max_total_elements
+
+Maximum total number of literal array entries that ASTSimplifier keeps while summarizing nested arrays.
+
+(Default: `512`)
+
 ## autoload_internal_extension_signatures
 
 You can put paths to stubs of internal extensions in this config option.
@@ -243,32 +256,49 @@ Phan will continue using its detailed type annotations,
 but load the constants, classes, functions, and classes (and their Reflection types)
 from these stub files (doubling as valid php files).
 Use a different extension from php to avoid accidentally loading these.
-The `tools/make_stubs` script can be used to generate your own stubs (compatible with php 7.0+ right now)
+The `tool/make_stubs` script can be used to generate your own stubs
 
-(e.g. `['xdebug' => '.phan/internal_stubs/xdebug.phan_php']`)
+Phan ALWAYS includes bundled stubs (even in -n mode) for template type support.
+User-provided stubs are MERGED with bundled stubs. For the same extension key,
+user values override bundled defaults.
 
-(Default: `[]`)
+Example: ['myext' => '.phan/stubs/myext.phan_php'] adds your stub alongside bundled stubs.
+Example: ['spl' => '.phan/stubs/custom_spl.phan_php'] replaces bundled SPL stub.
 
-## backward_compatibility_checks
+NOTE: Bundled stubs are computed at runtime to support phar/global installs.
+See Config::getDefaultInternalStubConfiguration() for bundled stub list.
 
-Backwards Compatibility Checking. This is slow
-and expensive, but you should consider running
-it before upgrading your version of PHP to a
-new version that has backward compatibility
-breaks.
+(Default: `null`)
 
-If you are migrating from PHP 5 to PHP 7,
-you should also look into using
-[php7cc (no longer maintained)](https://github.com/sstalle/php7cc)
-and [php7mar](https://github.com/Alexia/php7mar),
-which have different backwards compatibility checks.
+## autoload_internal_extension_signatures_template_classes
 
-If you are still using versions of php older than 5.6,
-`PHP53CompatibilityPlugin` may be worth looking into if you are not running
-syntax checks for php 5.3 through another method such as
-`InvokePHPNativeSyntaxCheckPlugin` (see .phan/plugins/README.md).
+A list of extension names that have template annotations in their stub files for CLASSES.
+For these extensions, the stub classes will completely replace reflection-based classes.
 
-(Default: `true`)
+Bundled defaults include 'spl' for SplObjectStorage<TKey,TValue>, WeakMap<TKey,TValue>, etc.
+User-provided values are MERGED with bundled defaults (duplicates removed).
+
+Example: ['myext'] adds your extension alongside bundled template extensions.
+
+NOTE: Bundled defaults are computed at runtime to support phar/global installs.
+See Config::getDefaultInternalStubConfiguration() for bundled template list.
+
+(Default: `null`)
+
+## autoload_internal_extension_signatures_template_functions
+
+A list of extension names that have template annotations in their stub files for FUNCTIONS.
+For these extensions, stub functions will be used alongside reflection data.
+
+Bundled defaults include 'standard' for array_filter<T>, array_map<T>, etc.
+User-provided values are MERGED with bundled defaults (duplicates removed).
+
+Example: ['myext'] adds your extension alongside bundled template extensions.
+
+NOTE: Bundled defaults are computed at runtime to support phar/global installs.
+See Config::getDefaultInternalStubConfiguration() for bundled template list.
+
+(Default: `null`)
 
 ## cache_polyfill_asts
 
@@ -300,6 +330,12 @@ in the doc-block (if any) matches the return type
 declared in the method signature.
 
 (Default: `true`)
+
+## convergence_max_iterations
+
+Maximum number of worklist iterations for --analyze-until-convergence.
+
+(Default: `10`)
 
 ## convert_possibly_undefined_offset_to_nullable
 
@@ -361,6 +397,13 @@ The default is the empty array (Don't suppress any warnings)
 (E.g. `['RuntimeException', 'AssertionError', 'TypeError']`)
 
 (Default: `[]`)
+
+## force_full_analysis
+
+Force a full re-analysis, ignoring the incremental manifest.
+This is useful after major config changes or when the incremental analysis is misbehaving.
+
+(Default: `false`)
 
 ## generic_types_enabled
 
@@ -432,7 +475,7 @@ If this is a list, then Phan will not use the reflection information of extensio
 The extensions loaded for a given php installation can be seen with `php -m` or `get_loaded_extensions(true)`.
 
 Note that this will only prevent Phan from loading reflection information for extensions outside of this set.
-If you want to add stubs, see [`autoload_internal_extension_signatures`](#autoload_internal_extension_signatures).
+If you want to add stubs, see `autoload_internal_extension_signatures`.
 
 If this is used, 'core', 'date', 'pcre', 'reflection', 'spl', and 'standard' will be automatically added.
 
@@ -440,6 +483,14 @@ When this is an array, [`ignore_undeclared_functions_with_known_signatures`](#ig
 (because many of those functions will be outside of the configured list)
 
 Also see [`ignore_undeclared_functions_with_known_signatures`](#ignore_undeclared_functions_with_known_signatures) to warn about using unknown functions.
+
+(Default: `null`)
+
+## incremental_analysis
+
+Enable incremental analysis to only re-analyze changed files and their dependents.
+null = auto-detect (enabled for CLI mode, disabled for daemon/language server mode)
+true = force enable, false = force disable
 
 (Default: `null`)
 
@@ -472,6 +523,13 @@ This setting can be overridden if users wish to store strings that are even long
 
 (Default: `200`)
 
+## max_union_type_set_size
+
+Maximum number of distinct types that may be tracked in a union before Phan summarizes it to generic
+array/mixed types to conserve memory.
+
+(Default: `1024`)
+
 ## maximum_recursion_depth
 
 The maximum recursion depth that can be reached when analyzing the code.
@@ -485,6 +543,7 @@ by changing this setting.
 
 ## override_return_types
 
+@deprecated Use [`track_all_inferred_types`](#track_all_inferred_types) instead.
 Add types to all return types. Normally, Phan only adds inferred returned types when there is no `@return` type
 or real return type signature. This setting can be disabled on individual methods by adding
 `@phan-hardcode-return-type` to the doc comment.
@@ -539,7 +598,7 @@ A list of plugin files to execute.
 
 Plugins which are bundled with Phan can be added here by providing their name (e.g. `'AlwaysReturnPlugin'`)
 
-Documentation about available bundled plugins can be found [here](https://github.com/phan/phan/tree/v5/.phan/plugins).
+Documentation about available bundled plugins can be found [here](https://github.com/phan/phan/tree/v6/.phan/plugins).
 
 Alternately, you can pass in the full path to a PHP file with the plugin's implementation (e.g. `'vendor/phan/phan/.phan/plugins/AlwaysReturnPlugin.php'`)
 
@@ -680,6 +739,23 @@ This still helps with some edge cases such as assignments in compound conditions
 
 (Default: `true`)
 
+## track_all_inferred_types
+
+If enabled, Phan will accumulate all inferred concrete types alongside declared types
+for properties. For example, if a property is declared as an interface type and assigned
+a concrete implementation, Phan will track both the interface and concrete type
+(e.g. OutputInterface|ConsoleOutput rather than just OutputInterface).
+
+This also enables the return type override behavior (subsuming the deprecated
+[`override_return_types`](#override_return_types) setting): Phan will add inferred types to all return types,
+even if a `@return` type or real return type signature exists.
+This can be disabled on individual methods by adding `@phan-hardcode-return-type` to the doc comment.
+
+This is more useful with `--analyze-twice` and in conjunction with `PhoundPlugin` to
+detect more callsite possibilities.
+
+(Default: `false`)
+
 ## use_tentative_return_type
 
 If enabled, Phan will use the php 8.1+ tentative return types available for PHP and extensions.
@@ -695,6 +771,14 @@ This is ignored if [`enable_include_path_checks`](#enable_include_path_checks) i
 
 (Default: `false`)
 
+## warn_about_undocumented_exceptions_thrown_by_invoked_functions
+
+If enabled (and [`warn_about_undocumented_throw_statements`](#warn_about_undocumented_throw_statements) is enabled),
+Phan will warn about function/closure/method invocations that have `@throws`
+that aren't caught or documented in the invoking method.
+
+(Default: `false`)
+
 ## warn_about_undocumented_throw_statements
 
 If enabled, warn about throw statement where the exception types
@@ -707,24 +791,11 @@ are not documented in the PHPDoc of functions, methods, and closures.
 These settings affect the way that Phan analyzes your project.
 The values you will want depend on what PHP versions you are checking for compatibility with.
 
-## allow_method_param_type_widening
-
-Set this to true to allow contravariance in real parameter types of method overrides
-(Users may enable this if analyzing projects that support only php 7.2+)
-
-See [this note about PHP 7.2's new features](https://secure.php.net/manual/en/migration72.new-features.php#migration72.new-features.param-type-widening).
-This is false by default. (By default, Phan will warn if real parameter types are omitted in an override)
-
-If this is null, this will be inferred from `target_php_version`.
-
-(Default: `null`)
-
 ## minimum_target_php_version
 
 The PHP version that will be used for feature/syntax compatibility warnings.
 
-Supported values: `'5.6'`, `'7.0'`, `'7.1'`, `'7.2'`, `'7.3'`, `'7.4'`,
-`'8.0'`, `'8.1'`, `'8.2'`, `'8.3'`, `'8.4'`, `null`.
+Supported values: `'8.1'`, `'8.2'`, `'8.3'`, `'8.4'`, `'8.5'`, `null`.
 If this is set to `null`, Phan will first attempt to infer the value from
 the project's composer.json's `{"require": {"php": "version range"}}` if possible.
 If that could not be determined, then Phan assumes `target_php_version`.
@@ -755,14 +826,10 @@ For best results, the PHP binary used to run Phan should have the same PHP versi
 (Phan relies on Reflection for some types, param counts,
 and checks for undefined classes/methods/functions)
 
-Supported values: `'5.6'`, `'7.0'`, `'7.1'`, `'7.2'`, `'7.3'`, `'7.4'`,
-`'8.0'`, `'8.1'`, `'8.2'`, `'8.3'`, `'8.4'`, `null`.
+Supported values: `'8.1'`, `'8.2'`, `'8.3'`, `'8.4'`, `'8.5'`, `null`.
 If this is set to `null`,
 then Phan assumes the PHP version which is closest to the minor version
 of the php executable used to execute Phan.
-
-Note that the **only** effect of choosing `'5.6'` is to infer that functions removed in php 7.0 exist.
-(See [`backward_compatibility_checks`](#backward_compatibility_checks) for additional options)
 
 (Default: `null`)
 
@@ -824,6 +891,16 @@ allows casting null to a string, but not vice versa.
 
 (Default: `[]`)
 
+## strict_array_checking
+
+If enabled, Phan will warn about possibly invalid array offsets in unions containing
+both array shape types and generic mixed array types.
+When disabled (default), Phan is more lenient and only warns if the offset is invalid
+across all union members. This avoids false positives when an array can be a generic
+mixed array (which accepts any key) or a shape with specific keys.
+
+(Default: `false`)
+
 ## strict_method_checking
 
 If enabled, Phan will warn if **any** type in a method invocation's object
@@ -875,10 +952,7 @@ These settings affect how Phan will track what elements are referenced to warn a
 ## assume_real_types_for_internal_functions
 
 If enabled, Phan will act as though it's certain of real return types of a subset of internal functions,
-even if those return types aren't available in reflection (real types were taken from php 7.3 or 8.0-dev, depending on target_php_version).
-
-Note that with php 7 and earlier, php would return null or false for many internal functions if the argument types or counts were incorrect.
-As a result, enabling this setting with target_php_version 8.0 may result in false positives for `--redundant-condition-detection` when codebases also support php 7.x.
+even if those return types aren't available in reflection (real types were taken from php 8.4).
 
 (Default: `false`)
 
@@ -1044,197 +1118,3 @@ A lower value such as 50 works for suggesting misspelled classes/constants in na
 but won't give you suggestions for globally namespaced functions.
 
 (Default: `1000`)
-
----
-
-## Additional Analysis Options
-
-## incremental_analysis
-
-Controls whether incremental analysis is enabled. When enabled, Phan only re-analyzes files that changed since the last run (and their dependents), using a manifest file to track file state.
-
-- `null` (default) — auto-detect: enabled when running from the CLI, disabled in daemon/language server mode
-- `true` — always enable incremental analysis
-- `false` — always disable (full analysis every run)
-
-See also [[Incremental Analysis|Incremental-Analysis]] for details and the `--incremental` / `--no-incremental` CLI flags.
-
-(Default: `null`)
-
-## use_polyfill_parser
-
-Use the `microsoft/tolerant-php-parser` fallback instead of the `php-ast` extension for parsing. Slower than `php-ast` and may produce different or missing error messages for invalid PHP. Required for `--automatic-fix` support (use `--force-polyfill-parser-with-original-tokens` for that).
-
-Set via `--force-polyfill-parser` or `--allow-polyfill-parser` CLI flags rather than in config.
-
-(Default: `false`)
-
-## strict_array_checking
-
-When `true`, Phan warns about possibly invalid array offsets in union types that combine both an array shape (`array{key: type}`) and a generic mixed array (`array`). When `false` (the default), Phan is more lenient in these cases to avoid false positives.
-
-(Default: `false`)
-
-## track_all_inferred_types
-
-When `true`, Phan accumulates all concrete types it infers during analysis alongside the declared types, rather than just updating to the most recently inferred type. This enables more accurate return type overrides and is most useful when combined with `--analyze-twice` or when using `PhoundPlugin` for call graph analysis.
-
-(Default: `false`)
-
-## warn_about_undocumented_exceptions_thrown_by_invoked_functions
-
-When `true`, Phan warns if a function you call has `@throws` declarations that are not documented in your own function's `@throws` annotations. This is a stricter companion to `warn_about_undocumented_throw_statements`.
-
-(Default: `false`)
-
----
-
-## AST Trimming (Memory Optimization)
-
-## ast_trim_max_elements_per_level
-
-Maximum number of elements allowed per level of a nested literal array before Phan summarizes it into a generic type. This limits memory usage when analyzing files with large array literals (e.g. configuration files, translation tables).
-
-Set lower to reduce memory usage; set higher for more precise analysis of large arrays. Also configurable via `--ast-trim-max-elements-per-level <N>`.
-
-(Default: `256`)
-
-## ast_trim_max_total_elements
-
-Maximum total number of entries in a nested literal array across all levels before Phan summarizes it. Works together with `ast_trim_max_elements_per_level`.
-
-Also configurable via `--ast-trim-max-total-elements <N>`.
-
-(Default: `512`)
-
-## max_union_type_set_size
-
-Maximum number of distinct types allowed in a union type before Phan summarizes the union to a more generic representation (e.g. `array` or `mixed`) to conserve memory. Increase this if Phan is losing type precision on complex generics; decrease it on large codebases with memory pressure.
-
-Also configurable via `--max-union-type-set-size <N>`.
-
-(Default: `1024`)
-
----
-
-## Additional Output Options
-
-## color_issue_messages
-
-Force colored output for the `text` output mode. `null` (the default) auto-detects terminal support. Prefer `color_issue_messages_if_supported` for config file use; reserve this option for cases where auto-detection fails.
-
-- `null` — auto-detect (default)
-- `true` — always colorize
-- `false` — never colorize
-
-(Default: `null`)
-
-## markdown_issue_messages
-
-When `true`, emit issue messages with Markdown formatting (backtick-quoted identifiers, etc.). Useful when piping Phan output into a tool that renders Markdown.
-
-Also configurable via `--markdown-issue-messages`.
-
-(Default: `false`)
-
-## absolute_path_issue_messages
-
-When `true`, use absolute file paths in issue messages instead of paths relative to the project root. Useful when running Phan in environments where the working directory may differ from the project root.
-
-Also configurable via `--absolute-path-issue-messages`.
-
-(Default: `false`)
-
----
-
-## Language Server and Daemon Configuration
-
-Most of these options are set via CLI flags rather than in `config.php`. They are documented here for completeness.
-
-## daemonize_socket
-
-Unix socket path for daemon mode. Example: `'/var/run/phan.sock'`. Mutually exclusive with `daemonize_tcp`. Set via `--daemonize-socket <path>` CLI flag rather than in config.
-
-(Default: `false` — daemon mode disabled)
-
-## daemonize_tcp
-
-When `true`, listen on TCP for daemon mode requests. Mutually exclusive with `daemonize_socket`. Set via `--daemonize-tcp` CLI flag.
-
-(Default: `false`)
-
-## daemonize_tcp_host
-
-Host address for TCP daemon mode.
-
-(Default: `'127.0.0.1'`)
-
-## daemonize_tcp_port
-
-Port number for TCP daemon mode. Must be between 1024 and 65535.
-
-(Default: `4846`)
-
-## language_server_config
-
-Internal configuration for the language server communication channel. Set automatically by CLI flags — do not set this in `config.php`. One of:
-- `['stdin' => true]` — communicate over stdin/stdout
-- `['tcp-server' => 'host:port']` — listen on TCP
-- `['tcp' => 'host:port']` — connect to TCP
-
-## language_server_analyze_only_on_save
-
-When `true`, the language server only re-analyzes a file when it is saved, not on every change. Reduces CPU usage in editors that send frequent change notifications.
-
-Set via `--language-server-analyze-only-on-save` CLI flag.
-
-(Default: `false`)
-
-## language_server_enable_go_to_definition
-
-When `true` (the default), the language server handles "go to definition" and "go to type definition" LSP requests.
-
-Disable via `--language-server-disable-go-to-definition` CLI flag.
-
-(Default: `true`)
-
-## language_server_enable_hover
-
-When `true` (the default), the language server handles "hover" LSP requests (showing type information when hovering over a symbol).
-
-Disable via `--language-server-disable-hover` CLI flag.
-
-(Default: `true`)
-
-## language_server_enable_completion
-
-When `true` (the default), the language server handles "completion" LSP requests.
-
-Disable via `--language-server-disable-completion` CLI flag.
-
-(Default: `true`)
-
-## language_server_disable_output_filter
-
-When `true`, the language server emits all detected issues from all files, not just issues in currently open files. Very verbose and produces many more false positives. Useful for debugging the language server itself.
-
-(Default: `false`)
-
-## language_server_hide_category_of_issues
-
-When `true`, hide the issue category name from language server diagnostic messages. Enable via `--language-server-hide-category` CLI flag.
-
-(Default: `false`)
-
-## language_server_use_pcntl_fallback
-
-When `true`, use a manual state backup/restore mechanism as a fallback when `pcntl_fork()` is unavailable. Set via CLI flag rather than config.
-
-(Default: `false`)
-
-## language_server_debug_level
-
-Set to `'info'` to enable verbose debug logging for the language server. Useful when developing editor integrations or debugging LSP communication issues. Set via `--language-server-verbose` CLI flag.
-
-(Default: `null`)
-
