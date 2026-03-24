@@ -50,7 +50,7 @@ When a release includes new features, update the relevant wiki pages so the docu
 
 - **New PHP version support** — Update [[PHP 8.4/8.5 Support|PHP-8.4-8.5-Support]] (or create a new page for the version).
 
-Push wiki changes directly to the `master` branch of the [wiki repo](https://github.com/phan/phan.wiki):
+Push wiki changes directly to the `master` branch of the [wiki repo](https://github.com/phan/phan/wiki):
 ```bash
 # Clone the wiki repo if you haven't already:
 # git clone https://github.com/phan/phan.wiki.git /path/to/phan.wiki
