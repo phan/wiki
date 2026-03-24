@@ -7,6 +7,8 @@ As of this writing, we're supporting one active version: 6.x.y on the `v6` branc
 
 # Release Checklist
 
+Releases are tagged from the **`v6`** branch. Make sure you are on `v6` and up to date before starting.
+
 When creating a new release, make sure you do the following.
 
 - [ ] Update version number and date of [NEWS.md](https://github.com/phan/phan/blob/v6/NEWS.md) ([example](https://github.com/phan/phan/commit/100677e9a898b55ccf73cf40f2273479ed1dc8e0)).
@@ -25,7 +27,7 @@ After creating the new release, check [packagist.org/packages/phan/phan](https:/
 
 - [ ] Update `CLI::PHAN_VERSION` in `src/Phan/CLI.php` to `6.x.(y+1)-dev` ([example](https://github.com/phan/phan/commit/790e4f76301bc084c1024d3febd211c5ce01460c)).
 - [ ] Add a new `6.x.(y+1)-dev` header to `NEWS.md`.
-- [ ] Update the most recent Phan version in the wiki (optional for patch releases).
+- [ ] Update the most recent Phan version in the wiki, if any pages reference a specific version number (optional for patch releases).
 
 # Updating the Wiki
 
@@ -50,11 +52,27 @@ When a release includes new features, update the relevant wiki pages so the docu
 
 - **New PHP version support** — Update [[PHP 8.4/8.5 Support|PHP-8.4-8.5-Support]] (or create a new page for the version).
 
-Push wiki changes directly to the `master` branch of the [wiki repo](https://github.com/phan/phan/wiki):
+## Wiki Setup
+
+Clone the wiki repo if you haven't already:
 ```bash
-# Clone the wiki repo if you haven't already:
-# git clone https://github.com/phan/phan.wiki.git /path/to/phan.wiki
-cd /path/to/phan.wiki
+git clone https://github.com/phan/phan.wiki.git ~/phan.wiki
+```
+
+There is a mirror at `https://github.com/phan/wiki.git` that should be kept in sync. To push to both repos at once, add it as a second push URL:
+```bash
+cd ~/phan.wiki
+git remote set-url --add --push origin https://github.com/phan/phan.wiki.git
+git remote set-url --add --push origin https://github.com/phan/wiki.git
+```
+
+You only need to set this up once. After that, every `git push origin master` will update both repos.
+
+## Pushing Wiki Changes
+
+Push wiki changes directly to the `master` branch:
+```bash
+cd ~/phan.wiki
 git add -A && git commit -m "Update docs for 6.x.y release"
 git push origin master
 ```
