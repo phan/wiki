@@ -25,22 +25,11 @@ In a project set up to use the composer autoloader (including for its own subdir
  * See Config for all configurable options.
  */
 return [
-    // Supported values: `'5.6'`, `'7.0'`, `'7.1'`, `'7.2'`, `'7.3'`,
-    // `'7.4'`, `'8.0'`, `'8.1'`, `null`.
+    // Supported values: `'8.1'`, `'8.2'`, `'8.3'`, `'8.4'`, `'8.5'`, `null`.
     // If this is set to `null`,
     // then Phan assumes the PHP version which is closest to the minor version
     // of the php executable used to execute Phan.
-    //
-    // Note that the **only** effect of choosing `'5.6'` is to infer that functions removed in php 7.0 exist.
-    // (See `backward_compatibility_checks` for additional options)
     'target_php_version' => null,
-
-    // Backwards Compatibility Checking. This is slow
-    // and expensive, but you should consider running
-    // it before upgrading your version of PHP to a
-    // new version that has backward compatibility
-    // breaks. (Also see target_php_version)
-    'backward_compatibility_checks' => false,
 
     // If true, this run a quick version of checks that takes less
     // time at the cost of not running as thorough
@@ -164,122 +153,6 @@ passes.php:26 PhanSignatureMismatch Declaration of function g(int $p) : int shou
 passes.php:27 PhanUndeclaredProperty Reference to undeclared property p
 passes.php:28 PhanUndeclaredProperty Reference to undeclared property property
 passes.php:34 PhanTypeMismatchArgument Argument 1 (p) is string but \C::g() takes int defined at passes.php:26
-```
-
-## Just Backward Compatibility
-
-If you're in the process of migrating from PHP5 to PHP7, you may wish to only scan for backward compatibility issues that you'll need to fix before the switch.
-
-The following configuration will ignore all issue types but backward compatibility issues.
-
-If you are migrating from PHP 5 to PHP 7,
-you should also look into using
-[php7cc (no longer maintained)](https://github.com/sstalle/php7cc)
-and [php7mar](https://github.com/Alexia/php7mar),
-which have different backwards compatibility checks.
-
-If you are still using versions of php older than 5.6,
-`PHP53CompatibilityPlugin` may be worth looking into if you are not running
-syntax checks for php 5.3 through another method such as
-`InvokePHPNativeSyntaxCheckPlugin` or `phan --native-syntax-check php53`
-(see .phan/plugins/README.md).
-
-```php
-<?php
-
-/**
- * This configuration will be read and overlaid on top of the
- * default configuration. Command line arguments will be applied
- * after this file is read.
- *
- * @see src/Phan/Config.php
- * See Config for all configurable options.
- */
-return [
-    // Backwards Compatibility Checking. This is slow
-    // and expensive, but you should consider running
-    // it before upgrading your version of PHP to a
-    // new version that has backward compatibility
-    // breaks.
-    //
-    // If you are migrating from PHP 5 to PHP 7,
-    // you should also look into using
-    // [php7cc (no longer maintained)](https://github.com/sstalle/php7cc)
-    // and [php7mar](https://github.com/Alexia/php7mar),
-    // which have different backwards compatibility checks.
-    //
-    // If you are still using versions of php older than 5.6,
-    // `PHP53CompatibilityPlugin` may be worth looking into if you are not running
-    // syntax checks for php 5.3 through another method such as
-    // `InvokePHPNativeSyntaxCheckPlugin` (see .phan/plugins/README.md).
-    //
-    // You may wish to disable 'redundant_condition_detection'
-    // until your project drops php 5 support.
-    'backward_compatibility_checks' => true,
-
-    // Set this to false to emit
-    // PhanUndeclaredFunction issues for internal functions
-    // that Phan has signatures for,
-    // but aren't available in the codebase or the
-    // internal functions used to run phan
-    'ignore_undeclared_functions_with_known_signatures' => false,
-
-    // If empty, no filter against issues types will be applied.
-    // If this white-list is non-empty, only issues within the list
-    // will be emitted by Phan.
-    'whitelist_issue_types' => [
-        'PhanCompatiblePHP7',  // This only checks for **syntax** where the parsing may have changed. This check is enabled by `backward_compatibility_checks`
-        'PhanDeprecatedFunctionInternal',  // Warns about a few functions deprecated in 7.0 and later.
-        'PhanUndeclaredFunction',  // Check for removed functions such as split() that were deprecated in php 5.x and removed in php 7.0.
-    ],
-    // Check that 'php --syntax-check' passes for the files being analyzed by Phan.
-    'plugins' => ['InvokePHPNativeSyntaxCheckPlugin'],
-    // You may wish to add paths both to the older php binary and the newer php binary
-    // in 'plugin_config' => ['php_native_syntax_check_binaries' => [...]] to avoid syntax errors
-    // while the migration is in progress, unless another tool already does that.
-];
-```
-
-With the above config, the following code will emit the following issues.
-
-```php
-<?php
-echo $foo->$bar['baz'];
-Foo::$bar['baz']();
-$foo->$bar['baz']();
-strlen($foo->$bar['baz']);
-class C {
-    public $bb = 2;
-}
-class T {
-    public $b = null;
-    function fn($a) {
-      $this->b = new C;
-      echo $this->b->$a[1];
-    }
-}
-$t = new T;
-$t->fn(['aa','bb','cc']);
-// tests that should pass without warning below
-class Test {
-    public static $vals = array('a' => 'A', 'b' => 'B');
-    public static function get($letter) {
-        return self::$vals[$letter];
-    }
-	public function fn($letter) {
-        return $this->vals[$letter];
-    }
-}
-```
-
-with issues:
-
-```
-fails.php:2 PhanCompatiblePHP7 Expression may not be PHP 7 compatible
-fails.php:3 PhanCompatiblePHP7 Expression may not be PHP 7 compatible
-fails.php:4 PhanCompatiblePHP7 Expression may not be PHP 7 compatible
-fails.php:5 PhanCompatiblePHP7 Expression may not be PHP 7 compatible
-fails.php:13 PhanCompatiblePHP7 Expression may not be PHP 7 compatible
 ```
 
 # Suppressing Issues

@@ -82,9 +82,6 @@ return [
     // type to be cast to null.
     "null_casts_as_any_type" => true,
 
-    // Backwards Compatibility Checking
-    'backward_compatibility_checks' => false,
-
     // Run a quick version of checks that takes less
     // time
     "quick_mode" => true,
@@ -223,7 +220,6 @@ Now that you've gotten rid of all of the false-positives and Phan is producing a
 You'll want to consider the following changes:
 
 * Moving `minimum_severity` in your config from `10` (critical) to `5` (normal) or even `0` (low) if you love fixing bugs.
-* Setting `backward_compatibility_checks` to `true` to find out how your PHP5 code is going to break in PHP7.
 * Setting `null_casts_as_any_type` to `false` to find out what kind of madness your team has been up to.
 * Setting `allow_missing_properties` to `false` to see all of the undefined properties you've been writing to all these years.
 * Setting `quick_mode` to `false` to re-analyze each method on each method call given the input types you're sending it.
