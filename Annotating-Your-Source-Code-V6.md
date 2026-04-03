@@ -846,6 +846,8 @@ recordDebt(100); // Phan error: 100 is not negative
 
 ### non-empty-string
 
+A string that is not the empty string `''`. This includes the string `'0'` (which is falsey in PHP but non-empty). Phan infers this type when a variable is compared with `!== ''`.
+
 ```php
 /**
  * @param non-empty-string $name Cannot be empty string
@@ -855,10 +857,33 @@ function greetUser($name) {
 }
 
 greetUser("Alice"); // OK
+greetUser("0");     // OK - '0' is non-empty
 greetUser(""); // Phan error: empty string not allowed
 ```
 
-[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkA7AeyIFoBTfMAFwE9yBnWnASyIHNkASIgysgDCWIqVrIARoOp16yFuy4p4saADMArkQDGtNmWScclSrQCqTSjgAUfAQEpkAbxTJ3lHRBLIARAAlKABsgkgAaXn58SgBCXwBuaABfaGhjUwsrW18AQSC2HUpfB3jkWFhkAHkAaTSTM0trG19i0vLkAAUIUWRrHBIcAC5emgYFVg5ucWQsEJIAd0oAEyA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
+### non-falsy-string
+
+A string that is truthy in PHP — excludes both `''` and `'0'`. This is stricter than `non-empty-string`. Phan infers this type when a string passes a truthiness check such as `if ($s)`.
+
+```php
+/**
+ * @param non-falsy-string $code Cannot be empty or '0'
+ */
+function processCode($code) {
+    echo "Processing: $code";
+}
+
+processCode("ABC"); // OK
+processCode("");    // Phan error: '' is not non-falsy-string
+processCode("0");   // Phan error: '0' is not non-falsy-string
+```
+
+The two types relate as follows:
+
+| Type | Excludes `''` | Excludes `'0'` | Inferred from |
+|------|:---:|:---:|---|
+| `non-empty-string` | Yes | No | `$s !== ''` |
+| `non-falsy-string` | Yes | Yes | `if ($s)`, `!empty($s)` |
 
 ### Combining Utility Types
 
