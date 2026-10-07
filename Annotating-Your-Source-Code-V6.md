@@ -120,6 +120,46 @@ function logMessage($message) {
 
 [▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCmAXArpgHbICWRuAPkfgDa3IBKehRAzsvm9psgJIARZAHteNemQBmyIsNzJJw-EQAmKeLGiTlAY1ylhJSeRUBVbpj4qAFABJsAWwCGpWgEpkAbxTJfOAsTItrgQpGwAtAB8KgBGUQCO+DwAntYARADKAKIAMlkAwgAqZCrIAGKMAPIAspwWHADqABJZjFnIji4MALzIIGkANMgA2vbOrgC6bgDc0AC+0HCI6hj+rDLYAG48yIWhHNpEegYkRFs7a8Qc1iGYwgDuHKIdAB6kuGxu6pqHx4bIECcqlo2DKTlwTloWUwd0wdgc2DYbCcAHNsB5vL5fLcHht7kxlPoEVkXjpsGB9IZ4YjkWiZvNFggkKhVixApthKQ1KgfrpKSRaMIUdUaajsNSkWKMT5fDxYQB9QUoiW09GzOZAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
+### Conditional Return Types (V6)
+
+Phan 6.0.8+ understands [PHPStan](https://phpstan.org/writing-php-code/phpdoc-types#conditional-return-types)/Psalm-style conditional return types, where the return type depends on the type of an argument:
+
+```php
+interface MockInterface {
+    /**
+     * @param null|string $method
+     * @return ($method is null ? HigherOrderMessage : VerificationDirector)
+     */
+    public function shouldHaveReceived($method = null, $args = null);
+}
+
+/**
+ * @return ($flag is true ? int : string)
+ */
+function pick(bool $flag) { return $flag ? 1 : 'x'; }
+
+/**
+ * @return ($a is null ? int : ($b is not string ? float : bool))
+ */
+function nested(?int $a, string|int $b) { /* ... */ }
+
+$x = $mock->shouldHaveReceived();      // HigherOrderMessage (omitted arguments use the parameter default)
+$y = $mock->shouldHaveReceived('foo'); // VerificationDirector
+$z = $mock->shouldHaveReceived($maybe); // HigherOrderMessage|VerificationDirector when $maybe is ?string
+```
+
+Rules:
+
+- The condition is `$param is Type` or `$param is not Type`, where `$param` is a parameter of the function. Either branch may be another conditional.
+- At a call site, if the argument's type is a subtype of the condition type the first branch is used; if the two types can't overlap the second branch is used; otherwise (e.g. `?string` tested against `null`, `mixed`, `...$args` unpacking) the result is the union of both branches.
+- Everywhere the arguments aren't known (e.g. `@phan-debug-var` on the method itself, overriding method checks), the return type is the union of all branches.
+- `self`, `static` and template types (`@template` on the method, or class templates such as `self<T>`) work inside the branches, as in a plain `@return`.
+- Implementing/overriding methods without their own `@return` inherit the conditional from the parent (parameters renamed by the child are matched by position).
+- Supported on `@return`, `@psalm-return` and `@phan-return`. The whole conditional must be on one line.
+- Not supported yet: conditions on template type names (`@return (T is int ? ... )`) and `@phpstan-return`. Unsupported syntax still emits `PhanUnextractableAnnotation`.
+
+A condition naming a parameter the function doesn't declare emits `PhanCommentReturnConditionalWithoutRealParam`.
+
 ### Property Type Annotations (@property)
 
 Document magic properties on classes:

@@ -1089,6 +1089,31 @@ function identity($value) {
 }
 ```
 
+### PhanCommentReturnConditionalWithoutRealParam
+
+A [conditional return type](Annotating-Your-Source-Code-V6#conditional-return-types-v6) tests a parameter that the function doesn't declare.
+
+**Example**:
+```php
+/**
+ * @return ($nope is null ? int : string)
+ */
+function convert(int $x) {  // Error: $nope is not a parameter of convert()
+    // ...
+}
+```
+
+**Fix**: Reference an actual parameter name.
+
+```php
+/**
+ * @return ($x is 0 ? int : string)
+ */
+function convert(int $x) {
+    // ...
+}
+```
+
 ---
 
 ## Plugin-Specific
