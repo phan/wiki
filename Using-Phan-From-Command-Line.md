@@ -188,6 +188,45 @@ phan --max-union-type-set-size 2048
 
 When exceeded, types are intelligently merged to prevent runaway growth.
 
+### `--dump-phase-timings`
+Print a report of where a run spent its time to stderr when Phan exits.
+
+```bash
+phan --dump-phase-timings 2> timings.txt
+```
+
+Each line is prefixed with `phan-timings`. The report shows, for every phase
+(config, parse, class/function/method analysis, ordering, fork, waiting on
+workers, result collection, dead code, finalize, display), the wall clock time,
+user and system CPU time, RSS, high-water mark and Zend peak memory. It also
+prints per-file parse and analysis time percentiles, the 25 slowest files,
+totals per top-level directory, and counts of user classes, functions,
+declared methods and inherited method clones.
+
+With `--processes N` each worker reports its own analysis, finalize and emit
+times, its private memory (`Private_Dirty`/`Pss`) and how long its teardown
+took; the parent adds the load imbalance between workers, the serial fraction
+of the run and the worker efficiency.
+
+Collection is off by default, costs nothing when off and does not change
+analysis results. While enabled, `$GLOBALS['__phase']` holds the current phase
+name so that sampling profilers can attribute samples to phases
+(e.g. `phpspy -g globals.__phase`).
+
+### `--phase-timings-json <path>`
+Write the same measurements as `--dump-phase-timings` to `<path>` as JSON
+(schema `phan-phase-timings/1`), for benchmark scripts and dashboards.
+
+```bash
+phan --phase-timings-json timings.json
+# Both at once
+phan --dump-phase-timings --phase-timings-json timings.json
+```
+
+Relative paths are resolved against the working directory (after
+`--project-root-directory` is applied). Durations are seconds (`*_s`) and
+memory is megabytes (`*_mb`); `phases` is a list in execution order.
+
 ---
 
 ## Output and Reporting
