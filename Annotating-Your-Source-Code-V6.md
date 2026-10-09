@@ -884,6 +884,24 @@ recordDebt(100); // Phan error: 100 is not negative
 
 [▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkwB7AZwEsAXcgNwFMBacgO0uQBIBjYgV1eQCyPUmwBGdZAD5kABhRp0OOpR45myXHgCewFpUnzY0AGZ9O1YuoDmdZnTyU6AZToBHHrc50AFF16sASmQAbxRkcKUVNWQ8ZhtvAEYAGg5uPkoAgG5oAF9oaBs7B2c3D2YvbwBWLORYWGQAeQBpAtt7LEcXd08fGRq65AAFCCx1exxiHAAuWWRyUmRmYjYSCmp6VqKOku7ynwYE-vrh0eRxyZmDuYWllbIqWjp8hCRUDGw8QjsrDsemfnYABM6KI2ABBfD+NjEADudEByG831+9GQNCwABsPAFDCYzBZ1EpuDhAQAREGUXzA0FBULhcIDIEU67IKw8XCjRzw5CUYjIcTIYCyXL5ImTMkU7wHGR9TK1erNaBiknk0GJGVHIYjMY4CbTZAJGUs26LOg-dZ0IA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
+Phan keeps track of the sign through `+`, `-`, `*`, unary `-`, `++`/`--` and the matching compound assignments whenever the sign of the result is known. Otherwise the result is a plain `int`.
+
+```php
+/** @return positive-int */
+function getPositive() { return 1; }
+
+$x = getPositive() + 1;   // positive-int
+$x = getPositive() - 1;   // int (could be 0)
+$x = -getPositive();      // negative-int
+$x = getPositive() * -2;  // negative-int
+$x = getPositive() * getPositive(); // positive-int
+$p = getPositive();
+$p++;                     // positive-int
+$p--;                     // int
+```
+
+`non-zero-int` is preserved by multiplication when both operands are non-zero, and `int-range<a, b>` operands contribute their bounds to the result (e.g. `int-range<0, 10> + 1` is `positive-int`).
+
 ### non-empty-string
 
 A string that is not the empty string `''`. This includes the string `'0'` (which is falsey in PHP but non-empty). Phan infers this type when a variable is compared with `!== ''`.
