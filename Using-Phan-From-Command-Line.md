@@ -587,6 +587,41 @@ Disable XDebug for performance.
 PHAN_DISABLE_XDEBUG=1 phan
 ```
 
+### `PHAN_DISABLE_FAST_EXIT`
+Since 6.0.8, the analysis workers of `--processes N` terminate without running PHP's shutdown sequence once they have sent their results to the parent, which avoids copying the memory pages they share with the parent. Set this to keep the regular `exit()`, e.g. when debugging workers. It is also kept when a profiler, xdebug or pcov is active.
+
+```bash
+PHAN_DISABLE_FAST_EXIT=1 phan -j 4
+```
+
+### `PHAN_ANALYZE_EXCLUDED_METHODS`
+Since 6.0.8, the checks that only emit issues about the declaration of a function or method are skipped when it is declared in a file excluded from analysis (such as `vendor/`), because those issues are discarded anyway. Set this to run them regardless (the previous behavior).
+
+```bash
+PHAN_ANALYZE_EXCLUDED_METHODS=1 phan
+```
+
+### `PHAN_DISABLE_CLONE_REPLAY`
+Since 6.0.8, the declaration analysis of a method that a class inherits is replayed from the analysis of the method it was copied from, instead of being repeated. Set this to analyze every inherited method.
+
+```bash
+PHAN_DISABLE_CLONE_REPLAY=1 phan
+```
+
+### `PHAN_VERIFY_SKIPPED_CHECKS`
+For developing Phan. Runs the checks that `PHAN_ANALYZE_EXCLUDED_METHODS` and `PHAN_DISABLE_CLONE_REPLAY` would restore, and the inherited `@phan-mandatory-param` and `@throws` lookups that are skipped when they cannot find anything, and exits with an error if any of them would have changed the result.
+
+```bash
+PHAN_VERIFY_SKIPPED_CHECKS=1 phan
+```
+
+### `PHAN_DUMP_METHOD_STATE_DIGEST`
+For developing Phan. Writes the types and flags of every user-defined function and method to the given path when the analysis phase starts, to compare runs with and without the variables above.
+
+```bash
+PHAN_DUMP_METHOD_STATE_DIGEST=/tmp/digest.txt phan
+```
+
 ---
 
 ## Performance Monitoring
