@@ -2,6 +2,8 @@ We create releases for Phan whenever we want to get new bug fixes or features ou
 
 As of this writing, we're supporting one active version: 6.x.y on the `v6` branch for the analysis of PHP 8.1 – 8.5 syntax.
 
+The most recent release is [6.0.8](https://github.com/phan/phan/releases/tag/6.0.8) (Oct 10 2026).
+
 - The `v5` branch is maintained for bug fixes only
 - Support for versions predating 5.0.0 has been dropped
 
@@ -27,6 +29,7 @@ After creating the new release, check [packagist.org/packages/phan/phan](https:/
 
 - [ ] Update `CLI::PHAN_VERSION` in `src/Phan/CLI.php` to `6.x.(y+1)-dev` ([example](https://github.com/phan/phan/commit/790e4f76301bc084c1024d3febd211c5ce01460c)).
 - [ ] Add a new `6.x.(y+1)-dev` header to `NEWS.md`.
+- [ ] Update the "most recent release" line at the top of this page.
 - [ ] Update the most recent Phan version in the wiki, if any pages reference a specific version number (optional for patch releases).
 
 # Updating the Wiki
