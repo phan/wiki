@@ -42,6 +42,10 @@ A plugin file returns an instance of a class extending [\Phan\PluginV3](https://
   will call a plugin to analyze every class declaration. (e.g. UnusedSuppressionPlugin uses this to check if suppression doc comments on classes are used)
 * [\Phan\PluginV3\AnalyzeMethodCapability](https://github.com/phan/phan/blob/v6/src/Phan/PluginV3/AnalyzeMethodCapability.php)
   will call a plugin to analyze every method declaration. (e.g. AlwaysReturnPlugin uses this to check if a method is guaranteed to return)
+  Plugins whose `analyzeMethod()` returns early for inherited copies of methods (`$method->getFQSEN() !== $method->getDefiningFQSEN()`), or only records state for such a copy that is read back when the copy is used, should also implement
+  [\Phan\PluginV3\AnalyzeMethodSkipsInheritedCopiesCapability](https://github.com/phan/phan/blob/v6/src/Phan/PluginV3/AnalyzeMethodSkipsInheritedCopiesCapability.php) (a marker interface without methods):
+  with the config setting `lazy_inherited_methods`, Phan may then call `analyzeMethod()` for an inherited copy only when the copy is first needed (possibly late, in an analysis process), and not at all for copies that are never used.
+  If any plugin implementing `AnalyzeMethodCapability` lacks the marker, `lazy_inherited_methods` disables itself.
 * [\Phan\PluginV3\AnalyzeFunctionCapability](https://github.com/phan/phan/blob/v6/src/Phan/PluginV3/AnalyzeFunctionCapability.php)
   will call a plugin to analyze every function declaration. (e.g. AlwaysReturnPlugin uses this to check if a function is guaranteed to return)
 * [\Phan\PluginV3\AnalyzePropertyCapability](https://github.com/phan/phan/blob/v6/src/Phan/PluginV3/AnalyzePropertyCapability.php)
