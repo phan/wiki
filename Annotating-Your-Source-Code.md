@@ -548,6 +548,8 @@ $c = Closure::bind(static function () {
 }, null, MyClass::class);
 ```
 
+When the closure is bound to `null` (as above), `$this` stays undefined inside it; when the bound object is known not to be an instance of the scope class, nothing is inferred.
+
 The annotation is still needed when the closure is stored in a variable (or returned from a function) before it is bound,
 because the closure body is analyzed before Phan sees the binding.
 An explicit `@phan-closure-scope` always takes precedence over the inferred scope.
