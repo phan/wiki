@@ -537,6 +537,21 @@ $invoker = $c->bindTo($m, $m);
 $invoker(2);
 ```
 
+The annotation is not needed when a closure literal is passed directly as the first argument of `Closure::bind()`,
+or is the receiver of `->bindTo()` or `->call()`, and the scope argument is a known class
+(`MyClass::class`, `'MyClass'`, or an object of a single known class).
+Phan then analyzes the closure body in that scope automatically (since Phan 6.0.12):
+
+```php
+$c = Closure::bind(static function () {
+    return MyClass::PRIVATE_CONST;  // No PhanAccessClassConstantPrivate
+}, null, MyClass::class);
+```
+
+The annotation is still needed when the closure is stored in a variable (or returned from a function) before it is bound,
+because the closure body is analyzed before Phan sees the binding.
+An explicit `@phan-closure-scope` always takes precedence over the inferred scope.
+
 ## @phan-read-only and @phan-write-only
 
 `@phan-read-only` can be used on properties and classes to make Phan warn if it detects writes to a property outside of the constructor.
