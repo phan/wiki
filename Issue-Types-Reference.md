@@ -955,6 +955,37 @@ class User {
 }
 ```
 
+### PhanTypeUnsetStaticProperty
+
+Attempting to `unset()` a static property. PHP always throws `Error: Attempt to unset static property` at runtime, whatever the class or visibility, and `php -l` does not catch it.
+
+**Example**:
+```php
+class Cache {
+    private static $entries = [];
+
+    public static function clear() {
+        unset(self::$entries);  // Error: Attempt to unset static property Cache::$entries
+    }
+}
+```
+
+**Fix**: Assign a new value instead. Unsetting an element of the property's value is allowed.
+
+```php
+class Cache {
+    private static $entries = [];
+
+    public static function clear() {
+        self::$entries = [];        // OK
+    }
+
+    public static function remove(string $key) {
+        unset(self::$entries[$key]);  // OK: modifies the array, not the property
+    }
+}
+```
+
 ---
 
 ## Deprecated
