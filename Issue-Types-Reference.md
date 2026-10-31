@@ -147,6 +147,30 @@ public string $name {
 }
 ```
 
+### PhanInvalidWriteToNullsafeChain
+
+A write to a nullsafe chain: `unset()`, an assignment, a compound assignment, an increment or decrement, a `list()` element or a `foreach` target whose expression contains the `?->` operator anywhere. PHP refuses to compile this (`Can't use nullsafe operator in write context`), and `php -l` does not catch it.
+
+**Example**:
+```php
+function reset(?Config $config, string $key) {
+    unset($config?->options[$key]);  // Error: Can't use nullsafe operator in write context
+    $config?->modified = true;       // Error: same
+}
+```
+
+**Fix**: Check for null, then use the regular `->` operator.
+
+```php
+function reset(?Config $config, string $key) {
+    if ($config === null) {
+        return;
+    }
+    unset($config->options[$key]);  // OK
+    $config->modified = true;       // OK
+}
+```
+
 ---
 
 ## Undefined Elements
