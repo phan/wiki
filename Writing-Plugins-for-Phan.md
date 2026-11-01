@@ -80,6 +80,9 @@ A plugin file returns an instance of a class extending [\Phan\PluginV3](https://
   provides `getMergeVariableInfoClosure()`, returning a closure that customizes how variable types are merged across branches (if/else, try/catch). Useful for plugins that track custom per-variable state.
 * [\Phan\PluginV3\HandleLazyLoadInternalFunctionCapability](https://github.com/phan/phan/blob/v6/src/Phan/PluginV3/HandleLazyLoadInternalFunctionCapability.php)
   provides `handleLazyLoadInternalFunction(CodeBase, Func)`, called when Phan lazily loads a global internal PHP function during analysis. Useful for modifying lazily-loaded functions that `AnalyzeFunctionCallCapability` can't intercept.
+* [\Phan\PluginV3\HandleLazyLoadInternalMethodCapability](https://github.com/phan/phan/blob/v6/src/Phan/PluginV3/HandleLazyLoadInternalMethodCapability.php)
+  provides `handleLazyLoadInternalMethod(CodeBase, Method)`, called for each method of an internal class when Phan lazily loads that class during analysis (since 6.0.12). The counterpart of `HandleLazyLoadInternalFunctionCapability` for methods: `CallableParamPlugin` uses it to check callable parameters such as that of `Closure::fromCallable()`.
+  Since 6.0.12, an internal function or class named by `getReturnTypeOverrides()` or `getAnalyzeFunctionCallClosures()` is no longer loaded when the plugins are set up: its closure is attached when the analyzed code first uses it. A plugin that configures internal elements itself can do the same with `CodeBase::whenFunctionIsLoaded(FullyQualifiedFunctionName, Closure(Func):void)` and `CodeBase::whenInternalClassIsLoaded(FullyQualifiedClassName, Closure(Clazz):void)` (check `CodeBase::hasLoadedClassWithFQSEN()` first for a class that may already be loaded).
 
 As the method names suggest, they analyze (Or return the class name of a Visitor that will analyze) AST nodes, classes, methods and functions; and pre-analyze AST nodes, respectively.
 
