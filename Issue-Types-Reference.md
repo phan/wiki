@@ -1198,6 +1198,33 @@ class Helper {
 echo Helper::usedMethod();  // OK: method is used
 ```
 
+### PhanUnreferencedPrivateTraitMethod
+
+Emitted by `--dead-code-detection` for a private method declared in a trait that has no references, instead of `PhanUnreferencedPrivateMethod`. The same split exists for the other private trait elements: `PhanUnreferencedPrivateTraitProperty`, `PhanUnreferencedPrivateTraitClassConstant`, `PhanReadOnlyPrivateTraitProperty` and `PhanWriteOnlyPrivateTraitProperty`.
+
+A private element of a trait is not really private to the trait: every class using the trait gets a copy it can use. A library that ships a trait therefore does not necessarily contain all of its users, so these issue types can be suppressed separately from the ones for private elements of classes. A suppression of the issue type they were split from (for example `@suppress PhanUnreferencedPrivateMethod` on a trait method, or `PhanUnreferencedPrivateProperty` in `suppress_issue_types`) also suppresses the trait variant.
+
+**Example**:
+```php
+trait Loggable {
+    private function formatMessage(string $message): string {  // Warning: never called in the analyzed code
+        return '[' . static::class . '] ' . $message;
+    }
+}
+```
+
+**Fix**: Call it, remove it, or, for a library whose users live outside the analyzed code, suppress the trait variants in the config.
+
+```php
+'suppress_issue_types' => [
+    'PhanUnreferencedPrivateTraitMethod',
+    'PhanUnreferencedPrivateTraitProperty',
+    'PhanUnreferencedPrivateTraitClassConstant',
+    'PhanReadOnlyPrivateTraitProperty',
+    'PhanWriteOnlyPrivateTraitProperty',
+],
+```
+
 ### PhanUnusedVariable
 
 A variable is assigned but never used.
