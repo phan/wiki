@@ -171,6 +171,28 @@ function reset(?Config $config, string $key) {
 }
 ```
 
+### PhanInvalidReferenceToNullsafeChain
+
+A reference to a nullsafe chain: the right-hand side of `=&` contains the `?->` operator anywhere, including a bare nullsafe call. PHP refuses to compile this (`Cannot take reference of a nullsafe chain`), and `php -l` does not catch it.
+
+**Example**:
+```php
+function options(?Config $config) {
+    $options = &$config?->options;  // Error: Cannot take reference of a nullsafe chain
+}
+```
+
+**Fix**: Check for null, then use the regular `->` operator, or copy the value instead of referencing it.
+
+```php
+function options(?Config $config) {
+    if ($config === null) {
+        return;
+    }
+    $options = &$config->options;  // OK
+}
+```
+
 ---
 
 ## Undefined Elements
