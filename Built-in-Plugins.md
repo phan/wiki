@@ -65,7 +65,7 @@ These plugins are broadly useful, low-noise, and safe to enable in most projects
 | `NonBoolInLogicalArithPlugin` | Warns when non-boolean values are used with `&&`, `\|\|`, `xor` operators | High false positive rate |
 | `NumericalComparisonPlugin` | Warns when numeric values are compared with `==`/`!=` instead of `===`/`!==` | Use `StrictLiteralComparisonPlugin` for string literals |
 | `StrictComparisonPlugin` | Warns about `in_array()` calls without the `$strict = true` parameter | |
-| `StrictLiteralComparisonPlugin` | Warns when string literals are compared with loose equality (`==`/`!=`) | High false positive rate; not suitable for all codebases |
+| `StrictLiteralComparisonPlugin` | Warns when integer or string literals are compared with loose equality (`==`/`!=`) | High false positive rate; not suitable for all codebases. Emits `PhanPluginComparisonNotStrictForScalarSafe` when the other operand's type makes a strict check equivalent (safe to change mechanically) and `PhanPluginComparisonNotStrictForScalar` otherwise |
 | `UnknownElementTypePlugin` | Warns when functions, methods, or properties lack type declarations | Useful for gradually adding type annotations to a codebase |
 | `UnknownClassElementAccessPlugin` | Warns when a method call or property access is on a type that Phan couldn't fully resolve | |
 | `SuspiciousParamOrderPlugin` | Warns when function arguments appear to be passed in the wrong order based on parameter names | Heuristic; may have false positives |
