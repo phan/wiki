@@ -106,7 +106,7 @@ These plugins are broadly useful, low-noise, and safe to enable in most projects
 | Plugin | Description | Notes |
 |--------|-------------|-------|
 | `PHPUnitAssertionPlugin` | Marks PHPUnit assertion methods (`assertTrue`, `assertNull`, etc.) as having side effects so Phan doesn't flag them as unused return values | |
-| `PHPUnitNotDeadCodePlugin` | Marks PHPUnit test methods (those starting with `test`) and methods using `@test` as referenced | Prevents false positive dead code warnings for test methods |
+| `PHPUnitNotDeadCodePlugin` | Marks PHPUnit test case classes, test methods (those starting with `test`, or with `@test` or `#[Test]`), data providers (`@dataProvider`, `#[DataProvider]`, `#[DataProviderExternal]`) and hook methods (`@before`, `#[Before]`, `#[AfterClass]`, ...) as referenced | Prevents false positive dead code warnings in PHPUnit tests |
 
 ### Methods & Properties
 
