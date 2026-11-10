@@ -1495,6 +1495,70 @@ class Model {
 
 [▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIFsCWAPbAdsgEICu2ANgCYCmATivLNAMYUCGAzp8gLID2tCsgDeKZBNKcayABJcylWnQDc0cRNixkABQjsipAss4AXA1R4ChyfT0XV6yTDVMRBnaAF8gA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
+### @require-extends, @require-implements
+
+When used on a trait, indicate that it must only be used on classes that extend the named class, or implement the named interface.
+
+```php
+class MyClass {}
+interface MyInterface {}
+
+/**
+ * @require-extends MyClass
+ * @require-implements MyInterface
+ */
+trait MyTrait {}
+
+class Valid extends MyClass implements MyInterface {
+  use MyTrait;
+}
+
+class Invalid {
+  use MyTrait; // emits PhanTraitRequireExtendsMissing, PhanTraitRequireImplementsMissing
+}
+```
+
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQ0MYBsCGBnFACAsgTwMLLXQG8BfaASwDsAXAUwCcAzJOWrbASRoedeLOgB6AFTDo6YegAC9WgEcAruVkBaWgA86lACYYc%2BVCnGSZ8pavIBbMAlqXaNPZ25MWtY4OjV6SctXYAKj5%2B-LCIhugAakgI5NroGlq67AaEVjZ2DtROXHSufETi6AoobDhBvtQA3NAC4YRcAG4xccRFJWXYFX5V6IKCCZZ%2BGAAKEEiU3dQASmbKtACimg66mORoVADmADToYxNTs4rzHNa29o5rG5SbtUA&php=84&phan=v6-dev&ast=1.1.3&plugins=0 "Try this example in Phan-in-Browser")
+
+Since Phan analyzes traits separately, this is best combined with [@mixin](#mixin), to allow the trait's methods to call the methods provided by the named class/interface without warnings.
+
+```php
+<?php
+
+class MyClass {
+    public function classMethod(): void {}
+}
+interface MyInterface {
+    public function interfaceMethod(): void;
+}
+
+/**
+ * @require-extends MyClass
+ * @mixin MyClass
+ * @require-implements MyInterface
+ * @mixin MyInterface
+ */
+trait ValidTrait {
+    public function traitMethod() {
+        $this->classMethod();
+        $this->interfaceMethod();
+    }
+}
+
+/**
+ * @require-extends MyClass
+ * @require-implements MyInterface
+ */
+trait InvalidTrait {
+    public function traitMethod() {
+        $this->classMethod(); // emits PhanUndeclaredMethod
+        $this->interfaceMethod(); // emits PhanUndeclaredMethod
+    }
+}
+```
+
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQ0MYBsCGBnFACAsgTwMLLXQG9p0z0wBXAIwQEs50AzSgOzgBc6B7V9RVCkwBTDhG4ATABQBKAFzoAbtzoTiAX2ia6rDsIBOTJHGFZsASV0GjJ4qXJVaDZm048%2BOvYePCRYybIKyqoA3FqwAPQAVFGkUegAAvrCAI6UdMkAtMIAHnqsEhg4%2BIJxiQC2dDk6ZiVoZUmp6Vl05WAIwuXCukUWVt4mDZXVfDiWXjbCcRHQHPpIdBzoAGpI9BIAKvOLduQUNPSMLOxcvOhzCxx%2B4tIyu3vkACRidCiZAHwCaNcBMmEPTxeb3enmsPh%2Bt3%2B5E0mmg0Vi6HijTSGWE2Ty3UKtQIKAayRRLTaHS6PTM4zBg0RMwuO0sijWqi2l3uZEchxcJ3c522V1EN1kLIezwgrw%2BXyEfN%2BIXQEQi6E6iwwAAUIEhWABVArCATJCQQ%2BwA4WikH9SYQ2TS2XyyocZWqjVanXCPWSiQG9Aw6BAA&php=84&phan=v6-dev&ast=1.1.3&plugins=0 "Try this example in Phan-in-Browser")
+
 ### @phan-type
 
 Define type aliases:
