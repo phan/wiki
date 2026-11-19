@@ -1520,44 +1520,42 @@ class Invalid {
 
 [▶](https://phan.github.io/demo/?c=DwfgDgFmBQ0MYBsCGBnFACAsgTwMLLXQG8BfaASwDsAXAUwCcAzJOWrbASRoedeLOgB6AFTDo6YegAC9WgEcAruVkBaWgA86lACYYc%2BVCnGSZ8pavIBbMAlqXaNPZ25MWtY4OjV6SctXYAKj5%2B-LCIhugAakgI5NroGlq67AaEVjZ2DtROXHSufETi6AoobDhBvtQA3NAC4YRcAG4xccRFJWXYFX5V6IKCCZZ%2BGAAKEEiU3dQASmbKtACimg66mORoVADmADToYxNTs4rzHNa29o5rG5SbtUA&php=84&phan=v6-dev&ast=1.1.3&plugins=0 "Try this example in Phan-in-Browser")
 
-Since Phan analyzes traits separately, this is best combined with [@mixin](#mixin), to allow the trait's methods to call the methods provided by the named class/interface without warnings.
+Since Phan 6.0.12, the methods and properties of the named class or interface can be used in the trait, including protected and static ones, and `$this`, `self` and `static` in the trait are instances of that class or interface.
+They are not added to the classes using the trait: a class that does not extend the class or implement the interface gets `PhanTraitRequireExtendsMissing` or `PhanTraitRequireImplementsMissing`, and `PhanUndeclaredMethod` etc. for its uses of these members.
 
 ```php
 <?php
 
 class MyClass {
-    public function classMethod(): void {}
+    protected static int $count = 0;
+    public function classMethod(): static { return $this; }
 }
 interface MyInterface {
     public function interfaceMethod(): void;
 }
 
-/**
- * @require-extends MyClass
- * @mixin MyClass
- * @require-implements MyInterface
- * @mixin MyInterface
- */
-trait ValidTrait {
-    public function traitMethod() {
-        $this->classMethod();
-        $this->interfaceMethod();
-    }
-}
+function takesMyClass(MyClass $object): void {}
 
 /**
  * @require-extends MyClass
  * @require-implements MyInterface
  */
-trait InvalidTrait {
-    public function traitMethod() {
-        $this->classMethod(); // emits PhanUndeclaredMethod
-        $this->interfaceMethod(); // emits PhanUndeclaredMethod
+trait MyTrait {
+    public function traitMethod(): void {
+        self::$count++;
+        $this->classMethod()->interfaceMethod();
+        takesMyClass($this);
     }
 }
+
+class Invalid {
+    use MyTrait; // emits PhanTraitRequireExtendsMissing, PhanTraitRequireImplementsMissing
+}
+
+(new Invalid())->classMethod(); // emits PhanUndeclaredMethod
 ```
 
-[▶](https://phan.github.io/demo/?c=DwfgDgFmBQ0MYBsCGBnFACAsgTwMLLXQG9p0z0wBXAIwQEs50AzSgOzgBc6B7V9RVCkwBTDhG4ATABQBKAFzoAbtzoTiAX2ia6rDsIBOTJHGFZsASV0GjJ4qXJVaDZm048%2BOvYePCRYybIKyqoA3FqwAPQAVFGkUegAAvrCAI6UdMkAtMIAHnqsEhg4%2BIJxiQC2dDk6ZiVoZUmp6Vl05WAIwuXCukUWVt4mDZXVfDiWXjbCcRHQHPpIdBzoAGpI9BIAKvOLduQUNPSMLOxcvOhzCxx%2B4tIyu3vkACRidCiZAHwCaNcBMmEPTxeb3enmsPh%2Bt3%2B5E0mmg0Vi6HijTSGWE2Ty3UKtQIKAayRRLTaHS6PTM4zBg0RMwuO0sijWqi2l3uZEchxcJ3c522V1EN1kLIezwgrw%2BXyEfN%2BIXQEQi6E6iwwAAUIEhWABVArCATJCQQ%2BwA4WikH9SYQ2TS2XyyocZWqjVanXCPWSiQG9Aw6BAA&php=84&phan=v6-dev&ast=1.1.3&plugins=0 "Try this example in Phan-in-Browser")
+In older versions of Phan, the trait's methods get `PhanUndeclaredMethod` for these members; adding [@mixin](#mixin) of the class and the interface allows using their public methods and properties.
 
 ### @phan-type
 
