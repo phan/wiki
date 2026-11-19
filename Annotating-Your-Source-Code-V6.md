@@ -1555,6 +1555,8 @@ class Invalid {
 (new Invalid())->classMethod(); // emits PhanUndeclaredMethod
 ```
 
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQ0MYBsCGBnFACAsgTwMLLXQG9p0z0wAnAewBcBTOBgE3RVqVoEs50uA7WugAkcagFdB6ALzoADAG5S5MOIBGCHugBmkpl2r90iVCkz1aEaswAUASgBcbDt15F0lC+MpHhlrigK6AC+0KECDJTaSHD0WNgAkoL0UTFxJOQU6pq8uvz6hnzJqbHmltb2TgBu1FzMSqHQeQVGHADW9GZ4BCg2OPimItRqAFaMtI7oNXXEjQD0AFQLpAvoAAKeAI7iXJ4AtPQAHgz8zBj9PSvrWzv7XAC2YAj09-SC54nF0bErc9C0lCQXCEOAAKoDgcRlGRVBotM1uIUAUDaGUrLZJtNWBlMuQUPQENoHA5RBJBABqclKXHkPwQAJ7AB8JjQaIqdiZERS33obIx1Jp6HanQuphsdICdgFZFCjRZGCSVSQmmx0PQ4nx8XBKKCczm6BewIwAAUIEh+NrgQAlejbXb0ACixzeZ0wARQAgA5gAadCm82W2g2u2eBKPZ6vd5utBesKwGz8egAd3QiuVdXsHOZPT59l1+sNtBNZv4AFVToxkJ5mHygA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
+
 In older versions of Phan, the trait's methods get `PhanUndeclaredMethod` for these members; adding [@mixin](#mixin) of the class and the interface allows using their public methods and properties.
 
 ### @phan-type
