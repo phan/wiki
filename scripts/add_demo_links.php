@@ -339,7 +339,12 @@ class LZString
 // Main Script Logic
 // ============================================================================
 
-function generatePhanURL($code, $php = '84', $phan = 'v6-dev', $ast = '1.1.3') {
+const DEMO_LINK_PATTERN = '/^(?:\*\*)?\[(?:▶|Try this)[^\]]*\]\(https:\/\/phan\.github\.io\/demo\//u';
+const MARKER_PATTERN = '/^\s*<!--\s*demo:\s*(.*?)\s*-->\s*$/';
+const PARAM_KEYS = ['php', 'phan', 'ast'];
+const BUILTIN_DEFAULTS = ['php' => '84', 'phan' => 'v6-dev', 'ast' => '1.1.3'];
+
+function generatePhanURL($code, array $params) {
     // Ensure code starts with <?php
     $code = trim($code);
     if (!preg_match('/^<\?php/', $code)) {
@@ -347,10 +352,93 @@ function generatePhanURL($code, $php = '84', $phan = 'v6-dev', $ast = '1.1.3') {
     }
 
     $compressed = LZString::compressToEncodedURIComponent($code);
-    return "https://phan.github.io/demo/?c={$compressed}&php={$php}&phan={$phan}&ast={$ast}";
+    return "https://phan.github.io/demo/?c={$compressed}&php={$params['php']}&phan={$params['phan']}&ast={$params['ast']}";
 }
 
-function processMarkdownFile($inputFile, $outputFile = null) {
+function isDemoLink($line) {
+    return (bool)preg_match(DEMO_LINK_PATTERN, $line);
+}
+
+/**
+ * Read php/phan/ast from an existing demo link so a refresh keeps its versions.
+ */
+function paramsFromLink($line) {
+    if (!preg_match('/\(https:\/\/phan\.github\.io\/demo\/\?([^\s)"]*)/', $line, $m)) {
+        return [];
+    }
+    parse_str($m[1], $query);
+    $params = [];
+    foreach (PARAM_KEYS as $key) {
+        if (isset($query[$key]) && is_string($query[$key]) && $query[$key] !== '') {
+            $params[$key] = $query[$key];
+        }
+    }
+    return $params;
+}
+
+/**
+ * Parse the body of a <!-- demo: ... --> marker.
+ * Returns ['skip' => bool, 'params' => [...]] or null on an unrecognized marker.
+ */
+function parseMarker($body, $file, $lineNo) {
+    $result = ['skip' => false, 'params' => []];
+    foreach (preg_split('/\s+/', trim($body), -1, PREG_SPLIT_NO_EMPTY) as $token) {
+        if ($token === 'skip') {
+            $result['skip'] = true;
+        } elseif (preg_match('/^(php|phan|ast)=(\S+)$/', $token, $m)) {
+            $result['params'][$m[1]] = $m[2];
+        } else {
+            fwrite(STDERR, "Warning: $file:$lineNo: unknown token '$token' in demo marker, ignoring\n");
+        }
+    }
+    return $result;
+}
+
+/**
+ * Find the marker attached to a code fence: the nearest non-blank line above it.
+ */
+function findMarker(array $output, $file, $lineNo) {
+    for ($k = count($output) - 1; $k >= 0; $k--) {
+        if (trim($output[$k]) === '') {
+            continue;
+        }
+        if (preg_match(MARKER_PATTERN, $output[$k], $m)) {
+            return parseMarker($m[1], $file, $lineNo);
+        }
+        return null;
+    }
+    return null;
+}
+
+/**
+ * Starting right after a closing fence, return the index of the last line belonging to
+ * existing demo link(s), or -1 if there are none. Consumes a leading blank line and any
+ * run of duplicate links (optionally separated by blank lines) left by older versions.
+ */
+function findExistingLinks(array $lines, $start) {
+    $n = count($lines);
+    $k = $start;
+    if ($k < $n && trim($lines[$k]) === '' && $k + 1 < $n && isDemoLink($lines[$k + 1])) {
+        $k++;
+    }
+    $last = -1;
+    while ($k < $n) {
+        if (isDemoLink($lines[$k])) {
+            $last = $k;
+            $k++;
+        } elseif (trim($lines[$k]) === '' && $k + 1 < $n && isDemoLink($lines[$k + 1])) {
+            $k++;
+        } else {
+            break;
+        }
+    }
+    return $last;
+}
+
+/**
+ * @param array $cliParams php/phan/ast values given on the command line
+ */
+function processMarkdownFile($inputFile, $outputFile, array $cliParams) {
     if (!file_exists($inputFile)) {
         fwrite(STDERR, "Error: File not found: $inputFile\n");
         return false;
@@ -361,70 +449,64 @@ function processMarkdownFile($inputFile, $outputFile = null) {
     $output = [];
     $inCodeBlock = false;
     $codeBlockContent = '';
-    $codeBlockStart = 0;
-    $skipNextLines = 0;
+    $marker = null;
+    $stats = ['added' => 0, 'refreshed' => 0, 'removed' => 0, 'skipped' => 0];
 
     for ($i = 0; $i < count($lines); $i++) {
-        // Skip lines that are marked for removal (old demo links)
-        if ($skipNextLines > 0) {
-            $skipNextLines--;
+        $line = $lines[$i];
+
+        if (!$inCodeBlock && preg_match('/^```php\s*$/', $line)) {
+            $marker = findMarker($output, $inputFile, $i + 1);
+            $inCodeBlock = true;
+            $codeBlockContent = '';
+            $output[] = $line;
             continue;
         }
 
-        $line = $lines[$i];
-
-        if (preg_match('/^```php\s*$/', $line)) {
-            // Start of PHP code block
-            $inCodeBlock = true;
-            $codeBlockContent = '';
-            $codeBlockStart = $i;
-            $output[] = $line;
-        } elseif ($inCodeBlock && preg_match('/^```\s*$/', $line)) {
-            // End of code block
+        if ($inCodeBlock && preg_match('/^```\s*$/', $line)) {
             $inCodeBlock = false;
             $output[] = $line;
 
-            // Skip empty code blocks
-            if (trim($codeBlockContent) !== '') {
-                // Check if there's an existing "Try this" link after this code block
-                // We need to detect and replace: empty line + link (and preserve structure)
-                $nextLineIdx = $i + 1;
-                $hasExistingLink = false;
-                $linesToSkip = 0;
-
-                // Check for empty line followed by link
-                if ($nextLineIdx < count($lines) && trim($lines[$nextLineIdx]) === '') {
-                    if ($nextLineIdx + 1 < count($lines) &&
-                        preg_match('/^\*\*\[Try this/', $lines[$nextLineIdx + 1])) {
-                        $hasExistingLink = true;
-                        // Skip empty line + link line only (not trailing empty)
-                        $linesToSkip = 2;
+            $lastLinkIdx = findExistingLinks($lines, $i + 1);
+            $existingParams = $lastLinkIdx >= 0 ? paramsFromLink($lines[$lastLinkIdx]) : [];
+            if ($lastLinkIdx >= 0) {
+                // Prefer the first link's params if there were duplicates
+                for ($k = $i + 1; $k <= $lastLinkIdx; $k++) {
+                    if (isDemoLink($lines[$k])) {
+                        $existingParams = paramsFromLink($lines[$k]);
+                        break;
                     }
                 }
-                // Check for link immediately on next line (no empty line before)
-                elseif ($nextLineIdx < count($lines) &&
-                         preg_match('/^\*\*\[Try this/', $lines[$nextLineIdx])) {
-                    $hasExistingLink = true;
-                    // Skip link line only
-                    $linesToSkip = 1;
-                }
-
-                // Mark lines to skip
-                $skipNextLines = $linesToSkip;
-
-                // Add the new demo link (always with leading empty line)
-                $url = generatePhanURL($codeBlockContent);
-                $output[] = '';
-                $output[] = "[▶]({$url} \"Try this example in Phan-in-Browser\")";
             }
-        } elseif ($inCodeBlock) {
-            // Inside code block - accumulate content
-            $codeBlockContent .= $line . "\n";
-            $output[] = $line;
-        } else {
-            // Regular markdown line
-            $output[] = $line;
+
+            if (($marker['skip'] ?? false) || trim($codeBlockContent) === '') {
+                if ($lastLinkIdx >= 0) {
+                    $i = $lastLinkIdx;
+                    $stats['removed']++;
+                } else {
+                    $stats['skipped']++;
+                }
+                continue;
+            }
+
+            // Precedence: marker > command line > existing link > built-in default
+            $params = array_merge(BUILTIN_DEFAULTS, $existingParams, $cliParams, $marker['params'] ?? []);
+            $url = generatePhanURL($codeBlockContent, $params);
+            $output[] = '';
+            $output[] = "[▶]({$url} \"Try this example in Phan-in-Browser\")";
+            if ($lastLinkIdx >= 0) {
+                $i = $lastLinkIdx;
+                $stats['refreshed']++;
+            } else {
+                $stats['added']++;
+            }
+            continue;
         }
+
+        if ($inCodeBlock) {
+            $codeBlockContent .= $line . "\n";
+        }
+        $output[] = $line;
     }
 
     $result = implode("\n", $output);
@@ -435,8 +517,35 @@ function processMarkdownFile($inputFile, $outputFile = null) {
     } else {
         echo $result;
     }
+    fwrite(STDERR, sprintf(
+        "Links: %d added, %d refreshed, %d removed; %d blocks skipped\n",
+        $stats['added'], $stats['refreshed'], $stats['removed'], $stats['skipped']
+    ));
 
     return true;
+}
+
+function usage() {
+    echo <<<EOT
+Usage: php add_demo_links.php [--php=84] [--phan=v6-dev] [--ast=1.1.3] <input.md> [output.md]
+
+Adds or refreshes a Phan-in-Browser link after every ```php block.
+If no output file is specified, outputs to stdout.
+
+Options (override versions kept from existing links, but not per-block markers):
+  --php=VER    PHP version (81-86; the demo must have a build for it). Default: 84
+  --phan=VER   Phan version (5.5.2, 6.0.11, v6-dev). Default: v6-dev
+  --ast=VER    php-ast version (1.1.2, 1.1.3). Default: 1.1.3
+
+Per-block markers (on the line before the ```php fence):
+  <!-- demo: skip -->            no link for this block (removes an existing one)
+  <!-- demo: php=85 -->          set versions for this block only
+
+Examples:
+  php add_demo_links.php ../Generic-Types-V6.md
+  php add_demo_links.php --php=85 ../PHP-8.4-8.5-Support.md /tmp/out.md
+
+EOT;
 }
 
 // ============================================================================
@@ -447,28 +556,35 @@ if (php_sapi_name() !== 'cli') {
     die("This script must be run from the command line.\n");
 }
 
-if ($argc < 2) {
-    echo "Usage: php add_demo_links.php <input.md> [output.md]\n";
-    echo "\n";
-    echo "Examples:\n";
-    echo "  php add_demo_links.php ../v6-Generic-Types.md\n";
-    echo "  php add_demo_links.php ../v6-Generic-Types.md ../v6-Generic-Types-new.md\n";
-    echo "\n";
-    echo "If no output file is specified, outputs to stdout.\n";
+// Test LZ compression with the example
+if (getenv('TEST')) {
+    $expected = 'DwfgDgFmBQCmDGED2ACARACVgG26g6kgE7YAmaA3EA';
+    $url = generatePhanURL("<?php\necho \"Hello World\";", BUILTIN_DEFAULTS);
+    echo "Test URL:\n$url\n";
+    $ok = strpos($url, "?c=$expected&") !== false;
+    echo $ok ? "OK: c= parameter matches $expected\n" : "FAIL: expected c=$expected\n";
+    exit($ok ? 0 : 1);
+}
+
+$cliParams = [];
+$positional = [];
+foreach (array_slice($argv, 1) as $arg) {
+    if ($arg === '-h' || $arg === '--help') {
+        usage();
+        exit(0);
+    } elseif (preg_match('/^--(php|phan|ast)=(\S+)$/', $arg, $m)) {
+        $cliParams[$m[1]] = $m[2];
+    } elseif (strncmp($arg, '--', 2) === 0) {
+        fwrite(STDERR, "Error: unknown option $arg\n");
+        exit(1);
+    } else {
+        $positional[] = $arg;
+    }
+}
+
+if (count($positional) < 1 || count($positional) > 2) {
+    usage();
     exit(1);
 }
 
-$inputFile = $argv[1];
-$outputFile = $argv[2] ?? null;
-
-// Test LZ compression with the example
-if (getenv('TEST')) {
-    $testCode = "<?php\necho \"Hello World\";";
-    $url = generatePhanURL($testCode);
-    echo "Test URL:\n$url\n";
-    echo "\nExpected c= parameter should match:\n";
-    echo "DwfgDgFmBQCmDGED2ACARACVgG26g6kgE7YAmaA3NEA\n";
-    exit(0);
-}
-
-processMarkdownFile($inputFile, $outputFile);
+exit(processMarkdownFile($positional[0], $positional[1] ?? null, $cliParams) ? 0 : 1);
