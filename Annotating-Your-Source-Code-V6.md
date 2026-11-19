@@ -148,6 +148,8 @@ $y = $mock->shouldHaveReceived('foo'); // VerificationDirector
 $z = $mock->shouldHaveReceived($maybe); // HigherOrderMessage|VerificationDirector when $maybe is ?string
 ```
 
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQCWB2AXApgJwGYEMDGyAEAsgPbYDWAkkmlrngN7R5N4D0AVG483m3gAJhMqTAFs88AK4AbKQB8AzolQIA5ngAkI5IghEAJl2a8+qbRNTw8ACk3bdevLHnjpUvCDwAJWCohoA8qh6aATI8vKYKvgAXHgAamiw6LDYmIiwRPAAIrCm2IhEqACUhkxsLKVgEgBGUil46BLw+RmW8rrSep6YAG7IAErIuLB9ejZaOvp4ALwuMgA0GkIqzrOSMkUA3NAAvtDQ7Jw8-KaI5pY26FKRjs5KEvgeCIh4sYrK8ColPBWNzemZPBgFKkKzVIhENzqK6RIr0PCnc4aGFqDwARleeAA5AAPLGbPB7A4cRjGREWazqTC3OZuJ5ITE2ao0+BEF7vVTuBpSIhpTHgyFFb7laB-FqA+BhFBjEDPJaLDmfWRy9TVOF0Vi8AB0Op+hP26hxMw0IhIpAAtAA+dpETrdPqDYajKxbbhMFgsLw+PyoQLBVChcKRfBWIgiWCIaV4ZYSLRIZwSeT4HT4QTCCZoPDBLDSRAldQAT2NmjNVptdt6AyGyBGyDGWPQEKxro98USyVSAOyuSGBVQ0HUAC9i6ayGWOlIupXHTXnZpMAXqsgW57vL4AkEQmEIlFZAllB20q0cnk+3gAO5+Szzxf4JzuRUqIA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
+
 Rules:
 
 - The condition is `$param is Type` or `$param is not Type`, where `$param` is a parameter of the function. Either branch may be another conditional.
@@ -346,7 +348,7 @@ function processData($data) {
 }
 ```
 
-[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAICcCGAnZeu2AngN4prI4pJ51wCtwALqzgM+kwEsAXXMO1oDdeFkrlyTFi+AGyRGXnMk1ZS1MAFV7YAXwATJFxFI9r2s4qRXQEvOV7mYyRuCJIvEARMwhZANzQNomPIRZMGgBvFGQX6gGx-hVVCJy8YOXV3pAUyrLmltWNzf3+Hs6h0dm5BGOj2BYVjV2lNfXqjAFYW2JH5ZVGjk+zMXgOlVV1BwqLivyYJ1UZ8vH1NyqXVdXZYoMphzLLzxHT5uQXI0EVqHOHmr2v6AKzQ7OPh5+1e6mQ6EFr3K-LiBMhRB8xEj5-9lS7ek3nC0HBM+QyUq6lA=&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtlc8BPAbxTWWQFcBnAUxwC4idSyBLAE1c4DsALgBpk-Ag1Z1BOAQHMAvsMrVkYJvk506nAPb86rYlhLBps-nIB8y1KvwNBWblidH2JsgGMcDVw24AfVcpGXlRGjAXQQDgwVCLRRUFZAASaKxkAGFdfDAAGwYADzEGaQDkcxovQRpfSlhoADMafhq9fjUcXS8yugARVywACnShgEpkClVkWFg0jOQILDpkL1yC4tLy7kqZatrfZAB3TkEIZBb8-ORBEnU1iAYvAGt5aAUgA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Generic Type Multiline Formatting
 
@@ -371,7 +373,7 @@ function transformItems($items) {
 }
 ```
 
-[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCGAnZeu2AngN4prI4pJ51wCtwALqzgM+kwEsAXXMO1oDdeFkrlyTFi+AGyRGXnMk1ZS1MAFV7YAXwATJFxFI9r2s4qRXQEvOV7mYyRuCJIvEARMwhZANzQNomPIRZMGgBvFGQX6gGx-hVVCJy8YOXV3pAUyrLmltWNzf3+Hs6h0dm5BGOj2BYVjV2lNfXqjAFYW2JH5ZVGjk+zMXgOlVV1BwqLivyYJ1UZ8vH1NyqXVdXZYoMphzLLzxHT5uQXI0EVqHOHmr2v6AKzQ7OPh5+1e6mQ6EFr3K-LiBMhRB8xEj5-9lS7ek3nC0HBM+QyUq6lA=&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqA0tgJ4ppZ6EnbkBqRBArtnRmEQCciuZIKHVgvZOSrUANFNEDxAb0XSAlgBMAXMg0A7TAtTSzANw7c9Zdl2wm0Z5LmyYiWkkT1iiEgM6YAoYA5nIuGgAe2FoAfIoAvryxyAAkGji4-rzoAm6cAgZK4sCUNOG2VtjxqLDQAGacBgDGmBoA9kVBRAb+9e0CuACSmf4AFOmjAJTIas6wsMgACgLtzdj+-qIGWsh5mAVdQr39gzHInu7QCUA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Phan-Specific Annotations with Multiline
 
@@ -394,6 +396,8 @@ function processUsers($config) {
     // Multiline Phan annotations provide clearer documentation
 }
 ```
+
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAKQIYDsC0YWATlgLbLEkCeA3imssgK4DOApkSwFwVHXABLHABcANMgCq7IgD5R9RsiIB7ADZtuvfi2FEhAc3EAlNWxkKAvsgAkAY2U4AZgP30FmCLjwA3YslUCOsCUWLQKjAIAJjxgyiwCwgLebHhCYuHIOGRsPDgOeGykYMJUeDp6OIYZWLaJyTwARspqljI2RBpMqsL0sNCOTDi1Ag7IYCq2GixSHCwAFHYOzvoAlMh0isiwsMgAsl2JAThsyAAKnjgUOHnCWIkOLGMq3lEnturEHMiRyrZMpGwRHcRjhoBYgA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 This feature helps with:
 - **Readability**: Complex types are easier to understand when formatted nicely
@@ -900,6 +904,8 @@ $p++;                     // positive-int
 $p--;                     // int
 ```
 
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU8AEABATgUwC4Fc0DskwB7AZwEstyA3DAWnPyyXlmgDMd8BjK4wgObYACmUo0MACgCUSAN5JMuAkgCMAbiQBfaNAAkADyQBeJEKyiKVWjKQBqNZqRJYsImOv1GWfUdPnLcRtZOkdnFzdvJEluYhwAGwATJAAjDCQABmlfEyQ6AI8JGSdwiKR8DAEAQ08GJhz-EULgljyAJidXcsqaiTqfQ1yCqyLZZGGgqWlNLpIR2n79MCGm+an1Jbs7EtLdvfDZ5q96vTA6Oh39q+cu7yA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
+
 `non-zero-int` is preserved by multiplication when both operands are non-zero, and `int-range<a, b>` operands contribute their bounds to the result (e.g. `int-range<0, 10> + 1` is `positive-int`).
 
 ### non-empty-string
@@ -919,6 +925,8 @@ greetUser("0");     // OK - '0' is non-empty
 greetUser(""); // Phan error: empty string not allowed
 ```
 
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkA7AeyIFoBTfMAFwE9yBnWnASyIHNkASIgysgDCWIqVrIARoOp16yFuy4p4saADMArkQDGtNmWScclSrQCqTSjgAUfAQEpkAbxTJ3lHRBLIARAAlKABsgkgAaXn58SgBCXwBuaABfaGhjUwsrW18AQSC2HUpfB3jkWFhkAHkAaTSTM0trG18ABmLS93dyqurkcmQAchaB5DYmYjIqGgY6jMbs9rKKgAUIUWRrHBIcAC4N6flFDm5xZCwQkgB3SgATIA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
+
 ### non-falsy-string
 
 A string that is truthy in PHP — excludes both `''` and `'0'`. This is stricter than `non-empty-string`. Phan infers this type when a string passes a truthiness check such as `if ($s)`.
@@ -935,6 +943,8 @@ processCode("ABC"); // OK
 processCode("");    // Phan error: '' is not non-falsy-string
 processCode("0");   // Phan error: '0' is not non-falsy-string
 ```
+
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkA7AeyIFoAzLAGwGcBPcugFxwEsiBzZAEgGMSAEwCmyAMJYipFsgBGYkfjAsGyEjmQByAAxaU8WNEoBXIvxbsyyMDhL8RdOuOEiAFANcBKZAG8UyIEi-BAkyABEAAp2Dk6cXABcfIKi4QDc0AC+0NC29o7Orm7hAIIAQuLhXmnIsLDIAPIA0rkxBS6ixVU1gbX1kRBSyCI4djhJWlrI7HTEJLKkFNT0TKwc3K35Th3u4TrdvXXIA0MjYxN607Myc0u0jMxs8UA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 The two types relate as follows:
 
@@ -981,6 +991,7 @@ Phan V6 adds full support for PHP 8.4 and 8.5 language features with type annota
 
 Mark functions, methods, and class constants as deprecated using the attribute:
 
+<!-- demo: skip -->
 ```php
 #[Deprecated(message: "Use newMethod() instead", since: "2.0.0")]
 public function oldMethod() {
@@ -1017,6 +1028,8 @@ class BadConfig implements Config {
     public const string PORT = '3000';  // Error: type mismatch
 }
 ```
+
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQCWB2AXApgJwGYEMDGyAEAwgPbzqwDmeA3tHnXmAK4BGANrNntiQM6J4J+ABQDyAJQAqeALx4AHAAZFAblr0mbDl178+qBJQASIgMpTZAclZFsmVhCJ8LqgL7Ro2Vph488AQTBYYlIKAQBbMFZkMOQkX2CyShp6BhZ2Tm54PgEkPFFJGTwAZgVS5ToAegq8EQBpAC5tCMxEWDZ8RABPMGQ1Og107SzdRH14I1NzPAsFADo5hedK6rrG7mbW9rwunug3Dy8fPAAhTAATBNDYCKiYuMISROo+1M0MnTw9AzzxKYsS0pLPBVPAAUVQqCIqEaO3wYVgPDCLWwED2QA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 Phan validates:
 - Type compatibility in inheritance (`PhanConstantTypeMismatchInheritance`)
@@ -1060,6 +1073,8 @@ class User {
 }
 ```
 
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0B6AKguNLQrQAEA3RfAOwHs2BabAWzAAXAJ7dkg3AEs2AcxqkKZeWjABXAEbxJsNOKmy0AElU5cbRH2yFltHIOu1HpSQDM0ACj3xsbd4ZbwqtgAlGgAvBFoAAyhRE7xpIIQuBwA7mhs2OkAaoiB2ACiuCm47gBEWHjmlmiwiGyc9upW-ELCZcEA3DbxAL49ToZJksjcAHwmVRZWYUYBQd0J-bT9ypTUjvTMrCocyJKCkkzY3NKCNorKapraaGdGiDJWcfFP9i8JJLjYgqpmRsNRmNHthFn0Brofg5PiRXB5-HkgmhgNFYhCEkkUulMjlEYVihxSmUAIJPNB8ExNKxgPYHI7YDpgmHLGEAiAjcYg8JzPFMxwskj9XpAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
+
 Phan detects:
 - Hook parameter type mismatches (`PhanPropertyHookIncompatibleParamType`)
 - Return type incompatibilities (`PhanPropertyHookIncompatibleReturnType`)
@@ -1091,7 +1106,7 @@ $id = generateId();  // OK - value is used
 generateId();  // Error: PhanNoDiscardReturnValueIgnored
 ```
 
-[▶](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0B6AKguNLQrQAEA3RfAOwHs2BabAWzAAXAJ7dkg3AEs2AcxqkKZeWjABXAEbxJsNOKmy0AElU5cbRH2yFltHIOu1HpSQDM0ACj3xsbd4ZbwqtgAlGgAvBFoAAyhRE7xpIIQuBwA7mhs2OkAaoiB2ACiuCm47gBEWHjmlmiwiGyc9upW-ELCZcEA3DbxAL49ToZJksjcAHwmVRZWYUYBQd0J-bT9ypTUjvTMrCocyJKCkkzY3NKCNorKapraaGdGiDJWcfF2DgnObn7zVsCzMe8Po4kil0pkcnkgkUSuUAIJPNB8ExNKxgPYHI7YDqLIFoZa4oYQEbjR4zOaQ7A4pz4kj9XpAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQDEDaA5A9gEQJYGcDGBDATgCYC60AZgK4B22ALuslQAQDmAplW-rrWwJKEAFAEoAXE0y186KiyYBvaE2VN8bWhXzNq6AI7ohAcgMB9Q8IDc0AL7Q4SNFjxFBAWzaZMuduIBEAFQg2JilcKi86BmYAd1xMJipkWiZsZFdXdFpeQl9hUkoaekYJWgJaf25w3EjGEXEKsIii5kUVVXVNZk5opgaqmqoRK1toAHpRpgBVTBk5QQA3ZANhFLjk2mQJCjAwNU8QoKZYrVnoBaXCFfZObl4BIeVxpgB5AGkmAFomNgAPMAAbdDYTJMQhOAiEOwAEgMTAAvKwOFwePwhJZHhM3p8mPNcP8KMEsEwKJg2JDoNdkXc0RYMUwAKL4fDIfDiAAKEDCKAwOAhACUOloAGp4gl8FiJNSEIA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ### Pipe Operator (PHP 8.5)
 
@@ -1119,7 +1134,7 @@ $result = 5 |> double(...) |> stringify(...);
 // $result is string
 ```
 
-[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtl8BLADwFMATZAEgDcsAbAV3JTXR3IBdmcA7ZACMA9iMbsMkLPwC0WAM4LyObrO45WsgMYj+lYt2J7kCjcX4BzWgxZtUsaADNm-bUZPEFAZXNWAFPRMrACUyADeKMjRXLwCyF4A+mY4FpaBtqEA3NAAvtDOru7GghAylIzkgZRY3FhhkdHRxE7I-l6+qQE0NXUhDVFNTbCwyAAKZYIA1vwiAO4KtL1YCYspacgQKvZDTeTaECKmGpX81bX1OUP5uUA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkwB7AZwEsAXcgNwFMBacgO0uQBIasAbAVzpRp0OOpV45mRMlVqMWlQbGgAzXswDG1YpIAmxXgCNudABSce-AJTIA3imQORYiRy586qZACYA3NAC+0HCIghjYeITyrhYCnsKi4pKklDgsAOaKKmqa5NrIyanMaeTKAJ5mbla29o4JLiYF6dbm7n6BcLDIAAoQWJJqOnQ4yX06pMiUEB6q3NwTpWAe6r0s0OwipLzcbAC8yACsyAA+AHzIeobGJgB0t9an+SnpJeW315Z+sJ3rdJvbyORxo0ikA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
 ---
 
@@ -1368,10 +1383,13 @@ function example(array $items): void {
 }
 ```
 
+[▶](https://phan.github.io/demo/?c=DwfgDgFmBQBmCuA7AxgFwJYHtEAICmAHgIYC2YANngBREBOtRAnjgCTqp4kDOAlAFw4AbpnQATHAG9oOGa1jpaXVDgC8rdpy4BtAAwBdHCBA5E8cuQDc02QHIAApCKIAtKLwAjeAHNngunIUlGytZHAB6MJwABQgnfBJ2LgEYpwARD28AQURETFQiDGwcZwDFZViuHCQsXFRGMDwcBII8UWgAXyA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
+
 This must be a string **expression statement** — not a comment — because php-ast does not expose comments to Phan. Phan emits a `PhanDebugAnnotation` diagnostic with the inferred union type.
 
 You can debug multiple variables at once, including array elements and properties:
 
+<!-- demo: skip -->
 ```php
 '@phan-debug-var $arr[\'key\'], $obj->prop, $result';
 ```
