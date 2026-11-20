@@ -1577,6 +1577,12 @@ class Invalid {
 
 In older versions of Phan, the trait's methods get `PhanUndeclaredMethod` for these members; adding [@mixin](#mixin) of the class and the interface allows using their public methods and properties.
 
+Since Phan 6.0.12, the annotation is also checked where it is declared, whether or not the trait is used:
+
+- `PhanUndeclaredClassReference` if the named class or interface is not declared;
+- `PhanAccessWrongInheritanceCategory` (`PhanAccessWrongInheritanceCategoryInternal` for a class of PHP or an extension) if `@require-extends` does not name a class, or `@require-implements` does not name an interface;
+- `PhanUnextractableAnnotation` if the annotation names no class, such as `@require-extends` alone, `@require-extends int` or `@require-implements static`.
+
 ### @phan-type
 
 Define type aliases:
