@@ -1674,6 +1674,22 @@ class ApiClient {
 
 [▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqKa6kRAdgLSYCeY2yAStgM4CuBmwMgD5kAXmREATpKJMA3rwDGi7lwBcAIwD2WggBoAJiSJqyAH1p992aVslqumSQEtaAcwtWAvpVjRFxFxcyACCYM4AwgTO2LSYyHIoyMkISMnpVDj4xKRknFxgWrRc2EkZGGBSRLjIji7uyAAkPJIEZclUktiYLbQc3HwCedyFxdhC7ah+6chgPBrRisgAZjy0ipjORchu3QAUza0AlAmT6bCwyAB0N+0+XkA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
+### Annotations of Plugins (@phan-x-...)
+
+Since Phan 6.0.12, annotations whose names start with `@phan-x-` are declared by plugins, not by Phan. The plugin that declares such an annotation defines what it means; Phan does not give a meaning of its own to any name with this prefix. `phan --help-annotations` lists the annotations that the configured plugins declare, after those of Phan. An `@phan-x-` annotation that no loaded plugin declares is reported as `PhanMisspelledAnnotation`, with a suggestion when its name is close to a declared one. As for the annotations of Phan, the names are not case-sensitive.
+
+```php
+/**
+ * @param string $name
+ * @phan-x-my-assert $name is a valid identifier
+ */
+function check_identifier(string $name): void {
+    // ...
+}
+```
+
+Here `@phan-x-my-assert` must be declared by a plugin in the `plugins` setting of `.phan/config.php` (or given with `--plugin`). See [Writing Plugins for Phan](https://github.com/phan/phan/wiki/Writing-Plugins-for-Phan) for how a plugin declares and handles its annotations.
+
 ---
 
 ## Best Practices
