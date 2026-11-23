@@ -130,7 +130,7 @@ const MAX = 100;  // OK: literal value
 
 ### PhanPropertyHookWithDefaultValue
 
-A virtual property is declared with a default value. A hooked property is virtual when none of its hooks uses its backing value: no hook reads or writes `$this->name` for a property `$name`, no hook is declared without a body, and no `set` hook has the short form `set => expr`. A virtual property has no storage, so PHP rejects the default (`Cannot specify default value for virtual hooked property`).
+A virtual property is declared with a default value. A hooked property is virtual when none of its hooks uses its backing value: no hook reads or writes `$this->name` for a property `$name`, no hook is declared without a body, and no `set` hook has the short form `set => expr`. A virtual property has no storage, so PHP rejects the default (`Cannot specify default value for virtual hooked property`). A property that overrides a backed property of a parent class keeps that backing value, and can have a default.
 
 **Example** (PHP 8.4):
 ```php
