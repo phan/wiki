@@ -1079,7 +1079,10 @@ Phan detects:
 - Hook parameter type mismatches (`PhanPropertyHookIncompatibleParamType`)
 - Return type incompatibilities (`PhanPropertyHookIncompatibleReturnType`)
 - Set hooks on readonly properties (`PhanReadonlyPropertyHasSetHook`)
-- Default values on hooked properties (`PhanPropertyHookWithDefaultValue`)
+- Default values on virtual properties, where no hook uses the backing value (`PhanPropertyHookWithDefaultValue`)
+- Overrides of final properties and final hooks (`PhanAccessOverridesFinalProperty`, `PhanPropertyHookFinalOverride`)
+- Hooks of abstract properties and of interface properties that a non-abstract class does not implement (`PhanClassContainsAbstractMethod`)
+- `#[\Override]` on a hook that no ancestor declares (`PhanCommentOverrideOnNonOverrideMethod`)
 
 [▶](https://phan.github.io/demo/?c=DwfgDgFmBQDGA2BDAzsgBAVWQUwE5oG9o0S0B6AKguNLQrQAEA3RfAOwHs2BabAWzAAXAJ7dkg3AEs2AcxqkKZeWjABXAEbxJsNOKmy0AElU5cbRH2yFltHIOu1HpSQDM0ACj3xsbd4ZbwqtgAlGgAvBFoAAyhRE7xpIIQuBwA7mhs2OkAaoiB2ACiuCm47gBEWHjmlmiwiGyc9upW-ELCZcEA3DbxAL49ToZJksjcAHwmVRZWYUYBQd0J-bT9ypTUjvTMrCocyJKCkkzY3NKCNorKapraaGdGiDJWcfF2DgnObn7zVsCzMe8Po4kil0pkcnkgkUSuUAIJPNB8ExNKxgPYHI7YDqLIFoZa4oYQEbjR4zOaQ7A4pz4kj9XpAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 

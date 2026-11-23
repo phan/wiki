@@ -55,8 +55,12 @@ class Product {
 **Detected errors**:
 - `PhanPropertyHookIncompatibleParamType` - Parameter type mismatch
 - `PhanPropertyHookIncompatibleReturnType` - Return type mismatch
-- `PhanPropertyHookWithDefaultValue` - Invalid default values
-- `PhanPropertyHookFinalOverride` - Illegal override of final hook
+- `PhanPropertyHookWithDefaultValue` - Default value on a virtual property (one where no hook uses the backing value)
+- `PhanPropertyHookFinalOverride` - Override of a final hook
+- `PhanAccessOverridesFinalProperty` - Redeclaration of a final property, including a final promoted constructor property (PHP 8.5)
+- `PhanClassContainsAbstractMethod` - Non-abstract class that does not implement a hook of an abstract property or of a property of an interface
+- `PhanCommentOverrideOnNonOverrideMethod` - `#[\Override]` on a hook that no ancestor declares
+- `PhanInvalidNode` - Hook without a body in a property that is not abstract
 
 #### Property Hook Examples
 

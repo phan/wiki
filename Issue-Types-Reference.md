@@ -130,20 +130,27 @@ const MAX = 100;  // OK: literal value
 
 ### PhanPropertyHookWithDefaultValue
 
-A property with hooks is declared with a default value.
+A virtual property is declared with a default value. A hooked property is virtual when none of its hooks uses its backing value: no hook reads or writes `$this->name` for a property `$name`, no hook is declared without a body, and no `set` hook has the short form `set => expr`. A virtual property has no storage, so PHP rejects the default (`Cannot specify default value for virtual hooked property`).
 
 **Example** (PHP 8.4):
 ```php
-public string $name = "default" {  // Error: hooked properties can't have defaults
-    get { return $this->name; }
+class User {
+    private string $first = '';
+
+    public string $name = "default" {  // Error: no hook uses $this->name
+        get => $this->first;
+        set { $this->first = $value; }
+    }
 }
 ```
 
-**Fix**: Remove the default value from hooked properties.
+**Fix**: Remove the default value, or use the backing value in a hook.
 
 ```php
-public string $name {
-    get { return $this->name; }
+class User {
+    public string $name = "default" {  // OK: the get hook uses the backing value
+        get => strtoupper($this->name);
+    }
 }
 ```
 
@@ -453,6 +460,18 @@ class ConcreteHandler extends Handler {
     public function process($data) {
         // Implementation
     }
+}
+```
+
+The same issue is reported for a hook of an abstract property, or of a property of an interface, that a non-abstract class does not implement (PHP 8.4). The hook is named like `\Shape::$area::get`. A property without hooks, or a hooked property that uses its backing value, implements both hooks.
+
+```php
+interface Shape {
+    public float $area { get; set; }
+}
+
+class Square implements Shape {
+    public float $area { get => 1.0; }  // Error: Shape::$area::set is not implemented
 }
 ```
 
@@ -1000,6 +1019,45 @@ class User {
     }
 }
 ```
+
+### PhanAccessOverridesFinalProperty
+
+A class declares a property that is final in an ancestor class (PHP 8.4). This includes final promoted constructor properties (PHP 8.5). PHP rejects the declaration (`Cannot override final property`).
+
+**Example**:
+```php
+class Base {
+    final public int $id = 0;
+}
+
+class Child extends Base {
+    public int $id = 1;  // Error: Base::$id is final
+}
+```
+
+**Fix**: Remove the redeclaration, or remove `final` from the property of the ancestor.
+
+### PhanPropertyHookFinalOverride
+
+A class declares a hook that is final in the same property of an ancestor class (PHP 8.4). The other hook of the property can still be declared.
+
+**Example**:
+```php
+class Base {
+    public int $id {
+        final get => 1;
+    }
+}
+
+class Child extends Base {
+    public int $id {
+        get => 2;                  // Error: Base::$id::get is final
+        set { $this->id = $value; }  // OK
+    }
+}
+```
+
+**Fix**: Remove the hook, or remove `final` from the hook of the ancestor.
 
 ### PhanTypeUnsetStaticProperty
 
