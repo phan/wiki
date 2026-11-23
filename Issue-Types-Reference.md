@@ -1045,6 +1045,80 @@ class Config {
 
 **Fix**: Declare the method as `public`.
 
+### PhanDeprecatedBacktickOperator
+
+The backtick operator is used. It is deprecated in PHP 8.5. Emitted when `target_php_version` is 8.5 or newer.
+
+**Example**:
+```php
+echo `ls -l`;  // Deprecated in PHP 8.5
+```
+
+**Fix**: Call `shell_exec()`.
+
+```php
+echo shell_exec('ls -l');
+```
+
+### PhanDeprecatedStringIncrement
+
+`++` or `--` is applied to a value that is known to be a non-numeric string.
+
+- `--` on a non-numeric string has no effect, and is deprecated in PHP 8.3.
+- `++` on an empty string, or on a string that is not alphanumeric, is deprecated in PHP 8.3.
+- `++` on any other non-numeric string (`'a'` becomes `'b'`, `'Az'` becomes `'Ba'`) is deprecated in PHP 8.5.
+
+Emitted when `target_php_version` is at least the version of the deprecation. Numeric strings such as `'5'` are not affected.
+
+**Example**:
+```php
+$column = 'A';
+$column++;  // Deprecated in PHP 8.5
+```
+
+**Fix**: Use `str_increment()` or `str_decrement()` (PHP 8.3+).
+
+```php
+$column = str_increment('A');
+```
+
+### PhanDeprecatedNullArrayOffset
+
+`null` is used as the offset of an array. PHP converts it to an empty string; this is deprecated in PHP 8.5. Emitted when `target_php_version` is 8.5 or newer, for reads, writes, `isset()` and array literals. It is not reported for an `ArrayAccess` object, or when Phan is not certain that the value is an array.
+
+**Example**:
+```php
+function first(array $values) {
+    return $values[null];  // Deprecated in PHP 8.5
+}
+$map = [null => 1];        // Deprecated in PHP 8.5
+```
+
+**Fix**: Use an empty string.
+
+```php
+function first(array $values) {
+    return $values[''];
+}
+```
+
+### PhanDeprecatedReservedName
+
+A name is used that PHP deprecates in order to reserve it for future syntax. Emitted when `target_php_version` is at least the version of the deprecation.
+
+- `_` as the name of a class, interface, trait or enum (PHP 8.4).
+- `let` and `is` as the name of a class, interface, trait, enum or function, and `readonly` as the name of a function (PHP 8.6).
+- `namespace` as the name of a class constant or an enum case (PHP 8.6).
+- `let`, `is` and `_` as the alias of a `use` statement, including `use Foo\let;` (PHP 8.6).
+
+**Example**:
+```php
+use Vendor\Lexer as let;  // Deprecated in PHP 8.6
+class _ {}                // Deprecated in PHP 8.4
+```
+
+**Fix**: Choose another name or alias.
+
 ### PhanDeprecatedNullableDebugInfoReturnType
 
 `__debugInfo()` is declared with a nullable return type. Returning null from `__debugInfo()` is deprecated in PHP 8.6. Emitted when `target_php_version` is 8.6 or newer.
