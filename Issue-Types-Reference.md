@@ -1022,7 +1022,7 @@ class User {
 
 ### PhanAccessOverridesFinalProperty
 
-A class declares a property that is final in an ancestor class (PHP 8.4). This includes final promoted constructor properties (PHP 8.5). PHP rejects the declaration (`Cannot override final property`).
+A class declares a property that is final in an ancestor class (PHP 8.4). This includes final promoted constructor properties (PHP 8.5). A property that is `private(set)` is implicitly final. PHP rejects the declaration (`Cannot override final property`).
 
 **Example**:
 ```php
