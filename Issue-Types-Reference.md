@@ -1109,7 +1109,8 @@ A name is used that PHP deprecates in order to reserve it for future syntax. Emi
 - `_` as the name of a class, interface, trait or enum (PHP 8.4).
 - `let` and `is` as the name of a class, interface, trait, enum or function, and `readonly` as the name of a function (PHP 8.6).
 - `namespace` as the name of a class constant or an enum case (PHP 8.6).
-- `let`, `is` and `_` as the alias of a `use` statement, including `use Foo\let;` (PHP 8.6).
+- `let`, `is` and `_` as the name of a global constant (PHP 8.6).
+- `let`, `is` and `_` as the alias of a `use` statement for a class or constant, and `let` and `is` for a function, including `use Foo\let;` (PHP 8.6).
 
 **Example**:
 ```php
