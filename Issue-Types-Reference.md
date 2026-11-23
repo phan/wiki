@@ -996,6 +996,74 @@ class CustomException extends Exception {
 throw new CustomException();  // OK
 ```
 
+### PhanInvalidMagicMethodSignature
+
+A magic method is declared with a signature that PHP rejects when it compiles the class. PHP checks:
+
+- the number of parameters (`__get` takes exactly 1, `__set` exactly 2, `__toString` none; a variadic parameter is not counted),
+- that no parameter is passed by reference,
+- `static`: `__callStatic` and `__set_state` must be static, the others cannot be,
+- the declared type of a parameter, which must allow the `string` or `array` that PHP passes,
+- the declared return type: `void` for `__clone`, `__set`, `__unset`, `__unserialize` and `__wakeup`, `bool` for `__isset`, `string` for `__toString`, `array` for `__serialize` and `__sleep`, `?array` for `__debugInfo`, `object` for `__set_state`. `never` is always allowed. `__construct` and `__destruct` cannot declare a return type,
+- `#[\NoDiscard]` on a magic method that returns nothing (PHP 8.5+).
+
+A magic method without declared types only has to have the right number of parameters.
+
+**Example**:
+```php
+class Config {
+    public function __get() {}                       // Error: it must take exactly 1 argument
+    public function __set($name, &$value) {}         // Error: it cannot take arguments by reference
+    public function __callStatic($name, $args) {}    // Error: it must be static
+    public function __isset(int $name): bool {}      // Error: parameter #1 ($name) must be of type string when declared
+    public function __toString(): ?string {}         // Error: the return type must be string when declared
+}
+```
+
+**Fix**: Use the signature that PHP expects.
+
+```php
+class Config {
+    public function __get(string $name): mixed { return null; }
+    public function __set(string $name, mixed $value): void {}
+    public static function __callStatic(string $name, array $args): mixed { return null; }
+    public function __isset(string $name): bool { return false; }
+    public function __toString(): string { return ''; }
+}
+```
+
+### PhanMagicMethodNonPublic
+
+A magic method other than `__construct`, `__destruct` and `__clone` is not public. PHP emits a warning when it compiles the class (`The magic method C::__get() must have public visibility`).
+
+**Example**:
+```php
+class Config {
+    private function __get($name) { return null; }  // Warning: must have public visibility
+}
+```
+
+**Fix**: Declare the method as `public`.
+
+### PhanDeprecatedNullableDebugInfoReturnType
+
+`__debugInfo()` is declared with a nullable return type. Returning null from `__debugInfo()` is deprecated in PHP 8.6. Emitted when `target_php_version` is 8.6 or newer.
+
+**Example**:
+```php
+class Config {
+    public function __debugInfo(): ?array { return null; }  // Deprecated in PHP 8.6
+}
+```
+
+**Fix**: Make the return type non-nullable and return an empty array.
+
+```php
+class Config {
+    public function __debugInfo(): array { return []; }
+}
+```
+
 ### PhanReadonlyPropertyHasSetHook
 
 A readonly property has a set hook.
