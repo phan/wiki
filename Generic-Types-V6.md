@@ -1075,8 +1075,8 @@ If `Dog` is a subtype of `Animal`, should `Container<Dog>` be a subtype of `Cont
 
 **How Phan decides the position of a template** (`PhanTemplateTypeVarianceViolation`):
 
-- A return type is an output position, a parameter is an input position, and a property that can be written from outside of the class is both.
-- A property that outside code can only read is an output position: `readonly`, `@readonly`/`@phan-read-only`, `private(set)`, a property of a `@phan-immutable` class, a virtual property without a `set` hook, and a property of an interface that only requires `get`. A property with `@phan-write-only` is an input position.
+- A return type is an output position, a parameter is an input position, and a property that can be written from outside of the class is both. A parameter passed by reference and a return by reference (`function &values()`) are both as well.
+- A property that outside code can only read is an output position: `readonly`, `@readonly`/`@phan-read-only`, `private(set)`, a property of a `@phan-immutable` class, a virtual property without a `set` hook (unless its `get` hook returns by reference), and a property of an interface that only requires `get`. A property with `@phan-write-only` is an input position.
 - The parameter of a callable reverses the position: in `@param callable(T):void $f` the class produces the `T`, so a covariant `T` is allowed there, and in `@return callable(T):void` it consumes it. A callable parameter passed by reference (`callable(T&):void`) is both.
 - A template parameter of a class that is declared `@template-contravariant` reverses the position as well (`Consumer<T>`). Template parameters of other classes, the return type of a callable and the elements of arrays and iterables keep it.
 - Not checked: the parameters of the constructor, private methods and private properties. Only code of the class itself can reach those, and the template is the same type there.
