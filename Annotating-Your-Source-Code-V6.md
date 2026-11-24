@@ -1636,7 +1636,7 @@ function add($a, $b) {
 
 ### @phan-immutable
 
-Mark immutable classes:
+Mark immutable classes. `@immutable` and `@psalm-immutable` are aliases:
 
 ```php
 /**
