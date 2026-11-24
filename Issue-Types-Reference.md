@@ -1127,7 +1127,7 @@ A name that PHP reserves for its types is used where PHP stops with a fatal erro
 - The name of a class, interface, trait or enum, in any namespace: `class int {}`.
 - The alias of a `use` statement for a class, including `use Foo\string;`. Aliases of `use function` and `use const` are not affected.
 - `self`, `parent` or `static` after `extends` or `implements`.
-- A qualified type: `\self`, `namespace\parent`, `Foo\int`.
+- A qualified type: `\self`, `\parent`, `\static`, `Foo\int`, also as a member of a union or intersection type.
 
 **Example**:
 ```php
