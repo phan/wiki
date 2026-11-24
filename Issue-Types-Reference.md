@@ -1120,6 +1120,27 @@ class _ {}                // Deprecated in PHP 8.4
 
 **Fix**: Choose another name or alias.
 
+### PhanReservedClassName
+
+A name that PHP reserves for its types is used where PHP stops with a fatal error. The reserved names are `bool`, `false`, `float`, `int`, `null`, `parent`, `self`, `static`, `string`, `true`, `void`, `never`, `iterable`, `object` and `mixed` (and `array` and `callable` for aliases), in any case.
+
+- The name of a class, interface, trait or enum, in any namespace: `class int {}`.
+- The alias of a `use` statement for a class, including `use Foo\string;`. Aliases of `use function` and `use const` are not affected.
+- `self`, `parent` or `static` after `extends` or `implements`.
+- A qualified type: `\self`, `namespace\parent`, `Foo\int`.
+
+**Example**:
+```php
+namespace App;
+
+use Vendor\Text as string;      // Cannot use "string" as the alias of \Vendor\Text as it is reserved
+class Mixed {}                  // Cannot use "Mixed" as a class name as it is reserved
+class Child extends parent {}   // Cannot use "parent" as a class name as it is reserved
+function f(\self $x) {}         // Cannot use "\self" as a qualified class name as it is reserved
+```
+
+**Fix**: Choose another name or alias, and write `self`, `parent` and `static` without a namespace separator.
+
 ### PhanDeprecatedNullableDebugInfoReturnType
 
 `__debugInfo()` is declared with a nullable return type. Returning null from `__debugInfo()` is deprecated in PHP 8.6. Emitted when `target_php_version` is 8.6 or newer.
