@@ -451,6 +451,7 @@ in the subsequent statements. (i.e. if the function/method returns without throw
 - `@phan-assert-false-condition $x` will make Phan infer that the argument to parameter `$x` is falsey if the function returned successfully.
 
   Invocations of this function will be analyzed similarly to `assert(!expr);`.
+- `@phan-assert-if-true T $x` and `@phan-assert-if-false T $x` (Phan 6.0.12+) describe the type of the argument depending on what a function that returns a bool returned, for a call used as a condition (`if (is_wp_error($x)) { ... }`). The opposite is assumed for the other return value, unless the type is written as `=T`. `@phpstan-assert-if-true`/`-false` mean the same; for `@psalm-assert-if-true`/`-false`, nothing is assumed for the other return value. See [Annotating Your Source Code (V6)](Annotating-Your-Source-Code-V6#phan-assert-if-true-and-phan-assert-if-false).
 - This can be used in combination with Phan's template support.
 
 A simple example of how `@phan-assert` can be used:

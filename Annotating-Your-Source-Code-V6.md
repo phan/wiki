@@ -1257,25 +1257,65 @@ function process($input) {
 
 ### @phan-assert-true-condition and @phan-assert-false-condition
 
+`@phan-assert-true-condition $x` makes Phan analyze a call like `assert($x)`: the argument is truthy if the function returns.
+`@phan-assert-false-condition $x` is the same for `assert(!$x)`.
+
 ```php
 /**
- * @param mixed $value
- * @return bool
- * @phan-assert-true-condition string $value
+ * @param mixed $condition
+ * @phan-assert-true-condition $condition
  */
-function isString($value) {
-    return is_string($value);
+function check($condition): void {
+    if (!$condition) {
+        throw new RuntimeException("Check failed");
+    }
 }
 
-function handle($data) {
-    if (isString($data)) {
-        // Phan knows $data is string here
-        echo strlen($data);
-    }
+function handle(?string $data) {
+    check($data !== null);
+    // Phan knows $data is a string here
+    echo strlen($data);
 }
 ```
 
-[▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtl8BLADwFMATZAEgDcsAbAV3JTXR3IBdmcA7ZACMA9iMbsMkLPwC0WAM4LyObrO45WsgMYj+lYt2J7kCjcX4BzWgxZtUsaADNm-bUZPEFAZXNWAFPRMrACUyADeKMjRXLwCyF4A+mY4FpaBtqEA3NAAvtDOru7GghAylIzkgZRY3FhhkdHRxE7I-l6+qQE0NXUhDVFNTbCwyAAKZYIA1vwiAO4KtL1YCYspacgQKvZDTeTaECKmGpX81bX1OUP5uUA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
+### @phan-assert-if-true and @phan-assert-if-false
+
+Since Phan 6.0.12. For a function or method that returns a bool, these describe the type of an argument
+depending on what the call returned, when the call is used as a condition.
+
+```php
+/**
+ * @param mixed $thing
+ * @phan-assert-if-true WP_Error $thing
+ */
+function is_wp_error($thing): bool {
+    return $thing instanceof WP_Error;
+}
+
+/** @return WP_Error|array{id:int} */
+function fetch() { /* ... */ }
+
+function handle(): int {
+    $result = fetch();
+    if (is_wp_error($result)) {
+        // Phan knows $result is a WP_Error here
+        return 0;
+    }
+    // Phan knows $result is array{id:int} here
+    return $result['id'];
+}
+```
+
+- `@phan-assert-if-true T $x`: the argument is a `T` if the function returns true, and is not a `T` if it returns false.
+- `@phan-assert-if-false T $x`: the argument is a `T` if the function returns false, and is not a `T` if it returns true.
+- `!T` asserts that the argument is not a `T`: `@phan-assert-if-true !null $x`.
+- `=T` only applies to the value named by the annotation, and says nothing about the other one:
+  with `@phan-assert-if-true =non-empty-string $x`, the argument can still be a non-empty string when the function returns false.
+
+Phan also reads `@phpstan-assert-if-true`, `@phpstan-assert-if-false`, `@psalm-assert-if-true` and `@psalm-assert-if-false`.
+The `@phpstan-` forms mean the same as the `@phan-` forms. For the `@psalm-` forms, nothing is assumed for the other return value.
+
+Only assertions about a parameter are supported (not `$this->prop` or `$this->method()`), and an assertion that uses a template type is ignored.
 
 ### @phan-assert with Generics
 
