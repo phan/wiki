@@ -901,6 +901,35 @@ $user = new User();
 echo $user->getSsn();  // OK
 ```
 
+### PhanAccessGetOnlyVirtualProperty
+
+An assignment to a virtual property that has a `get` hook and no `set` hook (PHP 8.4+). The property has no storage, so PHP throws `Cannot write to get-only virtual property`, also inside of the class and its constructor.
+
+Reported for `=`, compound assignments, `++`/`--`, array destructuring, the value of a `foreach` and `clone($o, [...])`.
+
+Not reported when the property can be written:
+
+- The `get` hook reads the property itself (`get => $this->area`), so the property is backed.
+- A parent class declares a `set` hook for the property or declares it without hooks: the hook and the storage are inherited.
+- A subclass that Phan knows declares a `set` hook or the storage: the object may be an instance of it.
+- The property is abstract or declared in an interface: the class of the object can declare `set`.
+- `$o->p ??= 1` when the type of the property is not nullable, and `$o->list[] = 1` when the hook returns a reference (`&get`).
+
+**Example**:
+```php
+class Circle {
+    public float $radius = 1.0;
+    public float $area {
+        get => M_PI * $this->radius ** 2;
+    }
+}
+
+$c = new Circle();
+$c->area = 10.0;  // Cannot write to get-only virtual property \Circle->area
+```
+
+**Fix**: Assign to the properties that the value is computed from, or add a `set` hook.
+
 ### PhanAccessProtectedMethod
 
 A protected method is called outside a related class.
