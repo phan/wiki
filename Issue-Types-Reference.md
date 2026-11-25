@@ -913,7 +913,8 @@ Not reported when the property can be written:
 - A parent class declares a `set` hook for the property or declares it without hooks: the hook and the storage are inherited.
 - A subclass that Phan knows declares a `set` hook or the storage: the object may be an instance of it.
 - The property is abstract or declared in an interface: the class of the object can declare `set`.
-- `$o->p ??= 1` when the type of the property is not nullable, and `$o->list[] = 1` when the hook returns a reference (`&get`).
+- `$o->p ??= 1` (it only assigns when the hook returns null), and `$o->list[] = 1` when the hook returns a reference (`&get`).
+- The object may be an instance of another class that allows the write (`Plain|VirtualOnly`, `VirtualOnly|object`), and the property comes from a `@mixin`.
 
 **Example**:
 ```php
