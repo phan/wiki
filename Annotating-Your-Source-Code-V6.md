@@ -158,7 +158,7 @@ Rules:
 - `self`, `static` and template types (`@template` on the method, or class templates such as `self<T>`) work inside the branches, as in a plain `@return`.
 - Implementing/overriding methods without their own `@return` inherit the conditional from the parent (parameters renamed by the child are matched by position).
 - Supported on `@return`, `@psalm-return` and `@phan-return`, on one line or over several lines.
-- Since Phan 6.0.12, `@phpstan-return` is also read when it is a conditional return type that Phan can parse. Any other `@phpstan-return` is ignored without an issue.
+- Since Phan 6.0.12, `@phpstan-return` is also read when it is a conditional return type that Phan can parse. A conditional `@phpstan-return` that Phan cannot parse is ignored without an issue.
 - Not supported yet: conditions on template type names (`@return (T is int ? ... )`). On `@return`, `@psalm-return` and `@phan-return`, unsupported syntax still emits `PhanUnextractableAnnotation`.
 - Since Phan 6.0.12, a call does not return when the conditional resolves to `never` for its arguments, as for a function declared to return `never`:
 
@@ -350,6 +350,30 @@ Phan reads the following spellings that are common in code annotated for PHPStan
 
 Class constants are not known while Phan parses doc comments, so the value of a class constant is `mixed`.
 The rest of a type that contains one is still used: `array<string, self::A|self::B>` is an `array<string,mixed>`.
+
+### @phpstan-param, @phpstan-var and @phpstan-return
+
+Since Phan 6.0.12, Phan reads `@phpstan-param`, `@phpstan-var` and `@phpstan-return`, and the same annotations with `@psalm-`. The type replaces the type of the plain annotation:
+
+```php
+/**
+ * @param array $row
+ * @return array
+ *
+ * @phpstan-param array{id: int, name: string} $row
+ * @phpstan-return list<array{id: int, name: string}>
+ */
+function rows(array $row): array {
+    return [$row];
+}
+```
+
+- `@phan-param`, `@phan-var` and `@phan-return` are preferred when both are present.
+- An annotation that Phan cannot parse completely (e.g. `int-mask<1, 2>`, or a conditional parameter type) is ignored, and the plain annotation is used. Nothing is reported for a `@phpstan-` annotation; `PhanUnextractableAnnotation` and similar issues are reported for a `@psalm-` annotation.
+- A union type can be continued on the next line, when that line starts with `|`.
+- `@phpstan-template` and `@psalm-template` are read like `@template`. If a comment has one of them and one of its `@phpstan-` or `@psalm-` annotations is ignored, none of them is used: they depend on each other.
+- A conditional `@phpstan-return` is described in [Conditional Return Types](#conditional-return-types-v6).
+- Before Phan 6.0.12, `@psalm-param`, `@psalm-var` and `@psalm-return` were read as another `@param`, `@var` or `@return`, and `@phpstan-` annotations were not read.
 
 ### Advanced Union Type Combinations
 
