@@ -346,7 +346,13 @@ Phan reads the following spellings that are common in code annotated for PHPStan
 | `non-empty-literal-string` | `non-empty-string` |
 | `truthy-string` | `non-falsy-string` |
 | `"UTF-8"` (a literal in double quotes) | `'UTF-8'` |
+| `array{'Content-Type': string, "a b"?: int}` (a key in quotes) | `array{Content-Type:string,a\x20b?:int}` |
+| `array{a: int, ...}`, `array{a: int, ...<string, mixed>}` (an array shape that can have other keys) | `array{a:int}\|mixed[]` |
+| `number` | `int\|float` |
+| `numeric` | `int\|float\|string` |
 | `Foo::BAR`, `self::BAR\|self::BAZ`, `Foo::TYPE_*` (the value of a class constant) | `mixed` |
+
+Phan has no type for an array shape that can have other keys. It is read as the array shape or any array: the fields that are listed have their types, and another offset is not reported as invalid, but a value that is not of the array shape is accepted as well. `number` and `numeric` are only read in lower case (`Number` is a class).
 
 Class constants are not known while Phan parses doc comments, so the value of a class constant is `mixed`.
 The rest of a type that contains one is still used: `array<string, self::A|self::B>` is an `array<string,mixed>`.
