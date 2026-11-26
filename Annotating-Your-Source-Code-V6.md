@@ -157,8 +157,29 @@ Rules:
 - Everywhere the arguments aren't known (e.g. `@phan-debug-var` on the method itself, overriding method checks), the return type is the union of all branches.
 - `self`, `static` and template types (`@template` on the method, or class templates such as `self<T>`) work inside the branches, as in a plain `@return`.
 - Implementing/overriding methods without their own `@return` inherit the conditional from the parent (parameters renamed by the child are matched by position).
-- Supported on `@return`, `@psalm-return` and `@phan-return`. The whole conditional must be on one line.
-- Not supported yet: conditions on template type names (`@return (T is int ? ... )`) and `@phpstan-return`. Unsupported syntax still emits `PhanUnextractableAnnotation`.
+- Supported on `@return`, `@psalm-return` and `@phan-return`, on one line or over several lines.
+- Since Phan 6.0.12, `@phpstan-return` is also read when it is a conditional return type that Phan can parse. Any other `@phpstan-return` is ignored without an issue.
+- Not supported yet: conditions on template type names (`@return (T is int ? ... )`). On `@return`, `@psalm-return` and `@phan-return`, unsupported syntax still emits `PhanUnextractableAnnotation`.
+- Since Phan 6.0.12, a call does not return when the conditional resolves to `never` for its arguments, as for a function declared to return `never`:
+
+  ```php
+  /**
+   * @param string|array|int $args
+   * @return void
+   * @phpstan-return ($args is array{exit: false} ? void : never)
+   */
+  function wp_die($message = '', $title = '', $args = array()) { /* ... */ }
+
+  function show(?string $name): string {
+      if ($name === null) {
+          wp_die('No name');
+      }
+      return $name; // Phan knows $name is a string here
+  }
+  ```
+
+  This is only decided when the arguments that the conditions look at are constant expressions or are left out
+  (`wp_die('x')`, `wp_die('x', '', ['exit' => false])`), not for `wp_die('x', '', $args)`.
 
 A condition naming a parameter the function doesn't declare emits `PhanCommentReturnConditionalWithoutRealParam`.
 
