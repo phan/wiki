@@ -1387,6 +1387,8 @@ The `@phpstan-` forms mean the same as the `@phan-` forms. For the `@psalm-` for
 
 Only assertions about a parameter are supported (not `$this->prop` or `$this->method()`), and an assertion that uses a template type is ignored.
 
+Since Phan 6.0.12, nothing is assumed for the other result when the asserted type is one that Phan reads as a wider type (`numeric`, `numeric-string`, `literal-string`, `lowercase-string`, `class-string<Foo>`, `int<1, 10>`, `Foo::BAR`): a value that is not a numeric string can still be a string. A negated assertion of such a type (`!numeric-string $x`) is not used.
+
 ### @phan-assert with Generics
 
 ```php
