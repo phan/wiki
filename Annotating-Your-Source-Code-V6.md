@@ -312,6 +312,24 @@ function createRecord($person) {
 
 [▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkB7AIwCsBTAYwBcBvAOwIoC4BnGnASwYHMAaLL1Y8aAX2QASMBRxsiDZAHly1GsgDuXGhGRsZVLgDMuVZGBxEZOGlwpsUadDgo0ArjkWlKtOlwAmLKL8VC5YNBT+APrh7Jw8vGKOsNBGbgy0XArIoRThFABK1EQ4-gAU0rLyDACUyHQoyE0u7p7IZd5qNQDaAOQBvcgAvAB8yACM-Mi9ufnR4YOjyP75Zb0AmgC0+Jv+vTUAugDc0GJAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
+### Type Syntax of PHPStan and Psalm
+
+Phan reads the following spellings that are common in code annotated for PHPStan or Psalm (since Phan 6.0.12):
+
+| Written | Phan uses |
+| --- | --- |
+| `array{ a: int, b?: string }` (whitespace inside the braces) | `array{a:int,b?:string}` |
+| `non-negative-int` | `0\|positive-int` |
+| `non-positive-int` | `0\|negative-int` |
+| `numeric-string`, `literal-string` | `string` |
+| `non-empty-literal-string` | `non-empty-string` |
+| `truthy-string` | `non-falsy-string` |
+| `"UTF-8"` (a literal in double quotes) | `'UTF-8'` |
+| `Foo::BAR`, `self::BAR\|self::BAZ`, `Foo::TYPE_*` (the value of a class constant) | `mixed` |
+
+Class constants are not known while Phan parses doc comments, so the value of a class constant is `mixed`.
+The rest of a type that contains one is still used: `array<string, self::A|self::B>` is an `array<string,mixed>`.
+
 ### Advanced Union Type Combinations
 
 ```php
