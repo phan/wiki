@@ -371,7 +371,7 @@ function rows(array $row): array {
 - `@phan-param`, `@phan-var` and `@phan-return` are preferred when both are present.
 - An annotation that Phan cannot parse completely (e.g. `int-mask<1, 2>`, or a conditional parameter type) is ignored, and the plain annotation is used. Nothing is reported for a `@phpstan-` annotation; `PhanUnextractableAnnotation` and similar issues are reported for a `@psalm-` annotation.
 - A union type can be continued on the next line, when that line starts with `|`.
-- `@phpstan-template` and `@psalm-template` are read like `@template`. If a comment has one of them and one of its `@phpstan-` or `@psalm-` annotations is ignored, none of them is used: they depend on each other.
+- `@phpstan-template` and `@psalm-template` are read like `@template`. If a comment has `@phpstan-template` and one of its `@phpstan-` or `@psalm-` annotations is ignored, none of them is used: they depend on each other. The template type itself is kept if it is also declared with `@template` or `@psalm-template`, or if a plain annotation uses a template type.
 - A conditional `@phpstan-return` is described in [Conditional Return Types](#conditional-return-types-v6).
 - Before Phan 6.0.12, `@psalm-param`, `@psalm-var` and `@psalm-return` were read as another `@param`, `@var` or `@return`, and `@phpstan-` annotations were not read.
 
