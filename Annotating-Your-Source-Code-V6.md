@@ -1656,6 +1656,68 @@ class UserRepository {
 
 [▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAKQIYDsC0ALgJ5gCmyAqgM6kBOAkgCbIC8yYA9lQJYHcBupPNxwEUaTBFyES5anQAiWAllbIstWliIBvbowBc8howA0OLAFtSBnB3ylLYYnioFaIgOanHWbgBsDNw8cTwBfcQxsfGIyShpaAGEOf39SAGM+ezUNLSJgYyZTYyUVAD5xWGh0-ywqKni6ACVSTh4CDloiZB0UZH6EJH7hiTANK0aTZAASfT6RjFpSAgBXWhxJ0qwAHxwV1Pn++Crh9hWAI39udOQAMxWcTO5s25FGAApZxgBKHsPT2CwZAAOlBhwih0G-wkS1W60myVSGSyOGhJ2GYAuVxu90eKLubwAgql3r9eqcAUDQcDwdAwkA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
+An alias applies to the rest of the file (to the rest of the namespace block, if the file has several), not only to the class.
+The type can span several lines:
+
+```php
+/**
+ * @phan-type UserData = array{
+ *     id: positive-int,
+ *     name: non-empty-string,
+ *     email?: string
+ * }
+ */
+```
+
+### @phpstan-type, @psalm-type and importing aliases
+
+Since Phan 6.0.12, Phan also reads the aliases that are written for PHPStan and Psalm:
+
+- `@phpstan-type Name Type` and `@psalm-type Name = Type` declare an alias, like `@phan-type Name = Type` (the `=` is optional for both).
+- `@phpstan-import-type Name from ClassName` and `@psalm-import-type Name from ClassName` import an alias that the doc comment of
+  another class declares. `as OtherName` gives it another name in this file. `@phan-import-type` is the same.
+
+```php
+// src/DTO/File.php
+namespace App\DTO;
+
+/**
+ * @phpstan-type FileShape array{name: string, size?: int}
+ */
+class File {
+}
+
+// src/Upload.php
+namespace App;
+
+use App\DTO\File;
+
+/**
+ * @phpstan-import-type FileShape from File
+ * @phpstan-type UploadShape array{file: FileShape, user: int}
+ */
+class Upload {
+    /**
+     * @param UploadShape $upload
+     * @return FileShape
+     */
+    public function file(array $upload): array {
+        return $upload['file'];
+    }
+}
+```
+
+Phan resolves the types in doc comments while it parses a file, so the class that an alias is imported from may not have been parsed yet.
+In that case Phan looks for the file of the class by its name among the files to analyze, and reads the aliases from the doc comments
+of the classes in it. It tries `ClassName.php` first, and then files whose name contains the class name
+(for `WP_Filesystem_Base`, `class-wp-filesystem-base.php`).
+
+If the class or the alias is not found, Phan emits `PhanCommentUnextractableTypeAlias` for the line with the import,
+and the name is treated as `mixed` (not as the name of a class).
+
+An imported alias, like a declared one, applies to the rest of the file. Two classes in one file that give the same alias name
+different meanings are not supported: the first one is used.
+
 ### @phan-pure
 
 Mark pure functions (no side effects):
