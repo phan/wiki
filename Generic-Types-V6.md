@@ -1973,7 +1973,28 @@ If a template cannot be inferred, Phan will emit `PhanGenericConstructorTypes`.
 
 ### No Generic Statics
 
-Constants and static methods on a generic class cannot reference template types:
+Constants and static methods on a generic class cannot reference template types.
+
+Since Phan 6.1.0, this does not apply to the static methods of an interface, a trait or an abstract class: a class that inherits the method gives the template type its type, and Phan uses it for calls of the method.
+
+```php
+/** @template T */
+interface Setting {
+    /** @return T */
+    public static function value();
+}
+
+/** @implements Setting<bool> */
+final class Flag implements Setting {
+    public static function value() {
+        return true;
+    }
+}
+
+$flag = Flag::value();  // bool
+```
+
+For a class that is not abstract, nothing gives the template type a type:
 
 ```php
 /**

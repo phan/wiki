@@ -79,6 +79,8 @@ class C2 extends C {
 
 Constants and static methods on a generic class cannot reference template types of the generic class.
 
+Since Phan 6.1.0, the static methods of an interface, a trait or an abstract class can: a class that inherits the method gives the template type its type with `@implements`, `@use` or `@extends`.
+
 See the section [Function-Like Templates](#function-templates) for an alternative for static (and instance) methods.
 
 # How It Works
