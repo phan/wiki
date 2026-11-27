@@ -1643,6 +1643,8 @@ class Model {
 
 When used on a trait, indicate that it must only be used on classes that extend the named class, or implement the named interface.
 
+Phan also reads `@psalm-require-extends` and `@psalm-require-implements`, and since Phan 6.1.0 `@phpstan-require-extends` and `@phpstan-require-implements`.
+
 ```php
 class MyClass {}
 interface MyInterface {}
