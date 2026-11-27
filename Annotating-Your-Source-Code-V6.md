@@ -585,6 +585,15 @@ class DateTimeEntity {
 
 [▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0mATkQJabkO7YDOmR+RARgdmQBvFMjEI06AG5Fa5VNTFiwtBjNIASTKw5d8AbmijxiDGFnd5WnQuPIwAV34MAxsgBmDgHYvtAey9kdmxMMh1ObjAACms2AEphOyVkLQgGdgBaAD5tNgj8ZABeFNzsQ2SAXyNkiQxaEIdaQLJbZMdnN08ff0CAcxCwvL1ohJFk5PrMRsDU9OzS-LBypSqquERKDAdgliHIvgFgBi9MLMpqF2J2dmQAVS8GAA9B3UjsABMAUROmAE9E5LbQQvRYHMrQNYSTboIG7V48fjYYAAERI2BeZ1slyI12QqJwL2+2kw-zGSlhIOGYMMFSAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
+Since Phan 6.0.12, `@use` can also be written above the `use` statement, as PHPStan and Psalm expect it (also as `@phpstan-use`, `@psalm-use` or `@template-use`):
+
+```php
+class UserRepository {
+    /** @use Repository<User> */
+    use Repository;
+}
+```
+
 ### Multiple Template Parameters
 
 ```php
