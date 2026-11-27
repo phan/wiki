@@ -218,6 +218,8 @@ $typedBox->set("hello");  // Now T is string
 
 Classes extending generic classes need to fill in the types of the generic parent class via the `@extends` annotation.
 
+Since Phan 6.1.0, `@template-extends`, `@phpstan-extends` and `@psalm-extends` are read like `@extends`, and `@template-implements`, `@phpstan-implements` and `@psalm-implements` like `@implements`.
+
 ```php
 /**
  * @template T

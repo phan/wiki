@@ -1625,6 +1625,8 @@ function readFile($filename) {
 
 [▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtkBnAFxwEsA7Ac2QBIAzcgGwFNKDWU10SIcA9gHciyAGItWAOQEkxAgK6UAJgFEAHgGNWYEuQGVkAdQjtkTNsmUDWRSgHISyVuvKluGPoJHIACqxx8NyJ9SgARdnJWNS0dPQNjU0MLVmQ3ByccVixlLAAjNg90LJIFHENSChpuWGgGJU14wyyciTYACkZJDnxWAEpkAG8UZFHyBmR2gEIUgH0XNxIiTpSe-oHh0a2tr2FkSlYhcUkZOUUVDW1dUJXuzj6AbhHRgF9ntInpt1mW3ILWW5sNZ9Dbvba7I4HI7+QLBUIRShRGJXJqA9j3J7bN7bEplZKSWbUVgkWaaAwkdhLNHAp4vIA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
+The type is a class that is `Throwable`. Since Phan 6.1.0, it can also be an interface that extends `Throwable` (such as the `ExceptionInterface` of a library), and `@throws void` is accepted as the way to say that a function throws nothing (as PHPStan and Psalm read it). An interface that does not extend `Throwable` is `PhanTypeInvalidThrowsIsInterface`.
+
 ### @mixin
 
 Indicate trait or class mixing:
