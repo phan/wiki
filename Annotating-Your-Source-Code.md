@@ -218,6 +218,8 @@ The package is decided by the directory of the file that declares the element:
 - a file in another directory of [`exclude_analysis_directory_list`](Phan-Config-Settings#exclude_analysis_directory_list) belongs to that directory;
 - any other file of the project belongs to the project.
 
+An `@internal` method, property or constant that a class of the project inherits from a class of a dependency (or gets from a trait of one) belongs to the dependency. Using it is reported, also in the namespace of the class that inherits it, which was not the case before 6.1.0: `$this->addToAssertionCount()` in a PHPUnit test class is an example.
+
 A library that is copied into the source tree and analyzed is a part of the project. Add its directory to `exclude_analysis_directory_list` to protect its `@internal` elements.
 
 Set [`internal_access_scope`](Phan-Config-Settings#internal_access_scope) to `'namespace'` for the old meaning: an element marked as `@internal` and accessed outside of its exact namespace (disallowing both child and parent namespaces) results in an issue. The example below shows that meaning.

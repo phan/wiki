@@ -1555,7 +1555,7 @@ class LegacyClass {
 
 Mark internal APIs.
 
-**Changed in Phan 6.1.0:** by default, an `@internal` element can be used anywhere in the package that declares it, and using it from another package is reported (`PhanAccessMethodInternal` and similar issues). A file in the vendor directory belongs to the Composer package that is installed there, a file in another directory of `exclude_analysis_directory_list` belongs to that directory, and any other file belongs to the project. Before 6.1.0, an `@internal` element could only be used in the namespace that declares it; set [`internal_access_scope`](Phan-Config-Settings#internal_access_scope) to `'namespace'` for that meaning.
+**Changed in Phan 6.1.0:** by default, an `@internal` element can be used anywhere in the package that declares it, and using it from another package is reported (`PhanAccessMethodInternal` and similar issues). A file in the vendor directory belongs to the Composer package that is installed there, a file in another directory of `exclude_analysis_directory_list` belongs to that directory, and any other file belongs to the project. An `@internal` member that a class of the project inherits from a class or trait of a dependency belongs to the dependency, so this can also add reports (e.g. for `$this->addToAssertionCount()` in a PHPUnit test class). Before 6.1.0, an `@internal` element could only be used in the namespace that declares it; set [`internal_access_scope`](Phan-Config-Settings#internal_access_scope) to `'namespace'` for that meaning.
 
 ```php
 /**
