@@ -210,7 +210,7 @@ function g() {}
 
 The `@internal` annotation marks an element (such as a constant, function, class, class constant, property or method) as internal to the package in which it's defined.
 
-**Changed in Phan 6.0.12:** by default, an element marked as `@internal` can be used anywhere in the package that declares it (and in its namespace). Using it from another package results in Phan emitting an issue. Before 6.0.12, it could only be used in its exact namespace.
+**Changed in Phan 6.1.0:** by default, an element marked as `@internal` can be used anywhere in the package that declares it (and in its namespace). Using it from another package results in Phan emitting an issue. Before 6.1.0, it could only be used in its exact namespace.
 
 The package is decided by the directory of the file that declares the element:
 
@@ -461,7 +461,7 @@ in the subsequent statements. (i.e. if the function/method returns without throw
 - `@phan-assert-false-condition $x` will make Phan infer that the argument to parameter `$x` is falsey if the function returned successfully.
 
   Invocations of this function will be analyzed similarly to `assert(!expr);`.
-- `@phan-assert-if-true T $x` and `@phan-assert-if-false T $x` (Phan 6.0.12+) describe the type of the argument depending on what a function that returns a bool returned, for a call used as a condition (`if (is_wp_error($x)) { ... }`). The opposite is assumed for the other return value, unless the type is written as `=T`. `@phpstan-assert-if-true`/`-false` mean the same; for `@psalm-assert-if-true`/`-false`, nothing is assumed for the other return value. See [Annotating Your Source Code (V6)](Annotating-Your-Source-Code-V6#phan-assert-if-true-and-phan-assert-if-false).
+- `@phan-assert-if-true T $x` and `@phan-assert-if-false T $x` (Phan 6.1.0+) describe the type of the argument depending on what a function that returns a bool returned, for a call used as a condition (`if (is_wp_error($x)) { ... }`). The opposite is assumed for the other return value, unless the type is written as `=T`. `@phpstan-assert-if-true`/`-false` mean the same; for `@psalm-assert-if-true`/`-false`, nothing is assumed for the other return value. See [Annotating Your Source Code (V6)](Annotating-Your-Source-Code-V6#phan-assert-if-true-and-phan-assert-if-false).
 - This can be used in combination with Phan's template support.
 
 A simple example of how `@phan-assert` can be used:
@@ -551,7 +551,7 @@ $invoker(2);
 The annotation is not needed when a closure literal is passed directly as the first argument of `Closure::bind()`,
 or is the receiver of `->bindTo()` or `->call()`, and the scope argument is a known class
 (`MyClass::class`, `'MyClass'`, or an object of a single known class).
-Phan then analyzes the closure body in that scope automatically (since Phan 6.0.12):
+Phan then analyzes the closure body in that scope automatically (since Phan 6.1.0):
 
 ```php
 $c = Closure::bind(static function () {

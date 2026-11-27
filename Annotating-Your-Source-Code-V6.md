@@ -158,9 +158,9 @@ Rules:
 - `self`, `static` and template types (`@template` on the method, or class templates such as `self<T>`) work inside the branches, as in a plain `@return`.
 - Implementing/overriding methods without their own `@return` inherit the conditional from the parent (parameters renamed by the child are matched by position).
 - Supported on `@return`, `@psalm-return` and `@phan-return`, on one line or over several lines.
-- Since Phan 6.0.12, `@phpstan-return` is also read when it is a conditional return type that Phan can parse. A conditional `@phpstan-return` that Phan cannot parse is ignored without an issue.
+- Since Phan 6.1.0, `@phpstan-return` is also read when it is a conditional return type that Phan can parse. A conditional `@phpstan-return` that Phan cannot parse is ignored without an issue.
 - Not supported yet: conditions on template type names (`@return (T is int ? ... )`). On `@return`, `@psalm-return` and `@phan-return`, unsupported syntax still emits `PhanUnextractableAnnotation`.
-- Since Phan 6.0.12, a call does not return when the conditional resolves to `never` for its arguments, as for a function declared to return `never`:
+- Since Phan 6.1.0, a call does not return when the conditional resolves to `never` for its arguments, as for a function declared to return `never`:
 
   ```php
   /**
@@ -335,7 +335,7 @@ function createRecord($person) {
 
 ### Type Syntax of PHPStan and Psalm
 
-Phan reads the following spellings that are common in code annotated for PHPStan or Psalm (since Phan 6.0.12):
+Phan reads the following spellings that are common in code annotated for PHPStan or Psalm (since Phan 6.1.0):
 
 | Written | Phan uses |
 | --- | --- |
@@ -359,7 +359,7 @@ The rest of a type that contains one is still used: `array<string, self::A|self:
 
 ### @phpstan-param, @phpstan-var and @phpstan-return
 
-Since Phan 6.0.12, Phan reads `@phpstan-param`, `@phpstan-var` and `@phpstan-return`, and the same annotations with `@psalm-`. The type replaces the type of the plain annotation:
+Since Phan 6.1.0, Phan reads `@phpstan-param`, `@phpstan-var` and `@phpstan-return`, and the same annotations with `@psalm-`. The type replaces the type of the plain annotation:
 
 ```php
 /**
@@ -380,7 +380,7 @@ function rows(array $row): array {
 - A `@phpstan-` annotation that names a class that is not declared in the files that Phan parses is not used either, and nothing is reported: the name is usually a type alias that Phan does not know, such as a global alias of `typeAliases` in `phpstan.neon`. (A `@psalm-` annotation with such a name is used, and reported with `PhanUndeclaredTypeParameter` and similar issues.) A class that only exists through `class_alias()` is not found.
 - `@phpstan-template` and `@psalm-template` are read like `@template`. If a comment has `@phpstan-template` and one of its `@phpstan-` or `@psalm-` annotations is ignored, none of them is used: they depend on each other. The template type itself is kept if it is also declared with `@template` or `@psalm-template`, or if a plain annotation uses a template type.
 - A conditional `@phpstan-return` is described in [Conditional Return Types](#conditional-return-types-v6).
-- Before Phan 6.0.12, `@psalm-param`, `@psalm-var` and `@psalm-return` were read as another `@param`, `@var` or `@return`, and `@phpstan-` annotations were not read.
+- Before Phan 6.1.0, `@psalm-param`, `@psalm-var` and `@psalm-return` were read as another `@param`, `@var` or `@return`, and `@phpstan-` annotations were not read.
 
 ### Advanced Union Type Combinations
 
@@ -585,7 +585,7 @@ class DateTimeEntity {
 
 [▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAIBcCmBbMANgIY7IAqK8s0mATkQJabkO7YDOmR+RARgdmQBvFMjEI06AG5Fa5VNTFiwtBjNIASTKw5d8AbmijxiDGFnd5WnQuPIwAV34MAxsgBmDgHYvtAey9kdmxMMh1ObjAACms2AEphOyVkLQgGdgBaAD5tNgj8ZABeFNzsQ2SAXyNkiQxaEIdaQLJbZMdnN08ff0CAcxCwvL1ohJFk5PrMRsDU9OzS-LBypSqquERKDAdgliHIvgFgBi9MLMpqF2J2dmQAVS8GAA9B3UjsABMAUROmAE9E5LbQQvRYHMrQNYSTboIG7V48fjYYAAERI2BeZ1slyI12QqJwL2+2kw-zGSlhIOGYMMFSAA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
-Since Phan 6.0.12, `@use` can also be written above the `use` statement, as PHPStan and Psalm expect it (also as `@phpstan-use`, `@psalm-use` or `@template-use`):
+Since Phan 6.1.0, `@use` can also be written above the `use` statement, as PHPStan and Psalm expect it (also as `@phpstan-use`, `@psalm-use` or `@template-use`):
 
 ```php
 class UserRepository {
@@ -1359,7 +1359,7 @@ function handle(?string $data) {
 
 ### @phan-assert-if-true and @phan-assert-if-false
 
-Since Phan 6.0.12. For a function or method that returns a bool, these describe the type of an argument
+Since Phan 6.1.0. For a function or method that returns a bool, these describe the type of an argument
 depending on what the call returned, when the call is used as a condition.
 
 ```php
@@ -1396,7 +1396,7 @@ The `@phpstan-` forms mean the same as the `@phan-` forms. For the `@psalm-` for
 
 Only assertions about a parameter are supported (not `$this->prop` or `$this->method()`), and an assertion that uses a template type is ignored.
 
-Since Phan 6.0.12, nothing is assumed for the other result when the asserted type is one that Phan reads as a wider type (`numeric`, `numeric-string`, `literal-string`, `lowercase-string`, `class-string<Foo>`, `int<1, 10>`, `Foo::BAR`): a value that is not a numeric string can still be a string. A negated assertion of such a type (`!numeric-string $x`) is not used.
+Since Phan 6.1.0, nothing is assumed for the other result when the asserted type is one that Phan reads as a wider type (`numeric`, `numeric-string`, `literal-string`, `lowercase-string`, `class-string<Foo>`, `int<1, 10>`, `Foo::BAR`): a value that is not a numeric string can still be a string. A negated assertion of such a type (`!numeric-string $x`) is not used.
 
 ### @phan-assert with Generics
 
@@ -1555,7 +1555,7 @@ class LegacyClass {
 
 Mark internal APIs.
 
-**Changed in Phan 6.0.12:** by default, an `@internal` element can be used anywhere in the package that declares it, and using it from another package is reported (`PhanAccessMethodInternal` and similar issues). A file in the vendor directory belongs to the Composer package that is installed there, a file in another directory of `exclude_analysis_directory_list` belongs to that directory, and any other file belongs to the project. Before 6.0.12, an `@internal` element could only be used in the namespace that declares it; set [`internal_access_scope`](Phan-Config-Settings#internal_access_scope) to `'namespace'` for that meaning.
+**Changed in Phan 6.1.0:** by default, an `@internal` element can be used anywhere in the package that declares it, and using it from another package is reported (`PhanAccessMethodInternal` and similar issues). A file in the vendor directory belongs to the Composer package that is installed there, a file in another directory of `exclude_analysis_directory_list` belongs to that directory, and any other file belongs to the project. Before 6.1.0, an `@internal` element could only be used in the namespace that declares it; set [`internal_access_scope`](Phan-Config-Settings#internal_access_scope) to `'namespace'` for that meaning.
 
 ```php
 /**
@@ -1664,7 +1664,7 @@ class Invalid {
 
 [▶](https://phan.github.io/demo/?c=DwfgDgFmBQ0MYBsCGBnFACAsgTwMLLXQG8BfaASwDsAXAUwCcAzJOWrbASRoedeLOgB6AFTDo6YegAC9WgEcAruVkBaWgA86lACYYc%2BVCnGSZ8pavIBbMAlqXaNPZ25MWtY4OjV6SctXYAKj5%2B-LCIhugAakgI5NroGlq67AaEVjZ2DtROXHSufETi6AoobDhBvtQA3NAC4YRcAG4xccRFJWXYFX5V6IKCCZZ%2BGAAKEEiU3dQASmbKtACimg66mORoVADmADToYxNTs4rzHNa29o5rG5SbtUA&php=84&phan=v6-dev&ast=1.1.3&plugins=0 "Try this example in Phan-in-Browser")
 
-Since Phan 6.0.12, the methods and properties of the named class or interface can be used in the trait, including protected and static ones, and `$this`, `self` and `static` in the trait are instances of that class or interface.
+Since Phan 6.1.0, the methods and properties of the named class or interface can be used in the trait, including protected and static ones, and `$this`, `self` and `static` in the trait are instances of that class or interface.
 They are not added to the classes using the trait: a class that does not extend the class or implement the interface gets `PhanTraitRequireExtendsMissing` or `PhanTraitRequireImplementsMissing`, and `PhanUndeclaredMethod` etc. for its uses of these members.
 
 ```php
@@ -1703,7 +1703,7 @@ class Invalid {
 
 In older versions of Phan, the trait's methods get `PhanUndeclaredMethod` for these members; adding [@mixin](#mixin) of the class and the interface allows using their public methods and properties.
 
-Since Phan 6.0.12, the annotation is also checked where it is declared, whether or not the trait is used:
+Since Phan 6.1.0, the annotation is also checked where it is declared, whether or not the trait is used:
 
 - `PhanUndeclaredClassReference` if the named class or interface is not declared;
 - `PhanAccessWrongInheritanceCategory` (`PhanAccessWrongInheritanceCategoryInternal` for a class of PHP or an extension) if `@require-extends` does not name a class, or `@require-implements` does not name an interface;
@@ -1754,7 +1754,7 @@ The type can span several lines:
 
 ### @phpstan-type, @psalm-type and importing aliases
 
-Since Phan 6.0.12, Phan also reads the aliases that are written for PHPStan and Psalm:
+Since Phan 6.1.0, Phan also reads the aliases that are written for PHPStan and Psalm:
 
 - `@phpstan-type Name Type` and `@psalm-type Name = Type` declare an alias, like `@phan-type Name = Type` (the `=` is optional for both).
 - `@phpstan-import-type Name from ClassName` and `@psalm-import-type Name from ClassName` import an alias that the doc comment of
@@ -1864,7 +1864,7 @@ class ApiClient {
 
 ### Annotations of Plugins (@phan-x-...)
 
-Since Phan 6.0.12, annotations whose names start with `@phan-x-` are declared by plugins, not by Phan. The plugin that declares such an annotation defines what it means; Phan does not give a meaning of its own to any name with this prefix. `phan --help-annotations` lists the annotations that the configured plugins declare, after those of Phan. An `@phan-x-` annotation that no loaded plugin declares is reported as `PhanMisspelledAnnotation`, with a suggestion when its name is close to a declared one. As for the annotations of Phan, the names are not case-sensitive.
+Since Phan 6.1.0, annotations whose names start with `@phan-x-` are declared by plugins, not by Phan. The plugin that declares such an annotation defines what it means; Phan does not give a meaning of its own to any name with this prefix. `phan --help-annotations` lists the annotations that the configured plugins declare, after those of Phan. An `@phan-x-` annotation that no loaded plugin declares is reported as `PhanMisspelledAnnotation`, with a suggestion when its name is close to a declared one. As for the annotations of Phan, the names are not case-sensitive.
 
 ```php
 /**
