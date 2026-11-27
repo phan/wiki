@@ -73,6 +73,9 @@ function processData() {
 
 [▶](https://phan.github.io/demo/?c=DwfgDgFmBQBmCuA7AxgFwJYHtEAIwCdNkBTAZ1IBEBDVKgCgEocBvaHdnAEnzPgBtUOALw5YxVMggBhTAFswfYgA9qtRgG42HAOQABSFUQBaAG5V8Oc-ioBPYOkSoANAFVSxfAD4uPUv1Tamhw4APQhOAAKEIY4iJgA7jgA1nHxpD68Ajjo6Va29o6u7l7QWuywmDxUkjh03JmCVOmc6AAmwt6c8MVMrMHBxJKYOABELa0AXCxdxUaeAObiAHJUssSMAL4AOogjQRwbpcFhOG7EOPrRxmb4RhX4JDiow8hVqOc36FQARorZsNlBK1MGRENpBMocqgyjg9AZruY7pVHg5BJxkJgkO98IEYejMY4PMIcAAGTQwk4ACQ8xGByBwpBsjioSksfFIw3ilSSpBhfChdVItFQ3ScXFaNCoTBEYgkEAASmQwNh3BoYcANdoIpSAIJLbQwy6GUzmHDfTCYPhcIU0bqG+Emix5GzMNoTVFORCrYgTIX4BzzDbiyUw7V6zQbIA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
+A doc comment above a statement (`/** @var User[] $result */`) is not part of what php-ast gives Phan, so Phan does not use its type for the variable.
+Since Phan 6.1.0, the class names in such a comment do count as a use of their `use` statement, so that `PhanUnreferencedUseNormal` is not reported for an import that only a comment like this refers to.
+
 ### Parameter Annotations (@param)
 
 Annotate function and method parameters:
