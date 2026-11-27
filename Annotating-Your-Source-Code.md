@@ -210,7 +210,17 @@ function g() {}
 
 The `@internal` annotation marks an element (such as a constant, function, class, class constant, property or method) as internal to the package in which it's defined.
 
-Any element marked as `@internal` and accessed outside of its exact namespace (disallowing both child and parent namespaces) will result in Phan emitting an issue.
+**Changed in Phan 6.0.12:** by default, an element marked as `@internal` can be used anywhere in the package that declares it (and in its namespace). Using it from another package results in Phan emitting an issue. Before 6.0.12, it could only be used in its exact namespace.
+
+The package is decided by the directory of the file that declares the element:
+
+- a file in the vendor directory belongs to the Composer package that is installed in its directory;
+- a file in another directory of [`exclude_analysis_directory_list`](Phan-Config-Settings#exclude_analysis_directory_list) belongs to that directory;
+- any other file of the project belongs to the project.
+
+A library that is copied into the source tree and analyzed is a part of the project. Add its directory to `exclude_analysis_directory_list` to protect its `@internal` elements.
+
+Set [`internal_access_scope`](Phan-Config-Settings#internal_access_scope) to `'namespace'` for the old meaning: an element marked as `@internal` and accessed outside of its exact namespace (disallowing both child and parent namespaces) results in an issue. The example below shows that meaning.
 
 ```php
 <?php
