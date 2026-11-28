@@ -351,6 +351,12 @@ Phan reads the following spellings that are common in code annotated for PHPStan
 | `"UTF-8"` (a literal in double quotes) | `'UTF-8'` |
 | `array{'Content-Type': string, "a b"?: int}` (a key in quotes) | `array{Content-Type:string,a\x20b?:int}` |
 | `array{a: int, ...}`, `array{a: int, ...<string, mixed>}` (an array shape that can have other keys) | `array{a:int}\|mixed[]` |
+| `interface-string`, `trait-string`, `enum-string` | `class-string` |
+| `closed-resource` | `resource` |
+| `finite-float` | `float` |
+| `Closure(): Gen<int>\|string` (a return type with type arguments, `?` or an array shape; the `\|string` is not part of it) | `Closure():(Gen<int>)\|string` |
+| `ArrayAccess<array-key, covariant mixed>` (`covariant`, `contravariant`) | `ArrayAccess<array-key, mixed>` |
+| `'->'\|'<='` (`<`, `>` or `\|` in a literal) | `'-\x3e'\|'\x3c='` |
 | `number` | `int\|float` |
 | `numeric` | `int\|float\|string` |
 | `Foo::BAR`, `self::BAR\|self::BAZ`, `Foo::TYPE_*` (the value of a class constant) | `mixed` |
