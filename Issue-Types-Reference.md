@@ -254,7 +254,7 @@ $user = new User();
 echo $user->getEmail();  // Error: getEmail() doesn't exist
 ```
 
-A call that `method_exists()` guards is not reported, for a variable (or `$this`) and a method name that is a string literal:
+A call that `method_exists()` guards is not reported, for a method name that is a string literal. The object can be a variable, `$this` or a property of `$this`, and the class can be `self::class`, `static::class` or `Foo::class`:
 
 ```php
 // A method of a subclass, or of another version of a dependency
@@ -266,7 +266,16 @@ if (!method_exists($this, 'setUp')) {
 $this->setUp();  // OK
 ```
 
-This holds until the variable is assigned another value, and it is not carried into a closure.
+```php
+if (method_exists($this->driver, 'getCapabilities')) {
+    $this->driver->getCapabilities();  // OK
+}
+if (method_exists(self::class, 'getClient')) {
+    self::getClient();  // OK, and so are static::getClient() and $this->getClient()
+}
+```
+
+This holds until the variable or the property is assigned another value, and it is not carried into a closure. `method_exists(static::class, 'name')` and `method_exists($this, 'name')` are not about `self::name()`: a subclass can be the one that has the method.
 
 **Fix**: Implement the method or call an existing one.
 
