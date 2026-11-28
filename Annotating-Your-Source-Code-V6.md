@@ -1337,6 +1337,8 @@ function process($input) {
 
 [▶](https://phan.github.io/demo/?c=DwfgDgFmBQD0BU9oAJ7IAJgIYCcsFtl8BLADwFMATZAEgDcsAbAV3JTUwiwDsBaLAM4DyOAC7IBonMW4BzWgxZtUsaADNm3AMajiAe27JBwsQGUpM2QAp6TVgEpkAbxTI3xNcisBCYgID6ktJyNooOji5uUVGiEDh6AO7I3ORJACoAnmDkAKI48ThWAEQ5pNk6VBIWckX2ANyubgC+0C3qmjr6hmDxWuRCNjJgzKIRjUZCIqLmwdY0QyP147CwyAAKXIbcicgA1tsJArQL4n5GVbPj5FoQeheM5NyD3MOjDU1AA&php=84&phan=v6-dev&ast=1.1.3 "Try this example in Phan-in-Browser")
 
+Since Phan 6.1.0, `@phpstan-assert` and `@psalm-assert` with a type (`T`, `!T`, and `=T`, which is the same as `T` here) are read like `@phan-assert`, for an assertion about a parameter.
+
 ### @phan-assert-true-condition and @phan-assert-false-condition
 
 `@phan-assert-true-condition $x` makes Phan analyze a call like `assert($x)`: the argument is truthy if the function returns.
@@ -1397,7 +1399,38 @@ function handle(): int {
 Phan also reads `@phpstan-assert-if-true`, `@phpstan-assert-if-false`, `@psalm-assert-if-true` and `@psalm-assert-if-false`.
 The `@phpstan-` forms mean the same as the `@phan-` forms. For the `@psalm-` forms, nothing is assumed for the other return value.
 
-Only assertions about a parameter are supported (not `$this->prop` or `$this->method()`), and an assertion that uses a template type is ignored.
+An assertion that uses a template type is ignored.
+
+Since Phan 6.1.0, an assertion of a method that is not static can also be about `$this` and about a property of `$this`:
+
+```php
+class Test {
+    /** @phpstan-assert-if-true TestMethod $this */
+    public function isTestMethod(): bool { return false; }
+}
+
+final class Configuration {
+    private ?string $file = null;
+
+    /** @phpstan-assert-if-true !null $this->file */
+    public function hasFile(): bool { return $this->file !== null; }
+
+    public function file(): string {
+        if (!$this->hasFile()) {
+            throw new Exception('no file');
+        }
+        return $this->file;  // string
+    }
+}
+
+function name(Test $test): string {
+    return $test->isTestMethod() ? $test->methodName() : '';  // $test is a TestMethod
+}
+```
+
+- `$this` is the object that the method is called on: a variable (`$test->isTestMethod()`, `$this->isTestMethod()`) or a property of a variable (`$this->test->isTestMethod()`). Nothing is assumed for other expressions.
+- `$this->prop` is that property of the object, for a call on a variable. A property that the code with the call cannot read (a private property of another class) is left alone.
+- Not supported: `$param->prop`, `$this->method()`, and `$this->a->b`.
 
 Since Phan 6.1.0, nothing is assumed for the other result when the asserted type is one that Phan reads as a wider type (`numeric`, `numeric-string`, `literal-string`, `lowercase-string`, `class-string<Foo>`, `int<1, 10>`, `Foo::BAR`): a value that is not a numeric string can still be a string. A negated assertion of such a type (`!numeric-string $x`) is not used.
 
