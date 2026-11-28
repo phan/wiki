@@ -363,7 +363,7 @@ Phan reads the following spellings that are common in code annotated for PHPStan
 
 Phan has no type for an array shape that can have other keys. It is read as the array shape or any array: the fields that are listed have their types, and another offset is not reported as invalid, but a value that is not of the array shape is accepted as well. `number` and `numeric` are only read in lower case (`Number` is a class).
 
-Class constants are not known while Phan parses doc comments, so the value of a class constant is `mixed`.
+Class constants are not known while Phan parses doc comments, so the value of a class constant is `mixed`. Since Phan 6.1.0, that `mixed` is not reported as incompatible with the real type of a parameter or return value (`@param self::MODE_* $mode` for `int $mode`): the real type is used. The class of such a type counts as a reference to its `use` statement.
 The rest of a type that contains one is still used: `array<string, self::A|self::B>` is an `array<string,mixed>`.
 
 ### @phpstan-param, @phpstan-var and @phpstan-return
