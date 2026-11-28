@@ -254,6 +254,20 @@ $user = new User();
 echo $user->getEmail();  // Error: getEmail() doesn't exist
 ```
 
+A call that `method_exists()` guards is not reported, for a variable (or `$this`) and a method name that is a string literal:
+
+```php
+// A method of a subclass, or of another version of a dependency
+$response = method_exists($e, 'getResponse') ? $e->getResponse() : null;
+
+if (!method_exists($this, 'setUp')) {
+    return;
+}
+$this->setUp();  // OK
+```
+
+This holds until the variable is assigned another value, and it is not carried into a closure.
+
 **Fix**: Implement the method or call an existing one.
 
 ```php
